@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 429722428}
   - component: {fileID: 429722435}
   - component: {fileID: 429722434}
+  - component: {fileID: 429722436}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -737,6 +738,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customColliderContainer: {fileID: 0}
+--- !u!114 &429722436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429722427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c71a907c7d246f0a46d1df432509b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &502124331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,9 +1168,9 @@ GameObject:
   - component: {fileID: 864105731}
   - component: {fileID: 864105734}
   - component: {fileID: 864105733}
-  - component: {fileID: 864105735}
   - component: {fileID: 864105728}
   - component: {fileID: 864105736}
+  - component: {fileID: 864105735}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -1259,9 +1272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableTeleport: 1
+  enableTeleport: 0
   targetListPolicy: {fileID: 864105736}
-  pointerRenderer: {fileID: 864105732}
+  pointerRenderer: {fileID: 864105728}
   activationButton: 10
   holdButtonToActivate: 1
   activateOnEnable: 0
@@ -1383,27 +1396,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 864105726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
+  m_Script: {fileID: 11500000, guid: d6c71a907c7d246f0a46d1df432509b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableTeleport: 0
-  targetListPolicy: {fileID: 0}
-  pointerRenderer: {fileID: 864105728}
-  activationButton: 1
-  holdButtonToActivate: 1
-  activateOnEnable: 0
-  activationDelay: 0
-  selectionButton: 4
-  selectOnPress: 1
-  selectionDelay: 0
-  selectAfterHoverDuration: 0
-  interactWithObjects: 1
-  grabToPointerTip: 0
-  attachedTo: {fileID: 0}
-  controllerEvents: {fileID: 864105727}
-  interactUse: {fileID: 0}
-  customOrigin: {fileID: 0}
-  controller: {fileID: 0}
 --- !u!114 &864105736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,7 +1854,7 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 502124333}
+  - {fileID: 1445166360}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
 --- !u!4 &1415241607
