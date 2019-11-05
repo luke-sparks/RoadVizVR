@@ -26,7 +26,7 @@ public class MenuManager : MonoBehaviour
     public void switchToDevEnvScene()
     {
         Debug.Log("Switching to Dev Env scene");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("DevelopmentEnvironment");
     }
 
 
