@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 429722435}
   - component: {fileID: 429722434}
   - component: {fileID: 429722436}
+  - component: {fileID: 429722437}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -677,16 +678,16 @@ MonoBehaviour:
   enableTeleport: 0
   targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 429722431}
-  activationButton: 9
+  activationButton: 1
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
-  selectionButton: 10
+  selectionButton: 4
   selectOnPress: 0
   selectionDelay: 0
   selectAfterHoverDuration: 0
   interactWithObjects: 1
-  grabToPointerTip: 1
+  grabToPointerTip: 0
   attachedTo: {fileID: 0}
   controllerEvents: {fileID: 429722430}
   interactUse: {fileID: 0}
@@ -747,9 +748,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 429722427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c71a907c7d246f0a46d1df432509b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableTeleport: 1
+  targetListPolicy: {fileID: 429722437}
+  pointerRenderer: {fileID: 429722429}
+  activationButton: 10
+  holdButtonToActivate: 1
+  activateOnEnable: 0
+  activationDelay: 0
+  selectionButton: 10
+  selectOnPress: 0
+  selectionDelay: 0
+  selectAfterHoverDuration: 0
+  interactWithObjects: 0
+  grabToPointerTip: 0
+  attachedTo: {fileID: 0}
+  controllerEvents: {fileID: 0}
+  interactUse: {fileID: 0}
+  customOrigin: {fileID: 0}
+  controller: {fileID: 0}
+--- !u!114 &429722437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429722427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed2aa1a29b92ca4f84a26a5f6e9218b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  operation: 1
+  checkType: 1
+  identifiers:
+  - CanTeleport
 --- !u!1 &502124331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,17 +1308,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableTeleport: 0
-  targetListPolicy: {fileID: 864105736}
+  targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 864105728}
-  activationButton: 10
+  activationButton: 1
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
-  selectionButton: 10
+  selectionButton: 4
   selectOnPress: 0
   selectionDelay: 0
   selectAfterHoverDuration: 0
-  interactWithObjects: 0
+  interactWithObjects: 1
   grabToPointerTip: 0
   attachedTo: {fileID: 0}
   controllerEvents: {fileID: 864105727}
@@ -1396,9 +1431,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 864105726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c71a907c7d246f0a46d1df432509b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ec704cceb26f6f49b6c900fc83d8d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableTeleport: 1
+  targetListPolicy: {fileID: 864105736}
+  pointerRenderer: {fileID: 864105732}
+  activationButton: 10
+  holdButtonToActivate: 1
+  activateOnEnable: 0
+  activationDelay: 0
+  selectionButton: 10
+  selectOnPress: 0
+  selectionDelay: 0
+  selectAfterHoverDuration: 0
+  interactWithObjects: 0
+  grabToPointerTip: 0
+  attachedTo: {fileID: 0}
+  controllerEvents: {fileID: 0}
+  interactUse: {fileID: 0}
+  customOrigin: {fileID: 0}
+  controller: {fileID: 0}
 --- !u!114 &864105736
 MonoBehaviour:
   m_ObjectHideFlags: 0
