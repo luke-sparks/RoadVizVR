@@ -976,8 +976,9 @@ GameObject:
   - component: {fileID: 844387846}
   - component: {fileID: 844387850}
   - component: {fileID: 844387849}
+  - component: {fileID: 844387852}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Touchable Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1050,7 +1051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844387841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 1.6, z: 0}
+  m_LocalPosition: {x: -2.5, y: 1.582, z: -0.15}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1188,6 +1189,18 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &844387852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844387841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &864105726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,7 +1661,7 @@ GameObject:
   - component: {fileID: 1067001776}
   - component: {fileID: 1067001775}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Touchable Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1850,7 +1863,7 @@ MonoBehaviour:
   allowedGrabControllers: 0
   grabAttachMechanicScript: {fileID: 1067001779}
   secondaryGrabActionScript: {fileID: 1067001778}
-  isUsable: 0
+  isUsable: 1
   holdButtonToUse: 1
   useOnlyIfGrabbed: 0
   pointerActivatesUseAction: 0
