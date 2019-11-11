@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class adjustSize : MonoBehaviour
 {
-    public float x = 6.0f;
-    public float y = 0.3f;
-    public float z = 3.0f;
-    public float input = 0;
+    public float x;
+    public float y;
+    public float z;
+    public float input;
 
     // Start is called before the first frame update
     public void Start()

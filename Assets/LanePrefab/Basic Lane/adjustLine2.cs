@@ -15,23 +15,23 @@ public class adjustLine2 : MonoBehaviour
     void Start()
     {
         //UPDATE ALL VARIABLES
-        asphaltX = GameObject.Find("PrimaryAsphalt").transform.localPosition.x;
-        asphaltY = GameObject.Find("PrimaryAsphalt").transform.localPosition.y;
-        asphaltZ = GameObject.Find("PrimaryAsphalt").transform.localPosition.z;
-        asphaltZScale = GameObject.Find("PrimaryAsphalt").transform.localScale.z;
-        asphaltXScale = GameObject.Find("PrimaryAsphalt").transform.localScale.x;
+        asphaltX = primaryAsphalt.transform.localPosition.x;
+        asphaltY = primaryAsphalt.transform.localPosition.y;
+        asphaltZ = primaryAsphalt.transform.localPosition.z;
+        asphaltZScale = primaryAsphalt.transform.localScale.z;
+        asphaltXScale = primaryAsphalt.transform.localScale.x;
     }
 
     // Update is called once per frame
     void Update()
     {
         //UPDATE THE Z VARIABLES FOR POSITIONAL UPDATES
-        asphaltZScale = GameObject.Find("PrimaryAsphalt").transform.localScale.z;
-        asphaltZ = -(GameObject.Find("PrimaryAsphalt").transform.localPosition.z);
+        asphaltZScale = primaryAsphalt.transform.localScale.z;
+        asphaltZ = -(primaryAsphalt.transform.localPosition.z);
 
         //UPDATE THE X VARIABLES FOR POSITIONAL UPDATES
-        asphaltX = -(GameObject.Find("PrimaryAsphalt").transform.localPosition.x);
-        asphaltXScale = GameObject.Find("PrimaryAsphalt").transform.localScale.x;
+        asphaltX = -(primaryAsphalt.transform.localPosition.x);
+        asphaltXScale = primaryAsphalt.transform.localScale.x;
 
         //Transforms the scale and position to update with the road.
         transform.localPosition = new Vector3(-asphaltX, asphaltY, -(asphaltZ + asphaltZScale / 2));
