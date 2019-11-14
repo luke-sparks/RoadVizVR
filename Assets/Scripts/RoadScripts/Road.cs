@@ -6,7 +6,7 @@ public class Road : MonoBehaviour
 {
     // private variables
     // road_Lanes is a linked list of the lanes currently in the road object
-    private LinkedList<GameObject> roadLanes;
+    [SerializeField] private LinkedList<GameObject> roadLanes;
     // the list of acceptable types of objects that can be
     // inserted into the road
     [SerializeField] private GameObject[] laneTypes = new GameObject[1];
@@ -63,6 +63,17 @@ public class Road : MonoBehaviour
         //       functionality we are looking for
     }
 
+    // returns the list of valid lane types
+    public List<GameObject> getLaneTypes()
+    {
+        List<GameObject> laneTypesList = new List<GameObject>();
+        foreach(GameObject g in laneTypes)
+        {
+            laneTypesList.Add(g);
+        }
+        return laneTypesList;
+    }
+
     // checks to make sure that the lane object parameter
     // is actually a lane object
     // laneType: the object that the user is trying to insert 
@@ -70,7 +81,7 @@ public class Road : MonoBehaviour
     public bool isValidLaneType(GameObject laneType)
     {
         // check for IsLane tag
-        if(laneType.tag == "IsLane")
+        if(laneType != null && laneType.tag == "IsLane")
         {
             return true;
         }
