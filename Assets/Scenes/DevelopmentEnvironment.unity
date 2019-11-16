@@ -1302,7 +1302,7 @@ GameObject:
   - component: {fileID: 864105735}
   - component: {fileID: 864105732}
   - component: {fileID: 864105736}
-  - component: {fileID: 864105738}
+  - component: {fileID: 864105737}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -1565,7 +1565,7 @@ MonoBehaviour:
   checkType: 1
   identifiers:
   - CanTeleport
---- !u!114 &864105738
+--- !u!114 &864105737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1574,14 +1574,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 864105726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1e627535debf640acf02ca36bfda14, type: 3}
+  m_Script: {fileID: 11500000, guid: cf42c35e2a531584a8d854919c1f1a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
-  logEnterEvent: 1
-  logHoverEvent: 0
-  logExitEvent: 1
-  logSetEvent: 1
 --- !u!1001 &893088598
 PrefabInstance:
   m_ObjectHideFlags: 0
