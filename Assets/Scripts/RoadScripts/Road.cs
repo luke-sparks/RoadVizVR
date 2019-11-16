@@ -34,7 +34,7 @@ public class Road : MonoBehaviour
         
     }*/
 
-    // insertLane inserts a lane object into the road
+    // insertLaneAtEnd inserts a lane object into the road at the end of the list
     // laneType: the type of lane to be inserted into the road
     // shift: the distance by which the lane's position must be
     //        moved (so that it does not paste over another lane)
@@ -61,6 +61,44 @@ public class Road : MonoBehaviour
         // note: this implementation is very simple; it will have to be
         //       expanded upon significantly in order to achieve the
         //       functionality we are looking for
+    }
+
+    // insertLaneAtBeginning inserts a lane object into the road at the beginning of the list
+    // laneType: the type of lane to be inserted into the road
+    // shift: the distance by which the lane's position must be
+    //        moved (so that it does not paste over another lane)
+    public void insertLaneAtBeginning(GameObject laneType, float shift)
+    {
+        // essentially just a duplicate of insertLaneAtEnd
+
+        // steps: 
+        // 1. check to make sure the lane is an acceptable type
+        // 2. update lane's position on road to prevent pasting over
+        //    another lane
+        // 3. insert the physical representation of the lane
+        //    by calling Instantiate and create a reference to that 
+        //    instantiated object
+        // 4. set the new lane to be a child of the road object
+        // 5. add the lane to the linked list
+        if (isValidLaneType(laneType))
+        {
+            lanePosition.z -= shift;
+            GameObject newLane = Instantiate(laneType, lanePosition, transform.rotation);
+            newLane.transform.parent = transform;
+            roadLanes.AddFirst(newLane);
+        }
+        else
+        {
+            Debug.Log("This is not a lane");
+        }
+        // note: this implementation is very simple; it will have to be
+        //       expanded upon significantly in order to achieve the
+        //       functionality we are looking for
+    }
+
+    public void insertLaneAtLocation()
+    {
+
     }
 
     // returns the list of valid lane types
