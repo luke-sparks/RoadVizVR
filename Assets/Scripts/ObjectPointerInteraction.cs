@@ -11,7 +11,7 @@ public class ObjectPointerInteraction : MonoBehaviour
     // VRTK_InteractableObject component
     private VRTK_InteractableObject objectScript;
     // RoadVizEvents component
-    private RoadVizEvents objectEvents;
+    [SerializeField] private RoadVizEvents objectEvents;
     // flag indicates if object is currently being touched
     private bool touchFlag;
 

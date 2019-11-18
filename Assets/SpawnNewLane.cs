@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RoadVizEvents : MonoBehaviour
+public class SpawnNewLane : MonoBehaviour
 {
     // Start is called before the first frame update
     /*void Start()
@@ -20,8 +18,13 @@ public class RoadVizEvents : MonoBehaviour
 
     public void triggerEvent(GameObject obj)
     {
+        GameObject newLane = Instantiate(lane, transform.position, transform.rotation);
+        if (obj.name == "CreateLane")
+        {
+            
+        }
         // user presses button to insert lane in road
-        if (obj.name == "InsertionButtonR")
+        /*if (obj.name == "InsertionButton")
         {
             // create a reference to the in-game road object
             GameObject road = GameObject.Find("Road");
@@ -32,11 +35,10 @@ public class RoadVizEvents : MonoBehaviour
             // convert list of lane types to array to access elements
             GameObject[] laneTypesArray = laneTypes.ToArray();
             // insert the desired lane type as a new lane into the road
-            Debug.Log("what about this right here");
-            roadScript.insertLaneAfter(lane, laneTypesArray[0]);
+            roadScript.insertLaneAtEnd(laneTypesArray[0], 2.75f);
             // note: the shift above assumes all lanes are the same size;
             //       we will have to figure out a way to change the shift depending
             //       on the size of the lanes
-        }
+        }*/
     }
 }
