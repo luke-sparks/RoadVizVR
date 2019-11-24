@@ -65,6 +65,8 @@ public class Road : MonoBehaviour
         //       functionality we are looking for
     }
 
+
+    // Luke wrote this - adapted Nathan's code tho
     // insertLaneAfter inserts a lane object into the road after (to the right of) the lane you selected
     // currLane: the lane that is being selected to insert after
     // laneType: the type of lane to be inserted into the road
@@ -84,50 +86,68 @@ public class Road : MonoBehaviour
         // - add the lane to the linked list after the location of the currLane
         if (isValidLaneType(laneType))
         {
+            // position of lane we are inserting after
             Vector3 currLanePosition = currLane.transform.position;
-            Vector3 newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (defaultShift / 2));
+
+            Transform asphaltTransform = currLane.transform.Find("PrimaryAsphalt");
+            float currLaneZScale = asphaltTransform.localScale.z;
+            // position of lane we are going to insert
+            Vector3 newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
             //Debug.Log("lanePosition.z : " + currLanePosition.z + "  ::  defaultShift / 2 : " + (defaultShift / 2) + "  ::  lanePosition.z - (defaultShift / 2) : " + (currLanePosition.z + (defaultShift / 2)));
+            // shifts all the lanes around the new lane position
             shiftLanesAfter(currLane, defaultShift);
+            // instantiate a new lane object
             GameObject newLane = Instantiate(laneType, newPosition, transform.rotation);
+            // find the node connected to the lane we are inserting after
             LinkedListNode<GameObject> currLaneNode = roadLanes.Find(currLane);
+            // set the new lane to be a child of the road
             newLane.transform.parent = transform;
+            // add the lane to the linked list
             roadLanes.AddAfter(currLaneNode, newLane);
         }
         else
         {
             Debug.Log("This is not a lane");
         }
-        // note: this implementation is very simple; it will have to be
-        //       expanded upon significantly in order to achieve the
-        //       functionality we are looking for
     }
 
-    private void shiftLanesAfter(GameObject currLane, float newLaneSize)
+    // Luke wrote this
+    // used for inserting lanes (insertLaneAfter)
+    // shifts lanes to the left if they are going to be to the left of the new lane
+    // shifts lanes to the right if they are going to be to the right of the new lane
+    public void shiftLanesAfter(GameObject currLane, float newLaneSize)
     {
-        //LinkedListNode<GameObject> actualLane = roadLanes.Find(currLane);
-
-        //Vector3 currPosition = currLane.GetComponent<Transform>().localPosition;
-        //Vector3 currPos = new Vector3(0,0,0);
+        // variable to let us know we've found the lane
         int foundLane = 0;
+
         foreach (GameObject g in roadLanes)
         {
             //Debug.Log("TIME TO ATTEMPT TO SHIFT A LANE");
-
+            // get the position of the current lane we are looking at
             Vector3 currPos = g.GetComponent<Transform>().localPosition;
             //Debug.Log("currPos  :  " + currPos);
+
+            // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
+            // this won't need to be changed for when we're adjusting the width of a new lane we
+            // are inserting because we will use adjustRoadAroundLane
             if (foundLane == 0)
             {
                 currPos.z -= newLaneSize / 2;
                 //Debug.Log("currPos.z for foundLane == 0  :  " + currPos.z);
             }
+            // looks like we've found our lane, so shift everything to the right now
             else
             {
                 currPos.z += newLaneSize / 2;
                 //Debug.Log("currPos.z for foundLane == 1  :  " + currPos.z);
             }
             //Debug.Log("modified currPos  :  " + currPos);
+
+            // set the position of the current lane to its new shifted position
             g.GetComponent<Transform>().localPosition = currPos;
             //Debug.Log("g's localPosition  :  " + g.GetComponent<Transform>().localPosition);
+
+            // check if we've found our lane, if so, everything else will shift right from here on out
             if (currLane == g)
             {
                 foundLane = 1;
@@ -136,27 +156,36 @@ public class Road : MonoBehaviour
         }
     }
 
+    // Luke wrote this
+    // used for modifying widths of lanes
+    // shifts the lanes by the amount the current lane's width is modified by
+    // this will get called quite often when changing width as it will be every time
+    // the width number changes
     public void adjustRoadAroundLane(GameObject currLane, float sizeDifference)
     {
         int foundLane = 0;
         foreach (GameObject g in roadLanes)
         {
+            // get the lane that we are looking at's current position
             Vector3 currPos = g.GetComponent<Transform>().localPosition;
+            // if we have found our current lane (that is being made wider or thinner), indicate that we found it
             if (currLane == g)
             {
-                Debug.Log("hi kaitlin");
                 // essentially do nothing because it will be widened after
                 foundLane = 1;
             }
+            // if we haven't found our lane yet, shift things to the left by the sizeDifference
             else if (foundLane == 0)
             {
                 currPos.z -= sizeDifference;
             }
+            // if we HAVE found our lane, shift things right
             else // foundLane is 1
             {
                 currPos.z += sizeDifference;
             }
-            Debug.Log("current position" + currPos);
+            //Debug.Log("current position" + currPos);
+            // set the position of the lane we are looking at to its new shifted position
             g.GetComponent<Transform>().localPosition = currPos;
         }
     }

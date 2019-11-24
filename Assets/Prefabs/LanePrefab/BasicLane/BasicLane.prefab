@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f5a180e78cba3b64d9cffa9c458a391d, type: 2}
+  - {fileID: 2100000, guid: 054aaba89193b654290c9d61eb366363, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
   touchHighlight: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0}
   grabHighlight: {r: 0, g: 0, b: 0, a: 0}
-  useHighlight: {r: 0, g: 0, b: 0, a: 0}
+  useHighlight: {r: 0, g: 1, b: 0, a: 0.09019608}
   objectToMonitor: {fileID: 0}
   objectToHighlight: {fileID: 0}
   objectHighlighter: {fileID: 0}
