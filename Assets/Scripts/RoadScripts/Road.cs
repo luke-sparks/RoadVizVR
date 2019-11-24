@@ -87,7 +87,7 @@ public class Road : MonoBehaviour
             Vector3 currLanePosition = currLane.transform.position;
             Vector3 newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (defaultShift / 2));
             //Debug.Log("lanePosition.z : " + currLanePosition.z + "  ::  defaultShift / 2 : " + (defaultShift / 2) + "  ::  lanePosition.z - (defaultShift / 2) : " + (currLanePosition.z + (defaultShift / 2)));
-            shiftLanesAfter(currLane);
+            shiftLanesAfter(currLane, defaultShift);
             GameObject newLane = Instantiate(laneType, newPosition, transform.rotation);
             LinkedListNode<GameObject> currLaneNode = roadLanes.Find(currLane);
             newLane.transform.parent = transform;
@@ -102,7 +102,7 @@ public class Road : MonoBehaviour
         //       functionality we are looking for
     }
 
-    private void shiftLanesAfter(GameObject currLane)
+    private void shiftLanesAfter(GameObject currLane, float newLaneSize)
     {
         //LinkedListNode<GameObject> actualLane = roadLanes.Find(currLane);
 
@@ -117,12 +117,12 @@ public class Road : MonoBehaviour
             //Debug.Log("currPos  :  " + currPos);
             if (foundLane == 0)
             {
-                currPos.z -= defaultShift / 2;
+                currPos.z -= newLaneSize / 2;
                 //Debug.Log("currPos.z for foundLane == 0  :  " + currPos.z);
             }
             else
             {
-                currPos.z += defaultShift / 2;
+                currPos.z += newLaneSize / 2;
                 //Debug.Log("currPos.z for foundLane == 1  :  " + currPos.z);
             }
             //Debug.Log("modified currPos  :  " + currPos);
@@ -133,6 +133,31 @@ public class Road : MonoBehaviour
                 foundLane = 1;
             }
             //Debug.Log("DID WE ACTUALLY SHIFT A LANE - PROBABLY NOT");
+        }
+    }
+
+    public void adjustRoadAroundLane(GameObject currLane, float sizeDifference)
+    {
+        int foundLane = 0;
+        foreach (GameObject g in roadLanes)
+        {
+            Vector3 currPos = g.GetComponent<Transform>().localPosition;
+            if (currLane == g)
+            {
+                Debug.Log("hi kaitlin");
+                // essentially do nothing because it will be widened after
+                foundLane = 1;
+            }
+            else if (foundLane == 0)
+            {
+                currPos.z -= sizeDifference;
+            }
+            else // foundLane is 1
+            {
+                currPos.z += sizeDifference;
+            }
+            Debug.Log("current position" + currPos);
+            g.GetComponent<Transform>().localPosition = currPos;
         }
     }
 
