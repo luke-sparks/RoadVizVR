@@ -30,14 +30,14 @@ public class ObjectPointerInteraction : MonoBehaviour
         // if the laser pointer touches this object
         // and the flag is not yet set,
         // call SelectObject()
-        if (this.objectScript.IsTouched() && !touchFlag)  
+        if (this.objectScript.IsUsing() && !touchFlag)
         {
             SelectObject();
         }
         // if the laser user stops touching this object with the laser
         // and if the flag is set,
         // call DeselectObject()
-        if(!this.objectScript.IsTouched() && touchFlag) 
+        if(!this.objectScript.IsUsing() && touchFlag)
         {
             DeselectObject();
         }
