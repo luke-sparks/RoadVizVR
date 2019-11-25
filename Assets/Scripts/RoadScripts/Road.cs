@@ -118,39 +118,42 @@ public class Road : MonoBehaviour
     public void shiftLanesAfter(GameObject currLane, float newLaneSize)
     {
         // variable to let us know we've found the lane
-        int foundLane = 0;
+        bool foundLane = false;
 
         foreach (GameObject g in roadLanes)
         {
             //Debug.Log("TIME TO ATTEMPT TO SHIFT A LANE");
             // get the position of the current lane we are looking at
-            Vector3 currPos = g.GetComponent<Transform>().localPosition;
+            BasicLane laneScript = g.GetComponent<BasicLane>();
+            //Vector3 currPos = g.GetComponent<Transform>().localPosition;
             //Debug.Log("currPos  :  " + currPos);
 
             // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
             // this won't need to be changed for when we're adjusting the width of a new lane we
             // are inserting because we will use adjustRoadAroundLane
-            if (foundLane == 0)
+            if (foundLane == false)
             {
-                currPos.z -= newLaneSize / 2;
+                laneScript.setLanePosition(-newLaneSize / 2);
+                //currPos.z -= newLaneSize / 2;
                 //Debug.Log("currPos.z for foundLane == 0  :  " + currPos.z);
             }
             // looks like we've found our lane, so shift everything to the right now
             else
             {
-                currPos.z += newLaneSize / 2;
+                laneScript.setLanePosition(newLaneSize / 2);
+                //currPos.z += newLaneSize / 2;
                 //Debug.Log("currPos.z for foundLane == 1  :  " + currPos.z);
             }
             //Debug.Log("modified currPos  :  " + currPos);
 
             // set the position of the current lane to its new shifted position
-            g.GetComponent<Transform>().localPosition = currPos;
+            //g.GetComponent<Transform>().localPosition = currPos;
             //Debug.Log("g's localPosition  :  " + g.GetComponent<Transform>().localPosition);
 
             // check if we've found our lane, if so, everything else will shift right from here on out
             if (currLane == g)
             {
-                foundLane = 1;
+                foundLane = true;
             }
             //Debug.Log("DID WE ACTUALLY SHIFT A LANE - PROBABLY NOT");
         }
@@ -163,30 +166,33 @@ public class Road : MonoBehaviour
     // the width number changes
     public void adjustRoadAroundLane(GameObject currLane, float sizeDifference)
     {
-        int foundLane = 0;
+        bool foundLane = false;
         foreach (GameObject g in roadLanes)
         {
             // get the lane that we are looking at's current position
-            Vector3 currPos = g.GetComponent<Transform>().localPosition;
+            BasicLane laneScript = g.GetComponent<BasicLane>();
+            //Vector3 currPos = g.GetComponent<Transform>().localPosition;
             // if we have found our current lane (that is being made wider or thinner), indicate that we found it
             if (currLane == g)
             {
                 // essentially do nothing because it will be widened after
-                foundLane = 1;
+                foundLane = true;
             }
             // if we haven't found our lane yet, shift things to the left by the sizeDifference
-            else if (foundLane == 0)
+            else if (foundLane == false)
             {
-                currPos.z -= sizeDifference;
+                laneScript.setLanePosition(-sizeDifference);
+                //currPos.z -= sizeDifference;
             }
             // if we HAVE found our lane, shift things right
             else // foundLane is 1
             {
-                currPos.z += sizeDifference;
+                laneScript.setLanePosition(sizeDifference);
+                //currPos.z += sizeDifference;
             }
             //Debug.Log("current position" + currPos);
             // set the position of the lane we are looking at to its new shifted position
-            g.GetComponent<Transform>().localPosition = currPos;
+            //g.GetComponent<Transform>().localPosition = currPos;
         }
     }
 

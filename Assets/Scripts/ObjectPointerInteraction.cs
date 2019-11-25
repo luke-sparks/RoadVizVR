@@ -57,11 +57,11 @@ public class ObjectPointerInteraction : MonoBehaviour
         // insert lane button to fill the space
         if (this.objectScript.IsTouched() && !touchFlag)
         {
-            //TouchObject();
+            TouchObject();
         }
         if (!this.objectScript.IsTouched() && touchFlag)
         {
-            //DeTouchObject();
+            DeTouchObject();
         }
     }
 

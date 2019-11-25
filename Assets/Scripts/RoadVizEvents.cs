@@ -100,7 +100,9 @@ public class RoadVizEvents : MonoBehaviour
     public void setWidth(float width)
     {
         // obtain the scale of the asphalt and the locations of the lines and button
-        Vector3 newSize = asphalt.transform.localScale;
+        BasicLane laneScript = lane.GetComponent<BasicLane>();
+        laneScript.setLaneWidth(width);
+        /*Vector3 newSize = asphalt.transform.localScale;
         Vector3 leftLinePos = leftLine.transform.localPosition;
         Vector3 rightLinePos = rightLine.transform.localPosition;
         Vector3 buttonPos = insertButton.transform.localPosition;
@@ -128,7 +130,6 @@ public class RoadVizEvents : MonoBehaviour
         asphalt.transform.localScale = newSize;
         leftLine.transform.localPosition = leftLinePos;
         rightLine.transform.localPosition = rightLinePos;
-        insertButton.transform.localPosition = buttonPos;
-
+        insertButton.transform.localPosition = buttonPos;*/
     }
 }
