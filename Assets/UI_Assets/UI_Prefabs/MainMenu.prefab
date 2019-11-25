@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 5192015067819392695}
   - component: {fileID: 5192015067819392692}
   - component: {fileID: 5192015067819392693}
-  - component: {fileID: 5192015067819392694}
   - component: {fileID: 6908729863354890018}
-  - component: {fileID: 8946855616188760226}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -87,18 +85,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &5192015067819392694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5192015067819392691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f69161d379efe4b4c899a0127ffe9d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6908729863354890018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,18 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickOnPointerCollision: 0
   autoActivateWithinDistance: 0
---- !u!114 &8946855616188760226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5192015067819392691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baa26f15244e9d94caa4d8e5273572d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5192015068408144100
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +163,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d427507801a0bcd4e9b22395d52bafa5, type: 3}
+    m_Font: {fileID: 12800000, guid: 1834da6235e8c6f4db3cea77a05d0515, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
@@ -319,18 +293,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5192015068409885469}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5192015067819392694}
-        m_MethodName: quitApplication
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5192015068444872799
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +412,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5192015067819392694}
+      - m_Target: {fileID: 0}
         m_MethodName: switchToDevEnvScene
         m_Mode: 1
         m_Arguments:
@@ -524,7 +487,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d427507801a0bcd4e9b22395d52bafa5, type: 3}
+    m_Font: {fileID: 12800000, guid: 1834da6235e8c6f4db3cea77a05d0515, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
@@ -601,7 +564,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d427507801a0bcd4e9b22395d52bafa5, type: 3}
+    m_Font: {fileID: 12800000, guid: 1834da6235e8c6f4db3cea77a05d0515, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
