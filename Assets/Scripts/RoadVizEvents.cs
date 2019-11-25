@@ -21,6 +21,7 @@ public class RoadVizEvents : MonoBehaviour
     [SerializeField] private GameObject rightLine;
     [SerializeField] private GameObject asphalt;
     [SerializeField] private GameObject insertButton;
+    [SerializeField] private GameObject laneEditPrefab;
 
     // Nathan wrote this, Luke modified by changing to insertLaneAfter and adding the width part
     public void selectEvent(GameObject obj)
@@ -47,9 +48,12 @@ public class RoadVizEvents : MonoBehaviour
         // user selects lane
         if (obj.name == "PrimaryAsphalt")
         {
-            //setWidth(5);
-
             //open the UI stuff here
+            GameObject editLaneDialogue = Instantiate(laneEditPrefab);
+            editLaneDialogue.transform.localPosition = lane.transform.localPosition;
+
+            EditLaneBehavior editLaneScript = (EditLaneBehavior)editLaneDialogue.GetComponent("EditLaneBehavior");
+            editLaneScript.laneScriptReference = this;
         }
     }
 
