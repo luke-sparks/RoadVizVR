@@ -93,7 +93,8 @@ public class RoadVizEvents : MonoBehaviour
 
     // Luke wrote this
     // sets the width of a lane. Also calls the correct shift function in Road.cs
-    public void setWidth(float width)
+    // updated version in BasicLane.cs
+    /*public void setWidth(float width)
     {
         // obtain the scale of the asphalt and the locations of the lines and button
         Vector3 newSize = asphalt.transform.localScale;
@@ -125,6 +126,5 @@ public class RoadVizEvents : MonoBehaviour
         leftLine.transform.localPosition = leftLinePos;
         rightLine.transform.localPosition = rightLinePos;
         insertButton.transform.localPosition = buttonPos;
-
-    }
+    }*/
 }
