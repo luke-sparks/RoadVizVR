@@ -49,8 +49,14 @@ public class RoadVizEvents : MonoBehaviour
         if (obj.name == "PrimaryAsphalt")
         {
             //open the UI stuff here
+            // instantiate editLaneDialogue
             GameObject editLaneDialogue = Instantiate(laneEditPrefab);
-            editLaneDialogue.transform.localPosition = lane.transform.localPosition;
+            // set parent to the lane so it moves with the lane
+            editLaneDialogue.transform.parent = lane.transform;
+            // set correct position
+            editLaneDialogue.transform.position = new Vector3 (lane.transform.position.x, lane.transform.position.y + 1.5f, lane.transform.position.z);
+            // rotate the dialogue
+            editLaneDialogue.transform.Rotate(0, -90, 0);
 
             EditLaneBehavior editLaneScript = (EditLaneBehavior)editLaneDialogue.GetComponent("EditLaneBehavior");
             editLaneScript.laneScriptReference = this;
