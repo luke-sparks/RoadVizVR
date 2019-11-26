@@ -208,10 +208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lane: {fileID: 4577958151057443786}
-  leftLine: {fileID: 4577958150135782299}
-  rightLine: {fileID: 4577958150802762122}
-  asphalt: {fileID: 4577958150579042304}
-  insertButton: {fileID: 4512811285411186759}
   laneEditPrefab: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
     type: 3}
 --- !u!1 &4577958150135782299
@@ -545,10 +541,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lane: {fileID: 4577958151057443786}
-  leftLine: {fileID: 4577958150135782299}
-  rightLine: {fileID: 4577958150802762122}
-  asphalt: {fileID: 4577958150579042304}
-  insertButton: {fileID: 4512811285411186759}
   laneEditPrefab: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
     type: 3}
 --- !u!1 &4577958150802762122
@@ -708,3 +700,5 @@ MonoBehaviour:
   rightLine: {fileID: 4577958150802762122}
   asphalt: {fileID: 4577958150579042304}
   insertButton: {fileID: 4512811285411186759}
+  maxWidth: 10
+  minWidth: 1

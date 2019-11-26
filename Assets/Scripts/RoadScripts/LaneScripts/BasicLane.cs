@@ -8,6 +8,8 @@ public class BasicLane : MonoBehaviour
     [SerializeField] private GameObject rightLine;
     [SerializeField] private GameObject asphalt;
     [SerializeField] private GameObject insertButton;
+    public int maxWidth;
+    public int minWidth;
 
     void Start()
     {

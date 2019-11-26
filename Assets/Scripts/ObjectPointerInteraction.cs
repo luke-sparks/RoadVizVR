@@ -55,14 +55,14 @@ public class ObjectPointerInteraction : MonoBehaviour
         // touching and then inserting a lane does not work 100% right now
         // may need to insert a pseudo lane rather than modifying the
         // insert lane button to fill the space
-        if (this.objectScript.IsTouched() && !touchFlag)
+        /*if (this.objectScript.IsTouched() && !touchFlag)
         {
             TouchObject();
         }
         if (!this.objectScript.IsTouched() && touchFlag)
         {
             DeTouchObject();
-        }
+        }*/
     }
 
     // selects the current object

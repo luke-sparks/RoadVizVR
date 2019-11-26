@@ -17,10 +17,10 @@ public class RoadVizEvents : MonoBehaviour
     }*/
 
     [SerializeField] private GameObject lane;
-    [SerializeField] private GameObject leftLine;
+    /*[SerializeField] private GameObject leftLine;
     [SerializeField] private GameObject rightLine;
     [SerializeField] private GameObject asphalt;
-    [SerializeField] private GameObject insertButton;
+    [SerializeField] private GameObject insertButton;*/
     [SerializeField] private GameObject laneEditPrefab;
 
     // Nathan wrote this, Luke modified by changing to insertLaneAfter and adding the width part
@@ -54,6 +54,8 @@ public class RoadVizEvents : MonoBehaviour
 
             EditLaneBehavior editLaneScript = (EditLaneBehavior)editLaneDialogue.GetComponent("EditLaneBehavior");
             editLaneScript.laneScriptReference = this;
+            editLaneScript.laneReference = lane;
+            editLaneScript.basicLaneScriptReference = (BasicLane) lane.GetComponent("BasicLane");
         }
     }
 
