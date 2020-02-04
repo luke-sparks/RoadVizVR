@@ -26,6 +26,37 @@ public class Road : MonoBehaviour
         // insert both lanes into the road
         insertLaneAtEnd(laneTypes[0], 0f);
         insertLaneAtEnd(laneTypes[0], defaultShift);
+        insertLaneAtEnd(laneTypes[0], defaultShift);
+        insertLaneAtEnd(laneTypes[0], defaultShift);
+    }
+
+    //Returns the bounds of the entire road using the children.
+    //Steps: 1. Iterate over all the children
+    //       2. Encapsulate the children within the bounds
+    //       3. Return the final bounds object
+    //       4. If there is nothing, return an empty object.
+    public Bounds GetRendererBounds()
+    {
+        //Retrieves a list of all children of the object.
+        Renderer[] renderers = this.GetComponentsInChildren<Renderer>();
+
+        //Iterate if there are children
+        if (renderers.Length > 0)
+        {
+            //Initialize bounds object then loop over others.
+            Bounds bounds = renderers[0].bounds;
+            for (int i = 1, ni = renderers.Length; i < ni; i++)
+            {
+                //Encapsulate children within the bounds object
+                bounds.Encapsulate(renderers[i].bounds);
+            }
+            Debug.Log(bounds);
+            return bounds;
+        }
+        else
+        {
+            return new Bounds();
+        }
     }
 
     // Update is called once per frame
