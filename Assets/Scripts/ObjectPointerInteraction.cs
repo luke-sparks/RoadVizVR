@@ -6,7 +6,7 @@ using VRTK;
 
 public class ObjectPointerInteraction : MonoBehaviour
 {
-    // private variables
+    // class fields
     // object script is a container for the object's 
     // VRTK_InteractableObject component
     private VRTK_InteractableObject objectScript;

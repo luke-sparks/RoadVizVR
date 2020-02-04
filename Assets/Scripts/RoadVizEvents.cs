@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class RoadVizEvents : MonoBehaviour
 {
-    // Start is called before the first frame update
-    /*void Start()
-    {
-        
-    }*/
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        
-    }*/
-
+    // class fields
     [SerializeField] private GameObject lane;
     /*[SerializeField] private GameObject leftLine;
     [SerializeField] private GameObject rightLine;

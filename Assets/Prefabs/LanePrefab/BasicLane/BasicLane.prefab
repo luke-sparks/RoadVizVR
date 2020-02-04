@@ -696,9 +696,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898b167e19c1449bb81588a4eee949bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftLine: {fileID: 4577958150135782299}
-  rightLine: {fileID: 4577958150802762122}
-  asphalt: {fileID: 4577958150579042304}
+  laneEditPrefab: {fileID: 0}
+  editLaneDialogue: {fileID: 0}
   insertButton: {fileID: 4512811285411186759}
+  asphalt: {fileID: 4577958150579042304}
+  lanePosition: 0
+  laneIndex: 0
+  laneType: 
+  currentLaneWidth: 3.3
   maxWidth: 10
   minWidth: 1
+  leftNeighbor: {fileID: 0}
+  rightNeighbor: {fileID: 0}
+  leftStripe: {fileID: 0}
+  rightStripe: {fileID: 0}

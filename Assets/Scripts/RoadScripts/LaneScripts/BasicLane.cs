@@ -1,19 +1,53 @@
-﻿using System.Collections;
+﻿// BasicLane.cs
+// parent class of all lane types
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicLane : MonoBehaviour
 {
-    [SerializeField] private GameObject leftLine;
-    [SerializeField] private GameObject rightLine;
-    [SerializeField] private GameObject asphalt;
-    [SerializeField] private GameObject insertButton;
-    public int maxWidth;
-    public int minWidth;
+    // class fields
+    [SerializeField] protected GameObject laneEditPrefab;
+    [SerializeField] protected GameObject editLaneDialogue;
+    [SerializeField] protected GameObject insertButton;
+    [SerializeField] protected GameObject asphalt;
+    [SerializeField] protected float lanePosition; 
+    [SerializeField] protected int laneIndex;
+    [SerializeField] protected string laneType;
+    [SerializeField] protected float currentLaneWidth;
+    [SerializeField] public int maxWidth;
+    [SerializeField] public int minWidth;
+    [SerializeField] protected GameObject leftNeighbor;
+    [SerializeField] protected GameObject rightNeighbor;
+    [SerializeField] protected GameObject leftStripe;
+    [SerializeField] protected GameObject rightStripe;
 
-    void Start()
+    // Nathan wrote this
+    // opens the manipulation menu
+    public void openManipulationMenu()
     {
-        //setLaneWidth(10f);
+        Debug.Log("Menu opened");
+        // instantiate editLaneDialogue
+        editLaneDialogue = Instantiate(laneEditPrefab);
+        // set parent to the lane so it moves with the lane
+        editLaneDialogue.transform.parent = gameObject.transform;
+        // set correct position
+        editLaneDialogue.transform.position = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y + 1.5f, gameObject.transform.position.z);
+        // rotate the dialogue
+        editLaneDialogue.transform.Rotate(0, -90, 0);
+        
+        /*EditLaneBehavior editLaneScript = (EditLaneBehavior)editLaneDialogue.GetComponent("EditLaneBehavior");
+        editLaneScript.laneScriptReference = this;
+        editLaneScript.laneReference = gameObject;*/
+        //editLaneScript.basicLaneScriptReference = (BasicLane) lane.GetComponent("BasicLane");
+    }
+
+    // Nathan wrote this
+    // closes the manipulation menu
+    public void closeManipulationMenu()
+    {
+        Debug.Log("Close menu");
+        Destroy(editLaneDialogue);
     }
 
     // setLaneWidth() sets the width of a lane
@@ -32,8 +66,8 @@ public class BasicLane : MonoBehaviour
         //       5. update the transforms with the new Vector3 values
         // step 1
         Vector3 laneSize = asphalt.transform.localScale;
-        Vector3 leftLinePos = leftLine.transform.localPosition;
-        Vector3 rightLinePos = rightLine.transform.localPosition;
+        Vector3 leftStripePos = leftStripe.transform.localPosition;
+        Vector3 rightStripePos = rightStripe.transform.localPosition;
         Vector3 buttonPos = insertButton.transform.localPosition;
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
@@ -45,14 +79,22 @@ public class BasicLane : MonoBehaviour
         roadScript.adjustRoadAroundLane(gameObject, adjustment);
         // step 4
         laneSize.z = newWidth;
-        leftLinePos.z -= adjustment;
-        rightLinePos.z += adjustment;
+        leftStripePos.z -= adjustment;
+        rightStripePos.z += adjustment;
         buttonPos.z += adjustment;
         // step 5
         asphalt.transform.localScale = laneSize;
-        leftLine.transform.localPosition = leftLinePos;
-        rightLine.transform.localPosition = rightLinePos;
+        leftStripe.transform.localPosition = leftStripePos;
+        rightStripe.transform.localPosition = rightStripePos;
         insertButton.transform.localPosition = buttonPos;
+        currentLaneWidth = asphalt.transform.localScale.z;
+    }
+
+    // Nathan wrote this
+    // retrieves the current lane width
+    public float getLaneWidth()
+    {
+        return currentLaneWidth;
     }
 
     // setLanePosition() shifts a lane along the road
@@ -66,6 +108,102 @@ public class BasicLane : MonoBehaviour
         Vector3 tempVec = gameObject.transform.localPosition;
         tempVec.z += adjustment;
         gameObject.transform.localPosition = tempVec;
+        lanePosition = gameObject.transform.localPosition.z;
+    }
+
+    // Nathan wrote this
+    // retrieves the lane's current position
+    public float getLanePosition()
+    {
+        return lanePosition;
+    }
+
+    // Nathan wrote this
+    // changes the lane index
+    public void setLaneIndex(int newIndex)
+    {
+        laneIndex = newIndex;
+    }
+
+    // Nathan wrote this
+    // retrieves the lane index
+    public int getLaneIndex()
+    {
+        return laneIndex;
+    }
+
+    // Nathan wrote this
+    // sets the lane's current type
+    public void setLaneType(string newType)
+    {
+        laneType = newType;
+    }
+
+    // Nathan wrote this
+    // retrieves lane's current type
+    public string getLaneType()
+    {
+        return laneType;
+    }
+
+    // Nathan wrote this
+    // sets one of the neighbors of a lane
+    /*public void setNeighbor(GameObject newNeighbor, int neighborIndex)
+    {
+        // 3 possibilities: 
+        //      1. neighbor index == laneIndex - 1 (directly to left)
+        //      2. neighbor index == laneIndex + 1 (directly to right)
+        //      3. neighbor index == some other value, should not set
+        //         as new neighbor in this case
+        if(neighborIndex == (laneIndex - 1))
+        {
+            leftNeighbor = newNeighbor;
+        }
+        else if(neighborIndex == (laneIndex + 1))
+        {
+            rightNeighbor = newNeighbor;
+        }
+        else
+        {
+            Debug.LogError("Cannot set these lanes as neighbors");
+        }
+    }*/
+
+    // Nathan wrote this
+    // retrieves either the left or right neighbor
+    // depending on the value of parameter neighbor
+    /*public GameObject getNeighbor(string neighbor)
+    {
+        // 3 cases: 
+        //      1. neighbor == left
+        //      2. neighbor == right
+        //      3. neighbor == some other string
+        if(neighbor == "left")
+        {
+            return leftNeighbor;
+        }
+        else if(neighbor == "right")
+        {
+            return rightNeighbor;
+        }
+        else
+        {
+            throw new System.ArgumentException("Invalid neighbor value");
+        }
+    }*/
+
+    // Nathan wrote this
+    // sets a stripe's type
+    public void setStripe(GameObject selectedStripe, GameObject newType)
+    {
+        //selectedStripe.setStripeType(newType);
+    }
+
+    // Nathan wrote this
+    // determines if the current lane is a vehicle lane (is not by default)
+    public bool isVehicleLane()
+    {
+        return false;
     }
 }
 
