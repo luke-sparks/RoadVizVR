@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ExcludeTeleport
   - TeleportIgnore
+  - CanTeleport
+  - IsLane
   layers:
   - Default
   - TransparentFX
