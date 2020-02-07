@@ -53,7 +53,7 @@ public class EditLaneBehavior : MonoBehaviour
     // closes manipulation menu
     public void closeMenu()
     {
-        basicLaneScriptReference.closeManipulationMenu();
+        Destroy(this.gameObject);
     }
 
     // Nathan wrote this

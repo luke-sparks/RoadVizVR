@@ -8,6 +8,8 @@ public class Road : MonoBehaviour
 {
     // class fields
     [SerializeField] private const float MAX_WIDTH = 200f;
+    [SerializeField] private const int MAX_LANES = 15;
+    [SerializeField] private const int MIN_LANES = 1;
     // road_Lanes is a linked list of the lanes currently in the road object
     [SerializeField] private LinkedList<GameObject> roadLanes;
     // the list of acceptable types of objects that can be
@@ -79,7 +81,7 @@ public class Road : MonoBehaviour
         // - get the location of the currLane in the linked list (for AddAfter)
         // - set the new lane to be a child of the road object
         // - add the lane to the linked list after the location of the currLane
-        if (isValidLaneType(laneType))
+        if (isValidLaneType(laneType) && roadLanes.Count < MAX_LANES)
         {
             // position of lane we are inserting after
             Vector3 currLanePosition = currLane.transform.position;
@@ -102,7 +104,7 @@ public class Road : MonoBehaviour
         }
         else
         {
-            Debug.Log("This is not a lane");
+            Debug.Log("This is not a lane or max road size reached.");
         }
     }
 
@@ -123,7 +125,7 @@ public class Road : MonoBehaviour
         // - set the new lane to be a child of the road object
         // - add the lane to the linked list before the location of the currLane
 
-        if(isValidLaneType(laneType))
+        if(isValidLaneType(laneType) && roadLanes.Count < MAX_LANES)
         {
             // position of lane we are inserting after
             Vector3 currLanePosition = currLane.transform.position;
@@ -144,29 +146,38 @@ public class Road : MonoBehaviour
         }
         else
         {
-            Debug.Log("This is not a lane");
+            Debug.Log("This is not a lane or max road size reached.");
         }
     }
 
     // Nathan wrote this
     // this function is used for removing a lane
-    public void removeLane(GameObject currLane)
+    public void removeLane(GameObject targetLane)
     {
-        // steps: 
-        //      1. obtain currLane's width and list index for use later
-        //      2. remove currLane from the doubly linked list
-        //      3. remove currLane from the road
-        //      4. shift the lanes inward
-        // obtain currLane's width
-        Transform asphaltTransform = currLane.transform.Find("PrimaryAsphalt");
-        float currLaneZScale = asphaltTransform.localScale.z;
-        int currLaneIndex = 1; //roadLanes.FindIndex(currLane);
-        // remove currLane from list
-        roadLanes.Remove(currLane);
-        // destroy current lane
-        Destroy(currLane);
-        // shift lanes inward instead of outward
-        // shiftLanesIn(roadLanes.ElementAt(currLaneIndex), currLaneZScale);
+        if (roadLanes.Count > MIN_LANES)
+        {
+            // steps:
+            //          1. Obtain a reference to the script of the target lane
+            //          2. Obtain the width of the target lane
+            //          3. Shift other lanes inward by the width of the target lane
+            //          4. Remove the target from the linked list of lanes
+            //          5. Destroy the target lane (remove it from the development environment)
+
+            // 1. obtain reference to script
+            BasicLane targetLaneScript = (BasicLane)targetLane.GetComponent("BasicLane");
+            // 2. obtain the width of the target
+            float targetLaneWidth = targetLaneScript.getLaneWidth();
+            // 3. shift the rest of the lanes inward
+            shiftLanesIn(targetLane, targetLaneWidth);
+            // 4. remove target from linked list
+            roadLanes.Remove(targetLane);
+            // 5. Destroy the target lane
+            Destroy(targetLane);
+        }
+        else 
+        {
+            Debug.Log("Road is already at minimum size.");
+        }
     }
 
     // Luke wrote this
@@ -254,7 +265,7 @@ public class Road : MonoBehaviour
 
     // Nathan wrote this
     // used to shift lanes back in after a deletion
-    public void shiftLanesIn(GameObject currLane, float oldLaneSize)
+    public void shiftLanesIn(GameObject currLane, float currLaneSize)
     {
         // variable to let us know we've found the lane
         bool foundLane = false;
@@ -275,12 +286,12 @@ public class Road : MonoBehaviour
             // are inserting because we will use adjustRoadAroundLane
             if(!foundLane)
             {
-                laneScript.setLanePosition(oldLaneSize / 2);
+                laneScript.setLanePosition(currLaneSize / 2);
             }
             // looks like we've found our lane, so shift everything to the right now
             else
             {
-                laneScript.setLanePosition(-oldLaneSize / 2);
+                laneScript.setLanePosition(-currLaneSize / 2);
             }
         }
     }

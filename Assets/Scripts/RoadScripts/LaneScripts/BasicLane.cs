@@ -94,7 +94,6 @@ public class BasicLane : MonoBehaviour
     // retrieves the current lane width
     public float getLaneWidth()
     {
-        Debug.Log("Lane Width is " + currentLaneWidth.ToString() + ".");
         return currentLaneWidth;
     }
 
@@ -102,7 +101,6 @@ public class BasicLane : MonoBehaviour
     // returns the lane's maximum width
     public float getMaxWidth()
     {
-        Debug.Log("Max Width is " + maxWidth.ToString() + ".");
         return maxWidth;
     }
 

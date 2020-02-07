@@ -60,7 +60,7 @@ public class RoadVizEvents : MonoBehaviour
             editLaneScript.laneScriptReference = this;
             editLaneScript.laneReference = lane;
             editLaneScript.basicLaneScriptReference = (BasicLane) lane.GetComponent("BasicLane");
-            editLaneScript.basicLaneScriptReference.openManipulationMenu();
+            //editLaneScript.basicLaneScriptReference.openManipulationMenu();
             editLaneScript.roadScriptReference = roadScript;
         }
     }
