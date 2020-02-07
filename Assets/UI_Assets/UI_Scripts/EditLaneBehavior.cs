@@ -11,47 +11,55 @@ public class EditLaneBehavior : MonoBehaviour
     public RoadVizEvents laneScriptReference;
     public GameObject laneReference;
     public BasicLane basicLaneScriptReference;
+    public Road roadScriptReference;
 
+    // Kasey wrote this
+    // increases lane width
     public void increaseLaneWidth()
     {
         float width = float.Parse(widthText.text);
         width += BASE_CHANGE_FT;
-        if (width <= basicLaneScriptReference.maxWidth)
+        if (width <= basicLaneScriptReference.getMaxWidth())
         {
-            laneScriptReference.setWidth(width);
+            basicLaneScriptReference.setLaneWidth(width);
             widthText.text = width.ToString();
             Debug.Log("Lane width increased to: " + width.ToString() + "ft.");
+            width = basicLaneScriptReference.getLaneWidth();
         } else
         {
-            width = basicLaneScriptReference.maxWidth;
+            width = basicLaneScriptReference.getMaxWidth();
         }
     }
 
+    // Kasey wrote this
+    // decreases lane width
     public void decreaseLaneWidth()
     {
         float width = float.Parse(widthText.text);
         width -= BASE_CHANGE_FT;
-        if (width >= basicLaneScriptReference.minWidth)
+        if (width >= basicLaneScriptReference.getMinWidth())
         {
-            laneScriptReference.setWidth(width);
+            basicLaneScriptReference.setLaneWidth(width);
             widthText.text = width.ToString();
             Debug.Log("Lane width decreased to: " + width.ToString() + "ft.");
+            width = basicLaneScriptReference.getLaneWidth();
         } else
         {
-            width = basicLaneScriptReference.minWidth;
+            width = basicLaneScriptReference.getMinWidth();
         }
-        
     }
 
-    // Start is called before the first frame update
-    /*void Start()
+    // Nathan wrote this
+    // closes manipulation menu
+    public void closeMenu()
     {
-        
+        basicLaneScriptReference.closeManipulationMenu();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Nathan wrote this
+    // should remove the lane referenced by this menu
+    public void removeLane() 
     {
-        
-    }*/
+        roadScriptReference.removeLane(laneReference);
+    }
 }

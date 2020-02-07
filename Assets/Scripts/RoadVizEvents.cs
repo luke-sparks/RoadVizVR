@@ -11,6 +11,15 @@ public class RoadVizEvents : MonoBehaviour
     [SerializeField] private GameObject asphalt;
     [SerializeField] private GameObject insertButton;*/
     [SerializeField] private GameObject laneEditPrefab;
+    [SerializeField] private GameObject road;
+    [SerializeField] private Road roadScript;
+
+    // Nathan inserted start so we could use road functions more easily
+    void Start()
+    {
+        road = GameObject.Find("Road");
+        roadScript = (Road)road.GetComponent("Road");
+    }
 
     // Nathan wrote this, Luke modified by changing to insertLaneAfter and adding the width part
     public void selectEvent(GameObject obj)
@@ -19,9 +28,9 @@ public class RoadVizEvents : MonoBehaviour
         if (obj.name == "InsertionButton")
         {
             // create a reference to the in-game road object
-            GameObject road = GameObject.Find("Road");
+            //road = GameObject.Find("Road");
             // reference script that controls the road's behavior
-            Road roadScript = (Road)road.GetComponent("Road");
+            //roadScript = (Road)road.GetComponent("Road");
             // get the list of acceptable lane types
             List<GameObject> laneTypes = roadScript.getLaneTypes();
             // convert list of lane types to array to access elements
@@ -52,6 +61,7 @@ public class RoadVizEvents : MonoBehaviour
             editLaneScript.laneReference = lane;
             editLaneScript.basicLaneScriptReference = (BasicLane) lane.GetComponent("BasicLane");
             editLaneScript.basicLaneScriptReference.openManipulationMenu();
+            editLaneScript.roadScriptReference = roadScript;
         }
     }
 

@@ -15,10 +15,10 @@ public class BasicLane : MonoBehaviour
     [SerializeField] protected int laneIndex;
     [SerializeField] protected string laneType;
     [SerializeField] protected float currentLaneWidth;
-    [SerializeField] public int maxWidth;
-    [SerializeField] public int minWidth;
-    [SerializeField] protected GameObject leftNeighbor;
-    [SerializeField] protected GameObject rightNeighbor;
+    [SerializeField] protected float maxWidth = 20f;
+    [SerializeField] protected float minWidth = 2f;
+    //[SerializeField] protected GameObject leftNeighbor;
+    //[SerializeField] protected GameObject rightNeighbor;
     [SerializeField] protected GameObject leftStripe;
     [SerializeField] protected GameObject rightStripe;
 
@@ -46,7 +46,7 @@ public class BasicLane : MonoBehaviour
     // closes the manipulation menu
     public void closeManipulationMenu()
     {
-        Debug.Log("Close menu");
+        Debug.Log("Menu closed");
         Destroy(editLaneDialogue);
     }
 
@@ -94,7 +94,24 @@ public class BasicLane : MonoBehaviour
     // retrieves the current lane width
     public float getLaneWidth()
     {
+        Debug.Log("Lane Width is " + currentLaneWidth.ToString() + ".");
         return currentLaneWidth;
+    }
+
+    // Nathan wrote this
+    // returns the lane's maximum width
+    public float getMaxWidth()
+    {
+        Debug.Log("Max Width is " + maxWidth.ToString() + ".");
+        return maxWidth;
+    }
+
+    // Nathan wrote this
+    // returns the lane's minimum width
+    public float getMinWidth() 
+    {
+        Debug.Log("Min Width is " + minWidth.ToString() + ".");
+        return minWidth;
     }
 
     // setLanePosition() shifts a lane along the road
@@ -115,6 +132,7 @@ public class BasicLane : MonoBehaviour
     // retrieves the lane's current position
     public float getLanePosition()
     {
+        Debug.Log("Lane Position is " + lanePosition.ToString() + ".");
         return lanePosition;
     }
 
