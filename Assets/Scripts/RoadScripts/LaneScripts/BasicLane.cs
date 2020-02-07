@@ -28,13 +28,13 @@ public class BasicLane : MonoBehaviour
     {
         Debug.Log("Menu opened");
         // instantiate editLaneDialogue
-        editLaneDialogue = Instantiate(laneEditPrefab);
+        /*editLaneDialogue = Instantiate(laneEditPrefab);
         // set parent to the lane so it moves with the lane
         editLaneDialogue.transform.parent = gameObject.transform;
         // set correct position
         editLaneDialogue.transform.position = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y + 1.5f, gameObject.transform.position.z);
         // rotate the dialogue
-        editLaneDialogue.transform.Rotate(0, -90, 0);
+        editLaneDialogue.transform.Rotate(0, -90, 0);*/
         
         /*EditLaneBehavior editLaneScript = (EditLaneBehavior)editLaneDialogue.GetComponent("EditLaneBehavior");
         editLaneScript.laneScriptReference = this;
