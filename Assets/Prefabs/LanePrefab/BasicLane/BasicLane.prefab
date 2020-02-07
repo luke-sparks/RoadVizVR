@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 4577958150135782277}
   - component: {fileID: 1744755331479127433}
   m_Layer: 0
-  m_Name: LeftLine
+  m_Name: LeftStripe
   m_TagString: CanTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 4577958150802762164}
   - component: {fileID: 3440079097343747842}
   m_Layer: 0
-  m_Name: RightLine
+  m_Name: RightStripe
   m_TagString: CanTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,11 +702,9 @@ MonoBehaviour:
   asphalt: {fileID: 4577958150579042304}
   lanePosition: 0
   laneIndex: 0
-  laneType: 
+  laneType: '"Vehicle"'
   currentLaneWidth: 3.3
   maxWidth: 10
   minWidth: 1
-  leftNeighbor: {fileID: 0}
-  rightNeighbor: {fileID: 0}
-  leftStripe: {fileID: 0}
-  rightStripe: {fileID: 0}
+  leftStripe: {fileID: 4577958150135782299}
+  rightStripe: {fileID: 4577958150802762122}
