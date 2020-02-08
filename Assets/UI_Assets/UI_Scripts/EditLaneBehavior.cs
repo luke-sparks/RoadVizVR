@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class EditLaneBehavior : MonoBehaviour
+public class EditLaneBehavior : MonoBehaviour, SceneUIMenu
 {
     private const float BASE_CHANGE_FT = 0.5f;
     public Text widthText;
+
     public RoadVizEvents laneScriptReference;
     public GameObject laneReference;
     public BasicLane basicLaneScriptReference;
-    //public Road roadScriptReference;
 
     // Kasey wrote this
     // increases lane width
@@ -49,9 +49,13 @@ public class EditLaneBehavior : MonoBehaviour
         }
     }
 
-    // Nathan wrote this
-    // closes manipulation menu
-    public void closeMenu()
+    private void updateWidthField()
+    {
+        double laneWidth = 0; // TODO this, also convert to feet
+        widthText.text = laneWidth.ToString();
+    }
+
+    public void closeUI()
     {
         Destroy(this.gameObject);
     }
@@ -64,4 +68,5 @@ public class EditLaneBehavior : MonoBehaviour
         Road roadScriptReference = (Road)road.GetComponent("Road");
         roadScriptReference.removeLane(laneReference);
     }
+
 }
