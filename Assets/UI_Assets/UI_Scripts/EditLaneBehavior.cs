@@ -12,6 +12,7 @@ public class EditLaneBehavior : MonoBehaviour, SceneUIMenu
     public RoadVizEvents laneScriptReference;
     public GameObject laneReference;
     public BasicLane basicLaneScriptReference;
+    public Road roadScriptReference;
 
     // Kasey wrote this
     // increases lane width
