@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class EditLaneBehavior : MonoBehaviour
+public class EditLaneBehavior : MonoBehaviour, SceneUIMenu
 {
     private const float BASE_CHANGE_FT = 0.5f;
     public Text widthText;
+    //private Lane workingLane;
 
     public void increaseLaneWidth()
     {
@@ -25,6 +26,16 @@ public class EditLaneBehavior : MonoBehaviour
         Debug.Log("Lane width decreased to: " + width.ToString() + "ft.");
     }
 
+    private void updateWidthField()
+    {
+        double laneWidth = 0; // TODO this, also convert to feet
+        widthText.text = laneWidth.ToString();
+    }
+
+    public void closeUI()
+    {
+        Destroy(this.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +43,4 @@ public class EditLaneBehavior : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
