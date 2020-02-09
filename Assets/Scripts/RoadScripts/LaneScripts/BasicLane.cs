@@ -86,14 +86,7 @@ public class BasicLane : MonoBehaviour
         asphalt.transform.localScale = laneSize;
 
         Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
-        Debug.Log("GetTextureScale:             ::::    " + asphaltRenderer.material.GetTextureScale("asphalt"));
-        Debug.Log("GetTexture _MainTex:         ::::    " + asphaltRenderer.material.GetTexture("_MainTex"));
-        Debug.Log("GetTexture m_asphalt:        ::::    " + asphaltRenderer.material.GetTexture("asphalt"));
-        Debug.Log("GetTexturePropertyNameIDs:   ::::    " + asphaltRenderer.material.GetTexturePropertyNameIDs());
-        Debug.Log("ToString:                    ::::    " + asphaltRenderer.material.ToString());
-
         asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
-
 
         leftStripe.transform.localPosition = leftStripePos;
         rightStripe.transform.localPosition = rightStripePos;
