@@ -87,6 +87,7 @@ public class BasicLane : MonoBehaviour
 
         Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
         asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
+        asphaltRenderer.material.SetTextureScale("_DecalTex", new Vector2(1, (float)(newWidth - 1.3)));
 
         leftStripe.transform.localPosition = leftStripePos;
         rightStripe.transform.localPosition = rightStripePos;
