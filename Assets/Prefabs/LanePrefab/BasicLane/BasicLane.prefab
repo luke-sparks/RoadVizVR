@@ -210,6 +210,8 @@ MonoBehaviour:
   lane: {fileID: 4577958151057443786}
   laneEditPrefab: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
     type: 3}
+  road: {fileID: 0}
+  roadScript: {fileID: 0}
 --- !u!1 &4577958150135782299
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +382,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a7bd46a6ed1d252458131c2c9b1a45a6, type: 2}
+  - {fileID: 2100000, guid: 8388342be9c1d744b809c1c672337a9a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -543,6 +545,8 @@ MonoBehaviour:
   lane: {fileID: 4577958151057443786}
   laneEditPrefab: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
     type: 3}
+  road: {fileID: 0}
+  roadScript: {fileID: 0}
 --- !u!1 &4577958150802762122
 GameObject:
   m_ObjectHideFlags: 0
