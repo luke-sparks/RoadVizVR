@@ -235,7 +235,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7709262486583124502}
-        m_MethodName: increaseLaneWidth
+        m_MethodName: handleIncreaseLaneWidth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 5536350054037614279}
   - component: {fileID: 5536350054037614272}
   m_Layer: 5
-  m_Name: Type
+  m_Name: TypeLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1608,7 +1608,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7709262486583124502}
+        m_MethodName: handleLaneTypeChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!1 &5536350054957927751
 GameObject:
@@ -2078,7 +2089,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5536350055743741048}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7709262486583124502}
+        m_MethodName: handleSwitchDirectionToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5536350055757165757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,7 +2145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5.7213435, y: 2.7302806}
+  m_AnchoredPosition: {x: 5.7213135, y: 2.7302856}
   m_SizeDelta: {x: 734.6816, y: 457.4778}
   m_Pivot: {x: 0.5706777, y: 0.466776}
 --- !u!223 &5536350055757165730
@@ -2213,10 +2235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   widthText: {fileID: 5536350053830195511}
-  laneScriptReference: {fileID: 0}
-  laneReference: {fileID: 0}
-  basicLaneScriptReference: {fileID: 0}
-  roadScript: {fileID: 0}
 --- !u!1 &7982488763540327088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,7 +2354,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7709262486583124502}
-        m_MethodName: removeLane
+        m_MethodName: handleDeleteSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2465,7 +2483,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7709262486583124502}
-        m_MethodName: decreaseLaneWidth
+        m_MethodName: handleDecreaseLaneWidth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
