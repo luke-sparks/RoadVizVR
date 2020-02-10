@@ -18,8 +18,9 @@ public class UIManager : MonoBehaviour
     public GameObject editLaneMenu;
     public GameObject globalSettingsMenu;
 
-    public void openUIScreen(UIScreens uiName)
+    public GameObject openUIScreen(UIScreens uiName)
     {
+        // TODO: pass a reference to what to connect it to
         Debug.Log("Opening UI Screen: " + uiName);
 
         // if there is a UI already open, close it
@@ -36,7 +37,8 @@ public class UIManager : MonoBehaviour
         GameObject curUIObject = getUIObjectReference(uiName);
 
         // instantiate the prefab, then set it to the current UI in use
-        currentUI = Instantiate(curUIObject, placeAt, rotation);        
+        currentUI = Instantiate(curUIObject, placeAt, rotation);
+        return currentUI;
     }
     
     // TODO turn this thing into a dictionary up at the top for better organization
@@ -64,11 +66,20 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            openUIScreen(UIScreens.EditLane);
+            GameObject blane = GameObject.Find("BasicLane(Clone)");
+            if (blane == null)
+            {
+                Debug.Log("Could not find a lane.");
+            }
+
+            EditLaneBehavior editLane = openUIScreen(UIScreens.EditLane).GetComponent<EditLaneBehavior>();
+            editLane.setWorkingLane(blane);
         }
 
         if (Input.GetKeyDown("backspace"))
         {
+            EditLaneBehavior ln = currentUI.GetComponent<EditLaneBehavior>();
+            //ln.handleDecreaseLaneWidth();
             closeCurrentUI();
         }
     }

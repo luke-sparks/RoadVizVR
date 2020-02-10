@@ -7,8 +7,8 @@ using UnityEngine;
 public class BasicLane : MonoBehaviour
 {
     // class fields
-    [SerializeField] protected GameObject laneEditPrefab;
-    [SerializeField] protected GameObject editLaneDialogue;
+    //[SerializeField] protected GameObject laneEditPrefab;
+    //[SerializeField] protected GameObject editLaneDialogue;
     [SerializeField] protected GameObject insertButton;
     [SerializeField] protected GameObject asphalt;
     [SerializeField] protected float lanePosition; 
@@ -21,34 +21,6 @@ public class BasicLane : MonoBehaviour
     //[SerializeField] protected GameObject rightNeighbor;
     [SerializeField] protected GameObject leftStripe;
     [SerializeField] protected GameObject rightStripe;
-
-    // Nathan wrote this
-    // opens the manipulation menu
-    public void openManipulationMenu()
-    {
-        Debug.Log("Menu opened");
-        // instantiate editLaneDialogue
-        /*editLaneDialogue = Instantiate(laneEditPrefab);
-        // set parent to the lane so it moves with the lane
-        editLaneDialogue.transform.parent = gameObject.transform;
-        // set correct position
-        editLaneDialogue.transform.position = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y + 1.5f, gameObject.transform.position.z);
-        // rotate the dialogue
-        editLaneDialogue.transform.Rotate(0, -90, 0);*/
-        
-        /*EditLaneBehavior editLaneScript = (EditLaneBehavior)editLaneDialogue.GetComponent("EditLaneBehavior");
-        editLaneScript.laneScriptReference = this;
-        editLaneScript.laneReference = gameObject;*/
-        //editLaneScript.basicLaneScriptReference = (BasicLane) lane.GetComponent("BasicLane");
-    }
-
-    // Nathan wrote this
-    // closes the manipulation menu
-    public void closeManipulationMenu()
-    {
-        Debug.Log("Menu closed");
-        Destroy(editLaneDialogue);
-    }
 
     // setLaneWidth() sets the width of a lane
     // new_width is a floating point number used to create

@@ -8,67 +8,101 @@ public class EditLaneBehavior : MonoBehaviour, SceneUIMenu
 {
     private const float BASE_CHANGE_FT = 0.5f;
     public Text widthText;
-<<<<<<< HEAD
-    public RoadVizEvents laneScriptReference;
-    public GameObject laneReference;
-    public BasicLane basicLaneScriptReference;
-    public Road roadScriptReference;
-=======
+
+    public GameObject workingLaneReference; // consider removing this variable?
+    private BasicLane basicLaneScriptReference;
+
     //private Lane workingLane;
->>>>>>> Complete UIManager and UI Framework
+
+    public void setWorkingLane(GameObject laneRef)
+    {
+        workingLaneReference = laneRef;
+        basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
+        if(workingLaneReference == null || basicLaneScriptReference == null)
+        {
+            Debug.Log("Tried to set working reference, but failed.");
+        }
+        updateWidthField();
+    }
+
+    // Provides a check that we have a lane to reference before proceding
+    private bool requireWorkingLaneReference()
+    {
+        if (workingLaneReference != null)
+        {
+            return true;
+        } else
+        {
+            Debug.LogError("Function requires a lane reference, but does not have one.");
+            return false;
+        }
+    }
+
+    // TODO
+    public void handleSwitchDirectionToggle()
+    {
+        Debug.Log("Lane direction switched");
+    }
+
+    // TODO @Nathan?
+    public void handleDeleteSelect()
+    {
+        Debug.Log("Delete button selected.");
+    }
+
+    // TODO
+    public void handleLaneTypeChange()
+    {
+        Debug.Log("Lane type selected.");
+    }
 
     // Kasey wrote this
     // increases lane width
-    public void increaseLaneWidth()
+    public void handleIncreaseLaneWidth()
     {
-        float width = float.Parse(widthText.text);
-        width += BASE_CHANGE_FT;
+        requireWorkingLaneReference();
+
+        float width = basicLaneScriptReference.getLaneWidth();
+        width += UnitConverter.convertFeetToMeters(BASE_CHANGE_FT);
+
         if (width <= basicLaneScriptReference.getMaxWidth())
         {
             basicLaneScriptReference.setLaneWidth(width);
-            widthText.text = width.ToString();
-            Debug.Log("Lane width increased to: " + width.ToString() + "ft.");
-            width = basicLaneScriptReference.getLaneWidth();
-        } else
+            updateWidthField();
+            Debug.Log("Lane width increased to: " + UnitConverter.convertMetersToFeet(width).ToString() + "ft.");
+        }
+        else
         {
-            width = basicLaneScriptReference.getMaxWidth();
+            Debug.Log("Tried to increment width, but maximum width reached.");
         }
     }
 
     // Kasey wrote this
     // decreases lane width
-    public void decreaseLaneWidth()
+    public void handleDecreaseLaneWidth()
     {
-        float width = float.Parse(widthText.text);
-        width -= BASE_CHANGE_FT;
-        if (width >= basicLaneScriptReference.getMinWidth())
+        requireWorkingLaneReference();
+
+        float width = basicLaneScriptReference.getLaneWidth();
+        width -= UnitConverter.convertFeetToMeters(BASE_CHANGE_FT);
+
+        if (basicLaneScriptReference.getMinWidth() <= width)
         {
             basicLaneScriptReference.setLaneWidth(width);
-            widthText.text = width.ToString();
-            Debug.Log("Lane width decreased to: " + width.ToString() + "ft.");
-            width = basicLaneScriptReference.getLaneWidth();
-        } else
+            updateWidthField();
+            Debug.Log("Lane width decreased to: " + UnitConverter.convertMetersToFeet(width).ToString() + "ft.");
+        }
+        else
         {
-            width = basicLaneScriptReference.getMinWidth();
+            Debug.Log("Tried to decrement width, but minimum width reached.");
         }
     }
 
-<<<<<<< HEAD
-    // Nathan wrote this
-    // closes manipulation menu
-    public void closeMenu()
-    {
-        basicLaneScriptReference.closeManipulationMenu();
-    }
-
-    // Nathan wrote this
-    // should remove the lane referenced by this menu
-    public void removeLane() 
-=======
     private void updateWidthField()
     {
-        double laneWidth = 0; // TODO this, also convert to feet
-        widthText.text = laneWidth.ToString();
+        // TODO: Trim the decimal places
+        float laneWidth = basicLaneScriptReference.getLaneWidth();
+        widthText.text = UnitConverter.convertMetersToFeet(laneWidth).ToString();
     }
 
     public void closeUI()
@@ -76,11 +110,11 @@ public class EditLaneBehavior : MonoBehaviour, SceneUIMenu
         Destroy(this.gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
->>>>>>> Complete UIManager and UI Framework
+    // Nathan wrote this
+    // should remove the lane referenced by this menu
+    public void removeLane() 
     {
-        roadScriptReference.removeLane(laneReference);
+        GameObject.Find("Road").GetComponent<Road>().removeLane(workingLaneReference);
     }
 
 }

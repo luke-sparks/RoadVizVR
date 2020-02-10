@@ -24,6 +24,8 @@ public class RoadVizEvents : MonoBehaviour
     // Nathan wrote this, Luke modified by changing to insertLaneAfter and adding the width part
     public void selectEvent(GameObject obj)
     {
+        Debug.Log("Selection Event Triggered");
+
         // user presses button to insert lane in road
         if (obj.name == "InsertionButton")
         {
@@ -46,6 +48,7 @@ public class RoadVizEvents : MonoBehaviour
         // user selects lane
         if (obj.name == "PrimaryAsphalt")
         {
+            /* removed and replaced with UIManager instead
             //open the UI stuff here
             // instantiate editLaneDialogue
             GameObject editLaneDialogue = Instantiate(laneEditPrefab);
@@ -62,6 +65,9 @@ public class RoadVizEvents : MonoBehaviour
             editLaneScript.basicLaneScriptReference = (BasicLane) lane.GetComponent("BasicLane");
             editLaneScript.basicLaneScriptReference.openManipulationMenu();
             editLaneScript.roadScriptReference = roadScript;
+            */
+            GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane);
+            laneUI.GetComponent<EditLaneBehavior>().setWorkingLane(obj);
         }
     }
 
