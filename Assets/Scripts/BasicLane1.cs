@@ -84,11 +84,11 @@ public class BasicLane1 : MonoBehaviour
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
         // step 3
-        GameObject road = GameObject.Find("Road");
+        //GameObject road = GameObject.Find("Road");
         // reference script that controls the road's behavior
-        Road roadScript = (Road)road.GetComponent("Road");
+        //Road roadScript = (Road)road.GetComponent("Road");
         // adjust the lane positions around the lane we are modifying
-        roadScript.adjustRoadAroundLane(gameObject, adjustment);
+        roadScript.adjustRoadAroundLane(laneObject, adjustment);
         // step 4
         laneSize.z = newWidth;
         leftStripePos.z -= adjustment;

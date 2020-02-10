@@ -164,7 +164,7 @@ public class Road : MonoBehaviour
             //          5. Destroy the target lane (remove it from the development environment)
 
             // 1. obtain reference to script
-            BasicLane targetLaneScript = (BasicLane)targetLane.GetComponent("BasicLane");
+            BasicLane1 targetLaneScript = (BasicLane1)targetLane.GetComponent("BasicLane1");
             // 2. obtain the width of the target
             float targetLaneWidth = targetLaneScript.getLaneWidth();
             // 3. shift the rest of the lanes inward
@@ -193,7 +193,7 @@ public class Road : MonoBehaviour
         {
             //Debug.Log("TIME TO ATTEMPT TO SHIFT A LANE");
             // get the position of the current lane we are looking at
-            BasicLane laneScript = g.GetComponent<BasicLane>();
+            BasicLane1 laneScript = g.GetComponent<BasicLane1>();
             //Vector3 currPos = g.GetComponent<Transform>().localPosition;
             //Debug.Log("currPos  :  " + currPos);
 
@@ -246,7 +246,7 @@ public class Road : MonoBehaviour
                 foundLane = true;
             }
             // get the position of the current lane we are looking at
-            BasicLane laneScript = g.GetComponent<BasicLane>();
+            BasicLane1 laneScript = g.GetComponent<BasicLane1>();
 
             // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
             // this won't need to be changed for when we're adjusting the width of a new lane we
@@ -279,7 +279,7 @@ public class Road : MonoBehaviour
                 foundLane = true;
             }
             // get the position of the current lane we are looking at
-            BasicLane laneScript = g.GetComponent<BasicLane>();
+            BasicLane1 laneScript = g.GetComponent<BasicLane1>();
 
             // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
             // this won't need to be changed for when we're adjusting the width of a new lane we
@@ -307,7 +307,7 @@ public class Road : MonoBehaviour
         foreach (GameObject g in roadLanes)
         {
             // get the lane that we are looking at's current position
-            BasicLane laneScript = g.GetComponent<BasicLane>();
+            BasicLane1 laneScript = g.GetComponent<BasicLane1>();
             //Vector3 currPos = g.GetComponent<Transform>().localPosition;
             // if we have found our current lane (that is being made wider or thinner), indicate that we found it
             if (currLane == g)
