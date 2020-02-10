@@ -8,9 +8,9 @@ public class EditLaneBehavior : MonoBehaviour
 {
     private const float BASE_CHANGE_FT = 0.5f;
     public Text widthText;
-    public RoadVizEvents laneScriptReference;
+    public BasicLane1 laneScriptReference;
     public GameObject laneReference;
-    public BasicLane basicLaneScriptReference;
+    public BasicLane1 basicLaneScriptReference;
     public Road roadScriptReference;
 
     // Kasey wrote this

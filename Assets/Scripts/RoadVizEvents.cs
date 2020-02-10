@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class RoadVizEvents : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class RoadVizEvents : MonoBehaviour
         }
 
         // user selects lane
-        if (obj.name == "PrimaryAsphalt")
+        /*if (obj.name == "PrimaryAsphalt")
         {
             //open the UI stuff here
             // instantiate editLaneDialogue
@@ -62,7 +63,7 @@ public class RoadVizEvents : MonoBehaviour
             editLaneScript.basicLaneScriptReference = (BasicLane) lane.GetComponent("BasicLane");
             //editLaneScript.basicLaneScriptReference.openManipulationMenu();
             editLaneScript.roadScriptReference = roadScript;
-        }
+        }*/
     }
 
     // Luke wrote this and it doesn't work for now

@@ -52,6 +52,11 @@ namespace VRTK
 
         protected Vector3 cursorOriginalScale = Vector3.one;
 
+        public GameObject getCursor()
+        {
+            return actualCursor;
+        }
+
         /// <summary>
         /// The UpdateRenderer method is used to run an Update routine on the pointer.
         /// </summary>

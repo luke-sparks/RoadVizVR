@@ -42,7 +42,6 @@ public class ObjectPointerInteraction : MonoBehaviour
         if (this.objectScript.IsUsing() && !usingFlag)
         {
             SelectObject();
-            Debug.Log("How often do we make it inside this !!!FIRST!!! if?");
         }
         // if the laser user stops touching this object with the laser
         // and if the flag is set,
@@ -50,7 +49,6 @@ public class ObjectPointerInteraction : MonoBehaviour
         if(!this.objectScript.IsUsing() && usingFlag)
         {
             DeselectObject();
-            Debug.Log("How often do we make it inside this !!!SECOND!!! if?");
         }
 
         // Luke wrote this but its not being used
