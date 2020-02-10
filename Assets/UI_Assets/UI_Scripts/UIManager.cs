@@ -78,8 +78,6 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown("backspace"))
         {
-            EditLaneBehavior ln = currentUI.GetComponent<EditLaneBehavior>();
-            //ln.handleDecreaseLaneWidth();
             closeCurrentUI();
         }
     }

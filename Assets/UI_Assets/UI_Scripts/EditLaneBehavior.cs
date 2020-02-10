@@ -8,6 +8,7 @@ public class EditLaneBehavior : MonoBehaviour, SceneUIMenu
 {
     private const float BASE_CHANGE_FT = 0.5f;
     public Text widthText;
+    //private Lane workingLane;
 
     public GameObject workingLaneReference; // consider removing this variable?
     private BasicLane basicLaneScriptReference;
