@@ -8,6 +8,9 @@ public class buildings : MonoBehaviour
     //TYPE 1: SUBURBAN
     //TYPE 2: RURAL
 
+    //The environment index is the index of the current environment.
+    [SerializeField] private int environmentIndex;
+
     //All of the prefabs are referenced here, they must be dragged
     //into these spots.
     [SerializeField] private GameObject urbanPrefab;
@@ -31,6 +34,7 @@ public class buildings : MonoBehaviour
         //by setting the currentEnv to be urban and then instantiate it.
         currentEnv = urbanPrefab;
         instance = Instantiate(urbanPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        environmentIndex = 0;
     }
 
     /*
@@ -58,18 +62,27 @@ public class buildings : MonoBehaviour
         if (type == 0) //Urban
         {
             currentEnv = urbanPrefab;
+            environmentIndex = 0;
         }
         else if (type == 1) //Suburban
         {
             currentEnv = suburbanPrefab;
+            environmentIndex = 1;
         }
         else //Rural
         {
             currentEnv = ruralPrefab;
+            environmentIndex = 2;
         }
         
         //Instantiate the current env
         instance = Instantiate(currentEnv, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+    //Returns the current environment index for UI or display purposes
+    public int getBuildingIndex()
+    {
+        return environmentIndex;
     }
 
 }
