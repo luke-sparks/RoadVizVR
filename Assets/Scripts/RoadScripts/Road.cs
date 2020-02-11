@@ -15,6 +15,7 @@ public class Road : MonoBehaviour
     // the list of acceptable types of objects that can be
     // inserted into the road
     [SerializeField] private GameObject[] laneTypes = new GameObject[1];
+    [SerializeField] private GameObject[] stripeTypes = new GameObject[2];
     // the road position variable
     [SerializeField] private Vector3 lanePosition;
     [SerializeField] private float defaultShift;
@@ -27,126 +28,55 @@ public class Road : MonoBehaviour
         roadLanes = new LinkedList<GameObject>();
         // assign the initial lane position to be the road's position
         // assign default shift
-        lanePosition = transform.position;
+        //lanePosition = transform.position;
         defaultShift = 3.3f;
         // insert both lanes into the road
-        insertLaneAtEnd(laneTypes[0], 0f);
-        insertLaneAtEnd(laneTypes[0], defaultShift);
+        insertLane(null, laneTypes[0]);
+        insertLane(roadLanes.First.Value, laneTypes[0]);
     }
 
-    // insertLaneAtEnd inserts a lane object into the road at the end of the list
+    // Nathan wrote this
+    // insertLane inserts a lane object into the road
     // laneType: the type of lane to be inserted into the road
     // shift: the distance by which the lane's position must be
     //        moved (so that it does not paste over another lane)
-    public void insertLaneAtEnd(GameObject laneType, float shift)
+    public void insertLane(GameObject currLane, GameObject laneType)
     {
         // steps: 
         // 1. check to make sure the lane is an acceptable type
-        // 2. update lane's position on road to prevent pasting over
-        //    another lane
-        // 3. insert the physical representation of the lane
-        //    by calling Instantiate and create a reference to that 
-        //    instantiated object
-        // 4. set the new lane to be a child of the road object
-        // 5. add the lane to the linked list
-        if (isValidLaneType(laneType))
+        // 2. check that the road is not already full of lanes
+        // 3. set new position to 0 and currLaneNode to null by default
+        // 4. check if currLane is not null; if not:
+        //          a. set currLanePosition to the selected lane's position
+        //          b. set asphalt transform to the asphalt transform of the current lane
+        //          c. find the current lane's width and store it in currentLaneZScale
+        //          d. shift the rest of the lanes in the road appropriately
+        //          e. finally, find the node containing the current lane and store it in currLaneNode
+        // 5. instantiate the lane into the development environment
+        // 6. set the new lane to be a child of the road object
+        // 7. add the lane to the linked list
+        if (isValidLaneType(laneType) && !isFull())
         {
-            lanePosition.z += shift;
-            GameObject newLane = Instantiate(laneType, lanePosition, transform.rotation);
-            newLane.transform.parent = transform;
-            roadLanes.AddLast(newLane);
-        }
-        else
-        {
-            Debug.Log("This is not a lane");
-        }
-    }
+            Vector3 newPosition = transform.position;
+            LinkedListNode<GameObject> currLaneNode = null;
+            if (currLane != null)
+            {
+                Vector3 currLanePosition = currLane.transform.position;
+                Transform asphaltTransform = currLane.transform.Find("PrimaryAsphalt");
+                float currLaneZScale = asphaltTransform.localScale.z;
+                newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
+                shiftLanesAfter(currLane, currLaneZScale);
+                currLaneNode = roadLanes.Find(currLane);
+            }
 
-
-    // Luke wrote this - adapted Nathan's code tho
-    // insertLaneAfter inserts a lane object into the road after (to the right of) the lane you selected
-    // currLane: the lane that is being selected to insert after
-    // laneType: the type of lane to be inserted into the road
-    public void insertLaneAfter(GameObject currLane, GameObject laneType)
-    {
-        // essentially just a duplicate of insertLaneAtEnd
-
-        // steps: 
-        // - get the currLanes position
-        // - create a newPosition for the new lane we are adding (this position is shifted so no overlaps occur)
-        // - shift the lanes around the insertion position
-        // - insert the physical representation of the lane
-        //      by calling Instantiate and create a reference to that 
-        //      instantiated object
-        // - get the location of the currLane in the linked list (for AddAfter)
-        // - set the new lane to be a child of the road object
-        // - add the lane to the linked list after the location of the currLane
-        if (isValidLaneType(laneType) && roadLanes.Count < MAX_LANES)
-        {
-            // position of lane we are inserting after
-            Vector3 currLanePosition = currLane.transform.position;
-
-            Transform asphaltTransform = currLane.transform.Find("PrimaryAsphalt");
-            float currLaneZScale = asphaltTransform.localScale.z;
-            // position of lane we are going to insert
-            Vector3 newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
-            //Debug.Log("lanePosition.z : " + currLanePosition.z + "  ::  defaultShift / 2 : " + (defaultShift / 2) + "  ::  lanePosition.z - (defaultShift / 2) : " + (currLanePosition.z + (defaultShift / 2)));
-            // shifts all the lanes around the new lane position
-            shiftLanesAfter(currLane, defaultShift);
-            // instantiate a new lane object
             GameObject newLane = Instantiate(laneType, newPosition, transform.rotation);
-            // find the node connected to the lane we are inserting after
-            LinkedListNode<GameObject> currLaneNode = roadLanes.Find(currLane);
-            // set the new lane to be a child of the road
             newLane.transform.parent = transform;
-            // add the lane to the linked list
-            roadLanes.AddAfter(currLaneNode, newLane);
+            setStripes(newLane);
+            addLaneToList(newLane, currLaneNode);
         }
         else
         {
-            Debug.Log("This is not a lane or max road size reached.");
-        }
-    }
-
-    // Nathan wrote this - basically just a slightly altered version of Luke's
-    // insertLaneBefore inserts a lane object into the road before (to the left of) the lane you selected
-    // currLane: the lane that is being selected to insert before
-    // laneType: the type of lane to be inserted into the road
-    public void insertLaneBefore(GameObject currLane, GameObject laneType)
-    {
-        // steps: 
-        // - get the currLane's position
-        // - create a newPosition for the new lane we are adding (this position is shifted so no overlaps occur)
-        // - shift the lanes around the insertion position
-        // - insert the physical representation of the lane
-        //      by calling Instantiate and create a reference to that 
-        //      instantiated object
-        // - get the location of the currLane in the linked list (for AddBefore)
-        // - set the new lane to be a child of the road object
-        // - add the lane to the linked list before the location of the currLane
-
-        if(isValidLaneType(laneType) && roadLanes.Count < MAX_LANES)
-        {
-            // position of lane we are inserting after
-            Vector3 currLanePosition = currLane.transform.position;
-            Transform asphaltTransform = currLane.transform.Find("PrimaryAsphalt");
-            float currLaneZScale = asphaltTransform.localScale.z;
-            // position of lane we are going to insert
-            Vector3 newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z - (currLaneZScale / 2));
-            // shifts all the lanes around the new lane position
-            shiftLanesBefore(currLane, defaultShift);
-            // instantiate a new lane object
-            GameObject newLane = Instantiate(laneType, newPosition, transform.rotation);
-            // find the node connected to the lane we are inserting after
-            LinkedListNode<GameObject> currLaneNode = roadLanes.Find(currLane);
-            // set the new lane to be a child of the road
-            newLane.transform.parent = transform;
-            // add the lane to the linked list
-            roadLanes.AddBefore(currLaneNode, newLane);
-        }
-        else
-        {
-            Debug.Log("This is not a lane or max road size reached.");
+            Debug.Log("This is not a lane or road is too large");
         }
     }
 
@@ -154,7 +84,7 @@ public class Road : MonoBehaviour
     // this function is used for removing a lane
     public void removeLane(GameObject targetLane)
     {
-        if (roadLanes.Count > MIN_LANES)
+        if (!isEmpty())
         {
             // steps:
             //          1. Obtain a reference to the script of the target lane
@@ -167,6 +97,7 @@ public class Road : MonoBehaviour
             BasicLane targetLaneScript = (BasicLane)targetLane.GetComponent("BasicLane");
             // 2. obtain the width of the target
             float targetLaneWidth = targetLaneScript.getLaneWidth();
+            Debug.Log(targetLaneWidth); // results to 0, why?
             // 3. shift the rest of the lanes inward
             shiftLanesIn(targetLane, targetLaneWidth);
             // 4. remove target from linked list
@@ -174,7 +105,7 @@ public class Road : MonoBehaviour
             // 5. Destroy the target lane
             Destroy(targetLane);
         }
-        else 
+        else
         {
             Debug.Log("Road is already at minimum size.");
         }
@@ -237,7 +168,7 @@ public class Road : MonoBehaviour
         // variable to let us know we've found the lane
         bool foundLane = false;
 
-        foreach(GameObject g in roadLanes)
+        foreach (GameObject g in roadLanes)
         {
             // check if we've found our lane, if so, everything else will shift right from here on out
             // we must check this before, unlike what we do in shiftLanesAfter
@@ -251,7 +182,7 @@ public class Road : MonoBehaviour
             // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
             // this won't need to be changed for when we're adjusting the width of a new lane we
             // are inserting because we will use adjustRoadAroundLane
-            if(!foundLane)
+            if (!foundLane)
             {
                 laneScript.setLanePosition(-newLaneSize / 2);
             }
@@ -270,7 +201,7 @@ public class Road : MonoBehaviour
         // variable to let us know we've found the lane
         bool foundLane = false;
 
-        foreach(GameObject g in roadLanes)
+        foreach (GameObject g in roadLanes)
         {
             // check if we've found our lane, if so, everything else will shift right from here on out
             // we must check this before, unlike what we do in shiftLanesAfter
@@ -284,7 +215,7 @@ public class Road : MonoBehaviour
             // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
             // this won't need to be changed for when we're adjusting the width of a new lane we
             // are inserting because we will use adjustRoadAroundLane
-            if(!foundLane)
+            if (!foundLane)
             {
                 laneScript.setLanePosition(currLaneSize / 2);
             }
@@ -336,7 +267,7 @@ public class Road : MonoBehaviour
     // Nathan wrote this
     // used for shifting a lane's position in the road
     public void moveLane(GameObject currLane, int newPosition)
-    {   
+    {
         // steps: 
         //      1. store the current lane in a game object
         //      2. deep copy the lane at newPosition (in the linked list) into the
@@ -374,5 +305,45 @@ public class Road : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    // Nathan wrote this
+    // checks if the number of lanes in the road is maxed out
+    public bool isFull()
+    {
+        return roadLanes.Count == MAX_LANES;
+    }
+
+    // Nathan wrote this
+    // checks if the number of lanes in the road is at its minimum
+    public bool isEmpty()
+    {
+        return roadLanes.Count == MIN_LANES;
+    }
+
+    // Nathan wrote this
+    // helper for insertLane
+    // sets the stripes of a new lane
+    private void setStripes(GameObject lane) 
+    {
+        // CONTINUE FROM HERE
+    }
+
+    // Nathan wrote this
+    // helper for addLane
+    // adds a new lane to the linked list
+    private void addLaneToList(GameObject newLane, LinkedListNode<GameObject> currLaneNode) 
+    {
+        // if there are no nodes in the list, just add the new lane last
+        // else, add it before or after
+        if (currLaneNode == null)
+        {
+            roadLanes.AddLast(newLane);
+        }
+        else
+        {
+            roadLanes.AddAfter(currLaneNode, newLane);
+            // roadLanes.AddBefore(currLaneNode, newLane); need a way to specify
+        }
     }
 }

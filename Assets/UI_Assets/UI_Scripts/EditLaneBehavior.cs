@@ -11,7 +11,7 @@ public class EditLaneBehavior : MonoBehaviour
     public RoadVizEvents laneScriptReference;
     public GameObject laneReference;
     public BasicLane basicLaneScriptReference;
-    public Road roadScriptReference;
+    //public Road roadScriptReference;
 
     // Kasey wrote this
     // increases lane width
@@ -60,6 +60,8 @@ public class EditLaneBehavior : MonoBehaviour
     // should remove the lane referenced by this menu
     public void removeLane() 
     {
+        GameObject road = GameObject.Find("Road");
+        Road roadScriptReference = (Road)road.GetComponent("Road");
         roadScriptReference.removeLane(laneReference);
     }
 }

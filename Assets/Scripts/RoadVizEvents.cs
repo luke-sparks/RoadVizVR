@@ -37,7 +37,7 @@ public class RoadVizEvents : MonoBehaviour
             GameObject[] laneTypesArray = laneTypes.ToArray();
             // insert the desired lane type as a new lane into the road
             //Debug.Log("what about this right here");
-            roadScript.insertLaneAfter(lane, laneTypesArray[0]);
+            roadScript.insertLane(lane, laneTypesArray[0]);
             // note: the shift above assumes all lanes are the same size;
             //       we will have to figure out a way to change the shift depending
             //       on the size of the lanes
@@ -61,7 +61,7 @@ public class RoadVizEvents : MonoBehaviour
             editLaneScript.laneReference = lane;
             editLaneScript.basicLaneScriptReference = (BasicLane) lane.GetComponent("BasicLane");
             //editLaneScript.basicLaneScriptReference.openManipulationMenu();
-            editLaneScript.roadScriptReference = roadScript;
+            //editLaneScript.roadScriptReference = roadScript;
         }
     }
 

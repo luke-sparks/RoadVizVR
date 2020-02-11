@@ -1539,6 +1539,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
+  stripeTypes:
+  - {fileID: 238030130206003718, guid: 7310076970722de42b34fca190f203e0, type: 3}
+  - {fileID: 7144478849683942677, guid: 360705a9504173a44af27da3294f24e7, type: 3}
   lanePosition: {x: 0, y: 0, z: 0}
   defaultShift: 0
   currentWidth: 0
