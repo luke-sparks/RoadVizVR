@@ -84,6 +84,10 @@ public class BasicLane : MonoBehaviour
         buttonPos.z += adjustment;
         // step 5
         asphalt.transform.localScale = laneSize;
+
+        Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
+        asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
+
         leftStripe.transform.localPosition = leftStripePos;
         rightStripe.transform.localPosition = rightStripePos;
         insertButton.transform.localPosition = buttonPos;

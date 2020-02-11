@@ -212,6 +212,18 @@ MonoBehaviour:
     type: 3}
   road: {fileID: 0}
   roadScript: {fileID: 0}
+--- !u!1 &4577958150135782299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1331415410763367311, guid: f4b2a7a73f4c21e41869d49ca1ba2861,
+    type: 3}
+  m_PrefabInstance: {fileID: 3310726189747443732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4577958150135782298 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1331415410763367310, guid: f4b2a7a73f4c21e41869d49ca1ba2861,
+    type: 3}
+  m_PrefabInstance: {fileID: 3310726189747443732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4577958150579042304
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +288,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a7bd46a6ed1d252458131c2c9b1a45a6, type: 2}
+  - {fileID: 2100000, guid: 8388342be9c1d744b809c1c672337a9a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -680,15 +692,3 @@ PrefabInstance:
       objectReference: {fileID: 4577958150579042304}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4b2a7a73f4c21e41869d49ca1ba2861, type: 3}
---- !u!4 &4577958150135782298 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1331415410763367310, guid: f4b2a7a73f4c21e41869d49ca1ba2861,
-    type: 3}
-  m_PrefabInstance: {fileID: 3310726189747443732}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4577958150135782299 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1331415410763367311, guid: f4b2a7a73f4c21e41869d49ca1ba2861,
-    type: 3}
-  m_PrefabInstance: {fileID: 3310726189747443732}
-  m_PrefabAsset: {fileID: 0}
