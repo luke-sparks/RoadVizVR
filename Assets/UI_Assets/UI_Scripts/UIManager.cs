@@ -18,7 +18,19 @@ public class UIManager : MonoBehaviour
     public GameObject editLaneMenu;
     public GameObject globalSettingsMenu;
 
-    public GameObject openUIScreen(UIScreens uiName)
+    // Must be assigned in Start
+    Dictionary<UIScreens, GameObject> uiObjects;
+
+    public void Start()
+    {
+        uiObjects = new Dictionary<UIScreens, GameObject>
+        {
+            {UIScreens.EditLane, editLaneMenu},
+            {UIScreens.GlobalSettings, globalSettingsMenu }
+        };
+    }
+
+    public GameObject openUIScreen(UIScreens uiName, GameObject objRef)
     {
         // TODO: pass a reference to what to connect it to
         Debug.Log("Opening UI Screen: " + uiName);
@@ -31,30 +43,38 @@ public class UIManager : MonoBehaviour
         }
 
         // TODO: figure out desired location and rotation
-        Vector3 placeAt = new Vector3(0, 0, 0);
-        Quaternion rotation = Quaternion.identity;
+        Vector3 placeAt = getLocationForUIPanel();
+        Quaternion rotation = getRotationForUIPanel(); ;
 
-        GameObject curUIObject = getUIObjectReference(uiName);
+        GameObject curUIObject = uiObjects[uiName];
 
         // instantiate the prefab, then set it to the current UI in use
         currentUI = Instantiate(curUIObject, placeAt, rotation);
+        ISceneUIMenu ui = currentUI.GetComponent<ISceneUIMenu>();
+
+        if (ui != null)
+        {
+            ui.setWorkingReference(objRef);
+        } else
+        {
+            Debug.LogError("Expected UI object as ISceneUIMenu type, but did not get it.");
+        }
+
         return currentUI;
     }
-    
-    // TODO turn this thing into a dictionary up at the top for better organization
-    private GameObject getUIObjectReference(UIScreens uiName)
+
+    private Vector3 getLocationForUIPanel()
     {
-        // For each UIScreen type, add it here as well a the reference to the prefab
-        switch (uiName)
-        {
-            case UIScreens.EditLane:
-                return editLaneMenu;
-            case UIScreens.GlobalSettings:
-                return globalSettingsMenu;
-            default:
-                Debug.LogError("Tried to get bad UI object reference");
-                return null;
-        }
+        Vector3 cameraLoc = Camera.main.transform.position;
+        Vector3 lookDir = Camera.main.transform.forward;
+        Vector3 lookDirFlattened = new Vector3(lookDir.x, 0, lookDir.z);
+        return cameraLoc + 1 * lookDirFlattened;
+    }
+
+    private Quaternion getRotationForUIPanel()
+    {
+        Transform cameraLoc = Camera.main.transform;
+        return cameraLoc.rotation;
     }
 
     public void closeCurrentUI()
@@ -68,12 +88,13 @@ public class UIManager : MonoBehaviour
         {
             GameObject blane = GameObject.Find("BasicLane(Clone)");
             if (blane == null)
-            {
                 Debug.Log("Could not find a lane.");
-            }
 
-            EditLaneBehavior editLane = openUIScreen(UIScreens.EditLane).GetComponent<EditLaneBehavior>();
-            editLane.setWorkingLane(blane);
+            GameObject uiObj = openUIScreen(UIScreens.EditLane, blane);
+            Debug.Assert(uiObj != null, "Expected valid ui GameObject");
+
+            EditLaneBehavior editLaneUI = uiObj.GetComponent<EditLaneBehavior>();
+            Debug.Assert(editLaneUI != null, "Expected valid EditLaneBehavior");
         }
 
         if (Input.GetKeyDown("backspace"))

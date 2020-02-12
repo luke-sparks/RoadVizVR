@@ -48,8 +48,7 @@ public class RoadVizEvents : MonoBehaviour
         // user selects lane
         if (obj.name == "PrimaryAsphalt")
         {
-            GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane);
-            laneUI.GetComponent<EditLaneBehavior>().setWorkingLane(obj);
+            GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane, lane);
         }
     }
 
