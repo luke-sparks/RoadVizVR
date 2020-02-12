@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class EditLaneBehavior : MonoBehaviour, SceneUIMenu
+public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
 {
     private const float BASE_CHANGE_FT = 0.5f;
     public Text widthText;
@@ -15,7 +15,7 @@ public class EditLaneBehavior : MonoBehaviour, SceneUIMenu
 
     //private Lane workingLane;
 
-    public void setWorkingLane(GameObject laneRef)
+    public void setWorkingReference(GameObject laneRef)
     {
         workingLaneReference = laneRef;
         basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();

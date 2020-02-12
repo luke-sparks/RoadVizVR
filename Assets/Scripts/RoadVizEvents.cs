@@ -66,8 +66,7 @@ public class RoadVizEvents : MonoBehaviour
             editLaneScript.basicLaneScriptReference.openManipulationMenu();
             editLaneScript.roadScriptReference = roadScript;
             */
-            GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane);
-            laneUI.GetComponent<EditLaneBehavior>().setWorkingLane(obj);
+            GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane, lane);
         }
     }
 

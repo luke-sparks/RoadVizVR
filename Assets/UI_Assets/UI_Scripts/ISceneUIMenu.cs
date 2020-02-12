@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface SceneUIMenu
+public interface ISceneUIMenu
 {
-    //void closeUI();
-    //void recordCommand();
+    void setWorkingReference(GameObject objRef);
 }
