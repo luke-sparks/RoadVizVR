@@ -212,6 +212,7 @@ public class BasicLane : MonoBehaviour
     // sets a stripe's type
     public void setStripe(GameObject selectedStripe, GameObject newType)
     {
+        Debug.Log(selectedStripe);
         //selectedStripe.setStripeType(newType);
     }
 

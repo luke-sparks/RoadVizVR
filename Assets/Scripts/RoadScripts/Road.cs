@@ -101,6 +101,9 @@ public class Road : MonoBehaviour
             newLane.transform.parent = transform;
             // add the lane to the linked list
             roadLanes.AddAfter(currLaneNode, newLane);
+
+            // add stripes
+            // newLane.setStripe("left", )
         }
         else
         {
