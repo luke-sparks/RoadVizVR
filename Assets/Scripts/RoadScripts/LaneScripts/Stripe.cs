@@ -11,7 +11,14 @@ public class Stripe : MonoBehaviour
     [SerializeField] private GameObject stripeType;
     [SerializeField] private GameObject leftLane;
     [SerializeField] private GameObject rightLane;
-    
+
+    // Nathan wrote this
+    // places the stripe in the development environment
+    public void placeStripe(GameObject currLane)
+    {
+        Debug.Log("INSIDE PLACE STRIPE");
+    }
+
     // Nathan wrote this
     // changes the stripe's color
     public void setStripeColor(string newColor)
