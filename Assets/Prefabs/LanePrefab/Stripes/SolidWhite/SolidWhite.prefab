@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1714678791841314233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2938077226863865202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47ce5b8a5af64ef484b65ffc2bce8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stripeColor: 
+  stripeType: {fileID: 2938077226863865202}
+  leftLane: {fileID: 0}
+  rightLane: {fileID: 0}
 --- !u!1001 &650592430543097315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,3 +85,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 667bc3937a80b4a99bec191813ed0c5b, type: 3}
+--- !u!1 &2938077226863865202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2432361568268640401, guid: 667bc3937a80b4a99bec191813ed0c5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 650592430543097315}
+  m_PrefabAsset: {fileID: 0}

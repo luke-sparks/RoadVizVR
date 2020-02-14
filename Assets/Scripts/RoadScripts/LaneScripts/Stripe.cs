@@ -13,10 +13,13 @@ public class Stripe : MonoBehaviour
     [SerializeField] private GameObject rightLane;
 
     // Nathan wrote this
-    // places the stripe in the development environment
-    public void placeStripe(GameObject currLane)
+    // positions the stripe on the road
+    public void setStripePosition(Vector3 lanePosition, float adjustment)
     {
-        Debug.Log("INSIDE PLACE STRIPE");
+        Vector3 tempVec = transform.position;
+        tempVec.z = lanePosition.z;
+        tempVec.z += adjustment;
+        transform.position = tempVec;
     }
 
     // Nathan wrote this
@@ -45,5 +48,24 @@ public class Stripe : MonoBehaviour
     public GameObject getStripeType()
     {
         return stripeType;
+    }
+
+    // Nathan wrote this
+    // sets a lane to be the left or right lane of this stripe
+    public void setLaneOrientation(GameObject lane, string laneOrientation)
+    {
+        if(laneOrientation == "left")
+        {
+            leftLane = lane;
+        }
+        else if(laneOrientation == "right")
+        {
+            rightLane = lane;
+        }
+        else
+        {
+            Debug.Log("NOT A VALID LANE ORIENTATION");
+            Debug.Assert(false);
+        }
     }
 }
