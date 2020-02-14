@@ -700,7 +700,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7709262486583124502}
-        m_MethodName: closeMenu
+        m_MethodName: closeUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
