@@ -66,8 +66,6 @@ public class BasicLane : MonoBehaviour
         //       5. update the transforms with the new Vector3 values
         // step 1
         Vector3 laneSize = asphalt.transform.localScale;
-        Vector3 leftStripePos = leftStripe.transform.localPosition;
-        Vector3 rightStripePos = rightStripe.transform.localPosition;
         Vector3 buttonPos = insertButton.transform.localPosition;
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
@@ -79,17 +77,11 @@ public class BasicLane : MonoBehaviour
         roadScript.adjustRoadAroundLane(gameObject, adjustment);
         // step 4
         laneSize.z = newWidth;
-        leftStripePos.z -= adjustment;
-        rightStripePos.z += adjustment;
         buttonPos.z += adjustment;
         // step 5
         asphalt.transform.localScale = laneSize;
-
         Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
         asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
-
-        leftStripe.transform.localPosition = leftStripePos;
-        rightStripe.transform.localPosition = rightStripePos;
         insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
     }
@@ -223,21 +215,26 @@ public class BasicLane : MonoBehaviour
     public void setStripeOrientation(GameObject stripe, string stripeOrientation)
     {
         Stripe stripeScriptReference = (Stripe)stripe.GetComponent("Stripe");
-        if(stripeOrientation == "left")
+        if (stripeOrientation == "left")
         {
             // the stripe is now this lane's "left" stripe
             leftStripe = stripe;
             // this lane is now the stripe's "right" lane
             stripeScriptReference.setLaneOrientation(this.gameObject, "right");
-            stripeScriptReference.setStripePosition(gameObject.transform.localPosition, -currentLaneWidth/2);
+            stripeScriptReference.setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
         }
-        else if(stripeOrientation == "right")
+        else if (stripeOrientation == "right")
         {
             // the stripe is now this lane's "right" stripe
             rightStripe = stripe;
             // this lane is now the stripe's "left" lane
             stripeScriptReference.setLaneOrientation(this.gameObject, "left");
-            stripeScriptReference.setStripePosition(gameObject.transform.localPosition, currentLaneWidth/2);
+            stripeScriptReference.setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
+        }
+        else if (stripeOrientation == "reset") 
+        {
+            leftStripe = null;
+            rightStripe = null;
         }
         // error case
         else
