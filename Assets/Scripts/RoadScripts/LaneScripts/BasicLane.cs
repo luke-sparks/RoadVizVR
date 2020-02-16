@@ -11,7 +11,7 @@ public class BasicLane : MonoBehaviour
     [SerializeField] protected GameObject editLaneDialogue;
     [SerializeField] protected GameObject insertButton;
     [SerializeField] protected GameObject asphalt;
-    //[SerializeField] protected Vector3 lanePosition; 
+    [SerializeField] protected float lanePosition; 
     [SerializeField] protected int laneIndex;
     [SerializeField] protected string laneType;
     [SerializeField] protected float currentLaneWidth;
@@ -66,6 +66,8 @@ public class BasicLane : MonoBehaviour
         //       5. update the transforms with the new Vector3 values
         // step 1
         Vector3 laneSize = asphalt.transform.localScale;
+        Vector3 leftStripePos = leftStripe.transform.localPosition;
+        Vector3 rightStripePos = rightStripe.transform.localPosition;
         Vector3 buttonPos = insertButton.transform.localPosition;
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
@@ -77,11 +79,13 @@ public class BasicLane : MonoBehaviour
         roadScript.adjustRoadAroundLane(gameObject, adjustment);
         // step 4
         laneSize.z = newWidth;
+        leftStripePos.z -= adjustment;
+        rightStripePos.z += adjustment;
         buttonPos.z += adjustment;
         // step 5
         asphalt.transform.localScale = laneSize;
-        Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
-        asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
+        leftStripe.transform.localPosition = leftStripePos;
+        rightStripe.transform.localPosition = rightStripePos;
         insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
     }
@@ -90,6 +94,7 @@ public class BasicLane : MonoBehaviour
     // retrieves the current lane width
     public float getLaneWidth()
     {
+        Debug.Log("Lane Width is " + currentLaneWidth.ToString() + ".");
         return currentLaneWidth;
     }
 
@@ -97,6 +102,7 @@ public class BasicLane : MonoBehaviour
     // returns the lane's maximum width
     public float getMaxWidth()
     {
+        Debug.Log("Max Width is " + maxWidth.ToString() + ".");
         return maxWidth;
     }
 
@@ -119,17 +125,15 @@ public class BasicLane : MonoBehaviour
         Vector3 tempVec = gameObject.transform.localPosition;
         tempVec.z += adjustment;
         gameObject.transform.localPosition = tempVec;
-        //lanePosition = gameObject.transform.localPosition;
+        lanePosition = gameObject.transform.localPosition.z;
     }
 
     // Nathan wrote this
     // retrieves the lane's current position
-    public Vector3 getLanePosition()
+    public float getLanePosition()
     {
-        //Debug.Log(gameObject.transform.localPosition);
-        //Debug.Log(lanePosition);
-        //Debug.Assert(lanePosition == gameObject.transform.localPosition);
-        return gameObject.transform.localPosition;
+        Debug.Log("Lane Position is " + lanePosition.ToString() + ".");
+        return lanePosition;
     }
 
     // Nathan wrote this
@@ -207,62 +211,10 @@ public class BasicLane : MonoBehaviour
     }*/
 
     // Nathan wrote this
-    // sets a stripe's orientation to the lane
-    // parameter stripe is the stripe which we are
-    // setting the orientation of
-    // parameter stripeOrientation is its
-    // new orientation
-    public void setStripeOrientation(GameObject stripe, string stripeOrientation)
+    // sets a stripe's type
+    public void setStripe(GameObject selectedStripe, GameObject newType)
     {
-        Stripe stripeScriptReference = (Stripe)stripe.GetComponent("Stripe");
-        if (stripeOrientation == "left")
-        {
-            // the stripe is now this lane's "left" stripe
-            leftStripe = stripe;
-            // this lane is now the stripe's "right" lane
-            stripeScriptReference.setLaneOrientation(this.gameObject, "right");
-            stripeScriptReference.setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
-        }
-        else if (stripeOrientation == "right")
-        {
-            // the stripe is now this lane's "right" stripe
-            rightStripe = stripe;
-            // this lane is now the stripe's "left" lane
-            stripeScriptReference.setLaneOrientation(this.gameObject, "left");
-            stripeScriptReference.setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
-        }
-        else if (stripeOrientation == "reset") 
-        {
-            leftStripe = null;
-            rightStripe = null;
-        }
-        // error case
-        else
-        {
-            Debug.Log("NOT A VALID STRIPE ORIENTATION");
-            Debug.Assert(false);
-        }
-        // MUST set this transform or life will be very painful
-        // for shifting stripes 
-        stripe.transform.parent = gameObject.transform;
-    }
-
-    // Nathan wrote this
-    // retrieves the specified stripe
-    public GameObject getStripe(string stripe)
-    {
-        if(stripe == "left")
-        {
-            return leftStripe;
-        }
-        else if(stripe == "right")
-        {
-            return rightStripe;
-        }
-        else
-        {
-            throw new System.ArgumentException("Stripe value unknown. Did you mean 'left' or 'right?'");
-        }
+        //selectedStripe.setStripeType(newType);
     }
 
     // Nathan wrote this
