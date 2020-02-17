@@ -74,7 +74,6 @@ public class UIManager : MonoBehaviour
     private Quaternion getRotationForUIPanel()
     {
         Transform cameraLoc = Camera.main.transform;
-        Debug.Log("Rotation: " + cameraLoc.rotation.y);
         return new Quaternion(0, cameraLoc.rotation.y, 0, 1);
     }
 
@@ -85,6 +84,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetKeyDown("space"))
         {
             GameObject blane = GameObject.Find("BasicLane(Clone)");
@@ -100,10 +100,9 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown("backspace"))
         {
-            EditLaneBehavior ln = currentUI.GetComponent<EditLaneBehavior>();
-            //ln.handleDecreaseLaneWidth();
             closeCurrentUI();
         }
+        */
     }
 
     // Singleton management code
