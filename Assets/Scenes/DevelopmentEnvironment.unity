@@ -1133,8 +1133,8 @@ MonoBehaviour:
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
-  selectionButton: 0
-  selectOnPress: 0
+  selectionButton: 2
+  selectOnPress: 1
   selectionDelay: 0
   selectAfterHoverDuration: 0
   interactWithObjects: 1
@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useButton: 4
+  useButton: 3
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
@@ -1301,8 +1301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationButton: 1
   activationMode: 0
-  selectionButton: 4
-  clickMethod: 0
+  selectionButton: 3
+  clickMethod: 1
   attemptClickOnDeactivate: 0
   clickAfterHoverDuration: 0
   maximumLength: Infinity
@@ -2356,6 +2356,53 @@ MonoBehaviour:
   maximumCursorScale: {x: Infinity, y: Infinity, z: Infinity}
   customTracer: {fileID: 0}
   customCursor: {fileID: 0}
+--- !u!1 &1849227284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1849227286}
+  - component: {fileID: 1849227285}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1849227285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849227284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64c8acec295ea04c85a1f09cf2e93eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editLaneMenu: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
+    type: 3}
+  globalSettingsMenu: {fileID: 1975022374442647078, guid: 038cf159f5192b541b8dbd375f3c4c36,
+    type: 3}
+--- !u!4 &1849227286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849227284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -62.799683, y: 32.162796, z: -48.32639}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020476017 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1538727058887424, guid: be540b97364be0a4890e39e62ac89ed1,

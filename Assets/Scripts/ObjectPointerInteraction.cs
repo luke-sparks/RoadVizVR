@@ -68,6 +68,7 @@ public class ObjectPointerInteraction : MonoBehaviour
     // selects the current object
     private void SelectObject()
     {
+        Debug.Log("SelectObject Event");
         // set touch flag to true so SelectObject doesn't get called
         // repeatedly
         usingFlag = true;
