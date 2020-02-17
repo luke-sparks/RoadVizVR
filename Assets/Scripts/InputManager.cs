@@ -5,13 +5,13 @@ using UnityEngine;
 using Valve.VR;
 using VRTK;
 
+
 public class InputManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
         evaluateControllerType();
-
     }
 
     private void Awake()
@@ -45,5 +45,4 @@ public class InputManager : MonoBehaviour
     {
         Debug.Log("Using Oculus Touch Controllers");
     }
-
 }
