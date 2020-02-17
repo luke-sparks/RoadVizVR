@@ -120,7 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &27755405 stripped
+--- !u!1 &84640460 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013941130086, guid: be540b97364be0a4890e39e62ac89ed1,
     type: 3}
@@ -505,6 +505,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 893088598}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &216568398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1883185261795400, guid: be540b97364be0a4890e39e62ac89ed1,
+    type: 3}
+  m_PrefabInstance: {fileID: 101772947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &502124331
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +583,12 @@ MonoBehaviour:
     fallbackTypeName: VRTK.SDK_FallbackController
     typeName: VRTK.SDK_SteamVRController
     descriptionIndex: 0
+--- !u!1 &545307022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
+    type: 3}
+  m_PrefabInstance: {fileID: 101772947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &553132196
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +1004,12 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
+--- !u!1 &745482843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1587602180963074, guid: be540b97364be0a4890e39e62ac89ed1,
+    type: 3}
+  m_PrefabInstance: {fileID: 101772947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &841953353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011401111930, guid: be540b97364be0a4890e39e62ac89ed1,
@@ -1125,8 +1143,8 @@ MonoBehaviour:
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
-  selectionButton: 0
-  selectOnPress: 0
+  selectionButton: 2
+  selectOnPress: 1
   selectionDelay: 0
   selectAfterHoverDuration: 0
   interactWithObjects: 1
@@ -1275,7 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useButton: 4
+  useButton: 3
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
@@ -1293,8 +1311,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationButton: 1
   activationMode: 0
-  selectionButton: 4
-  clickMethod: 0
+  selectionButton: 3
+  clickMethod: 1
   attemptClickOnDeactivate: 0
   clickAfterHoverDuration: 0
   maximumLength: Infinity
@@ -1406,12 +1424,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &984833467 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
-    type: 3}
-  m_PrefabInstance: {fileID: 101772947}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1006097700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,6 +1561,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
+  stripeTypes:
+  - {fileID: 2938077226863865202, guid: ada643609087645f28c9d0a2cd7b864d, type: 3}
   lanePosition: {x: 0, y: 0, z: 0}
   defaultShift: 0
   currentWidth: 0
@@ -1682,12 +1696,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7386363997222632378, guid: 038cf159f5192b541b8dbd375f3c4c36,
     type: 3}
   m_PrefabInstance: {fileID: 1244175442}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1280164238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1883185261795400, guid: be540b97364be0a4890e39e62ac89ed1,
-    type: 3}
-  m_PrefabInstance: {fileID: 101772947}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1308889765
 GameObject:
@@ -2052,12 +2060,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 1
-  actualBoundaries: {fileID: 27755405}
-  actualHeadset: {fileID: 1914227446}
+  actualBoundaries: {fileID: 84640460}
+  actualHeadset: {fileID: 745482843}
   actualLeftController: {fileID: 2020476017}
   actualRightController: {fileID: 1601087261}
-  modelAliasLeftController: {fileID: 984833467}
-  modelAliasRightController: {fileID: 1280164238}
+  modelAliasLeftController: {fileID: 545307022}
+  modelAliasRightController: {fileID: 216568398}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
@@ -2358,12 +2366,53 @@ MonoBehaviour:
   maximumCursorScale: {x: Infinity, y: Infinity, z: Infinity}
   customTracer: {fileID: 0}
   customCursor: {fileID: 0}
---- !u!1 &1914227446 stripped
+--- !u!1 &1849227284
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1587602180963074, guid: be540b97364be0a4890e39e62ac89ed1,
-    type: 3}
-  m_PrefabInstance: {fileID: 101772947}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1849227286}
+  - component: {fileID: 1849227285}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1849227285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849227284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64c8acec295ea04c85a1f09cf2e93eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editLaneMenu: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
+    type: 3}
+  globalSettingsMenu: {fileID: 1975022374442647078, guid: 038cf159f5192b541b8dbd375f3c4c36,
+    type: 3}
+--- !u!4 &1849227286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849227284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -62.799683, y: 32.162796, z: -48.32639}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020476017 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1538727058887424, guid: be540b97364be0a4890e39e62ac89ed1,

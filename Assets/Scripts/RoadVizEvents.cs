@@ -24,6 +24,8 @@ public class RoadVizEvents : MonoBehaviour
     // Nathan wrote this, Luke modified by changing to insertLaneAfter and adding the width part
     public void selectEvent(GameObject obj)
     {
+        Debug.Log("Selection Event Triggered");
+
         // user presses button to insert lane in road
         if (obj.name == "InsertionButton")
         {
@@ -37,7 +39,7 @@ public class RoadVizEvents : MonoBehaviour
             GameObject[] laneTypesArray = laneTypes.ToArray();
             // insert the desired lane type as a new lane into the road
             //Debug.Log("what about this right here");
-            roadScript.insertLaneAfter(lane, laneTypesArray[0]);
+            roadScript.insertLane(lane, laneTypesArray[0]);
             // note: the shift above assumes all lanes are the same size;
             //       we will have to figure out a way to change the shift depending
             //       on the size of the lanes
@@ -46,22 +48,7 @@ public class RoadVizEvents : MonoBehaviour
         // user selects lane
         if (obj.name == "PrimaryAsphalt")
         {
-            //open the UI stuff here
-            // instantiate editLaneDialogue
-            GameObject editLaneDialogue = Instantiate(laneEditPrefab);
-            // set parent to the lane so it moves with the lane
-            editLaneDialogue.transform.parent = lane.transform;
-            // set correct position
-            editLaneDialogue.transform.position = new Vector3 (lane.transform.position.x, lane.transform.position.y + 1.5f, lane.transform.position.z);
-            // rotate the dialogue
-            editLaneDialogue.transform.Rotate(0, -90, 0);
-
-            EditLaneBehavior editLaneScript = (EditLaneBehavior)editLaneDialogue.GetComponent("EditLaneBehavior");
-            editLaneScript.laneScriptReference = this;
-            editLaneScript.laneReference = lane;
-            editLaneScript.basicLaneScriptReference = (BasicLane) lane.GetComponent("BasicLane");
-            editLaneScript.basicLaneScriptReference.openManipulationMenu();
-            editLaneScript.roadScriptReference = roadScript;
+            GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane, lane);
         }
     }
 
