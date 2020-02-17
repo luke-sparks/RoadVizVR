@@ -74,7 +74,8 @@ public class UIManager : MonoBehaviour
     private Quaternion getRotationForUIPanel()
     {
         Transform cameraLoc = Camera.main.transform;
-        return cameraLoc.rotation;
+        Debug.Log("Rotation: " + cameraLoc.rotation.y);
+        return new Quaternion(0, cameraLoc.rotation.y, 0, 1);
     }
 
     public void closeCurrentUI()
