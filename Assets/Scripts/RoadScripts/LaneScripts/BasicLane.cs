@@ -56,6 +56,10 @@ public class BasicLane : MonoBehaviour
         asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
         insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
+
+        // set new stripe locations
+        leftStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
+        rightStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
     }
 
     // Nathan wrote this
@@ -92,6 +96,10 @@ public class BasicLane : MonoBehaviour
         tempVec.z += adjustment;
         gameObject.transform.localPosition = tempVec;
         //lanePosition = gameObject.transform.localPosition;
+
+        // set new stripe locations
+        leftStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
+        rightStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
     }
 
     // Nathan wrote this

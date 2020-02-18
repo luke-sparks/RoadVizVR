@@ -237,22 +237,22 @@ public class Road : MonoBehaviour
             {
                 // essentially do nothing because it will be widened after
                 foundLane = true;
-                Stripe leftStripeScript = (Stripe)leftStripe.GetComponent("Stripe");
-                leftStripeScript.setStripePosition(leftStripe.transform.position, -sizeDifference);
+                //Stripe leftStripeScript = (Stripe)leftStripe.GetComponent("Stripe");
+                //leftStripeScript.setStripePosition(leftStripe.transform.position, -sizeDifference);
             }
             // if we haven't found our lane yet, shift things to the left by the sizeDifference
             else if (foundLane == false)
             {
                 laneScript.setLanePosition(-sizeDifference);
-                laneScript.setStripeOrientation(leftStripe, "left");
-                laneScript.setStripeOrientation(rightStripe, "right");
+                //laneScript.setStripeOrientation(leftStripe, "left");
+                //laneScript.setStripeOrientation(rightStripe, "right");
             }
             // if we HAVE found our lane, shift things right
             else // foundLane is 1
             {
                 laneScript.setLanePosition(sizeDifference);
-                laneScript.setStripeOrientation(leftStripe, "left");
-                laneScript.setStripeOrientation(rightStripe, "right");
+                //laneScript.setStripeOrientation(leftStripe, "left");
+                //laneScript.setStripeOrientation(rightStripe, "right");
             }
         }
     }
