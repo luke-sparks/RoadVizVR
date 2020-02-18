@@ -23,7 +23,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1926978328019019537
 Transform:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4577958150135782298
 Transform:
   m_ObjectHideFlags: 0
@@ -566,7 +566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4577958150802762165
 Transform:
   m_ObjectHideFlags: 0
@@ -714,4 +714,6 @@ MonoBehaviour:
   leftStripe: {fileID: 4577958150135782299}
   rightStripe: {fileID: 4577958150802762122}
   laneObject: {fileID: 4577958151057443786}
+  laneInsertSprite: {fileID: 4675405044451415461, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
+    type: 3}
   linkedObject: {fileID: 2946679104186503428}

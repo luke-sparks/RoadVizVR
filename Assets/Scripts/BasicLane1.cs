@@ -27,11 +27,21 @@ public class BasicLane1 : MonoBehaviour
     protected GameObject road;
     protected Road roadScript;
 
+    [SerializeField] protected GameObject laneInsertSprite;
+    protected GameObject laneInsertSpriteRef = null;
+
+    protected Transform cursorTransform = null;
+
     // Nathan inserted start so we could use road functions more easily
     void Start()
     {
         road = GameObject.Find("Road");
         roadScript = (Road)road.GetComponent("Road");
+    }
+
+    private void Update()
+    {
+        
     }
 
     // Nathan wrote this
@@ -255,6 +265,8 @@ public class BasicLane1 : MonoBehaviour
         {
             linkedObject.InteractableObjectUsed += InteractableObjectUsed;
             linkedObject.InteractableObjectUnused += InteractableObjectUnused;
+            linkedObject.InteractableObjectTouched += InteractableObjectTouched;
+            linkedObject.InteractableObjectUntouched += InteractableObjectUntouched;
         }
 
     }
@@ -265,12 +277,14 @@ public class BasicLane1 : MonoBehaviour
         {
             linkedObject.InteractableObjectUsed -= InteractableObjectUsed;
             linkedObject.InteractableObjectUnused -= InteractableObjectUnused;
+            linkedObject.InteractableObjectTouched += InteractableObjectTouched;
+            linkedObject.InteractableObjectUntouched += InteractableObjectUntouched;
         }
     }
 
     protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
     {
-        Debug.Log("InteractableObjectUsed - BasicLane1.cs");
+        Debug.Log("InteractableObjectUsed");
         // write use script here
 
 
@@ -296,26 +310,58 @@ public class BasicLane1 : MonoBehaviour
 
     protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
     {
-        Debug.Log("InteractableObjectUnused - BasicLane1.cs");
+        Debug.Log("InteractableObjectUnused");
         // write un-use script here
     }
 
     protected virtual void InteractableObjectTouched(object sender, InteractableObjectEventArgs e)
     {
-        Debug.Log("InteractableObjectTouched - BasicLane1.cs");
+        Debug.Log("InteractableObjectTouched");
         // write touch script here
+        GameObject pointerCursor = getCursor(sender, e);
+
+        cursorTransform = getCursor(sender, e).transform;
+
+        Vector3 cursorLocation = cursorTransform.position;
+        Vector3 spriteLocation = cursorLocation;
+
+        Debug.Log(cursorLocation + spriteLocation);
+
+        spriteLocation.y += (float) 0.5;
+        if (isTouchingEdge(cursorLocation))
+        {
+            Debug.Log("yeetus");
+            if (laneInsertSpriteRef != null)
+            {
+                Debug.Log("defeetus");
+                laneInsertSpriteRef.transform.position = spriteLocation;
+            } else
+            {
+                Debug.Log("bobeetus");
+                laneInsertSpriteRef = Instantiate(laneInsertSprite, spriteLocation, Quaternion.identity);
+                laneInsertSpriteRef.transform.SetParent(cursorTransform);
+            }
+        }
+        
     }
 
     protected virtual void InteractableObjectUntouched(object sender, InteractableObjectEventArgs e)
     {
-        Debug.Log("InteractableObjectUntouched - BasicLane1.cs");
+        Debug.Log("InteractableObjectUntouched");
         // write un-touch script here
+        if (laneInsertSprite != null)
+        {
+            DestroyImmediate(laneInsertSpriteRef, true);
+            laneInsertSpriteRef = null;
+        }
     }
+
+
 
     // this method returns the cursor that is touching the current object
     private GameObject getCursor(object sender, InteractableObjectEventArgs e)
     {
-        Debug.Log("getCursor - UniversalObjectInteraction.cs");
+        Debug.Log("getCursor");
 
         Debug.Log(sender.ToString());
         GameObject controller = e.interactingObject;
@@ -343,8 +389,28 @@ public class BasicLane1 : MonoBehaviour
         //Debug.Log("cursor transform local position:::: " + cursor.transform.position);
 
         if (cursor != null)
+        {
+            Debug.Log(cursor.transform.position);
             return cursor;
+        }
         else
+        {
+            Debug.Log("cursor not found");
             return null;
+        }
+    }
+
+    private bool isTouchingEdge(Vector3 cursorLocation)
+    {
+        double halfFoot = 0.1524;
+        double edgeLeft = gameObject.transform.position.z - (asphalt.transform.localScale.z / 2) + halfFoot;
+        double edgeRight = gameObject.transform.position.z + (asphalt.transform.localScale.z / 2) - halfFoot;
+
+        if (cursorLocation.z >= edgeRight || cursorLocation.z <= edgeLeft)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
