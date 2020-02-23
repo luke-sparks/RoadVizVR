@@ -23,8 +23,8 @@ public class envMain : MonoBehaviour
     // Update is called once per frame.
     //Currently set to "update", will have to call whenever
     //the road is being updated instead, later.
-    //void Update()
-    //{
-        //updatePosition();
-    //}
+    void Update()
+    {
+        updatePosition();
+    }
 }
