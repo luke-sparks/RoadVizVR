@@ -978,8 +978,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationButton: 1
   activationMode: 0
-  selectionButton: 4
-  clickMethod: 0
+  selectionButton: 3
+  clickMethod: 1
   attemptClickOnDeactivate: 0
   clickAfterHoverDuration: 0
   maximumLength: Infinity
