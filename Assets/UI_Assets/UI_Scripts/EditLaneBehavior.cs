@@ -14,9 +14,11 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
 
     //private Lane workingLane;
 
-    public void setWorkingReference(GameObject laneRef)
+    public void setWorkingReference(GameObject[] laneRefs)
     {
-        workingLaneReference = laneRef;
+        Debug.Assert(laneRefs.Length == 1);
+
+        workingLaneReference = laneRefs[0];
         basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
         if(workingLaneReference == null || basicLaneScriptReference == null)
         {

@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
         };
     }
 
-    public GameObject openUIScreen(UIScreens uiName, GameObject objRef)
+    public GameObject openUIScreen(UIScreens uiName, params GameObject[] objRefs)
     {
         // TODO: pass a reference to what to connect it to
         Debug.Log("Opening UI Screen: " + uiName);
@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
 
         if (ui != null)
         {
-            ui.setWorkingReference(objRef);
+            ui.setWorkingReference(objRefs);
         } else
         {
             Debug.LogError("Expected UI object as ISceneUIMenu type, but did not get it.");
