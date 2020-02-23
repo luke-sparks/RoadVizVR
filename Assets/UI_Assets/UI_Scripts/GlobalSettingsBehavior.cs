@@ -24,7 +24,7 @@ public class GlobalSettingsBehavior : MonoBehaviour, ISceneUIMenu
 
     public void handleBrightnessDecrement()
     {
-        
+
     }
 
     public void handleBrightnessIncrement()
