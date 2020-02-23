@@ -379,9 +379,9 @@ public class BasicLane : MonoBehaviour
             //Debug.Log("what about this right here");
             roadScript.insertLane(gameObject, laneTypesArray[0], "right");
 
-            //Debug.Log("Inserted lane on right - side is: " + side);
-            //Debug.Log("lane position: " + gameObject.transform.position.z);
-            //Debug.Log("asphalt size/2: " + (asphalt.transform.localScale.z / 2));
+            ///Debug.Log("Inserted lane on right - side is: " + side);
+            ///Debug.Log("lane position: " + gameObject.transform.position.z);
+            ///Debug.Log("asphalt size/2: " + (asphalt.transform.localScale.z / 2));
         }
         else
         {
@@ -396,9 +396,9 @@ public class BasicLane : MonoBehaviour
             //Debug.Log("what about this right here");
             roadScript.insertLane(gameObject, laneTypesArray[0], "left");
 
-            //Debug.Log("Inserted lane on left - side is: " + side);
-            //Debug.Log("lane position: " + gameObject.transform.position.z);
-            //Debug.Log("asphalt size/2: " + (asphalt.transform.localScale.z / 2));
+            ///Debug.Log("Inserted lane on left - side is: " + side);
+            ///Debug.Log("lane position: " + gameObject.transform.position.z);
+            ///Debug.Log("asphalt size/2: " + (asphalt.transform.localScale.z / 2));
         }
 
 

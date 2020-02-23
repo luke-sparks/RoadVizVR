@@ -905,7 +905,7 @@ MonoBehaviour:
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
-  selectionButton: 3
+  selectionButton: 0
   selectOnPress: 1
   selectionDelay: 0
   selectAfterHoverDuration: 0
@@ -1133,7 +1133,7 @@ MonoBehaviour:
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
-  selectionButton: 3
+  selectionButton: 0
   selectOnPress: 1
   selectionDelay: 0
   selectAfterHoverDuration: 0
@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useButton: 3
+  useButton: 4
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
@@ -1552,6 +1552,7 @@ MonoBehaviour:
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
   stripeTypes:
+  - {fileID: 2938077226863865202, guid: ada643609087645f28c9d0a2cd7b864d, type: 3}
   - {fileID: 2938077226863865202, guid: ada643609087645f28c9d0a2cd7b864d, type: 3}
   lanePosition: {x: 0, y: 0, z: 0}
   defaultShift: 0

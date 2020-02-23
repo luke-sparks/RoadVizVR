@@ -65,21 +65,30 @@ public class Road : MonoBehaviour
                 Vector3 currLanePosition = currLane.transform.position;
                 Transform asphaltTransform = currLane.transform.Find("PrimaryAsphalt");
                 float currLaneZScale = asphaltTransform.localScale.z;
-                newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
+
                 if (side.Equals("left"))
                 {
-                    shiftLanesBefore(currLane, defaultShift);
-                } else
+                    newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z - (currLaneZScale / 2));
+                }
+                else   // side is "right"
                 {
-                    shiftLanesAfter(currLane, defaultShift);
+                    newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
                 }
                 currLaneNode = roadLanes.Find(currLane);
             }
 
             GameObject newLane = Instantiate(laneType, newPosition, transform.rotation);
             newLane.transform.parent = transform;
-            addLaneToList(newLane, currLaneNode);
+            addLaneToList(newLane, currLaneNode, side);
             setStripes(newLane, stripeTypes[0]);
+
+            Transform newAsphaltTransform = newLane.transform.Find("PrimaryAsphalt");
+            float newLaneZScale = newAsphaltTransform.localScale.z;
+
+            Debug.Log("inserted new lane on " + side + " the lanes position is: " + newLane.transform.position);
+
+
+            adjustRoadAroundLane(newLane, newLaneZScale / 2);
         }
         else
         {
@@ -471,7 +480,7 @@ public class Road : MonoBehaviour
     // Nathan wrote this
     // helper for addLane
     // adds a new lane to the linked list
-    private void addLaneToList(GameObject newLane, LinkedListNode<GameObject> currLaneNode) 
+    private void addLaneToList(GameObject newLane, LinkedListNode<GameObject> currLaneNode, string side) 
     {
         // if there are no nodes in the list, just add the new lane last
         // else, add it before or after
@@ -479,10 +488,13 @@ public class Road : MonoBehaviour
         {
             roadLanes.AddLast(newLane);
         }
-        else
+        else if (side.Equals("right"))
         {
             roadLanes.AddAfter(currLaneNode, newLane);
-            // roadLanes.AddBefore(currLaneNode, newLane); need a way to specify
+        }
+        else if (side.Equals("left"))
+        {
+            roadLanes.AddBefore(currLaneNode, newLane);
         }
     }
 }
