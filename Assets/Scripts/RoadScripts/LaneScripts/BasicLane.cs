@@ -35,22 +35,13 @@ public class BasicLane : MonoBehaviour
     private bool trackCursor = false;
     private float edge = 0;
 
-    // using this to determine how much to change the texture in relation to the width of the asphalt
-    //private float textureTilingModifier = 1;
-    //private Renderer asphaltRenderer;
-
     // Nathan inserted start so we could use road functions more easily
     void Start()
     {
         road = GameObject.Find("Road");
         roadScript = (Road)road.GetComponent("Road");
-
-        //Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
-        //textureTilingModifier = asphaltRenderer.material.GetTextureScale("_MainTex").y / 3.3f;//asphalt.transform.localScale.z;
-        //Debug.Log(asphaltRenderer.material.GetTextureScale("_MainTex").y);
-        //Debug.Log(asphalt.transform.localScale.z);
-        //Debug.Log(textureTilingModifier);
     }
+
     private void Update()
     {
         if (trackCursor == true)
@@ -108,7 +99,7 @@ public class BasicLane : MonoBehaviour
         // step 5
         asphalt.transform.localScale = laneSize;
         Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
-        asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, (newWidth * 2)));//textureTilingModifier));
+        asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
         //insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
 

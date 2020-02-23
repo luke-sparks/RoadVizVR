@@ -12,12 +12,9 @@ GameObject:
   - component: {fileID: 4577958150579042319}
   - component: {fileID: 4577958150579042316}
   - component: {fileID: 4577958150579042317}
-  - component: {fileID: 4577958150579042318}
   - component: {fileID: 2946679104186503428}
   - component: {fileID: 5531119663598700266}
   - component: {fileID: 8169858667790980423}
-  - component: {fileID: 6835220200115637384}
-  - component: {fileID: 7669373098688368019}
   m_Layer: 0
   m_Name: PrimaryAsphalt
   m_TagString: CanTeleport
@@ -98,22 +95,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4577958150579042318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4577958150579042304}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f8ffe0322105204f90c244373b10bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 100
-  y: 0.3
-  z: 3
-  input: 0
 --- !u!114 &2946679104186503428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,42 +174,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
-  touchHighlight: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0}
+  touchHighlight: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 0}
   grabHighlight: {r: 0, g: 0, b: 0, a: 0}
   useHighlight: {r: 0, g: 1, b: 0, a: 0.09019608}
   objectToMonitor: {fileID: 0}
   objectToHighlight: {fileID: 0}
   objectHighlighter: {fileID: 0}
   objectToAffect: {fileID: 0}
---- !u!114 &6835220200115637384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4577958150579042304}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7669373098688368019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4577958150579042304}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lane: {fileID: 4577958151057443786}
-  laneEditPrefab: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
-    type: 3}
-  road: {fileID: 0}
-  roadScript: {fileID: 0}
 --- !u!1 &4577958151057443786
 GameObject:
   m_ObjectHideFlags: 0
