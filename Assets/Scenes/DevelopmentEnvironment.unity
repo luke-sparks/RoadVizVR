@@ -1552,7 +1552,8 @@ MonoBehaviour:
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
   stripeTypes:
-  - {fileID: 2938077226863865202, guid: ada643609087645f28c9d0a2cd7b864d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   lanePosition: {x: 0, y: 0, z: 0}
   defaultShift: 0
   currentWidth: 0
