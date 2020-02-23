@@ -281,7 +281,6 @@ MonoBehaviour:
   minWidth: 1
   leftStripe: {fileID: 0}
   rightStripe: {fileID: 0}
-  laneObject: {fileID: 4577958151057443786}
   laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
     type: 3}
   linkedObject: {fileID: 2946679104186503428}

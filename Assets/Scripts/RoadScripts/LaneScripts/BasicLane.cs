@@ -23,7 +23,6 @@ public class BasicLane : MonoBehaviour
     [SerializeField] protected GameObject leftStripe;
     [SerializeField] protected GameObject rightStripe;
 
-    [SerializeField] protected GameObject laneObject;
     protected GameObject road;
     protected Road roadScript;
 
@@ -42,6 +41,7 @@ public class BasicLane : MonoBehaviour
         road = GameObject.Find("Road");
         roadScript = (Road)road.GetComponent("Road");
 
+
     }
     private void Update()
     {
@@ -50,11 +50,21 @@ public class BasicLane : MonoBehaviour
             edge = touchingEdge(cursorTransform.position);
             if (edge != gameObject.transform.position.z)
             {
-                laneInsertSpriteRef.transform.position = new Vector3(cursorTransform.position.x, (cursorTransform.position.y + 0.5f), touchingEdge(cursorTransform.position));
+                if (laneInsertSpriteRef != null)
+                {
+                    laneInsertSpriteRef.transform.position = new Vector3(cursorTransform.position.x, (cursorTransform.position.y + 0.5f), touchingEdge(cursorTransform.position));
+                }
+                else
+                {
+                    laneInsertSpriteRef = laneInsertSpriteRef = Instantiate(laneInsertSprite, new Vector3(cursorTransform.position.x, (cursorTransform.position.y + 0.5f), touchingEdge(cursorTransform.position)), Quaternion.identity);
+                }
             }
             else
             {
-                laneInsertSpriteRef.transform.position = new Vector3(cursorTransform.position.x, (cursorTransform.position.y - 1), touchingEdge(cursorTransform.position));
+                if (laneInsertSpriteRef != null)
+                {
+                    Destroy(laneInsertSpriteRef);
+                }
             }
         }
     }
@@ -353,7 +363,7 @@ public class BasicLane : MonoBehaviour
             editLaneScript.roadScriptReference = roadScript;*/
 
 
-            GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane, laneObject);
+            GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane, gameObject);
 
         }
         else if (side > gameObject.transform.position.z)
