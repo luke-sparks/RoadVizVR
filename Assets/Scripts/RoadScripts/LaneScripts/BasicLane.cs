@@ -3,13 +3,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class BasicLane : MonoBehaviour
 {
     // class fields
     //[SerializeField] protected GameObject laneEditPrefab;
     //[SerializeField] protected GameObject editLaneDialogue;
-    [SerializeField] protected GameObject insertButton;
+    //[SerializeField] protected GameObject insertButton;
     [SerializeField] protected GameObject asphalt;
     //[SerializeField] protected Vector3 lanePosition; 
     [SerializeField] protected int laneIndex;
@@ -21,6 +22,42 @@ public class BasicLane : MonoBehaviour
     //[SerializeField] protected GameObject rightNeighbor;
     [SerializeField] protected GameObject leftStripe;
     [SerializeField] protected GameObject rightStripe;
+
+    [SerializeField] protected GameObject laneObject;
+    protected GameObject road;
+    protected Road roadScript;
+
+    [SerializeField] protected GameObject laneInsertSprite;
+    protected GameObject laneInsertSpriteRef = null;
+
+    //protected GameObject pointerCursor = null;
+    protected Transform cursorTransform = null;
+
+    private bool trackCursor = false;
+    private float edge = 0;
+
+    // Nathan inserted start so we could use road functions more easily
+    void Start()
+    {
+        road = GameObject.Find("Road");
+        roadScript = (Road)road.GetComponent("Road");
+
+    }
+    private void Update()
+    {
+        if (trackCursor == true)
+        {
+            edge = touchingEdge(cursorTransform.position);
+            if (edge != gameObject.transform.position.z)
+            {
+                laneInsertSpriteRef.transform.position = new Vector3(cursorTransform.position.x, (cursorTransform.position.y + 0.5f), touchingEdge(cursorTransform.position));
+            }
+            else
+            {
+                laneInsertSpriteRef.transform.position = new Vector3(cursorTransform.position.x, (cursorTransform.position.y - 1), touchingEdge(cursorTransform.position));
+            }
+        }
+    }
 
     // setLaneWidth() sets the width of a lane
     // new_width is a floating point number used to create
@@ -38,23 +75,23 @@ public class BasicLane : MonoBehaviour
         //       5. update the transforms with the new Vector3 values
         // step 1
         Vector3 laneSize = asphalt.transform.localScale;
-        Vector3 buttonPos = insertButton.transform.localPosition;
+        //Vector3 buttonPos = insertButton.transform.localPosition;
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
         // step 3
-        GameObject road = GameObject.Find("Road");
+        //GameObject road = GameObject.Find("Road");
         // reference script that controls the road's behavior
-        Road roadScript = (Road)road.GetComponent("Road");
+        //Road roadScript = (Road)road.GetComponent("Road");
         // adjust the lane positions around the lane we are modifying
         roadScript.adjustRoadAroundLane(gameObject, adjustment);
         // step 4
         laneSize.z = newWidth;
-        buttonPos.z += adjustment;
+        //buttonPos.z += adjustment;
         // step 5
         asphalt.transform.localScale = laneSize;
         Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
-        asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
-        insertButton.transform.localPosition = buttonPos;
+        asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, asphaltRenderer.material.GetTextureScale("_MainTex").y + (adjustment*2)));
+        //insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
 
         // set new stripe locations
@@ -250,6 +287,239 @@ public class BasicLane : MonoBehaviour
     public bool isVehicleLane()
     {
         return false;
+    }
+
+
+
+    /* 
+     * 
+     * Object interaction begins here
+     * 
+     */
+
+    public VRTK_InteractableObject linkedObject;
+
+    protected virtual void OnEnable()
+    {
+        linkedObject = (linkedObject == null ? GetComponent<VRTK_InteractableObject>() : linkedObject);
+
+        if (linkedObject != null)
+        {
+            linkedObject.InteractableObjectUsed += InteractableObjectUsed;
+            linkedObject.InteractableObjectUnused += InteractableObjectUnused;
+            linkedObject.InteractableObjectTouched += InteractableObjectTouched;
+            linkedObject.InteractableObjectUntouched += InteractableObjectUntouched;
+        }
+
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (linkedObject != null)
+        {
+            linkedObject.InteractableObjectUsed -= InteractableObjectUsed;
+            linkedObject.InteractableObjectUnused -= InteractableObjectUnused;
+            linkedObject.InteractableObjectTouched += InteractableObjectTouched;
+            linkedObject.InteractableObjectUntouched += InteractableObjectUntouched;
+        }
+    }
+
+    protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectUsed");
+        // write use script here
+
+        Vector3 cursorPosition = getCursor(sender, e).transform.position;
+        float side = touchingEdge(cursorPosition);
+
+        if (side == gameObject.transform.position.z)
+        {
+
+            /*//open the UI stuff here
+            // instantiate editLaneDialogue
+            GameObject editLaneDialogue = Instantiate(laneEditPrefab);
+            // set parent to the lane so it moves with the lane
+            editLaneDialogue.transform.parent = this.transform;
+            // set correct position
+            editLaneDialogue.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1.5f, this.transform.position.z);
+            // rotate the dialogue
+            editLaneDialogue.transform.Rotate(0, -90, 0);
+
+            EditLaneBehavior editLaneScript = (EditLaneBehavior)editLaneDialogue.GetComponent("EditLaneBehavior");
+            editLaneScript.laneScriptReference = this;
+            editLaneScript.laneReference = laneObject;
+            editLaneScript.basicLaneScriptReference = this;// (BasicLane)lane.GetComponent("BasicLane");
+                                                           //editLaneScript.basicLaneScriptReference.openManipulationMenu();
+            editLaneScript.roadScriptReference = roadScript;*/
+
+
+            GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane, laneObject);
+
+        }
+        else if (side > gameObject.transform.position.z)
+        {
+            // insert lane on right
+            road = GameObject.Find("Road");
+            roadScript = (Road)road.GetComponent("Road");
+
+            List<GameObject> laneTypes = roadScript.getLaneTypes();
+            // convert list of lane types to array to access elements
+            GameObject[] laneTypesArray = laneTypes.ToArray();
+            // insert the desired lane type as a new lane into the road
+            //Debug.Log("what about this right here");
+            roadScript.insertLane(gameObject, laneTypesArray[0], "right");
+
+            //Debug.Log("Inserted lane on right - side is: " + side);
+            //Debug.Log("lane position: " + gameObject.transform.position.z);
+            //Debug.Log("asphalt size/2: " + (asphalt.transform.localScale.z / 2));
+        }
+        else
+        {
+            // insert lane on left
+            road = GameObject.Find("Road");
+            roadScript = (Road)road.GetComponent("Road");
+
+            List<GameObject> laneTypes = roadScript.getLaneTypes();
+            // convert list of lane types to array to access elements
+            GameObject[] laneTypesArray = laneTypes.ToArray();
+            // insert the desired lane type as a new lane into the road
+            //Debug.Log("what about this right here");
+            roadScript.insertLane(gameObject, laneTypesArray[0], "left");
+
+            //Debug.Log("Inserted lane on left - side is: " + side);
+            //Debug.Log("lane position: " + gameObject.transform.position.z);
+            //Debug.Log("asphalt size/2: " + (asphalt.transform.localScale.z / 2));
+        }
+
+
+
+    }
+
+    protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectUnused");
+        // write un-use script here
+    }
+
+    protected virtual void InteractableObjectTouched(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectTouched");
+        // write touch script here
+
+        cursorTransform = getCursor(sender, e).transform;
+
+        trackCursor = true;
+
+        Vector3 cursorLocation = cursorTransform.position;
+        Vector3 spriteLocation = cursorLocation;
+
+        Debug.Log("cursorLocation: " + cursorLocation + "spriteLocation: " + spriteLocation);
+
+        spriteLocation.y += (float)0.5;
+        spriteLocation.x = cursorLocation.x;
+
+        if (laneInsertSpriteRef == null)
+        {
+            laneInsertSpriteRef = Instantiate(laneInsertSprite, spriteLocation, Quaternion.identity);
+        }
+
+    }
+
+    protected virtual void InteractableObjectUntouched(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectUntouched");
+        // write un-touch script here
+
+        cursorTransform = null;
+        trackCursor = false;
+
+        if (laneInsertSpriteRef != null)
+        {
+            Destroy(laneInsertSpriteRef);
+            laneInsertSpriteRef = null;
+        }
+    }
+
+
+
+    // this method returns the cursor that is touching the current object
+    private GameObject getCursor(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("getCursor");
+
+        //Debug.Log(sender.ToString());
+        GameObject controller = e.interactingObject;
+        //Debug.Log("interacting object:::    " + controller.GetType());
+        Component[] controllerComponents = controller.GetComponents<Component>();
+        //Debug.Log("controller components ::::    " + controllerComponents.ToString());
+
+        VRTK_StraightPointerRenderer pointerRenderer = null;
+
+        foreach (Component c in controllerComponents)
+        {
+            //Debug.Log("components ::::    " + c.ToString());
+            if (c.GetType() == typeof(VRTK_StraightPointerRenderer))
+            {
+                pointerRenderer = (VRTK_StraightPointerRenderer)c;
+            }
+        }
+
+        if (pointerRenderer == null)
+        {
+            Debug.Log("Pointer renderer not found");
+        }
+
+        //GameObject cursor = pointerRenderer.getCursor();
+        GameObject cursor = pointerRenderer.GetPointerObjects()[1];
+        //Debug.Log("cursor transform local position:::: " + cursor.transform.position);
+
+        if (cursor != null)
+        {
+            Debug.Log("cursor.transform.position: " + cursor.transform.position);
+            return cursor;
+        }
+        else
+        {
+            Debug.Log("cursor not found");
+            return null;
+        }
+    }
+
+    private float touchingEdge(Vector3 cursorLocation)
+    {
+        float halfFoot = 0.33f;
+        float edgeRight = gameObject.transform.position.z + (asphalt.transform.localScale.z / 2) - halfFoot;
+        float edgeLeft = gameObject.transform.position.z - (asphalt.transform.localScale.z / 2) + halfFoot;
+
+
+        if (cursorLocation.z >= edgeRight)
+        {
+            /*Debug.Log("*********** STARTING TOUCHINGEDGE DEBUG ***********");
+            Debug.Log("gameObject.transform.position.z: " + gameObject.transform.position.z);
+            Debug.Log("asphalt.transform.localScale.z / 2: " + (asphalt.transform.localScale.z / 2));
+            Debug.Log("edgeLeft: " + edgeLeft);
+            Debug.Log("edgeRight: " + edgeRight);
+            Debug.Log("gameObject.transform.position.z + (asphalt.transform.localScale.z / 2): " + (gameObject.transform.position.z + (asphalt.transform.localScale.z / 2)));
+            Debug.Log("cursorLocation: " + cursorLocation);
+            Debug.Log("*********** STOPPING TOUCHINGEDGE DEBUG ***********");*/
+            return gameObject.transform.position.z + (asphalt.transform.localScale.z / 2);
+        }
+        else if (cursorLocation.z <= edgeLeft)
+        {
+            /*Debug.Log("*********** STARTING TOUCHINGEDGE DEBUG ***********");
+            Debug.Log("gameObject.transform.position.z: " + gameObject.transform.position.z);
+            Debug.Log("asphalt.transform.localScale.z / 2: " + (asphalt.transform.localScale.z / 2));
+            Debug.Log("edgeLeft: " + edgeLeft);
+            Debug.Log("edgeRight: " + edgeRight);
+            Debug.Log("gameObject.transform.position.z - (asphalt.transform.localScale.z / 2): " + (gameObject.transform.position.z - (asphalt.transform.localScale.z / 2)));
+            Debug.Log("cursorLocation: " + cursorLocation);
+            Debug.Log("*********** STOPPING TOUCHINGEDGE DEBUG ***********");*/
+            return gameObject.transform.position.z - (asphalt.transform.localScale.z / 2);
+        }
+        else
+        {
+            return gameObject.transform.position.z;
+        }
     }
 }
 

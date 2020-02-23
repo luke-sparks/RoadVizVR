@@ -31,8 +31,8 @@ public class Road : MonoBehaviour
         //lanePosition = transform.position;
         defaultShift = 3.3f;
         // insert both lanes into the road
-        insertLane(null, laneTypes[0]);
-        insertLane(roadLanes.First.Value, laneTypes[0]);
+        insertLane(null, laneTypes[0], "right");
+        insertLane(roadLanes.First.Value, laneTypes[0], "right");
     }
 
     // Nathan wrote this
@@ -40,7 +40,7 @@ public class Road : MonoBehaviour
     // laneType: the type of lane to be inserted into the road
     // shift: the distance by which the lane's position must be
     //        moved (so that it does not paste over another lane)
-    public void insertLane(GameObject currLane, GameObject laneType)
+    public void insertLane(GameObject currLane, GameObject laneType, string side)
     {
         // steps: 
         // 1. check to make sure the lane is an acceptable type
@@ -66,7 +66,13 @@ public class Road : MonoBehaviour
                 Transform asphaltTransform = currLane.transform.Find("PrimaryAsphalt");
                 float currLaneZScale = asphaltTransform.localScale.z;
                 newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
-                shiftLanesAfter(currLane, defaultShift);
+                if (side.Equals("left"))
+                {
+                    shiftLanesBefore(currLane, defaultShift);
+                } else
+                {
+                    shiftLanesAfter(currLane, defaultShift);
+                }
                 currLaneNode = roadLanes.Find(currLane);
             }
 

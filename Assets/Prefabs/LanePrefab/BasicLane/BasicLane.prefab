@@ -23,7 +23,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1926978328019019537
 Transform:
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4512811285411186759}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
   m_Name: 
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4512811285411186759}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
   m_Name: 
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4577958150579042304}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
   m_Name: 
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4577958150579042304}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
   m_Name: 
@@ -486,11 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898b167e19c1449bb81588a4eee949bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laneEditPrefab: {fileID: 0}
-  editLaneDialogue: {fileID: 0}
-  insertButton: {fileID: 4512811285411186759}
   asphalt: {fileID: 4577958150579042304}
-  lanePosition: 0
   laneIndex: 0
   laneType: '"Vehicle"'
   currentLaneWidth: 3.3
@@ -498,3 +494,6 @@ MonoBehaviour:
   minWidth: 1
   leftStripe: {fileID: 0}
   rightStripe: {fileID: 0}
+  laneObject: {fileID: 0}
+  laneInsertSprite: {fileID: 0}
+  linkedObject: {fileID: 0}
