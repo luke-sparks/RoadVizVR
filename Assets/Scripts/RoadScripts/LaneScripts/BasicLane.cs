@@ -15,12 +15,13 @@ public class BasicLane : MonoBehaviour
     [SerializeField] protected int laneIndex;
     [SerializeField] protected string laneType;
     [SerializeField] protected float currentLaneWidth;
-    [SerializeField] protected float maxWidth = 20f;
-    [SerializeField] protected float minWidth = 2f;
+    [SerializeField] protected float maxWidth;
+    [SerializeField] protected float minWidth;
     //[SerializeField] protected GameObject leftNeighbor;
     //[SerializeField] protected GameObject rightNeighbor;
     [SerializeField] protected GameObject leftStripe;
     [SerializeField] protected GameObject rightStripe;
+    [SerializeField] protected bool vehicleLane;
 
     // setLaneWidth() sets the width of a lane
     // new_width is a floating point number used to create
@@ -37,8 +38,8 @@ public class BasicLane : MonoBehaviour
         //       4. adjust the temporary vectors accordingly
         //       5. update the transforms with the new Vector3 values
         // step 1
-        Vector3 laneSize = asphalt.transform.localScale;
-        Vector3 buttonPos = insertButton.transform.localPosition;
+        Vector3 laneSize = this.asphalt.transform.localScale;
+        Vector3 buttonPos = this.insertButton.transform.localPosition;
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
         // step 3
@@ -51,15 +52,15 @@ public class BasicLane : MonoBehaviour
         laneSize.z = newWidth;
         buttonPos.z += adjustment;
         // step 5
-        asphalt.transform.localScale = laneSize;
+        this.asphalt.transform.localScale = laneSize;
         Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
         asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
-        insertButton.transform.localPosition = buttonPos;
-        currentLaneWidth = asphalt.transform.localScale.z;
+        this.insertButton.transform.localPosition = buttonPos;
+        this.currentLaneWidth = asphalt.transform.localScale.z;
 
         // set new stripe locations
-        leftStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
-        rightStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
+        this.leftStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
+        this.rightStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
     }
 
     // Nathan wrote this
@@ -94,12 +95,12 @@ public class BasicLane : MonoBehaviour
         // in the lane's position transform
         Vector3 tempVec = gameObject.transform.localPosition;
         tempVec.z += adjustment;
-        gameObject.transform.localPosition = tempVec;
+        this.gameObject.transform.localPosition = tempVec;
         //lanePosition = gameObject.transform.localPosition;
 
         // set new stripe locations
-        leftStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
-        rightStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
+        this.leftStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
+        this.rightStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
     }
 
     // Nathan wrote this
@@ -128,9 +129,9 @@ public class BasicLane : MonoBehaviour
 
     // Nathan wrote this
     // sets the lane's current type
-    public void setLaneType(string newType)
+    public void setLaneType(GameObject newType, string newTypeName)
     {
-        laneType = newType;
+        laneType = newTypeName;
     }
 
     // Nathan wrote this
@@ -139,52 +140,6 @@ public class BasicLane : MonoBehaviour
     {
         return laneType;
     }
-
-    // Nathan wrote this
-    // sets one of the neighbors of a lane
-    /*public void setNeighbor(GameObject newNeighbor, int neighborIndex)
-    {
-        // 3 possibilities: 
-        //      1. neighbor index == laneIndex - 1 (directly to left)
-        //      2. neighbor index == laneIndex + 1 (directly to right)
-        //      3. neighbor index == some other value, should not set
-        //         as new neighbor in this case
-        if(neighborIndex == (laneIndex - 1))
-        {
-            leftNeighbor = newNeighbor;
-        }
-        else if(neighborIndex == (laneIndex + 1))
-        {
-            rightNeighbor = newNeighbor;
-        }
-        else
-        {
-            Debug.LogError("Cannot set these lanes as neighbors");
-        }
-    }*/
-
-    // Nathan wrote this
-    // retrieves either the left or right neighbor
-    // depending on the value of parameter neighbor
-    /*public GameObject getNeighbor(string neighbor)
-    {
-        // 3 cases: 
-        //      1. neighbor == left
-        //      2. neighbor == right
-        //      3. neighbor == some other string
-        if(neighbor == "left")
-        {
-            return leftNeighbor;
-        }
-        else if(neighbor == "right")
-        {
-            return rightNeighbor;
-        }
-        else
-        {
-            throw new System.ArgumentException("Invalid neighbor value");
-        }
-    }*/
 
     // Nathan wrote this
     // sets a stripe's orientation to the lane
@@ -249,7 +204,7 @@ public class BasicLane : MonoBehaviour
     // determines if the current lane is a vehicle lane (is not by default)
     public bool isVehicleLane()
     {
-        return false;
+        return vehicleLane;
     }
 }
 

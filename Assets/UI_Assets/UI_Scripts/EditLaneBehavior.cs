@@ -16,8 +16,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
 
     public void setWorkingReference(GameObject laneRef)
     {
-        workingLaneReference = laneRef;
-        basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
+        this.workingLaneReference = laneRef;
+        this.basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
         if(workingLaneReference == null || basicLaneScriptReference == null)
         {
             Debug.Log("Tried to set working reference, but failed.");
@@ -44,16 +44,20 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         Debug.Log("Lane direction switched");
     }
 
-    // TODO @Nathan?
+    // Nathan implemented this
+    // should properly call removeLane and destroy this menu
     public void handleDeleteSelect()
     {
-        Debug.Log("Delete button selected.");
+        Debug.Log("Handle delete selected");
+        removeLane();
+        Destroy(this.gameObject);
     }
 
     // TODO
     public void handleLaneTypeChange()
     {
         Debug.Log("Lane type selected.");
+        GameObject.Find("Road").GetComponent<Road>().setLaneType(workingLaneReference, "Sidewalk", 2f);
     }
 
     // Kasey wrote this

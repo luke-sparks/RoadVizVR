@@ -14,7 +14,7 @@ public class Road : MonoBehaviour
     [SerializeField] private LinkedList<GameObject> roadLanes;
     // the list of acceptable types of objects that can be
     // inserted into the road
-    [SerializeField] private GameObject[] laneTypes = new GameObject[1];
+    [SerializeField] private GameObject[] laneTypes = new GameObject[3];
     [SerializeField] private GameObject[] stripeTypes = new GameObject[2];
     // the road position variable
     [SerializeField] private Vector3 lanePosition;
@@ -31,8 +31,8 @@ public class Road : MonoBehaviour
         //lanePosition = transform.position;
         defaultShift = 3.3f;
         // insert both lanes into the road
-        insertLane(null, laneTypes[0]);
-        insertLane(roadLanes.First.Value, laneTypes[0]);
+        insertLane(null, laneTypes[1]);
+        insertLane(roadLanes.First.Value, laneTypes[1]);
     }
 
     // Nathan wrote this
@@ -69,7 +69,7 @@ public class Road : MonoBehaviour
                 shiftLanesAfter(currLane, defaultShift);
                 currLaneNode = roadLanes.Find(currLane);
             }
-
+            // back to default cases
             GameObject newLane = Instantiate(laneType, newPosition, transform.rotation);
             newLane.transform.parent = transform;
             addLaneToList(newLane, currLaneNode);
@@ -85,7 +85,7 @@ public class Road : MonoBehaviour
     // this function is used for removing a lane
     public void removeLane(GameObject targetLane)
     {
-        if (!isEmpty())
+        if (!isAtMinSize())
         {
             // steps:
             //          1. obtain a reference to the script of the target lane
@@ -97,15 +97,15 @@ public class Road : MonoBehaviour
 
             // 1. obtain reference to script
             BasicLane targetLaneScript = (BasicLane)targetLane.GetComponent("BasicLane");
-            // 2. reset the stripes
-            resetStripes(targetLane, targetLaneScript);
-            // 3. obtain the width of the target
+            // 2. obtain the width of the target
             float targetLaneWidth = targetLaneScript.getLaneWidth();
-            // 5. shift the rest of the lanes inward
+            // 3. shift the rest of the lanes inward
             shiftLanesIn(targetLane, targetLaneWidth);
-            // 6. remove target from linked list
+            // 4. reset the stripes
+            resetStripes(targetLane, targetLaneScript);
+            // 5. remove target from linked list
             roadLanes.Remove(targetLane);
-            // 7. Destroy the target lane
+            // 6. Destroy the target lane
             Destroy(targetLane);
         }
         else
@@ -258,14 +258,30 @@ public class Road : MonoBehaviour
     }
 
     // Nathan wrote this
-    // used for shifting a lane's position in the road
-    public void moveLane(GameObject currLane, int newPosition)
+    // changes a lane's type
+    // parameter targetLane is the lane we are trying to change
+    public void setLaneType(GameObject targetLane, string newType, float defaultWidth) 
     {
-        // steps: 
-        //      1. store the current lane in a game object
-        //      2. deep copy the lane at newPosition (in the linked list) into the
-        //         old position of currLane
-        //      3. overwrite the lane at newPosition with currLane
+        // REASONING BEHIND THIS PROCESS:
+        //      We actually cannot overwrite gameObject from within BasicLane
+        //      (we don't have access), and the following code:
+        //      targetLane = laneTypes[2] 
+        //      causes an exception. Therefore, my current solution for changing a lane type is
+        //      to insert a whole new lane, adjust its width to be what a sidewalk's should be,
+        //      and finally remove the old lane.
+        //      I don't really like this solution, so it would be great if someone else
+        //      has a better idea.
+        // 1. insert the lane of the specified type 
+        // for now, this is just a sidewalk
+        insertLane(targetLane, laneTypes[2]);
+        // 2. adjust the width of the new lane
+        LinkedListNode<GameObject> laneNode = roadLanes.Find(targetLane);
+        LinkedListNode<GameObject> newLaneNode = laneNode.Next;
+        GameObject newLane = newLaneNode.Value;
+        BasicLane newLaneScript = (BasicLane)newLane.GetComponent("BasicLane");
+        newLaneScript.setLaneWidth(defaultWidth);
+        // 3. delete the old lane 
+        removeLane(targetLane);
     }
 
     // Nathan wrote this
@@ -309,7 +325,7 @@ public class Road : MonoBehaviour
 
     // Nathan wrote this
     // checks if the number of lanes in the road is at its minimum
-    public bool isEmpty()
+    public bool isAtMinSize()
     {
         return roadLanes.Count == MIN_LANES;
     }
@@ -375,7 +391,6 @@ public class Road : MonoBehaviour
         // case 4: lane has both left and right neighbors (most complicated case)
         else
         {
-            Debug.Log("LANE HAS TWO NEIGHBORS");
             // obtain neighbors
             GameObject leftNeighbor = laneNode.Previous.Value;
             GameObject rightNeighbor = laneNode.Next.Value;
