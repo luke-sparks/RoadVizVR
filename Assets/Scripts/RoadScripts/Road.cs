@@ -214,20 +214,23 @@ public class Road : MonoBehaviour
             {
                 foundLane = true;
             }
-            // get the position of the current lane we are looking at
-            BasicLane laneScript = g.GetComponent<BasicLane>();
-
-            // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
-            // this won't need to be changed for when we're adjusting the width of a new lane we
-            // are inserting because we will use adjustRoadAroundLane
-            if (!foundLane)
-            {
-                laneScript.setLanePosition(currLaneSize / 2);
-            }
-            // looks like we've found our lane, so shift everything to the right now
             else
             {
-                laneScript.setLanePosition(-currLaneSize / 2);
+                // get the position of the current lane we are looking at
+                BasicLane laneScript = g.GetComponent<BasicLane>();
+
+                // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
+                // this won't need to be changed for when we're adjusting the width of a new lane we
+                // are inserting because we will use adjustRoadAroundLane
+                if (!foundLane)
+                {
+                    laneScript.setLanePosition(currLaneSize / 2);
+                }
+                // looks like we've found our lane, so shift everything to the right now
+                else
+                {
+                    laneScript.setLanePosition(-currLaneSize / 2);
+                }
             }
         }
     }
