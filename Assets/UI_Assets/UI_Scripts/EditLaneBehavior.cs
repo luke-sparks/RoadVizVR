@@ -49,7 +49,14 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     public void handleDeleteSelect()
     {
         Debug.Log("Delete button selected.");
-        removeLane();
+
+        GameObject roadRef = GameObject.Find("Road");
+        Road roadScript = (Road)roadRef.GetComponent("Road");
+        if (!roadScript.isEmpty())
+        {
+            removeLane();
+            closeUI();
+        }
     }
 
     // TODO
