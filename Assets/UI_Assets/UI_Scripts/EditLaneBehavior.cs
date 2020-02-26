@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -48,6 +49,7 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     public void handleDeleteSelect()
     {
         Debug.Log("Delete button selected.");
+        removeLane();
     }
 
     // TODO
@@ -102,7 +104,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     {
         // TODO: Trim the decimal places
         float laneWidth = basicLaneScriptReference.getLaneWidth();
-        widthText.text = UnitConverter.convertMetersToFeet(laneWidth).ToString();
+        double laneWidthFeet = UnitConverter.convertMetersToFeet(laneWidth);
+        widthText.text = laneWidthFeet.ToString("0.0") + "ft";
     }
 
     public void closeUI()
@@ -115,6 +118,7 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     public void removeLane() 
     {
         GameObject.Find("Road").GetComponent<Road>().removeLane(workingLaneReference);
+        closeUI();
     }
 
 }

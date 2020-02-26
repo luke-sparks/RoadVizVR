@@ -8,6 +8,7 @@ using VRTK;
 public class BasicLane : MonoBehaviour
 {
     // class fields
+    [SerializeField] private const float DEFAULT_LANE_WIDTH_FT = 12.0f;
     //[SerializeField] protected GameObject laneEditPrefab;
     //[SerializeField] protected GameObject editLaneDialogue;
     //[SerializeField] protected GameObject insertButton;
@@ -40,6 +41,7 @@ public class BasicLane : MonoBehaviour
     {
         road = GameObject.Find("Road");
         roadScript = (Road)road.GetComponent("Road");
+        setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
     }
 
     private void Update()
