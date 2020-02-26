@@ -63,6 +63,11 @@ public class UIManager : MonoBehaviour
         return currentUI;
     }
 
+    public bool isAnyUIOpen()
+    {
+        return currentUI != null;
+    }
+
     private Vector3 getLocationForUIPanel()
     {
         Vector3 cameraLoc = Camera.main.transform.position;
