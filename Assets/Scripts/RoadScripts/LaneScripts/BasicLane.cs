@@ -39,9 +39,10 @@ public class BasicLane : MonoBehaviour
     // Nathan inserted start so we could use road functions more easily
     void Start()
     {
+        setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
+
         road = GameObject.Find("Road");
         roadScript = (Road)road.GetComponent("Road");
-        setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
     }
 
     private void Update()
