@@ -10,6 +10,7 @@ public class secondBound : MonoBehaviour
     void Start()
     {
         mainRoad = GameObject.Find("Road").GetComponent<Road>();
+        updatePos();
     }
 
     //Get the position of the first wall using the size of the road.
@@ -47,8 +48,8 @@ public class secondBound : MonoBehaviour
     // Update is called once per frame
     //Exists for debug purposes, replace with different
     //calls whenever the road's size changes.
-    void Update()
-    {
-        updatePos();
-    }
+    //void Update()
+    //{
+    //    updatePos();
+    //}
 }

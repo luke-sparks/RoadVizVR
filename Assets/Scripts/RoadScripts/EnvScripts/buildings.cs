@@ -45,15 +45,6 @@ public class buildings : MonoBehaviour
         instance.GetComponent<envMain>().updatePosition();
     }
 
-    /*
-    //Update is called once per frame
-    void Update()
-    {
-        
-    }
-    */
-
-
     //TYPE 0: URBAN
     //TYPE 1: SUBURBAN
     //TYPE 2: RURAL

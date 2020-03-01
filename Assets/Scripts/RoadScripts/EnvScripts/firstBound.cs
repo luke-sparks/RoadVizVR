@@ -10,6 +10,7 @@ public class firstBound : MonoBehaviour
     void Start()
     {
         mainRoad = GameObject.Find("Road").GetComponent<Road>();
+        updatePos();
     }
 
     //Get the position of the first wall using the size of the road.
@@ -44,8 +45,8 @@ public class firstBound : MonoBehaviour
 
     // Update is called once per frame
     //Exists for debug purposes, replace with an event.
-    void Update()
-    {
-        updatePos();
-    }
+    //void Update()
+    //{
+        //updatePos();
+    //}
 }

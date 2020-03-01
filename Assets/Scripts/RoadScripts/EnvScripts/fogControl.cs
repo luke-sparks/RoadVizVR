@@ -14,7 +14,7 @@ public class fogControl : MonoBehaviour
     //The shift amount is the distance from the fog's beginning to its end.
     //The end being the point at which the user will be unable to see anything
     //more.
-    [SerializeField] float fogShiftAmt = 20;
+    [SerializeField] float fogShiftAmt;
 
     //Default setting for fogDistance is 85.
     void Start()

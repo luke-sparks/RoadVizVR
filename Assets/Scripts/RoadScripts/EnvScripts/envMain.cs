@@ -10,7 +10,22 @@ public class envMain : MonoBehaviour
     //with the road.
     public void updatePosition()
     {
+        //Update the overall structure's center
         this.transform.position = mainRoad.GetRendererBounds().center;
+
+        //Get the first bound of the children and update position
+        Component[] firstBoundArray = this.GetComponentsInChildren<firstBound>();
+        foreach (firstBound bound in firstBoundArray)
+        {
+            bound.updatePos();
+        }
+
+        //Get the second bound of the children and update position
+        Component[] secondBoundArray = this.GetComponentsInChildren<secondBound>();
+        foreach (secondBound bound in secondBoundArray)
+        {
+            bound.updatePos();
+        }
     }
 
     // Start is called before the first frame update
@@ -25,6 +40,6 @@ public class envMain : MonoBehaviour
     //the road is being updated instead, later.
     //void Update()
     //{
-        //updatePosition();
+    //    updatePosition();
     //}
 }
