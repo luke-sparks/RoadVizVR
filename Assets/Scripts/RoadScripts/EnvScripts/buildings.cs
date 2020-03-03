@@ -32,9 +32,10 @@ public class buildings : MonoBehaviour
     {
         //Begin by simply instantiating the urban prefab as default, we do this
         //by setting the currentEnv to be urban and then instantiate it.
-        currentEnv = urbanPrefab;
-        instance = Instantiate(urbanPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        environmentIndex = 0;
+        //currentEnv = urbanPrefab;
+        setBuildingType(environmentIndex);
+        instance = Instantiate(currentEnv, new Vector3(0, 0, 0), Quaternion.identity);
+        //environmentIndex = 0;
     }
 
     //Updates the position of the buildings by accessing the
