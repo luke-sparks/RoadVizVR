@@ -48,6 +48,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     public void handleDeleteSelect()
     {
         Debug.Log("Delete button selected.");
+        removeLane();
+        closeUI();
     }
 
     // TODO
