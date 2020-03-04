@@ -17,11 +17,11 @@ public class BasicLane : MonoBehaviour
     [SerializeField] protected float currentLaneWidth;
     [SerializeField] protected float maxWidth;
     [SerializeField] protected float minWidth;
-    //[SerializeField] protected GameObject leftNeighbor;
-    //[SerializeField] protected GameObject rightNeighbor;
     [SerializeField] protected GameObject leftStripe;
     [SerializeField] protected GameObject rightStripe;
     [SerializeField] protected bool vehicleLane;
+    [SerializeField] protected bool nonVehicleAsphalt;
+    [SerializeField] protected bool nonAsphalt;
 
     // setLaneWidth() sets the width of a lane
     // new_width is a floating point number used to create
@@ -59,8 +59,7 @@ public class BasicLane : MonoBehaviour
         this.currentLaneWidth = asphalt.transform.localScale.z;
 
         // set new stripe locations
-        this.leftStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
-        this.rightStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
+        adjustStripePositions();
     }
 
     // Nathan wrote this
@@ -79,7 +78,7 @@ public class BasicLane : MonoBehaviour
 
     // Nathan wrote this
     // returns the lane's minimum width
-    public float getMinWidth() 
+    public float getMinWidth()
     {
         Debug.Log("Min Width is " + minWidth.ToString() + ".");
         return minWidth;
@@ -99,8 +98,7 @@ public class BasicLane : MonoBehaviour
         //lanePosition = gameObject.transform.localPosition;
 
         // set new stripe locations
-        this.leftStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
-        this.rightStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
+        adjustStripePositions();  
     }
 
     // Nathan wrote this
@@ -149,48 +147,68 @@ public class BasicLane : MonoBehaviour
     // new orientation
     public void setStripeOrientation(GameObject stripe, string stripeOrientation)
     {
-        Stripe stripeScriptReference = (Stripe)stripe.GetComponent("Stripe");
-        if (stripeOrientation == "left")
+        Stripe stripeScriptReference = null;
+        // first of all, check for null
+        // if the stripe object is not null, set the stripes accordingly
+        if (stripe != null)
         {
-            // the stripe is now this lane's "left" stripe
-            leftStripe = stripe;
-            // this lane is now the stripe's "right" lane
-            stripeScriptReference.setLaneOrientation(this.gameObject, "right");
-            stripeScriptReference.setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
+            stripeScriptReference = (Stripe)stripe.GetComponent("Stripe");
+            if (stripeOrientation == "left")
+            {
+                // the stripe is now this lane's "left" stripe
+                leftStripe = stripe;
+                // this lane is now the stripe's "right" lane
+                stripeScriptReference.setLaneOrientation(this.gameObject, "right");
+                stripeScriptReference.setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
+                leftStripe.transform.parent = gameObject.transform;
+            }
+            else if (stripeOrientation == "right")
+            {
+                // the stripe is now this lane's "right" stripe
+                rightStripe = stripe;
+                // this lane is now the stripe's "left" lane
+                stripeScriptReference.setLaneOrientation(this.gameObject, "left");
+                stripeScriptReference.setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
+                rightStripe.transform.parent = gameObject.transform;
+            }
+            // error case
+            else
+            {
+                Debug.Log("NOT A VALID STRIPE ORIENTATION");
+                Debug.Assert(false);
+            }
         }
-        else if (stripeOrientation == "right")
-        {
-            // the stripe is now this lane's "right" stripe
-            rightStripe = stripe;
-            // this lane is now the stripe's "left" lane
-            stripeScriptReference.setLaneOrientation(this.gameObject, "left");
-            stripeScriptReference.setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
-        }
-        else if (stripeOrientation == "reset") 
-        {
-            leftStripe = null;
-            rightStripe = null;
-        }
-        // error case
+        // if the stripe is null, then do one of the following:
         else
         {
-            Debug.Log("NOT A VALID STRIPE ORIENTATION");
-            Debug.Assert(false);
+            // if left stripe is specified, make it null
+            if (stripeOrientation == "left")
+            {
+                leftStripe = null;
+            }
+            // if right stripe is specified, make it null
+            else if (stripeOrientation == "right")
+            {
+                rightStripe = null;
+            }
+            // otherwise, make them both null
+            else
+            {
+                leftStripe = null;
+                rightStripe = null;
+            }
         }
-        // MUST set this transform or life will be very painful
-        // for shifting stripes 
-        stripe.transform.parent = gameObject.transform;
     }
 
     // Nathan wrote this
     // retrieves the specified stripe
     public GameObject getStripe(string stripe)
     {
-        if(stripe == "left")
+        if (stripe == "left")
         {
             return leftStripe;
         }
-        else if(stripe == "right")
+        else if (stripe == "right")
         {
             return rightStripe;
         }
@@ -205,6 +223,36 @@ public class BasicLane : MonoBehaviour
     public bool isVehicleLane()
     {
         return vehicleLane;
+    }
+
+    // Nathan wrote this
+    // determines if the current lane is a non-vehicle lane with asphalt
+    // these include shoulders and parking lanes
+    public bool isNonVehicleAsphaltLane() 
+    {
+        return nonVehicleAsphalt;
+    }
+
+    // Nathan wrote this
+    // determines if the current lane is a non-asphalt type lane
+    // this includes sidewalks, curbs, gutters, medians, and grass divisions
+    public bool isNonAsphaltLane() 
+    {
+        return nonAsphalt;
+    }
+
+    // Nathan wrote this
+    // adjusts the positions of stripes
+    private void adjustStripePositions()
+    {
+        if (this.leftStripe != null) 
+        {
+            this.leftStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, -currentLaneWidth / 2);
+        }
+        if (this.rightStripe != null)
+        {
+            this.rightStripe.GetComponent<Stripe>().setStripePosition(gameObject.transform.localPosition, currentLaneWidth / 2);
+        }
     }
 }
 

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6404786496310324907}
+  - component: {fileID: 7342464932158034892}
   m_Layer: 0
   m_Name: GrassDivision
   m_TagString: IsLane
@@ -30,3 +31,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7342464932158034892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460763385531375339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898b167e19c1449bb81588a4eee949bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  insertButton: {fileID: 0}
+  asphalt: {fileID: 0}
+  laneIndex: 0
+  laneType: 
+  currentLaneWidth: 0
+  maxWidth: 0
+  minWidth: 0
+  leftStripe: {fileID: 0}
+  rightStripe: {fileID: 0}
+  vehicleLane: 0
+  shoulder: 0
+  parkingLane: 0
+  nonAsphalt: 1

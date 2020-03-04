@@ -55,6 +55,8 @@ MonoBehaviour:
   leftStripe: {fileID: 0}
   rightStripe: {fileID: 0}
   vehicleLane: 0
+  nonVehicleAsphalt: 1
+  nonAsphalt: 0
 --- !u!1 &646671688452815485
 GameObject:
   m_ObjectHideFlags: 0

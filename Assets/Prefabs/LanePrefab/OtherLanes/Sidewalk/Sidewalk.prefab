@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5017936393254603716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 1.635}
+  m_LocalPosition: {x: 0, y: 0.2, z: 1.218}
   m_LocalScale: {x: 98, y: 0.1, z: 0.6}
   m_Children: []
   m_Father: {fileID: 2755718532700425378}
@@ -261,12 +261,15 @@ MonoBehaviour:
   asphalt: {fileID: 7254721802940016905}
   laneIndex: 0
   laneType: 
-  currentLaneWidth: 3.3
+  currentLaneWidth: 2
   maxWidth: 10
   minWidth: 1
   leftStripe: {fileID: 0}
   rightStripe: {fileID: 0}
   vehicleLane: 0
+  shoulder: 0
+  parkingLane: 0
+  nonAsphalt: 1
 --- !u!1 &7254721802940016905
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +303,7 @@ Transform:
   m_GameObject: {fileID: 7254721802940016905}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 0.35, z: 3.3}
+  m_LocalScale: {x: 100, y: 0.35, z: 2}
   m_Children: []
   m_Father: {fileID: 2755718532700425378}
   m_RootOrder: 0

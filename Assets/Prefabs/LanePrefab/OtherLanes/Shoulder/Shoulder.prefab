@@ -55,6 +55,8 @@ MonoBehaviour:
   leftStripe: {fileID: 0}
   rightStripe: {fileID: 0}
   vehicleLane: 0
+  nonVehicleAsphalt: 1
+  nonAsphalt: 0
 --- !u!1 &4582278671044596067
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +89,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4582278671044596067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0.796}
   m_LocalScale: {x: 98, y: 0.1, z: 0.3}
   m_Children: []
   m_Father: {fileID: 618843895208862034}

@@ -1549,14 +1549,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec3dcd00c5cc4d659a0935f4a6a510d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numStartingLanes: 4
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
   - {fileID: 5954707031306349717, guid: 97b310af4c15f1e4cb22898e63a55615, type: 3}
   - {fileID: 5623414017782510883, guid: bf68ddb1fb85e3942a04cfd94bd2d235, type: 3}
+  - {fileID: 1565976996497652124, guid: 0c3f2abb05176b641a9bce399b5ab6d5, type: 3}
   stripeTypes:
-  - {fileID: 2938077226863865202, guid: ada643609087645f28c9d0a2cd7b864d, type: 3}
+  - {fileID: 971072729528922138, guid: 2b363cd3270ca6148a9885f74a10493c, type: 3}
   lanePosition: {x: 0, y: 0, z: 0}
-  defaultShift: 0
   currentWidth: 0
 --- !u!1001 &1244175442
 PrefabInstance:

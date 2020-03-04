@@ -10,15 +10,17 @@ public class Road : MonoBehaviour
     [SerializeField] private const float MAX_WIDTH = 200f;
     [SerializeField] private const int MAX_LANES = 15;
     [SerializeField] private const int MIN_LANES = 1;
+    // the number of starting lanes in the road
+    [SerializeField] private int numStartingLanes;
     // road_Lanes is a linked list of the lanes currently in the road object
     [SerializeField] private LinkedList<GameObject> roadLanes;
     // the list of acceptable types of objects that can be
     // inserted into the road
-    [SerializeField] private GameObject[] laneTypes = new GameObject[3];
+    [SerializeField] private GameObject[] laneTypes = new GameObject[4];
     [SerializeField] private GameObject[] stripeTypes = new GameObject[2];
     // the road position variable
     [SerializeField] private Vector3 lanePosition;
-    [SerializeField] private float defaultShift;
+    //[SerializeField] private float defaultShift;
     [SerializeField] private float currentWidth;
 
     // Start is called before the first frame update
@@ -26,13 +28,18 @@ public class Road : MonoBehaviour
     {
         // initialize an empty linked list for lanes in road
         roadLanes = new LinkedList<GameObject>();
-        // assign the initial lane position to be the road's position
-        // assign default shift
-        //lanePosition = transform.position;
-        defaultShift = 3.3f;
-        // insert both lanes into the road
-        insertLane(null, laneTypes[1]);
-        insertLane(roadLanes.First.Value, laneTypes[1]);
+        // insert all of the starting lanes in the road
+        LinkedListNode<GameObject> currLaneNode = null;
+        GameObject currLane = null;
+        for (int i = 0; i < numStartingLanes; i++) 
+        {
+            // insert all vehicle lanes
+            insertLane(currLane, laneTypes[1]);
+            // if this is the first insertion
+            currLane = roadLanes.Last.Value;
+        }
+        setLaneType(roadLanes.First.Value, "Shoulder");
+        setLaneType(roadLanes.Last.Value, "Shoulder");
     }
 
     // Nathan wrote this
@@ -47,11 +54,12 @@ public class Road : MonoBehaviour
         // 2. check that the road is not already full of lanes
         // 3. set new position to 0 and currLaneNode to null by default
         // 4. check if currLane is not null; if not:
-        //          a. set currLanePosition to the selected lane's position
-        //          b. set asphalt transform to the asphalt transform of the current lane
-        //          c. find the current lane's width and store it in currentLaneZScale
-        //          d. shift the rest of the lanes in the road appropriately
-        //          e. finally, find the node containing the current lane and store it in currLaneNode
+        //          a. get the scripts of the current lane and the lane that's being inserted
+        //          b. get the position of the current lane
+        //          c. get the width of the current lane
+        //          d. set the position of the new lane
+        //          e. shift the other lanes in the road
+        //          f. get the node of the current lane
         // 5. instantiate the lane into the development environment
         // 6. set the new lane to be a child of the road object
         // 7. add the lane to the linked list
@@ -62,11 +70,13 @@ public class Road : MonoBehaviour
             LinkedListNode<GameObject> currLaneNode = null;
             if (currLane != null)
             {
+                BasicLane currLaneScript = (BasicLane)currLane.GetComponent("BasicLane");
+                BasicLane newLaneScript = (BasicLane)laneType.GetComponent("BasicLane");
                 Vector3 currLanePosition = currLane.transform.position;
-                Transform asphaltTransform = currLane.transform.Find("PrimaryAsphalt");
-                float currLaneZScale = asphaltTransform.localScale.z;
+                float currLaneZScale = currLaneScript.getLaneWidth();
                 newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
-                shiftLanesAfter(currLane, defaultShift);
+                // fix for defaultShift thing
+                shiftLanesAfter(currLane, newLaneScript.getLaneWidth());
                 currLaneNode = roadLanes.Find(currLane);
             }
             // back to default cases
@@ -89,24 +99,37 @@ public class Road : MonoBehaviour
         {
             // steps:
             //          1. obtain a reference to the script of the target lane
-            //          2. reset the stripes around the target lane
-            //          3. obtain the target lane's width
-            //          4. shift the other lanes in the road
-            //          5. remove the target lane from roadLanes
-            //          6. destroy the target lane
+            //          2. get the target lane's width
+            //          3. get references to the neighboring lanes' scripts
+            //          4. destroy both stripes
+            //          5. shift the rest of the lanes inward
+            //          6. remove target lane from linked list
+            //          7. destroy the target lane game objet
+            //          8. add stripes back in accordingly
 
-            // 1. obtain reference to script
-            BasicLane targetLaneScript = (BasicLane)targetLane.GetComponent("BasicLane");
-            // 2. obtain the width of the target
-            float targetLaneWidth = targetLaneScript.getLaneWidth();
-            // 3. shift the rest of the lanes inward
+            // 1. get target lane script
+            BasicLane targetLaneScriptReference = (BasicLane)targetLane.GetComponent("BasicLane");
+            // 2. get target lane's width
+            float targetLaneWidth = targetLaneScriptReference.getLaneWidth();
+            // 3. get the neighbors' scripts
+            LinkedListNode<GameObject> targetLaneNode = roadLanes.Find(targetLane);
+            BasicLane leftNeighborScriptReference = null;
+            BasicLane rightNeighborScriptReference = null;
+            if(targetLaneNode.Previous != null)
+                leftNeighborScriptReference = (BasicLane)targetLaneNode.Previous.Value.GetComponent("BasicLane");
+            if (targetLaneNode.Next != null)
+                rightNeighborScriptReference = (BasicLane)targetLaneNode.Next.Value.GetComponent("BasicLane");
+            // 4. destroy the stripes
+            Destroy(targetLaneScriptReference.getStripe("left"));
+            Destroy(targetLaneScriptReference.getStripe("right"));
+            // 5. shift the rest of the lanes inward
             shiftLanesIn(targetLane, targetLaneWidth);
-            // 4. reset the stripes
-            resetStripes(targetLane, targetLaneScript);
-            // 5. remove target from linked list
+            // 6. remove lane from list
             roadLanes.Remove(targetLane);
-            // 6. Destroy the target lane
+            // 7. destroy the game object
             Destroy(targetLane);
+            // 8. reset the stripes of the remaining lanes
+            resetStripes(leftNeighborScriptReference, rightNeighborScriptReference);
         }
         else
         {
@@ -260,7 +283,9 @@ public class Road : MonoBehaviour
     // Nathan wrote this
     // changes a lane's type
     // parameter targetLane is the lane we are trying to change
-    public void setLaneType(GameObject targetLane, string newType, float defaultWidth) 
+    // parameter newType is the name of the lane type we want to insert
+    // parameter defaultWidth is the default width of the type to be inserted
+    public void setLaneType(GameObject targetLane, string newType) 
     {
         // REASONING BEHIND THIS PROCESS:
         //      We actually cannot overwrite gameObject from within BasicLane
@@ -271,17 +296,24 @@ public class Road : MonoBehaviour
         //      and finally remove the old lane.
         //      I don't really like this solution, so it would be great if someone else
         //      has a better idea.
-        // 1. insert the lane of the specified type 
-        // for now, this is just a sidewalk
-        insertLane(targetLane, laneTypes[2]);
-        // 2. adjust the width of the new lane
+
+        // 1. obtain the prefab for the specified lane type
+        GameObject newTypeObject = findLaneType(newType);
+        Debug.Log(newTypeObject);
+        // 2. insert the lane of the specified type 
+        insertLane(targetLane, newTypeObject);
+        // 3. obtain the new lane's information
         LinkedListNode<GameObject> laneNode = roadLanes.Find(targetLane);
         LinkedListNode<GameObject> newLaneNode = laneNode.Next;
         GameObject newLane = newLaneNode.Value;
         BasicLane newLaneScript = (BasicLane)newLane.GetComponent("BasicLane");
-        newLaneScript.setLaneWidth(defaultWidth);
-        // 3. delete the old lane 
+        // 4. delete the old lane 
         removeLane(targetLane);
+        // 5. adjust the stripes of the new lane
+        if (!newLaneScript.isVehicleLane()) 
+        {
+            handleNonVehicleLaneStripes(newLaneScript, newLaneNode);
+        }
     }
 
     // Nathan wrote this
@@ -340,75 +372,115 @@ public class Road : MonoBehaviour
     {
         // steps:
         //      1. obtain reference to lane's script
-        //      2. find the linked list node containing the lane
+        //      2. get the current lane's node
         //      3. obtain the lane's position
         //      4. declare two GameObjects to contain the stripes
-        //      5. instantiate stripes (4 cases)
+        //      5. set stripe and lane references
         //      6. set stripe orientations
-        // obtain script reference
+        // 1. obtain script reference
         BasicLane laneScriptReference = (BasicLane)lane.GetComponent("BasicLane");
-        // obtain lane nodes
+        // 2. obtain lane's node
         LinkedListNode<GameObject> laneNode = roadLanes.Find(lane);
-        // obtain lane's position
+        // 3. obtain lane's position
         Vector3 lanePosition = laneScriptReference.getLanePosition();
-        // instantiate stripes
+        // 4. instantiate game objects to contain stripes
         GameObject leftStripe; 
-        GameObject rightStripe; 
-        // set up orientations of stripes and lanes
+        GameObject rightStripe;
+        // 5. set up references between stripes and lanes
         // case 1: lane has no left neighbor and no right neighbor
-        if(laneNode.Previous == null && laneNode.Next == null)
+        if (laneNode.Previous == null && laneNode.Next == null)
         {
-            // instantiate new stripes for both
+            // this means this is the only lane in the road, so just add 2 new stripes
             leftStripe = Instantiate(stripeType, lanePosition, transform.rotation);
             rightStripe = Instantiate(stripeType, lanePosition, transform.rotation);
         }
         // case 2: lane has a left neighbor but no right neighbor
-        else if(laneNode.Previous != null && laneNode.Next == null)
+        else if (laneNode.Previous != null && laneNode.Next == null)
         {
-            // obtain left neighbor
+            // 1. get the left neighbor
             GameObject leftNeighbor = laneNode.Previous.Value;
-            // obtain left neighbor's scripts
+            // 2. get the left neighbor's script
             BasicLane leftNeighborScriptReference = (BasicLane)leftNeighbor.GetComponent("BasicLane");
-            // set the left and right stripe as follows:
-            //      leftStripe is the right stripe of the left neighbor
-            //      rightStripe is a new game object
-            leftStripe = leftNeighborScriptReference.getStripe("right");
+            // 3. place stripes accordingly
+            // case 1: the left neighbor is vehicle or non asphalt
+            if(!leftNeighborScriptReference.isNonVehicleAsphaltLane())
+            {
+                leftStripe = leftNeighborScriptReference.getStripe("right");
+            }
+            // case 2: the left neighbor is non vehicle lane asphalt
+            else 
+            {
+                leftStripe = Instantiate(stripeType, lanePosition, transform.rotation);
+            }
             rightStripe = Instantiate(stripeType, lanePosition, transform.rotation);
         }
         // case 3: lane has no left neighbor but has a right neighbor
-        else if(laneNode.Previous == null && laneNode.Next != null)
+        else if (laneNode.Previous == null && laneNode.Next != null)
         {
-            // obtain right neighbor
+            // 1. get the right neighbor
             GameObject rightNeighbor = laneNode.Next.Value;
-            // obtain right neighbor's scripts
+            // 2. get the right neighbor's script
             BasicLane rightNeighborScriptReference = (BasicLane)rightNeighbor.GetComponent("BasicLane");
-            // set the left and right stripe as follows:
-            //      leftStripe is a new game object
-            //      right stripe is the left stripe of the right neighbor
+            // 3. place stripes accordingly
             leftStripe = Instantiate(stripeType, lanePosition, transform.rotation);
-            rightStripe = rightNeighborScriptReference.getStripe("left");
+            // case 1: right neighbor is vehicle or non asphalt
+            if (!rightNeighborScriptReference.isNonVehicleAsphaltLane())
+            {
+                rightStripe = rightNeighborScriptReference.getStripe("left");
+            }
+            // case 2: right neighbor is non vehicle asphalt
+            else 
+            {
+                rightStripe = Instantiate(stripeType, lanePosition, transform.rotation);
+            }
         }
         // case 4: lane has both left and right neighbors (most complicated case)
         else
         {
-            // obtain neighbors
+            // 1. get the neighbors
             GameObject leftNeighbor = laneNode.Previous.Value;
             GameObject rightNeighbor = laneNode.Next.Value;
-            // obtain neighbors' scripts
+            // 2. get the neighbors' scripts
             BasicLane leftNeighborScriptReference = (BasicLane)leftNeighbor.GetComponent("BasicLane");
             BasicLane rightNeighborScriptReference = (BasicLane)rightNeighbor.GetComponent("BasicLane");
-            // set the left and right stripe as follows:
-            //      leftStripe should be a new game object, and it must
-            //      also take the place of left neighbor's right stripe 
-            //      (since that stripe used to be left neighbor's right stripe
-            //      and right neighbor's left stripe, it will get shifted to right
-            //      neighbor's position last and therefore should not be left neighbor's
-            //      right stripe anymore)
-            //      rightStripe should be right neighbor's left stripe (and left neighbor's
-            //      old right stripe)
-            leftStripe = Instantiate(stripeType, lanePosition, transform.rotation);
-            leftNeighborScriptReference.setStripeOrientation(leftStripe, "right");
-            rightStripe = rightNeighborScriptReference.getStripe("left");
+            // case a: the neighboring lanes are asphalt lanes
+            if (!leftNeighborScriptReference.isNonAsphaltLane() && !rightNeighborScriptReference.isNonAsphaltLane())
+            {
+                // make the left stripe a new game object and set it as the right
+                // stripe of the left neighbor
+                leftStripe = Instantiate(stripeType, lanePosition, transform.rotation);
+                leftNeighborScriptReference.setStripeOrientation(leftStripe, "right");
+                // make the right stripe the left stripe of the right neighbor
+                rightStripe = rightNeighborScriptReference.getStripe("left");
+            }
+            // case b: the right neighbor is not a lane with asphalt
+            else if (!leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane())
+            {
+                // make the left stripe a new game object and make it the right stripe
+                // of the left neighbor
+                leftStripe = Instantiate(stripeType, lanePosition, transform.rotation);
+                leftNeighborScriptReference.setStripeOrientation(leftStripe, "right");
+                // make right stripe null (because we don't want to add a stripe to a lane that's been set
+                // to not have one)
+                rightStripe = null;
+            }
+            // case c: just the left neighbor is not a vehicle lane 
+            else if(leftNeighborScriptReference.isNonAsphaltLane() && !rightNeighborScriptReference.isNonAsphaltLane())
+            {
+                // make the left stripe null
+                leftStripe = null;
+                // make the right stripe a new game object and make it the left stripe
+                // of the right neighbor
+                rightStripe = Instantiate(stripeType, lanePosition, transform.rotation);
+                rightNeighborScriptReference.setStripeOrientation(rightStripe, "left");
+            }
+            // case d: both neighbors are non-asphalt lanes
+            else 
+            {
+                leftStripe = null;
+                rightStripe = null;
+            }
+            
         }
         // finally, set the stripe orientations
         laneScriptReference.setStripeOrientation(leftStripe, "left");
@@ -418,62 +490,167 @@ public class Road : MonoBehaviour
     // Nathan wrote this
     // helper for removeLane
     // adjusts stripes after deletion
-    private void resetStripes(GameObject lane, BasicLane laneScriptReference)
+    private void resetStripes(BasicLane leftScript, BasicLane rightScript)
     {
-        // steps:
-        //      1. declare a script reference for neighboring lanes' scripts
-        //      2. obtain the stripes of the lane
-        //      3. get the lane's node
-        //      4. get the nodes of both neighbor lanes
-        //      5. eliminate this lane's references to its stripes
-        //      6. reset neighboring lane's stripes
-        // 1. declare a script reference for neighboring lanes' scripts
-        BasicLane neighborScriptReference;
-        // 2. obtain the stripes
-        GameObject leftStripe = laneScriptReference.getStripe("left");
-        GameObject rightStripe = laneScriptReference.getStripe("right");
-        // 3. get the lane's node
-        LinkedListNode<GameObject> targetLaneNode = roadLanes.Find(lane);
-        // 4. get the nodes of both neighbors
-        LinkedListNode<GameObject> leftNeighborOfTarget = targetLaneNode.Previous;
-        LinkedListNode<GameObject> rightNeighborOfTarget = targetLaneNode.Next;
-        // 5. eliminate stripe references
-        laneScriptReference.setStripeOrientation(leftStripe, "reset");
-        // case 1: two neighbors
-        if (leftNeighborOfTarget != null && rightNeighborOfTarget != null)
+        GameObject newStripe;
+        Vector3 newStripePosition;
+        // 4 cases:
+        //      case 1: this case should not happen (you can't reset the stripes of the last lane in the road) 
+        if (leftScript == null && rightScript == null)
         {
-            // make the right neighbor's left stripe the left stripe of the target lane
-            GameObject rightNeighbor = rightNeighborOfTarget.Value;
-            neighborScriptReference = (BasicLane)rightNeighbor.GetComponent("BasicLane");
-            neighborScriptReference.setStripeOrientation(leftStripe, "left");
-            // destroy the right stripe
-            Destroy(rightStripe);
+            Debug.Log("Nothing should happen");
         }
-        // case 2: only a left neighbor
-        else if (leftNeighborOfTarget != null && rightNeighborOfTarget == null)
+        //      case 2: there is a left neighbor but no right neighbor
+        else if (leftScript != null && rightScript == null)
         {
-            // make the left neighbor's right stripe the left stripe of this lane
-            GameObject leftNeighbor = leftNeighborOfTarget.Value;
-            neighborScriptReference = (BasicLane)leftNeighbor.GetComponent("BasicLane");
-            neighborScriptReference.setStripeOrientation(leftStripe, "right");
-            // destroy the right stripe
-            Destroy(rightStripe);
+            // if the lane to the left has asphalt, we must insert a new stripe
+            if (leftScript.isVehicleLane())
+            {
+                // instantiate a new stripe on the left lane and set it's orientation
+                newStripePosition = leftScript.getLanePosition();
+                newStripe = Instantiate(stripeTypes[0], newStripePosition, transform.rotation);
+                leftScript.setStripeOrientation(newStripe, "right");
+            }
+            // otherwise no action is necessary
+            else
+            {
+                Debug.Log("Deleting to the right of a non-asphalt lane");
+            }
         }
-        // case 3: only a right neighbor
-        else if (leftNeighborOfTarget == null && rightNeighborOfTarget != null)
+        //      case 3: there is a right neighbor but no left neighbor
+        else if (leftScript == null && rightScript != null)
         {
-            // make the right neighbor's left stripe the right stripe of this lane
-            GameObject rightNeighbor = rightNeighborOfTarget.Value;
-            neighborScriptReference = (BasicLane)rightNeighbor.GetComponent("BasicLane");
-            neighborScriptReference.setStripeOrientation(rightStripe, "left");
-            // destroy the left stripe
-            Destroy(leftStripe);
+            // if the lane to the right has asphalt we must insert a new stripe
+            if (rightScript.isVehicleLane())
+            {
+                // instantiate a new stripe on the right lane and set its orientation
+                newStripePosition = rightScript.getLanePosition();
+                newStripe = Instantiate(stripeTypes[0], newStripePosition, transform.rotation);
+                rightScript.setStripeOrientation(newStripe, "left");
+            }
+            // otherwise no action is necessary
+            else
+            {
+                Debug.Log("Deleting to the left of a non-asphalt lane");
+            }
         }
-        // case 4: should never happen (no neighbors)
-        else 
+        //      case 4: there are both left and right neighbors
+        else
         {
-            Debug.Log("You should not be able to reset the stripes of a single lane.");
-            Debug.Assert(false);
+            // neither the left nor right neighbor is a non-asphalt lane
+            if (!leftScript.isNonAsphaltLane() && !rightScript.isNonAsphaltLane())
+            {
+                // instantiate a new stripe on the left lane and set it's orientation
+                // for both the left and the right lane
+                newStripePosition = leftScript.getLanePosition();
+                newStripe = Instantiate(stripeTypes[0], newStripePosition, transform.rotation);
+                leftScript.setStripeOrientation(newStripe, "right");
+                rightScript.setStripeOrientation(newStripe, "left");
+            }
+            // otherwise no action is necessary
+            else
+            {
+                Debug.Log("Deleting between two lanes, one of which is a non-asphalt lane");
+            }
+        }
+    }
+
+    // Nathan wrote this
+    // deals with non-vehicle lane stripe adjustment
+    private void handleNonVehicleLaneStripes(BasicLane newLaneScript, LinkedListNode<GameObject> newLaneNode) 
+    {
+        // delete both stripes
+        Destroy(newLaneScript.getStripe("left"));
+        Destroy(newLaneScript.getStripe("right"));
+        newLaneScript.setStripeOrientation(null, "reset");
+
+        // if this is a shoulder or a parking lane, we need to reinsert one of the stripes
+        if(!newLaneScript.isNonAsphaltLane())
+        {
+            // obtain the lane's position
+            Vector3 newLanePosition = newLaneScript.getLanePosition();
+            // instantiate a new stripe
+            GameObject remainingStripe = Instantiate(stripeTypes[0], newLanePosition, transform.rotation);
+            // case 1: this is the only lane in the road
+            if (newLaneNode.Previous == null && newLaneNode.Next == null) 
+            {
+                newLaneScript.setStripeOrientation(remainingStripe, "right");
+            }
+            // case 2: this is the rightmost lane in the road
+            else if(newLaneNode.Previous != null && newLaneNode.Next == null) 
+            {
+                BasicLane leftNeighborScriptReference = (BasicLane)newLaneNode.Previous.Value.GetComponent("BasicLane");
+                if(leftNeighborScriptReference.isNonAsphaltLane()) 
+                {
+                    // if the lane to the left is a non-asphalt type lane, just make this the 
+                    // right stripe of the new lane
+                    newLaneScript.setStripeOrientation(remainingStripe, "right");
+                }
+                else 
+                {
+                    // otherwise, make this the left stripe of the new lane
+                    // and the right stripe of its left neighbor
+                    newLaneScript.setStripeOrientation(remainingStripe, "left");
+                    leftNeighborScriptReference.setStripeOrientation(remainingStripe, "right");
+                }
+            }
+            // case 3: this is the leftmost lane in the road
+            else if(newLaneNode.Previous == null && newLaneNode.Next != null) 
+            {
+                BasicLane rightNeighborScriptReference = (BasicLane)newLaneNode.Next.Value.GetComponent("BasicLane");
+                if (rightNeighborScriptReference.isNonAsphaltLane())
+                {
+                    // if the lane to the right is a non-asphalt type lane, just make this the
+                    // left stripe of the new lane
+                    newLaneScript.setStripeOrientation(remainingStripe, "left");
+                }
+                else 
+                {
+                    // otherwise, make this the right stripe of the new lane
+                    // and the left stripe of its right neighbor
+                    newLaneScript.setStripeOrientation(remainingStripe, "right");
+                    rightNeighborScriptReference.setStripeOrientation(remainingStripe, "left");
+                }
+            }
+            // finally, this is one of the middle lanes in the road
+            else 
+            {
+                BasicLane leftNeighborScriptReference = (BasicLane)newLaneNode.Previous.Value.GetComponent("BasicLane");
+                BasicLane rightNeighborScriptReference = (BasicLane)newLaneNode.Next.Value.GetComponent("BasicLane");
+                // case a: both the neighbors are a non-asphalt lane
+                if(leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane()) 
+                {
+                    // leave the stripes out if both neighbors are a non-asphalt lane
+                    Debug.Log("Rare but maybe important case: both neighbors of a non-vehicle asphalt lane are non-asphalt");
+                }
+                // case b: only the left neighbor is an asphalt lane
+                else if(!leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane()) 
+                {
+                    // make this the left stripe of the new lane
+                    // and the right stripe of its left neighbor
+                    newLaneScript.setStripeOrientation(remainingStripe, "left");
+                    leftNeighborScriptReference.setStripeOrientation(remainingStripe,"right");
+                }
+                // case c: only the right neighbor is an asphalt lane
+                else if (leftNeighborScriptReference.isNonAsphaltLane() && !rightNeighborScriptReference.isNonAsphaltLane()) 
+                {
+                    // make this the right stripe of the new lane
+                    // and the left stripe of its right neighbor
+                    newLaneScript.setStripeOrientation(remainingStripe, "right");
+                    rightNeighborScriptReference.setStripeOrientation(remainingStripe, "left");
+                }
+                // case d: both neighbors are asphalt lanes
+                else 
+                {
+                    // now we must have a stripe on either side; 
+                    // rare but important case
+                    GameObject leftStripe = Instantiate(stripeTypes[0], newLanePosition, transform.rotation);
+                    newLaneScript.setStripeOrientation(leftStripe, "left");
+                    newLaneScript.setStripeOrientation(remainingStripe, "right");
+                    leftNeighborScriptReference.setStripeOrientation(leftStripe, "right");
+                    rightNeighborScriptReference.setStripeOrientation(remainingStripe, "left");
+                }
+            }
         }
     }
 
@@ -493,5 +670,20 @@ public class Road : MonoBehaviour
             roadLanes.AddAfter(currLaneNode, newLane);
             // roadLanes.AddBefore(currLaneNode, newLane); need a way to specify
         }
+    }
+
+    // Nathan wrote this
+    // retrieves the lane type of the given name newType
+    // parameter newType is the name of the lane type
+    private GameObject findLaneType(string newType) 
+    {
+        for (int i = 0; i < laneTypes.Length; i++) 
+        {
+            if (laneTypes[i].name == newType) 
+            {
+                return laneTypes[i];
+            }
+        }
+        throw new System.ArgumentException("Lane type not found");
     }
 }

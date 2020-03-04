@@ -479,3 +479,6 @@ MonoBehaviour:
   leftStripe: {fileID: 0}
   rightStripe: {fileID: 0}
   vehicleLane: 0
+  shoulder: 0
+  parkingLane: 0
+  nonAsphalt: 1

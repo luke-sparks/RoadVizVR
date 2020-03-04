@@ -53,11 +53,13 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         Destroy(this.gameObject);
     }
 
-    // TODO
+    // Nathan partially completed this
     public void handleLaneTypeChange()
     {
-        Debug.Log("Lane type selected.");
-        GameObject.Find("Road").GetComponent<Road>().setLaneType(workingLaneReference, "Sidewalk", 2f);
+        Debug.Log("Lane type change selected. *There is something weird with the height of shoulders!");
+        // we will need to change the line below to something more substantial
+        // once we get more lane types involved - maybe create a helper function to handle this
+        GameObject.Find("Road").GetComponent<Road>().setLaneType(workingLaneReference, "Sidewalk");
     }
 
     // Kasey wrote this
