@@ -31,8 +31,8 @@ public class Road : MonoBehaviour
         //lanePosition = transform.position;
         defaultShift = 3.3f;
         // insert both lanes into the road
-        insertLane(null, laneTypes[0]);
-        insertLane(roadLanes.First.Value, laneTypes[0]);
+        insertLane(null, laneTypes[0], "right");
+        insertLane(roadLanes.First.Value, laneTypes[0], "right");
     }
 
     // Nathan wrote this
@@ -40,7 +40,7 @@ public class Road : MonoBehaviour
     // laneType: the type of lane to be inserted into the road
     // shift: the distance by which the lane's position must be
     //        moved (so that it does not paste over another lane)
-    public void insertLane(GameObject currLane, GameObject laneType)
+    public void insertLane(GameObject currLane, GameObject laneType, string side)
     {
         // steps: 
         // 1. check to make sure the lane is an acceptable type
@@ -65,15 +65,30 @@ public class Road : MonoBehaviour
                 Vector3 currLanePosition = currLane.transform.position;
                 Transform asphaltTransform = currLane.transform.Find("PrimaryAsphalt");
                 float currLaneZScale = asphaltTransform.localScale.z;
-                newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
-                shiftLanesAfter(currLane, defaultShift);
+
+                if (side.Equals("left"))
+                {
+                    newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z - (currLaneZScale / 2));
+                }
+                else   // side is "right"
+                {
+                    newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
+                }
                 currLaneNode = roadLanes.Find(currLane);
             }
 
             GameObject newLane = Instantiate(laneType, newPosition, transform.rotation);
             newLane.transform.parent = transform;
-            addLaneToList(newLane, currLaneNode);
+            addLaneToList(newLane, currLaneNode, side);
             setStripes(newLane, stripeTypes[0]);
+
+            Transform newAsphaltTransform = newLane.transform.Find("PrimaryAsphalt");
+            float newLaneZScale = newAsphaltTransform.localScale.z;
+
+            Debug.Log("inserted new lane on " + side + " the lanes position is: " + newLane.transform.position);
+
+
+            adjustRoadAroundLane(newLane, newLaneZScale / 2);
         }
         else
         {
@@ -237,22 +252,22 @@ public class Road : MonoBehaviour
             {
                 // essentially do nothing because it will be widened after
                 foundLane = true;
-                Stripe leftStripeScript = (Stripe)leftStripe.GetComponent("Stripe");
-                leftStripeScript.setStripePosition(leftStripe.transform.position, -sizeDifference);
+                //Stripe leftStripeScript = (Stripe)leftStripe.GetComponent("Stripe");
+                //leftStripeScript.setStripePosition(leftStripe.transform.position, -sizeDifference);
             }
             // if we haven't found our lane yet, shift things to the left by the sizeDifference
             else if (foundLane == false)
             {
                 laneScript.setLanePosition(-sizeDifference);
-                laneScript.setStripeOrientation(leftStripe, "left");
-                laneScript.setStripeOrientation(rightStripe, "right");
+                //laneScript.setStripeOrientation(leftStripe, "left");
+                //laneScript.setStripeOrientation(rightStripe, "right");
             }
             // if we HAVE found our lane, shift things right
             else // foundLane is 1
             {
                 laneScript.setLanePosition(sizeDifference);
-                laneScript.setStripeOrientation(leftStripe, "left");
-                laneScript.setStripeOrientation(rightStripe, "right");
+                //laneScript.setStripeOrientation(leftStripe, "left");
+                //laneScript.setStripeOrientation(rightStripe, "right");
             }
         }
     }
@@ -465,7 +480,7 @@ public class Road : MonoBehaviour
     // Nathan wrote this
     // helper for addLane
     // adds a new lane to the linked list
-    private void addLaneToList(GameObject newLane, LinkedListNode<GameObject> currLaneNode) 
+    private void addLaneToList(GameObject newLane, LinkedListNode<GameObject> currLaneNode, string side) 
     {
         // if there are no nodes in the list, just add the new lane last
         // else, add it before or after
@@ -473,10 +488,13 @@ public class Road : MonoBehaviour
         {
             roadLanes.AddLast(newLane);
         }
-        else
+        else if (side.Equals("right"))
         {
             roadLanes.AddAfter(currLaneNode, newLane);
-            // roadLanes.AddBefore(currLaneNode, newLane); need a way to specify
+        }
+        else if (side.Equals("left"))
+        {
+            roadLanes.AddBefore(currLaneNode, newLane);
         }
     }
 }
