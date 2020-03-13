@@ -38,8 +38,15 @@ public class Road : MonoBehaviour
             // if this is the first insertion
             currLane = roadLanes.Last.Value;
         }
-        setLaneType(roadLanes.First.Value, "Shoulder");
-        setLaneType(roadLanes.Last.Value, "Shoulder");
+        setLaneType(roadLanes.First.Value, "Sidewalk");
+        setLaneType(roadLanes.First.Next.Value, "GrassDivision");
+        setLaneType(roadLanes.First.Next.Next.Value, "Curb");
+        setLaneType(roadLanes.First.Next.Next.Next.Value, "Shoulder");
+        setLaneType(roadLanes.First.Next.Next.Next.Next.Next.Value, "Median");
+        setLaneType(roadLanes.Last.Previous.Previous.Previous.Value, "Shoulder");
+        setLaneType(roadLanes.Last.Previous.Previous.Value, "Curb");
+        setLaneType(roadLanes.Last.Previous.Value, "GrassDivision");
+        setLaneType(roadLanes.Last.Value, "Sidewalk");
     }
 
     // Nathan wrote this
