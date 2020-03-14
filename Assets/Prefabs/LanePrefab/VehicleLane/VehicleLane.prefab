@@ -260,13 +260,15 @@ MonoBehaviour:
   insertButton: {fileID: 4829763160450498588}
   asphalt: {fileID: 8527093586876596859}
   laneIndex: 0
-  laneType: '"VehicleTurn"'
+  laneType: '"VehicleLane"'
   currentLaneWidth: 3.3
   maxWidth: 10
   minWidth: 1
   leftStripe: {fileID: 0}
   rightStripe: {fileID: 0}
   vehicleLane: 1
+  nonVehicleAsphalt: 0
+  nonAsphalt: 0
 --- !u!1 &8527093586876596859
 GameObject:
   m_ObjectHideFlags: 0

@@ -127,7 +127,7 @@ public class BasicLane : MonoBehaviour
 
     // Nathan wrote this
     // sets the lane's current type
-    public void setLaneType(GameObject newType, string newTypeName)
+    public void setLaneType(string newTypeName)
     {
         laneType = newTypeName;
     }

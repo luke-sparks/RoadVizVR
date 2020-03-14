@@ -59,7 +59,7 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         Debug.Log("Lane type change selected. *There is something weird with the height of shoulders!");
         // we will need to change the line below to something more substantial
         // once we get more lane types involved - maybe create a helper function to handle this
-        GameObject.Find("Road").GetComponent<Road>().setLaneType(workingLaneReference, "Sidewalk");
+        GameObject.Find("Road").GetComponent<Road>().setLaneType(workingLaneReference, "BusLane");
     }
 
     // Kasey wrote this

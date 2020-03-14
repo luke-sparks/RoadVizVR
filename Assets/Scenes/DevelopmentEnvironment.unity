@@ -1537,7 +1537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec3dcd00c5cc4d659a0935f4a6a510d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numStartingLanes: 11
+  numStartingLanes: 4
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
   - {fileID: 5954707031306349717, guid: 97b310af4c15f1e4cb22898e63a55615, type: 3}
@@ -1551,8 +1551,8 @@ MonoBehaviour:
   - {fileID: 7894024709681648819, guid: 4476f91feac22744c9c9616cd7b58a63, type: 3}
   - {fileID: 2330009060323306810, guid: 871906cad1fc2704ba4834ad1d6916aa, type: 3}
   - {fileID: 3844490017451381875, guid: d9831c962d3f059459cd77e2788cad50, type: 3}
-  stripeTypes:
-  - {fileID: 971072729528922138, guid: 2b363cd3270ca6148a9885f74a10493c, type: 3}
+  stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
+    type: 3}
   lanePosition: {x: 0, y: 0, z: 0}
   currentWidth: 0
 --- !u!1 &1176723656 stripped
@@ -1953,7 +1953,7 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 1445166360}
+  - {fileID: 502124333}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
 --- !u!4 &1415241607
