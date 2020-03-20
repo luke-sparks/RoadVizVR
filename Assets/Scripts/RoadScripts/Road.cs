@@ -40,14 +40,15 @@ public class Road : MonoBehaviour
             currLane = roadLanes.Last.Value;
         }
         setLaneType(roadLanes.First.Value, "Shoulder");
-        /*setLaneType(roadLanes.First.Next.Value, "GrassDivision");
-        setLaneType(roadLanes.First.Next.Next.Value, "Curb");
+        //setLaneType(roadLanes.First.Next.Value, "TurnLane");
+        /*setLaneType(roadLanes.First.Next.Next.Value, "Curb");
         setLaneType(roadLanes.First.Next.Next.Next.Value, "Shoulder");
         setLaneType(roadLanes.First.Next.Next.Next.Next.Next.Value, "Median");
         setLaneType(roadLanes.Last.Previous.Previous.Previous.Value, "Shoulder");
         setLaneType(roadLanes.Last.Previous.Previous.Value, "Curb");
         setLaneType(roadLanes.Last.Previous.Value, "GrassDivision");*/
         setLaneType(roadLanes.Last.Value, "Shoulder");
+        //setLaneType(roadLanes.First.Value, "Sidewalk");
         Debug.Log("Hi");
     }
 
@@ -324,10 +325,10 @@ public class Road : MonoBehaviour
         {
             handleNonVehicleLaneStripes(newLaneScript, newLaneNode);
         }
-        else 
+        /*else 
         {
             handleVehicleLaneStripes(newLaneScript, newLaneNode);
-        }
+        }*/
     }
 
     // Nathan wrote this
@@ -460,12 +461,24 @@ public class Road : MonoBehaviour
             // case a: the neighboring lanes are asphalt lanes
             if (!leftNeighborScriptReference.isNonAsphaltLane() && !rightNeighborScriptReference.isNonAsphaltLane())
             {
-                // make the left stripe a new game object and set it as the right
-                // stripe of the left neighbor
-                leftStripe = Instantiate(stripeContainer, lanePosition, transform.rotation);
-                leftNeighborScriptReference.setStripeOrientation(leftStripe, "right");
-                // make the right stripe the left stripe of the right neighbor
-                rightStripe = rightNeighborScriptReference.getStripe("left");
+                if(leftNeighborScriptReference.getLaneType() == "TurnLane" || leftNeighborScriptReference.getLaneType() == "BusLane")
+                {
+                    // make the left stripe the right stripe of the left neighbor 
+                    leftStripe = leftNeighborScriptReference.getStripe("right");
+                    // make the right stripe a new game object and set it as the left
+                    // stripe of the right neighbor
+                    rightStripe = Instantiate(stripeContainer, lanePosition, transform.rotation);
+                    rightNeighborScriptReference.setStripeOrientation(rightStripe, "left");
+                }
+                else
+                {
+                    // make the left stripe a new game object and set it as the right
+                    // stripe of the left neighbor
+                    leftStripe = Instantiate(stripeContainer, lanePosition, transform.rotation);
+                    leftNeighborScriptReference.setStripeOrientation(leftStripe, "right");
+                    // make the right stripe the left stripe of the right neighbor
+                    rightStripe = rightNeighborScriptReference.getStripe("left");
+                }
             }
             // case b: the right neighbor is not a lane with asphalt
             else if (!leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane())
@@ -674,7 +687,7 @@ public class Road : MonoBehaviour
     // deals with vehicle lane stripe adjustment
     // parameter newLaneScript is a reference to the BasicLane script of a lane
     // parameter newLaneNode is the node in roadLanes that contains the lane object
-    private void handleVehicleLaneStripes(BasicLane newLaneScript, LinkedListNode<GameObject> newLaneNode) 
+    /*private void handleVehicleLaneStripes(BasicLane newLaneScript, LinkedListNode<GameObject> newLaneNode) 
     {
         // none of these actions are necessary on a regular vehicle lane or a bike lane
         if (newLaneScript.getLaneType() != "VehicleLane" && newLaneScript.getLaneType() != "BikeLane") 
@@ -696,7 +709,6 @@ public class Road : MonoBehaviour
                     rightNeighborScriptReference = (BasicLane)newLaneNode.Next.Value.GetComponent("BasicLane");
                 }
                 // 3. set the type to "thick white"
-                
                 if (leftNeighborScriptReference != null && !leftNeighborScriptReference.isNonAsphaltLane())
                 {
                     Vector3 stripePos = newLaneScript.getLanePosition();
@@ -718,7 +730,7 @@ public class Road : MonoBehaviour
                 //Debug.Log(newLaneScript.getLaneType());
             }
         }
-    }
+    }*/
 
     // Nathan wrote this
     // helper for addLane
