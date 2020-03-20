@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     {
         EditLane,
         GlobalSettings,
-        PropMenu
+        EditPropMenu
     };
 
     // A list of all references to the UI prefab classes
@@ -29,13 +29,12 @@ public class UIManager : MonoBehaviour
         {
             {UIScreens.EditLane, editLaneMenu},
             {UIScreens.GlobalSettings, globalSettingsMenu},
-            {UIScreens.PropMenu, propMenu}
+            {UIScreens.EditPropMenu, propMenu}
         };
     }
 
     public GameObject openUIScreen(UIScreens uiName, GameObject objRef)
     {
-        // TODO: pass a reference to what to connect it to
         Debug.Log("Opening UI Screen: " + uiName);
 
         // if there is a UI already open, close it
@@ -45,7 +44,6 @@ public class UIManager : MonoBehaviour
             closeCurrentUI();
         }
 
-        // TODO: figure out desired location and rotation
         Vector3 placeAt = getLocationForUIPanel();
         Quaternion rotation = getRotationForUIPanel(); ;
 
