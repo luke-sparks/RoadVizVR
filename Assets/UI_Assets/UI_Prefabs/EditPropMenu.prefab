@@ -732,7 +732,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4482257485890391439}
         m_MethodName: handleClose
         m_Mode: 1
         m_Arguments:
