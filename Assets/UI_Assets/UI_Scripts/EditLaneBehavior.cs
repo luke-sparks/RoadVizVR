@@ -12,8 +12,16 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
 
     public GameObject workingLaneReference; // consider removing this variable?
     private BasicLane basicLaneScriptReference;
+    private GameObject leftStripeEditMenu;
+    private GameObject rightStripeEditMenu;
 
-    //private Lane workingLane;
+    public void Start()
+    {
+        leftStripeEditMenu = transform.Find("EditLeftStripe").gameObject;
+        rightStripeEditMenu = transform.Find("EditRightStripe").gameObject;
+
+        leftStripeEditMenu.SetActive(false);
+    }
 
     public void init(GameObject laneRef)
     {
