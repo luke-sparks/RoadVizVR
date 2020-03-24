@@ -120,12 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &84640460 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1000013941130086, guid: be540b97364be0a4890e39e62ac89ed1,
-    type: 3}
-  m_PrefabInstance: {fileID: 101772947}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &94265908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -505,9 +499,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 893088598}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &216568398 stripped
+--- !u!1 &227163237 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1883185261795400, guid: be540b97364be0a4890e39e62ac89ed1,
+  m_CorrespondingSourceObject: {fileID: 1000013941130086, guid: be540b97364be0a4890e39e62ac89ed1,
     type: 3}
   m_PrefabInstance: {fileID: 101772947}
   m_PrefabAsset: {fileID: 0}
@@ -583,12 +577,6 @@ MonoBehaviour:
     fallbackTypeName: VRTK.SDK_FallbackController
     typeName: VRTK.SDK_SteamVRController
     descriptionIndex: 0
---- !u!1 &545307022 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
-    type: 3}
-  m_PrefabInstance: {fileID: 101772947}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &553132196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,9 +992,9 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
---- !u!1 &745482843 stripped
+--- !u!1 &814133138 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1587602180963074, guid: be540b97364be0a4890e39e62ac89ed1,
+  m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
     type: 3}
   m_PrefabInstance: {fileID: 101772947}
   m_PrefabAsset: {fileID: 0}
@@ -1559,14 +1547,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec3dcd00c5cc4d659a0935f4a6a510d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numStartingLanes: 4
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
-  stripeTypes:
-  - {fileID: 2938077226863865202, guid: ada643609087645f28c9d0a2cd7b864d, type: 3}
-  - {fileID: 2938077226863865202, guid: ada643609087645f28c9d0a2cd7b864d, type: 3}
+  - {fileID: 5954707031306349717, guid: 97b310af4c15f1e4cb22898e63a55615, type: 3}
+  - {fileID: 5623414017782510883, guid: bf68ddb1fb85e3942a04cfd94bd2d235, type: 3}
+  - {fileID: 1565976996497652124, guid: 0c3f2abb05176b641a9bce399b5ab6d5, type: 3}
+  - {fileID: 2270982129863823008, guid: d2411be54e99a9b46adb7dd932fdf42a, type: 3}
+  - {fileID: 7460763385531375339, guid: c00addfce4875264494b2bcca9453c6e, type: 3}
+  - {fileID: 8665468015871541541, guid: 4853e78c97d12e4458287497660a016d, type: 3}
+  - {fileID: 241737392477294327, guid: b4c4bd207c758f54ab332ad6992477d0, type: 3}
+  - {fileID: 998946786193764437, guid: 06a5b24218b405249a8242f1437eccd3, type: 3}
+  - {fileID: 7894024709681648819, guid: 4476f91feac22744c9c9616cd7b58a63, type: 3}
+  - {fileID: 2330009060323306810, guid: 871906cad1fc2704ba4834ad1d6916aa, type: 3}
+  - {fileID: 3844490017451381875, guid: d9831c962d3f059459cd77e2788cad50, type: 3}
+  stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
+    type: 3}
   lanePosition: {x: 0, y: 0, z: 0}
-  defaultShift: 0
   currentWidth: 0
+--- !u!1 &1176723656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1587602180963074, guid: be540b97364be0a4890e39e62ac89ed1,
+    type: 3}
+  m_PrefabInstance: {fileID: 101772947}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1234619848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1883185261795400, guid: be540b97364be0a4890e39e62ac89ed1,
+    type: 3}
+  m_PrefabInstance: {fileID: 101772947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1244175442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2061,12 +2071,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 1
-  actualBoundaries: {fileID: 84640460}
-  actualHeadset: {fileID: 745482843}
+  actualBoundaries: {fileID: 227163237}
+  actualHeadset: {fileID: 1176723656}
   actualLeftController: {fileID: 2020476017}
   actualRightController: {fileID: 1601087261}
-  modelAliasLeftController: {fileID: 545307022}
-  modelAliasRightController: {fileID: 216568398}
+  modelAliasLeftController: {fileID: 814133138}
+  modelAliasRightController: {fileID: 1234619848}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
