@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropMenuBehavior : MonoBehaviour, ISceneUIMenu
+public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
 {
     public void setWorkingReference(GameObject objRef)
     {
@@ -10,19 +10,19 @@ public class PropMenuBehavior : MonoBehaviour, ISceneUIMenu
     }
 
 
-    public void handleButtonOnePress()
+    public void handleMove()
     {
-        Debug.Log("Button One Pressed");
+        Debug.Log("Move Button Pressed");
     }
 
-    public void handleButtonTwoPress()
+    public void handleCopy()
     {
-        Debug.Log("Button Two Pressed");
+        Debug.Log("Copy Button Pressed");
     }
 
-    public void handleButtonThreePress()
+    public void handleDelete()
     {
-        Debug.Log("Button Three Pressed");
+        Debug.Log("Delete Button Pressed");
     }
 
     public void handleClose()
