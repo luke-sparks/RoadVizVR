@@ -39,6 +39,7 @@ public class Road : MonoBehaviour
             // if this is the first insertion
             currLane = roadLanes.Last.Value;
         }
+        Debug.Log(roadLanes.Count);
         setLaneType(roadLanes.First.Value, "Shoulder");
         //setLaneType(roadLanes.First.Next.Value, "TurnLane");
         /*setLaneType(roadLanes.First.Next.Next.Value, "Curb");
@@ -325,7 +326,7 @@ public class Road : MonoBehaviour
         // 1. obtain the prefab for the specified lane type
         GameObject newTypeObject = findLaneType(newType);
         // 2. insert the lane of the specified type 
-        insertLane(targetLane, newTypeObject);
+        insertLane(targetLane, newTypeObject, "right");
         // 3. obtain the new lane's information
         LinkedListNode<GameObject> laneNode = roadLanes.Find(targetLane);
         LinkedListNode<GameObject> newLaneNode = laneNode.Next;

@@ -1963,7 +1963,7 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 502124333}
+  - {fileID: 1445166360}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
 --- !u!4 &1415241607
@@ -2410,6 +2410,7 @@ MonoBehaviour:
     type: 3}
   globalSettingsMenu: {fileID: 1975022374442647078, guid: 038cf159f5192b541b8dbd375f3c4c36,
     type: 3}
+  propMenu: {fileID: 0}
 --- !u!4 &1849227286
 Transform:
   m_ObjectHideFlags: 0
