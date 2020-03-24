@@ -35,7 +35,7 @@ public class Road : MonoBehaviour
         for (int i = 0; i < numStartingLanes; i++) 
         {
             // insert all vehicle lanes
-            insertLane(currLane, laneTypes[1]);
+            insertLane(currLane, laneTypes[1], "right");
             // if this is the first insertion
             currLane = roadLanes.Last.Value;
         }
@@ -57,7 +57,7 @@ public class Road : MonoBehaviour
     // laneType: the type of lane to be inserted into the road
     // shift: the distance by which the lane's position must be
     //        moved (so that it does not paste over another lane)
-    public void insertLane(GameObject currLane, GameObject laneType)
+    public void insertLane(GameObject currLane, GameObject laneType, string side)
     {
         // steps: 
         // 1. check to make sure the lane is an acceptable type
@@ -84,15 +84,30 @@ public class Road : MonoBehaviour
                 BasicLane newLaneScript = (BasicLane)laneType.GetComponent("BasicLane");
                 Vector3 currLanePosition = currLane.transform.position;
                 float currLaneZScale = currLaneScript.getLaneWidth();
-                newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
-                // fix for defaultShift thing
-                shiftLanesAfter(currLane, newLaneScript.getLaneWidth());
+
+                if (side.Equals("left"))
+                {
+                    newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z - (currLaneZScale / 2));
+                }
+                else   // side is "right"
+                {
+                    newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z + (currLaneZScale / 2));
+                }
                 currLaneNode = roadLanes.Find(currLane);
             }
             // back to default cases
             GameObject newLane = Instantiate(laneType, newPosition, transform.rotation);
             newLane.transform.parent = transform;
-            addLaneToList(newLane, currLaneNode);
+
+            addLaneToList(newLane, currLaneNode, side);
+            //setStripes(newLane);
+
+            Transform newAsphaltTransform = newLane.transform.Find("PrimaryAsphalt");
+            float newLaneZScale = newAsphaltTransform.localScale.z;
+
+            Debug.Log("inserted new lane on " + side + " the lanes position is: " + newLane.transform.position);
+
+            adjustRoadAroundLane(newLane, newLaneZScale / 2);
             setStripes(newLane);
         }
         else
@@ -735,7 +750,7 @@ public class Road : MonoBehaviour
     // Nathan wrote this
     // helper for addLane
     // adds a new lane to the linked list
-    private void addLaneToList(GameObject newLane, LinkedListNode<GameObject> currLaneNode) 
+    private void addLaneToList(GameObject newLane, LinkedListNode<GameObject> currLaneNode, string side) 
     {
         // if there are no nodes in the list, just add the new lane last
         // else, add it before or after
@@ -743,10 +758,13 @@ public class Road : MonoBehaviour
         {
             roadLanes.AddLast(newLane);
         }
-        else
+        else if (side.Equals("right"))
         {
             roadLanes.AddAfter(currLaneNode, newLane);
-            // roadLanes.AddBefore(currLaneNode, newLane); need a way to specify
+        }
+        else if (side.Equals("left"))
+        {
+            roadLanes.AddBefore(currLaneNode, newLane);
         }
     }
 
