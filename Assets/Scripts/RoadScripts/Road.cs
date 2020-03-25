@@ -39,11 +39,6 @@ public class Road : MonoBehaviour
             // if this is the first insertion
             currLane = roadLanes.Last.Value;
         }
-        Debug.Log(roadLanes);
-        foreach (GameObject lane in roadLanes)
-        {
-            Debug.Log(lane);
-        }
         setLaneType(roadLanes.First.Value, "Shoulder");
         //setLaneType(roadLanes.First.Next.Value, "TurnLane");
         /*setLaneType(roadLanes.First.Next.Next.Value, "Curb");
