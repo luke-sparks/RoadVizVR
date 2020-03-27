@@ -66,9 +66,9 @@ public class BasicLane : MonoBehaviour
         //buttonPos.z += adjustment;
         // step 5
 
-        GetComponent<PropManagerScript>().updateRelationalValues();
+        GetComponent<PropManager>().updateRelationalValues();
         asphalt.transform.localScale = laneSize;
-        GetComponent<PropManagerScript>().repositionProps();
+        GetComponent<PropManager>().repositionProps();
 
         Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
         asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));

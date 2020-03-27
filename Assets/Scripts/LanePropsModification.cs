@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
-public class LanePropsModificationScript : MonoBehaviour
+public class LanePropsModification : MonoBehaviour
 {
     [SerializeField] protected GameObject currentPropPrefab;
     protected GameObject currentProp = null;
@@ -20,7 +20,7 @@ public class LanePropsModificationScript : MonoBehaviour
     private bool trackCursor = false;
     private float edge = 0;
 
-    private PropManagerScript propManagerScriptRef;
+    private PropManager propManagerScriptRef;
     void Start()
     {
         road = GameObject.Find("Road");
@@ -33,7 +33,7 @@ public class LanePropsModificationScript : MonoBehaviour
         {
             if (currentProp != null)
             {
-                currentProp.transform.position = new Vector3(cursorTransform.position.x + currentPropPrefab.GetComponent<PropScript>().getXShift(), cursorTransform.position.y + currentPropPrefab.GetComponent<PropScript>().getYShift(), cursorTransform.position.z + currentPropPrefab.GetComponent<PropScript>().getZShift());
+                currentProp.transform.position = new Vector3(cursorTransform.position.x + currentPropPrefab.GetComponent<Prop>().getXShift(), cursorTransform.position.y + currentPropPrefab.GetComponent<Prop>().getYShift(), cursorTransform.position.z + currentPropPrefab.GetComponent<Prop>().getZShift());
                 //currentProp.transform.position = new Vector3(cursorTransform.position.x + currentPropPrefab.GetComponent<PropScript>().getXShift(), cursorTransform.position.y + currentPropPrefab.GetComponent<PropScript>().getYShift(), cursorTransform.position.z + currentPropPrefab.GetComponent<PropScript>().getZShift());
 
                 /*Debug.Log("Current prop lossy scale: " + currentPropPrefab.transform.lossyScale.y);
@@ -45,7 +45,7 @@ public class LanePropsModificationScript : MonoBehaviour
             }
             else
             {
-                currentProp = (GameObject)Instantiate(currentPropPrefab, new Vector3(cursorTransform.position.x + currentPropPrefab.GetComponent<PropScript>().getXShift(), cursorTransform.position.y + currentPropPrefab.GetComponent<PropScript>().getYShift(), cursorTransform.position.z + currentPropPrefab.GetComponent<PropScript>().getZShift()), Quaternion.identity);
+                currentProp = (GameObject)Instantiate(currentPropPrefab, new Vector3(cursorTransform.position.x + currentPropPrefab.GetComponent<Prop>().getXShift(), cursorTransform.position.y + currentPropPrefab.GetComponent<Prop>().getYShift(), cursorTransform.position.z + currentPropPrefab.GetComponent<Prop>().getZShift()), Quaternion.identity);
             }
         }
         else
@@ -87,7 +87,7 @@ public class LanePropsModificationScript : MonoBehaviour
         //Debug.Log("InteractableObjectUsed");
         // write use script here
 
-        PropManagerScript propManagerScriptRef = this.GetComponent<PropManagerScript>();
+        PropManager propManagerScriptRef = this.GetComponent<PropManager>();
         //Vector3 cursorPosition = getCursor(sender, e).transform.position;
 
         // add new instance of prop
@@ -108,7 +108,7 @@ public class LanePropsModificationScript : MonoBehaviour
 
         trackCursor = true;
         cursorTransform = getCursor(sender, e).transform;
-        currentPropPrefab = (GameObject)GameObject.Find("CurrentPropTracker").GetComponent<CurrentPropScript>().getCurrentProp();
+        currentPropPrefab = (GameObject)GameObject.Find("CurrentPropTracker").GetComponent<CurrentPropManager>().getCurrentPropObj();
 
 
         /*cursorTransform = getCursor(sender, e).transform;

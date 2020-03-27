@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropManagerScript : MonoBehaviour
+public class PropManager : MonoBehaviour
 {
     // list of props
     [SerializeField] private List<GameObject> props;
@@ -22,7 +22,7 @@ public class PropManagerScript : MonoBehaviour
     {
         foreach(GameObject prop in props)
         {
-            prop.GetComponent<PropScript>().setZPositionRelational(asphalt.transform);
+            prop.GetComponent<Prop>().setZPositionRelational(asphalt.transform);
         }
     }
 
@@ -30,7 +30,7 @@ public class PropManagerScript : MonoBehaviour
     {
         foreach (GameObject prop in props)
         {
-            prop.GetComponent<PropScript>().updateRelationalZValue(asphalt.transform);
+            prop.GetComponent<Prop>().updateRelationalZValue(asphalt.transform);
         }
     }
 

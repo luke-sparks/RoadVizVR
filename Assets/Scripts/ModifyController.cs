@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModifyControllerScript : MonoBehaviour
+public class ModifyController : MonoBehaviour
 {
     private bool addingProps = false;
 
@@ -40,8 +40,8 @@ public class ModifyControllerScript : MonoBehaviour
 
         foreach(GameObject lane in lanes)
         {
-            lane.GetComponent<LaneInsertionSelectionScript>().enabled = !addingProps;
-            lane.GetComponent<LanePropsModificationScript>().enabled = addingProps;
+            lane.GetComponent<LaneInsertionSelection>().enabled = !addingProps;
+            lane.GetComponent<LanePropsModification>().enabled = addingProps;
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropScript : MonoBehaviour
+public class Prop : MonoBehaviour
 {
     // value from (0,1), indicates where in the lane the prop resides unrelated to the absolute lane size
     private float relationalZPosition;

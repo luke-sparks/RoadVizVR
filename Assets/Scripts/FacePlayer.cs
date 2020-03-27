@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FacePlayerScript : MonoBehaviour
+public class FacePlayer : MonoBehaviour
 {
 
     private void LateUpdate()

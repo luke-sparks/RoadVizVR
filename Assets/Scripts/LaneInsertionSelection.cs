@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
-public class LaneInsertionSelectionScript : MonoBehaviour
+public class LaneInsertionSelection : MonoBehaviour
 {
 
     public VRTK_InteractableObject linkedObject;
