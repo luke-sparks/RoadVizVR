@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,8 +17,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
 
     public void setWorkingReference(GameObject laneRef)
     {
-        workingLaneReference = laneRef;
-        basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
+        this.workingLaneReference = laneRef;
+        this.basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
         if(workingLaneReference == null || basicLaneScriptReference == null)
         {
             Debug.Log("Tried to set working reference, but failed.");
@@ -44,18 +45,21 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         Debug.Log("Lane direction switched");
     }
 
-    // TODO @Nathan?
+    // Nathan implemented this
+    // should properly call removeLane and destroy this menu
     public void handleDeleteSelect()
     {
         Debug.Log("Delete button selected.");
         removeLane();
-        closeUI();
     }
 
-    // TODO
+    // Nathan partially completed this
     public void handleLaneTypeChange()
     {
-        Debug.Log("Lane type selected.");
+        Debug.Log("Lane type change selected. *There is something weird with the height of shoulders!");
+        // we will need to change the line below to something more substantial
+        // once we get more lane types involved - maybe create a helper function to handle this
+        GameObject.Find("Road").GetComponent<Road>().setLaneType(workingLaneReference, "BusLane");
     }
 
     // Kasey wrote this
@@ -104,7 +108,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     {
         // TODO: Trim the decimal places
         float laneWidth = basicLaneScriptReference.getLaneWidth();
-        widthText.text = UnitConverter.convertMetersToFeet(laneWidth).ToString();
+        double laneWidthFeet = UnitConverter.convertMetersToFeet(laneWidth);
+        widthText.text = laneWidthFeet.ToString("0.0") + "ft";
     }
 
     public void closeUI()
@@ -117,6 +122,7 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     public void removeLane() 
     {
         GameObject.Find("Road").GetComponent<Road>().removeLane(workingLaneReference);
+        closeUI();
     }
 
 }

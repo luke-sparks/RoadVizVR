@@ -8,9 +8,11 @@ public class Stripe : MonoBehaviour
 {
     // class fields
     [SerializeField] private string stripeColor;
-    [SerializeField] private GameObject stripeType;
+    [SerializeField] private string currentStripeType;
+    [SerializeField] private GameObject stripe;
     [SerializeField] private GameObject leftLane;
     [SerializeField] private GameObject rightLane;
+    [SerializeField] private GameObject[] stripeTypes = new GameObject[6];
 
     // Nathan wrote this
     // positions the stripe on the road
@@ -38,16 +40,38 @@ public class Stripe : MonoBehaviour
 
     // Nathan wrote this
     // changes the stripe's type
-    public void setStripeType(GameObject newType)
+    public void setStripeType(string newType, Vector3 newStripePosition)
     {
-        stripeType = newType;
+        // steps:
+        //      1. set the name of the type
+        //      2. destroy the old stripe
+        //      3. instantiate a new stripe of type newType
+        //      4. set the new stripe's parent transform to be the container's transform
+        //      5. set stripe to be new stripe
+        // 1. set the name of the current type
+        currentStripeType = newType;
+        // 2. destroy the old stripe
+        Destroy(stripe);
+        // 3. instantiate new stripe
+        GameObject newStripe = Instantiate(findStripeType(newType), newStripePosition, transform.rotation);
+        // 4. set the parent transform
+        newStripe.transform.parent = transform;
+        // 5. set the stripe reference
+        stripe = newStripe;
     }
 
     // Nathan wrote this
     // retrieves the stripe's current type
-    public GameObject getStripeType()
+    public string getStripeType()
     {
-        return stripeType;
+        return currentStripeType;
+    }
+
+    // Nathan wrote this
+    // retrieves the stripe object
+    public GameObject getStripeObject() 
+    {
+        return stripe;
     }
 
     // Nathan wrote this
@@ -67,5 +91,22 @@ public class Stripe : MonoBehaviour
             Debug.Log("NOT A VALID LANE ORIENTATION");
             Debug.Assert(false);
         }
+    }
+
+    // Nathan wrote this
+    // helper for setStripeType
+    // finds the correct stripe type and returns it
+    // parameter stripeType is the stripe type we are looking for in the list of
+    // valid stripe types
+    private GameObject findStripeType(string stripeType) 
+    {
+        for (int i = 0; i < stripeTypes.Length; i++) 
+        {
+            if(stripeTypes[i].name == stripeType) 
+            {
+                return stripeTypes[i];
+            }
+        }
+        throw new System.ArgumentException("Invalid Stripe Type");
     }
 }

@@ -11,12 +11,16 @@ public class UIManager : MonoBehaviour
     public enum UIScreens
     {
         EditLane,
-        GlobalSettings
+        GlobalSettings,
+        EditProp,
+        PropSpawn,
     };
 
     // A list of all references to the UI prefab classes
     public GameObject editLaneMenu;
     public GameObject globalSettingsMenu;
+    public GameObject editPropMenu;
+    public GameObject spawnPropMenu;
 
     // Must be assigned in Start
     Dictionary<UIScreens, GameObject> uiObjects;
@@ -26,13 +30,14 @@ public class UIManager : MonoBehaviour
         uiObjects = new Dictionary<UIScreens, GameObject>
         {
             {UIScreens.EditLane, editLaneMenu},
-            {UIScreens.GlobalSettings, globalSettingsMenu }
+            {UIScreens.GlobalSettings, globalSettingsMenu},
+            {UIScreens.EditProp, editPropMenu},
+            {UIScreens.PropSpawn, spawnPropMenu}
         };
     }
 
     public GameObject openUIScreen(UIScreens uiName, GameObject objRef)
     {
-        // TODO: pass a reference to what to connect it to
         Debug.Log("Opening UI Screen: " + uiName);
 
         // if there is a UI already open, close it
@@ -42,7 +47,6 @@ public class UIManager : MonoBehaviour
             closeCurrentUI();
         }
 
-        // TODO: figure out desired location and rotation
         Vector3 placeAt = getLocationForUIPanel();
         Quaternion rotation = getRotationForUIPanel(); ;
 
@@ -61,6 +65,11 @@ public class UIManager : MonoBehaviour
         }
 
         return currentUI;
+    }
+
+    public bool isAnyUIOpen()
+    {
+        return currentUI != null;
     }
 
     private Vector3 getLocationForUIPanel()
