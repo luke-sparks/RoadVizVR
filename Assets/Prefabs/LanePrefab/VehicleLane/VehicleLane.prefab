@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2617242930721860245}
   - component: {fileID: 5992353010657053371}
+  - component: {fileID: 1936229060002268329}
   m_Layer: 0
   m_Name: VehicleLane
   m_TagString: IsLane
@@ -55,8 +56,22 @@ MonoBehaviour:
   vehicleLane: 1
   nonVehicleAsphalt: 0
   nonAsphalt: 0
-  laneInsertSprite: {fileID: 0}
-  linkedObject: {fileID: 0}
+--- !u!114 &1936229060002268329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5954707031306349717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedObject: {fileID: 7006136294565669759}
+  asphalt: {fileID: 8527093586876596859}
+  laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
+    type: 3}
 --- !u!1 &8527093586876596859
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +262,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8527093586876596859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
   m_Name: 
@@ -259,7 +274,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8527093586876596859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
   m_Name: 

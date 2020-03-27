@@ -32,7 +32,9 @@ public class BasicLane : MonoBehaviour
     {
         //road = GameObject.Find("Road");
         //roadScript = (Road)road.GetComponent("Road");
-        setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
+
+        // this was causing a bug. not sure why
+        //setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
 
         road = GameObject.Find("Road");
         roadScript = (Road)road.GetComponent("Road");

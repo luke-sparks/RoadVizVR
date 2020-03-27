@@ -24,11 +24,11 @@ public class ModifyController : MonoBehaviour
             if (addingProps == false)
             {
                 addingProps = true;
-                Debug.Log("Adding props is now: " + addingProps);
+                Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
             } else
             {
                 addingProps = false;
-                Debug.Log("Adding props is now: " + addingProps);
+                Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
             }
             toggleLaneIneraction();
         }
@@ -38,10 +38,26 @@ public class ModifyController : MonoBehaviour
     {
         LinkedList<GameObject> lanes = roadScript.getLanes();
 
+        Debug.Log("Toggling lane interaction");
+        Debug.Log(lanes.Count);
+
+        LaneInsertionSelection laneInsertionSelectionScript = null;
+        LanePropsModification lanePropsModificationScript = null;
+
         foreach(GameObject lane in lanes)
         {
-            lane.GetComponent<LaneInsertionSelection>().enabled = !addingProps;
-            lane.GetComponent<LanePropsModification>().enabled = addingProps;
+            Debug.Log(lane.ToString());
+            laneInsertionSelectionScript = lane.GetComponent<LaneInsertionSelection>();
+            lanePropsModificationScript = lane.GetComponent<LanePropsModification>();
+
+            if (laneInsertionSelectionScript != null && lanePropsModificationScript != null)
+            {
+                lane.GetComponent<LaneInsertionSelection>().enabled = !addingProps;
+                lane.GetComponent<LanePropsModification>().enabled = addingProps;
+            } else
+            {
+                Debug.Log("This lane does not allow props to be placed on it");
+            }
         }
     }
 }

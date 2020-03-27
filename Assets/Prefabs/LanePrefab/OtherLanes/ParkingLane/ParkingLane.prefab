@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3237635870817740}
   - component: {fileID: 4682476099694650420}
+  - component: {fileID: -1122323136737645078}
+  - component: {fileID: 447314448805711074}
+  - component: {fileID: -4257730796901679002}
   m_Layer: 0
   m_Name: ParkingLane
   m_TagString: IsLane
@@ -55,8 +58,51 @@ MonoBehaviour:
   vehicleLane: 0
   nonVehicleAsphalt: 1
   nonAsphalt: 0
-  laneInsertSprite: {fileID: 0}
-  linkedObject: {fileID: 0}
+--- !u!114 &-1122323136737645078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241737392477294327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedObject: {fileID: 2275982334405399417}
+  asphalt: {fileID: 646671688452815485}
+  laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
+    type: 3}
+--- !u!114 &447314448805711074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241737392477294327}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0e00ebe33221444a5d4c49a260bb0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPropPrefab: {fileID: 0}
+  linkedObject: {fileID: 2275982334405399417}
+  asphalt: {fileID: 646671688452815485}
+--- !u!114 &-4257730796901679002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241737392477294327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e316d309038b64a8e38280d7172a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  props: []
+  asphalt: {fileID: 646671688452815485}
 --- !u!1 &646671688452815485
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +293,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646671688452815485}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
   m_Name: 
@@ -259,7 +305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646671688452815485}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
   m_Name: 

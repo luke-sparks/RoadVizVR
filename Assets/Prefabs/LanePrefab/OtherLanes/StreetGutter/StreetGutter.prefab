@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8557075095190309031}
   - component: {fileID: 6409549619545153591}
+  - component: {fileID: -8934731737462860777}
+  - component: {fileID: -2387790722357179682}
+  - component: {fileID: -2746429029582061407}
   m_Layer: 0
   m_Name: StreetGutter
   m_TagString: IsLane
@@ -55,8 +58,51 @@ MonoBehaviour:
   vehicleLane: 0
   nonVehicleAsphalt: 0
   nonAsphalt: 1
-  laneInsertSprite: {fileID: 0}
-  linkedObject: {fileID: 0}
+--- !u!114 &-8934731737462860777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998946786193764437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedObject: {fileID: 7356495977513390195}
+  asphalt: {fileID: 8177164439972411767}
+  laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
+    type: 3}
+--- !u!114 &-2387790722357179682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998946786193764437}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0e00ebe33221444a5d4c49a260bb0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPropPrefab: {fileID: 0}
+  linkedObject: {fileID: 7356495977513390195}
+  asphalt: {fileID: 8177164439972411767}
+--- !u!114 &-2746429029582061407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998946786193764437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e316d309038b64a8e38280d7172a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  props: []
+  asphalt: {fileID: 8177164439972411767}
 --- !u!1 &8177164439972411767
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +293,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8177164439972411767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
   m_Name: 
@@ -259,7 +305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8177164439972411767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
   m_Name: 

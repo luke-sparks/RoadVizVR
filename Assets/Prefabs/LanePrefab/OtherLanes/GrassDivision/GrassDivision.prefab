@@ -207,7 +207,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061480386706213604}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
   m_Name: 
@@ -222,6 +222,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6404786496310324907}
   - component: {fileID: 7342464932158034892}
+  - component: {fileID: 1959383462272043452}
+  - component: {fileID: 105983275342174358}
+  - component: {fileID: 6694926116012533946}
   m_Layer: 0
   m_Name: GrassDivision
   m_TagString: IsLane
@@ -267,5 +270,48 @@ MonoBehaviour:
   vehicleLane: 0
   nonVehicleAsphalt: 0
   nonAsphalt: 1
-  laneInsertSprite: {fileID: 0}
-  linkedObject: {fileID: 0}
+--- !u!114 &1959383462272043452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460763385531375339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedObject: {fileID: 3781176704477599463}
+  asphalt: {fileID: 2061480386706213604}
+  laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
+    type: 3}
+--- !u!114 &105983275342174358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460763385531375339}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0e00ebe33221444a5d4c49a260bb0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPropPrefab: {fileID: 0}
+  linkedObject: {fileID: 3781176704477599463}
+  asphalt: {fileID: 2061480386706213604}
+--- !u!114 &6694926116012533946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460763385531375339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e316d309038b64a8e38280d7172a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  props: []
+  asphalt: {fileID: 2061480386706213604}
