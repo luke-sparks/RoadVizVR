@@ -241,6 +241,7 @@ public class Road : MonoBehaviour
 
         foreach (GameObject g in roadLanes)
         {
+            BasicLane laneScript = g.GetComponent<BasicLane>();
             // check if we've found our lane, if so, everything else will shift right from here on out
             // we must check this before, unlike what we do in shiftLanesAfter
             if (currLane == g)
@@ -248,12 +249,12 @@ public class Road : MonoBehaviour
                 foundLane = true;
             }
             // get the position of the current lane we are looking at
-            BasicLane laneScript = g.GetComponent<BasicLane>();
+            
 
             // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
             // this won't need to be changed for when we're adjusting the width of a new lane we
             // are inserting because we will use adjustRoadAroundLane
-            if (!foundLane)
+            else if (!foundLane)
             {
                 laneScript.setLanePosition(currLaneSize / 2);
             }
