@@ -1557,7 +1557,7 @@ MonoBehaviour:
   lanePosition: {x: 0, y: 0, z: 0}
   defaultShift: 0
   currentWidth: 0
-  buildingsReference: {fileID: 1406036035}
+  buildingsReference: {fileID: 0}
 --- !u!1001 &1130369068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2512,6 +2512,8 @@ MonoBehaviour:
     type: 3}
   globalSettingsMenu: {fileID: 1975022374442647078, guid: 038cf159f5192b541b8dbd375f3c4c36,
     type: 3}
+  editPropMenu: {fileID: 0}
+  spawnPropMenu: {fileID: 0}
 --- !u!4 &1849227286
 Transform:
   m_ObjectHideFlags: 0
@@ -2835,7 +2837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2051402519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2843,7 +2845,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051402518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae27f723a67bddc40838c07f1c597fc8, type: 3}
   m_Name: 
@@ -2855,7 +2857,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051402518}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2051402521
 Camera:
   m_ObjectHideFlags: 0
@@ -2863,7 +2865,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051402518}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
