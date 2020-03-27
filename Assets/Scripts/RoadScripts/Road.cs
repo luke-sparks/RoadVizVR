@@ -1,4 +1,4 @@
-﻿// Road.cs
+// Road.cs
 // class that defines the behavior of the road
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +20,8 @@ public class Road : MonoBehaviour
     [SerializeField] private Vector3 lanePosition;
     [SerializeField] private float defaultShift;
     [SerializeField] private float currentWidth;
+    //Buildings reference is manually assigned
+    [SerializeField] private GameObject buildingsReference;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +32,69 @@ public class Road : MonoBehaviour
         // assign default shift
         //lanePosition = transform.position;
         defaultShift = 3.3f;
-        // insert both lanes into the road
+
+        //Assign the building reference (manual assignment seems bugged for unknown reasons)
+        buildingsReference = GameObject.Find("buildings");
+
+        //Start a coroutine to delay the updating of the buildings and lane insertions.
+        StartCoroutine(LateStart());
+    }
+
+    //Written by Max
+    //A coroutine which simply calls the update of buildings on a delay until after runtime.
+    //This is because of the fact that the bounds for buildings require the road to be loaded first,
+    //However since the Road is loaded first, you need to delay the initial update
+    //For the very first update call as well as lane insertions. If it is not delayed, the
+    //Road will be calling a building script which does not yet exist. However, the road must be present
+    //To begin with in order for the bounds of the environment to properly intiailize by grabbing
+    //a reference to the road.
+    IEnumerator LateStart()
+    {
+        //Waits until the end of the first frame
+        yield return new WaitForEndOfFrame();
+
+        //Initial lane insertions
         insertLane(null, laneTypes[0], "right");
         insertLane(roadLanes.First.Value, laneTypes[0], "right");
+
+        //Updates buildings
+        updateBuildings();
+    }
+
+    //Written by Max
+    //Simply acesses the buildings reference and then updates their position
+    private void updateBuildings()
+    {
+        buildingsReference.GetComponent<buildings>().updateBuildingPosition();
+    }
+
+    //Written by Max
+    //Returns the bounds of the entire road using the children.
+    //Steps: 1. Iterate over all the children
+    //       2. Encapsulate the children within the bounds
+    //       3. Return the final bounds object
+    //       4. If there is nothing, return an empty object.
+    public Bounds GetRendererBounds()
+    {
+        //Retrieves a list of all children of the object.
+        Renderer[] renderers = this.GetComponentsInChildren<Renderer>();
+
+        //Iterate if there are children
+        if (renderers.Length > 0)
+        {
+            //Initialize bounds object then loop over others.
+            Bounds bounds = renderers[0].bounds;
+            for (int i = 1, ni = renderers.Length; i < ni; i++)
+            {
+                //Encapsulate children within the bounds object
+                bounds.Encapsulate(renderers[i].bounds);
+            }
+            return bounds;
+        }
+        else
+        {
+            return new Bounds();
+        }
     }
 
     // Nathan wrote this
@@ -94,6 +156,8 @@ public class Road : MonoBehaviour
         {
             Debug.Log("This is not a lane or road is too large");
         }
+        //Update position of buildings
+        updateBuildings();
     }
 
     // Nathan wrote this
@@ -127,6 +191,8 @@ public class Road : MonoBehaviour
         {
             Debug.Log("Road is already at minimum size.");
         }
+        //Update position of buildings
+        updateBuildings();
     }
 
     // Luke wrote this
@@ -270,6 +336,8 @@ public class Road : MonoBehaviour
                 //laneScript.setStripeOrientation(rightStripe, "right");
             }
         }
+        //Update position of buildings
+        updateBuildings();
     }
 
     // Nathan wrote this
