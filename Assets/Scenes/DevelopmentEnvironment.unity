@@ -1557,6 +1557,7 @@ MonoBehaviour:
   lanePosition: {x: 0, y: 0, z: 0}
   defaultShift: 0
   currentWidth: 0
+  buildingsReference: {fileID: 1406036035}
 --- !u!1001 &1130369068
 PrefabInstance:
   m_ObjectHideFlags: 0
