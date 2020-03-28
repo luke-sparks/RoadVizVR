@@ -11,18 +11,16 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         evaluateControllerType();
-
     }
 
-    private void Awake()
+    void Awake()
     {
         GetComponent<VRTK_ControllerEvents>().ButtonOnePressed += DoButtonOnePress;
     }
 
     private void DoButtonOnePress(object sender, ControllerInteractionEventArgs e)
     {
-        Debug.Log("Button one pressed");
-        
+        //Debug.Log("Button one pressed");
     }
 
     public void evaluateControllerType()
@@ -44,6 +42,5 @@ public class InputManager : MonoBehaviour
     private void setOculusTouchControls()
     {
         Debug.Log("Using Oculus Touch Controllers");
-    }
-
+    } 
 }
