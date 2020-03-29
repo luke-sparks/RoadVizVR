@@ -8,7 +8,6 @@ public class GlobalSettingsBehavior : MonoBehaviour, ISceneUIMenu
     private const float BRIGHTNESS_INCREMENT = 0.5f;
     private const float FOG_INCREMENT = 12.0f;
     private fogControl fogController;
-
     
     public void setWorkingReference(params GameObject[] objRefs)
     {
@@ -20,11 +19,12 @@ public class GlobalSettingsBehavior : MonoBehaviour, ISceneUIMenu
     {
         transform.Find("FogLevelControls/Background/FogField").GetComponent<Text>().text = fogController.getFogDistance().ToString();
         transform.Find("ArchitectureTypeControls/ArchType").GetComponent<Dropdown>().value = GameObject.Find("buildings").GetComponent<buildings>().getBuildingIndex();
+
     }
 
     public void handleBrightnessDecrement()
     {
-
+        
     }
 
     public void handleBrightnessIncrement()
