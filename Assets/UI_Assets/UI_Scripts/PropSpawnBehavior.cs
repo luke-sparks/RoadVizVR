@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 {
-    public void setWorkingReference(GameObject objRef)
+    public void setWorkingReference(params GameObject[] objRefs)
     {
 
     }
