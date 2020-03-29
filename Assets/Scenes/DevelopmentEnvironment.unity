@@ -120,12 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &84640460 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1000013941130086, guid: be540b97364be0a4890e39e62ac89ed1,
-    type: 3}
-  m_PrefabInstance: {fileID: 101772947}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &94265908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,6 +319,16 @@ PrefabInstance:
       propertyPath: rightHandColor.g
       value: 0.042452812
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013740173536, guid: be540b97364be0a4890e39e62ac89ed1,
+        type: 3}
+      propertyPath: triggerAlias
+      value: 324
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013740173536, guid: be540b97364be0a4890e39e62ac89ed1,
+        type: 3}
+      propertyPath: gripAlias
+      value: 323
+      objectReference: {fileID: 0}
     - target: {fileID: 224903114965417368, guid: be540b97364be0a4890e39e62ac89ed1,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -495,9 +499,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 893088598}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &216568398 stripped
+--- !u!1 &227163237 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1883185261795400, guid: be540b97364be0a4890e39e62ac89ed1,
+  m_CorrespondingSourceObject: {fileID: 1000013941130086, guid: be540b97364be0a4890e39e62ac89ed1,
     type: 3}
   m_PrefabInstance: {fileID: 101772947}
   m_PrefabAsset: {fileID: 0}
@@ -573,12 +577,6 @@ MonoBehaviour:
     fallbackTypeName: VRTK.SDK_FallbackController
     typeName: VRTK.SDK_SteamVRController
     descriptionIndex: 0
---- !u!1 &545307022 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
-    type: 3}
-  m_PrefabInstance: {fileID: 101772947}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &553132196
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +648,50 @@ MonoBehaviour:
   snapToNearestFloor: 1
   applyPlayareaParentOffset: 0
   customRaycast: {fileID: 0}
+--- !u!1 &695454913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 695454915}
+  - component: {fileID: 695454914}
+  m_Layer: 0
+  m_Name: CurrentPropTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &695454914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695454913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f2bbe714590a441ad35033fb65b517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentProp: {fileID: 0}
+--- !u!4 &695454915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695454913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &698498231
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,9 +1036,9 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
---- !u!1 &745482843 stripped
+--- !u!1 &814133138 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1587602180963074, guid: be540b97364be0a4890e39e62ac89ed1,
+  m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
     type: 3}
   m_PrefabInstance: {fileID: 101772947}
   m_PrefabAsset: {fileID: 0}
@@ -1025,6 +1067,7 @@ GameObject:
   - component: {fileID: 864105733}
   - component: {fileID: 864105736}
   - component: {fileID: 864105737}
+  - component: {fileID: 864105738}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -1317,6 +1360,18 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
+--- !u!114 &864105738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864105726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a95eeffb2fef0d428dc4476078ecabd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &893088598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1549,13 +1604,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec3dcd00c5cc4d659a0935f4a6a510d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numStartingLanes: 4
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
-  stripeTypes:
-  - {fileID: 2938077226863865202, guid: ada643609087645f28c9d0a2cd7b864d, type: 3}
-  - {fileID: 2938077226863865202, guid: ada643609087645f28c9d0a2cd7b864d, type: 3}
+  - {fileID: 5954707031306349717, guid: 97b310af4c15f1e4cb22898e63a55615, type: 3}
+  - {fileID: 5623414017782510883, guid: bf68ddb1fb85e3942a04cfd94bd2d235, type: 3}
+  - {fileID: 1565976996497652124, guid: 0c3f2abb05176b641a9bce399b5ab6d5, type: 3}
+  - {fileID: 2270982129863823008, guid: d2411be54e99a9b46adb7dd932fdf42a, type: 3}
+  - {fileID: 7460763385531375339, guid: c00addfce4875264494b2bcca9453c6e, type: 3}
+  - {fileID: 8665468015871541541, guid: 4853e78c97d12e4458287497660a016d, type: 3}
+  - {fileID: 241737392477294327, guid: b4c4bd207c758f54ab332ad6992477d0, type: 3}
+  - {fileID: 998946786193764437, guid: 06a5b24218b405249a8242f1437eccd3, type: 3}
+  - {fileID: 7894024709681648819, guid: 4476f91feac22744c9c9616cd7b58a63, type: 3}
+  - {fileID: 2330009060323306810, guid: 871906cad1fc2704ba4834ad1d6916aa, type: 3}
+  - {fileID: 3844490017451381875, guid: d9831c962d3f059459cd77e2788cad50, type: 3}
+  stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
+    type: 3}
   lanePosition: {x: 0, y: 0, z: 0}
-  defaultShift: 0
   currentWidth: 0
   buildingsReference: {fileID: 0}
 --- !u!1001 &1130369068
@@ -1627,6 +1692,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9e18343c1b6ea64b97c10f652d1ce19, type: 3}
+--- !u!1 &1176723656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1587602180963074, guid: be540b97364be0a4890e39e62ac89ed1,
+    type: 3}
+  m_PrefabInstance: {fileID: 101772947}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1234619848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1883185261795400, guid: be540b97364be0a4890e39e62ac89ed1,
+    type: 3}
+  m_PrefabInstance: {fileID: 101772947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1244175442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1758,6 +1835,49 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1244175442}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1270143581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270143583}
+  - component: {fileID: 1270143582}
+  m_Layer: 0
+  m_Name: ModifyInteractions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1270143582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270143581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a95eeffb2fef0d428dc4476078ecabd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1270143583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270143581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7479615, y: 2.7149684, z: 0.4193666}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1308889765
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,7 +2185,7 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 502124333}
+  - {fileID: 1445166360}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
 --- !u!4 &1415241607
@@ -2173,12 +2293,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 1
-  actualBoundaries: {fileID: 84640460}
-  actualHeadset: {fileID: 745482843}
+  actualBoundaries: {fileID: 227163237}
+  actualHeadset: {fileID: 1176723656}
   actualLeftController: {fileID: 2020476017}
   actualRightController: {fileID: 1601087261}
-  modelAliasLeftController: {fileID: 545307022}
-  modelAliasRightController: {fileID: 216568398}
+  modelAliasLeftController: {fileID: 814133138}
+  modelAliasRightController: {fileID: 1234619848}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
