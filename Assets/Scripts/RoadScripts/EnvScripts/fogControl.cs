@@ -24,16 +24,21 @@ public class fogControl : MonoBehaviour
 
     //Changes the render settings of the fog and the variable according
     //to the fog input.
-    void setFogDistance(float inputFogDistance)
+    public void setFogDistance(float inputFogDistance)
     {
         fogDistance = inputFogDistance;
         RenderSettings.fogStartDistance = fogDistance;
         RenderSettings.fogEndDistance = fogDistance + fogShiftAmt;
     }
     //Gets the fog distance from the user.
-    float getFogDistance()
+    public float getFogDistance()
     {
         return fogDistance;
+    }
+
+    private void OnValidate()
+    {
+        setFogDistance(fogDistance);
     }
 
     // Update is called once per frame
@@ -43,5 +48,5 @@ public class fogControl : MonoBehaviour
         setFogDistance(fogDistance);
     }
     */
-    
+
 }
