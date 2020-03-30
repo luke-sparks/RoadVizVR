@@ -44,12 +44,4 @@ public class secondBound : MonoBehaviour
         this.transform.position = new Vector3(0, 0, newZValue);
         //Can be based on the old position's x and y but causes glitches.
     }
-
-    // Update is called once per frame
-    //Exists for debug purposes, replace with different
-    //calls whenever the road's size changes.
-    //void Update()
-    //{
-    //    updatePos();
-    //}
 }

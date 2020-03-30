@@ -677,7 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f2bbe714590a441ad35033fb65b517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentProp: {fileID: 0}
+  currentPropObj: {fileID: 0}
 --- !u!4 &695454915
 Transform:
   m_ObjectHideFlags: 0
@@ -690,7 +690,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &698498231
 GameObject:
@@ -1622,7 +1622,8 @@ MonoBehaviour:
     type: 3}
   lanePosition: {x: 0, y: 0, z: 0}
   currentWidth: 0
-  buildingsReference: {fileID: 0}
+  buildingsReference: {fileID: 7676923138607722142, guid: 670799f11f6023c4d8e2cc8c53a7be89,
+    type: 3}
 --- !u!1001 &1130369068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2147,7 +2148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1415241605
 GameObject:
@@ -2937,7 +2938,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2051402518
 GameObject:
@@ -3033,7 +3034,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2108783350
 GameObject:

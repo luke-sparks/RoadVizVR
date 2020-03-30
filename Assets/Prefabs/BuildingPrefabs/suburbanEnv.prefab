@@ -848,7 +848,7 @@ GameObject:
   - component: {fileID: 3152952442318647371}
   m_Layer: 0
   m_Name: secondBoundary_u
-  m_TagString: Untagged
+  m_TagString: isBound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -861,7 +861,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3152952442318647370}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 121.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 30, z: 100}
   m_Children:
   - {fileID: 1396134587338227881}
@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 3152952443286571578}
   m_Layer: 0
   m_Name: firstBoundary_u
-  m_TagString: Untagged
+  m_TagString: isBound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -965,7 +965,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3152952443286571577}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 246.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 30, z: 100}
   m_Children:
   - {fileID: 4086131320163565311}

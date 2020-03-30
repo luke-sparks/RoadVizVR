@@ -35,13 +35,4 @@ public class fogControl : MonoBehaviour
     {
         return fogDistance;
     }
-
-    // Update is called once per frame
-    /*
-    void Update()
-    {
-        setFogDistance(fogDistance);
-    }
-    */
-    
 }

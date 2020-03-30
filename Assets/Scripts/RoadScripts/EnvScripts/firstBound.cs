@@ -20,6 +20,7 @@ public class firstBound : MonoBehaviour
     {
         //Retrieve the bounds of the road object
         Bounds roadBounds = mainRoad.GetRendererBounds();
+        Debug.Log(roadBounds.size);
 
         //Retrieve the size of the bounds in the Z direction
         float boundsZ = (this.transform.localScale.z / 2);
@@ -42,11 +43,4 @@ public class firstBound : MonoBehaviour
         this.transform.position = new Vector3(0, 0, newZValue);
         //Can be based on the old position's x and y but causes glitches.
     }
-
-    // Update is called once per frame
-    //Exists for debug purposes, replace with an event.
-    //void Update()
-    //{
-        //updatePos();
-    //}
 }

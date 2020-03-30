@@ -10,14 +10,16 @@ public class envMain : MonoBehaviour
     //with the road.
     public void updatePosition()
     {
-        //Update the overall structure's center
+        //Update the overall structure's centers
         this.transform.position = mainRoad.GetRendererBounds().center;
 
         //Get the first bound of the children and update position
         Component[] firstBoundArray = this.GetComponentsInChildren<firstBound>();
+        //Debug.Log("About to enter first for loop!!!");
         foreach (firstBound bound in firstBoundArray)
         {
             bound.updatePos();
+            //Debug.Log(bound);
         }
 
         //Get the second bound of the children and update position
@@ -25,6 +27,7 @@ public class envMain : MonoBehaviour
         foreach (secondBound bound in secondBoundArray)
         {
             bound.updatePos();
+            //Debug.Log(bound);
         }
     }
 
@@ -34,12 +37,4 @@ public class envMain : MonoBehaviour
         mainRoad = GameObject.Find("Road").GetComponent<Road>();
         updatePosition();
     }
-
-    // Update is called once per frame.
-    //Currently set to "update", will have to call whenever
-    //the road is being updated instead, later.
-    //void Update()
-    //{
-    //    updatePosition();
-    //}
 }

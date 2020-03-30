@@ -12,7 +12,7 @@ public class BasicLane : MonoBehaviour
     //[SerializeField] protected GameObject editLaneDialogue;
     //[SerializeField] protected GameObject insertButton;
     [SerializeField] protected GameObject asphalt;
-    //[SerializeField] protected Vector3 lanePosition; 
+    //[SerializeField] protected Vector3 lanePosition;
     [SerializeField] protected int laneIndex;
     [SerializeField] protected string laneType;
     [SerializeField] protected float currentLaneWidth;
