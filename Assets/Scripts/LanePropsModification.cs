@@ -193,4 +193,10 @@ public class LanePropsModification : MonoBehaviour
             return null;
         }
     }
+
+    public void setCurrentProp(GameObject newProp)
+    {
+        currentProp = newProp;
+        Debug.Log("Set currentProp to be " + newProp.ToString());
+    }
 }

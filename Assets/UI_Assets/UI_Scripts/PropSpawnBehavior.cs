@@ -4,29 +4,35 @@ using UnityEngine;
 
 public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 {
+    protected ModifyController modifyControllerRef;
+
     public void setWorkingReference(GameObject objRef)
     {
-
+        modifyControllerRef = objRef.GetComponent<ModifyController>();
     }
 
 
     public void handleButtonOnePress()
     {
         Debug.Log("Button One Pressed");
+        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.Capsule);
     }
 
     public void handleButtonTwoPress()
     {
         Debug.Log("Button Two Pressed");
+        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.Cylinder);
     }
 
     public void handleButtonThreePress()
     {
         Debug.Log("Button Three Pressed");
+        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.Sphere);
     }
 
     public void handleClose()
     {
+        modifyControllerRef.setAddingProps(false);
         UIManager.Instance.closeCurrentUI();
     }
 

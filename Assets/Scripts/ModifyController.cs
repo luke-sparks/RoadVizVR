@@ -21,17 +21,25 @@ public class ModifyController : MonoBehaviour
     {
         if (Input.GetKeyDown("b"))
         {
-            if (addingProps == false)
+            /*if (addingProps == false)
             {
                 addingProps = true;
-                Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
+                GameObject propEditUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
+                //Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
             } else
             {
                 addingProps = false;
                 Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
-            }
-            toggleLaneIneraction();
+            }*/
+            setAddingProps(true);
+            GameObject propEditUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
         }
+    }
+
+    public void setAddingProps(bool newVal)
+    {
+        addingProps = newVal;
+        toggleLaneIneraction();
     }
 
     private void toggleLaneIneraction()
@@ -44,17 +52,21 @@ public class ModifyController : MonoBehaviour
         LaneInsertionSelection laneInsertionSelectionScript = null;
         LanePropsModification lanePropsModificationScript = null;
 
-        foreach(GameObject lane in lanes)
+        foreach (GameObject lane in lanes)
         {
             Debug.Log(lane.ToString());
             laneInsertionSelectionScript = lane.GetComponent<LaneInsertionSelection>();
             lanePropsModificationScript = lane.GetComponent<LanePropsModification>();
 
-            if (laneInsertionSelectionScript != null && lanePropsModificationScript != null)
+            if (laneInsertionSelectionScript != null)
             {
                 lane.GetComponent<LaneInsertionSelection>().enabled = !addingProps;
+            }
+            if (lanePropsModificationScript != null)
+            {
                 lane.GetComponent<LanePropsModification>().enabled = addingProps;
-            } else
+            }
+            else
             {
                 Debug.Log("This lane does not allow props to be placed on it");
             }

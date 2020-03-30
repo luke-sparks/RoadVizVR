@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class Prop : MonoBehaviour
 {
@@ -54,6 +55,66 @@ public class Prop : MonoBehaviour
 
         // divide that number by the width of the lane (5 meters) - 3/5
         relationalZPosition = distanceFromEdge / laneWidth;
+    }
+
+
+
+
+
+    // begin interaction code
+
+    public VRTK_InteractableObject linkedObject;    // this? may need to link
+
+    protected virtual void OnEnable()
+    {
+        linkedObject = (linkedObject == null ? GetComponent<VRTK_InteractableObject>() : linkedObject);
+
+        if (linkedObject != null)
+        {
+            linkedObject.InteractableObjectUsed += InteractableObjectUsed;
+            linkedObject.InteractableObjectUnused += InteractableObjectUnused;
+            linkedObject.InteractableObjectTouched += InteractableObjectTouched;
+            linkedObject.InteractableObjectUntouched += InteractableObjectUntouched;
+        }
+
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (linkedObject != null)
+        {
+            linkedObject.InteractableObjectUsed -= InteractableObjectUsed;
+            linkedObject.InteractableObjectUnused -= InteractableObjectUnused;
+            linkedObject.InteractableObjectTouched -= InteractableObjectTouched;
+            linkedObject.InteractableObjectUntouched -= InteractableObjectUntouched;
+        }
+    }
+
+    protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectUsed");
+        // write use script here
+
+        GameObject propEditUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditProp, gameObject);
+
+    }
+
+    protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectUnused");
+        // write un-use script here
+    }
+
+    protected virtual void InteractableObjectTouched(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectTouched");
+        // write touch script here
+    }
+
+    protected virtual void InteractableObjectUntouched(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectUntouched");
+        // write un-touch script here
     }
 
 }

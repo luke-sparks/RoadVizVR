@@ -677,7 +677,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f2bbe714590a441ad35033fb65b517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPropObj: {fileID: 0}
 --- !u!4 &695454915
 Transform:
   m_ObjectHideFlags: 0
@@ -2633,8 +2632,10 @@ MonoBehaviour:
     type: 3}
   globalSettingsMenu: {fileID: 1975022374442647078, guid: 038cf159f5192b541b8dbd375f3c4c36,
     type: 3}
-  editPropMenu: {fileID: 0}
-  spawnPropMenu: {fileID: 0}
+  editPropMenu: {fileID: 3622102454841532290, guid: 2fa07aa747bfedd44bca9020b39cb766,
+    type: 3}
+  spawnPropMenu: {fileID: 8472911303652399705, guid: 1bae279add321064280ec9592619213e,
+    type: 3}
 --- !u!4 &1849227286
 Transform:
   m_ObjectHideFlags: 0

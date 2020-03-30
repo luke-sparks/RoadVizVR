@@ -3,7 +3,11 @@ guid: 7b455c9aa52800f4593ca0b929a7114d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - linkedObject: {instanceID: 0}
+  - asphalt: {instanceID: 0}
+  - laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

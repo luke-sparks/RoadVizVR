@@ -82,6 +82,8 @@ public class LaneInsertionSelection : MonoBehaviour
         //Debug.Log("InteractableObjectUsed");
         // write use script here
 
+        Debug.Log("used the object");
+
         Vector3 cursorPosition = getCursor(sender, e).transform.position;
         float side = touchingEdge(cursorPosition);
 
