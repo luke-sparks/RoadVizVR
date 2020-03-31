@@ -136,8 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47ce5b8a5af64ef484b65ffc2bce8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stripeColor: 
-  currentStripeType: 
+  currentStripeType: SolidWhite
   stripe: {fileID: 3205714752542740998}
   leftLane: {fileID: 0}
   rightLane: {fileID: 0}

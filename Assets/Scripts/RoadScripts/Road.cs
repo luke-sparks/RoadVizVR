@@ -20,13 +20,14 @@ public class Road : MonoBehaviour
     //[SerializeField] private GameObject[] stripeTypes = new GameObject[2];
     [SerializeField] private GameObject stripeContainer;
     // the road position variable
-    [SerializeField] private Vector3 lanePosition;
+    //[SerializeField] private Vector3 lanePosition;
     //[SerializeField] private float defaultShift;
-    [SerializeField] private float currentWidth;
+    //[SerializeField] private float currentWidth;
 
     // Start is called before the first frame update
     void Start()
     {
+
         // initialize an empty linked list for lanes in road
         roadLanes = new LinkedList<GameObject>();
         // insert all of the starting lanes in the road
@@ -49,7 +50,10 @@ public class Road : MonoBehaviour
         setLaneType(roadLanes.Last.Previous.Value, "GrassDivision");*/
         setLaneType(roadLanes.Last.Value, "Shoulder");
         //setLaneType(roadLanes.First.Value, "Sidewalk");
-        Debug.Log("Hi");
+        // code below tests saving
+        //RoadData data = new RoadData(this);
+        //RoadVizSaveSystem.saveRoad(this);
+        saveRoad();
     }
 
     // Nathan wrote this
@@ -365,6 +369,34 @@ public class Road : MonoBehaviour
         return laneTypesList;
     }
 
+    // Nathan wrote this
+    // returns the max width
+    public float getMaxWidth()
+    {   
+        return MAX_WIDTH;
+    }
+
+    // Nathan wrote this
+    // returns the max lanes constant
+    public int getMaxLanes()
+    {
+        return MAX_LANES;
+    }
+
+    // Nathan wrote this
+    // returns the min lanes constant
+    public int getMinLanes()
+    {
+        return MIN_LANES;
+    }
+
+    // Nathan wrote this
+    // retrieves the stripe container object
+    public GameObject getStripeContainer()
+    {
+        return stripeContainer;
+    }
+
     // checks to make sure that the lane object parameter
     // is actually a lane object
     // laneType: the object that the user is trying to insert 
@@ -391,6 +423,25 @@ public class Road : MonoBehaviour
     public bool isAtMinSize()
     {
         return roadLanes.Count == MIN_LANES;
+    }
+
+    // Nathan wrote this
+    // saves the road to a binary file
+    public void saveRoad()
+    {
+        RoadVizSaveSystem.saveRoad(this);
+    }
+
+    // Nathan wrote this
+    // loads the road from a binary file
+    public void loadRoad()
+    {
+        // first of all, we have to clear whatever else the user has loaded in since the last save
+        clearRoad();
+        // obtain the saved data
+        RoadData roadData = RoadVizSaveSystem.loadRoad();
+        LinkedList<GameObject> savedLanes = roadData.roadLanes;
+        // continue from here
     }
 
     // Nathan wrote this
@@ -782,5 +833,15 @@ public class Road : MonoBehaviour
             }
         }
         throw new System.ArgumentException("Lane type not found");
+    }
+
+    // Nathan wrote this
+    // clears all lanes from the road
+    private void clearRoad()
+    {
+        foreach(GameObject g in roadLanes)
+        {
+            removeLane(g);
+        }
     }
 }

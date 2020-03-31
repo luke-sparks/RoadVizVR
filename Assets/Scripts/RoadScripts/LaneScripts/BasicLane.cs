@@ -13,7 +13,7 @@ public class BasicLane : MonoBehaviour
     //[SerializeField] protected GameObject insertButton;
     [SerializeField] protected GameObject asphalt;
     //[SerializeField] protected Vector3 lanePosition; 
-    [SerializeField] protected int laneIndex;
+    //[SerializeField] protected int laneIndex;
     [SerializeField] protected string laneType;
     [SerializeField] protected float currentLaneWidth;
     [SerializeField] protected float maxWidth;
@@ -137,7 +137,7 @@ public class BasicLane : MonoBehaviour
 
     // Nathan wrote this
     // changes the lane index
-    public void setLaneIndex(int newIndex)
+    /*public void setLaneIndex(int newIndex)
     {
         laneIndex = newIndex;
     }
@@ -147,7 +147,7 @@ public class BasicLane : MonoBehaviour
     public int getLaneIndex()
     {
         return laneIndex;
-    }
+    }*/
 
     // Nathan wrote this
     // sets the lane's current type
