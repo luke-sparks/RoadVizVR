@@ -93,25 +93,21 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        /*
+        
         if (Input.GetKeyDown("space"))
         {
-            GameObject blane = GameObject.Find("BasicLane(Clone)");
-            if (blane == null)
-                Debug.Log("Could not find a lane.");
 
-            GameObject uiObj = openUIScreen(UIScreens.EditLane, blane);
+            GameObject uiObj = openUIScreen(UIScreens.GlobalSettings, null);
             Debug.Assert(uiObj != null, "Expected valid ui GameObject");
 
-            EditLaneBehavior editLaneUI = uiObj.GetComponent<EditLaneBehavior>();
-            Debug.Assert(editLaneUI != null, "Expected valid EditLaneBehavior");
+
         }
 
         if (Input.GetKeyDown("backspace"))
         {
             closeCurrentUI();
         }
-        */
+        
     }
 
     // Singleton management code
