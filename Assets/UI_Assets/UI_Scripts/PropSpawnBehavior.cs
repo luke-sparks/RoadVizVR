@@ -13,7 +13,7 @@ public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
     public void handleButtonOnePress()
     {
         Debug.Log("Button One Pressed");
-        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.Capsule);
+        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.StreetLamp);
     }
 
     public void handleButtonTwoPress()

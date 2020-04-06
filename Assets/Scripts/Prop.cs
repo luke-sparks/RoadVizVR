@@ -11,6 +11,7 @@ public class Prop : MonoBehaviour
 
     private GameObject centerPointObj;
 
+
     [SerializeField] protected Vector3 spawnCenterShift = new Vector3(0,0,0);
 
     void Start()
@@ -70,7 +71,7 @@ public class Prop : MonoBehaviour
     // rotates 45 degrees CW
     public void rotateCW()
     {
-        gameObject.transform.RotateAround(centerPointObj.transform.position, Vector3.up, 45);     
+        gameObject.transform.RotateAround(centerPointObj.transform.position, Vector3.up, 45);
     }
 
     // rotates 45 degrees CCW

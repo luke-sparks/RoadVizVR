@@ -5,10 +5,12 @@ using UnityEngine;
 public class CurrentPropManager : MonoBehaviour
 {
     private Object currentPropObj;
-    private bool propBeingMoved;
+    private bool propBeingMoved = false;
 
-    private Vector3 oldPropPosition;
+    private Transform oldPropTransform;
     private PropManager oldPropManagerRef;
+
+    private int rotation = 0;
 
     // A list of all possible Props
     public enum Props
@@ -16,7 +18,8 @@ public class CurrentPropManager : MonoBehaviour
         Empty,
         Capsule,
         Cylinder,
-        Sphere
+        Sphere,
+        StreetLamp
     };
 
     // Must be assigned in Start
@@ -29,11 +32,11 @@ public class CurrentPropManager : MonoBehaviour
             {Props.Empty, Resources.Load("Empty")},
             {Props.Capsule, Resources.Load("Capsule")},
             {Props.Cylinder, Resources.Load("Cylinder")},
-            {Props.Sphere, Resources.Load("Sphere")}
+            {Props.Sphere, Resources.Load("Sphere")},
+            {Props.StreetLamp, Resources.Load("StreetLamp")}
         };
 
         clearCurrentPropObj();
-        propBeingMoved = false;
     }
 
     public void setCurrentPropObj(Props propName)
@@ -67,7 +70,7 @@ public class CurrentPropManager : MonoBehaviour
 
     public void startMovingProp(GameObject prop, PropManager propManagerScriptRef)
     {
-        oldPropPosition = prop.transform.position;
+        oldPropTransform = prop.transform;
         oldPropManagerRef = propManagerScriptRef;
         setCurrentPropObj(prop);
         oldPropManagerRef.removeProp(prop);
@@ -79,7 +82,7 @@ public class CurrentPropManager : MonoBehaviour
     {
         setPropBeingMoved(false);
 
-        return oldPropManagerRef.addProp(CurrentPropManager.Instance.getCurrentPropObj(), oldPropPosition);
+        return oldPropManagerRef.addProp(CurrentPropManager.Instance.getCurrentPropObj(), oldPropTransform);
     }
 
     public GameObject getCurrentPropObj()

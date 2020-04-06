@@ -94,7 +94,7 @@ public class LanePropsModification : MonoBehaviour
         // add new instance of prop
         if (!CurrentPropManager.Instance.getCurrentPropObj().name.Equals("Empty"))
         {
-            GameObject recentProp = propManagerScriptRef.addProp(currentPropPrefab, currentProp.transform.position);
+            GameObject recentProp = propManagerScriptRef.addProp(currentPropPrefab, currentProp.transform);
             if (CurrentPropManager.Instance.getPropBeingMoved() == true)
             {
                 UIManager.Instance.editPropMenu.GetComponent<EditPropBehavior>().setWorkingReference(recentProp);
