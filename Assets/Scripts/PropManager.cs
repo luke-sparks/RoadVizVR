@@ -9,12 +9,22 @@ public class PropManager : MonoBehaviour
     [SerializeField] private GameObject asphalt;
 
     // called when adding a prop
-    public void addProp(string propName, Vector3 position)
+    public GameObject addProp(Object prop, Vector3 position)
     {
-        Object propPrefab = Resources.Load(propName);
-        GameObject newProp = (GameObject)Instantiate(propPrefab, position, Quaternion.identity);
+        // Object propPrefab = Resources.Load(propName);
+        GameObject newProp = (GameObject)Instantiate(prop, position, Quaternion.identity);
         newProp.transform.SetParent(transform);
         props.Add(newProp);
+
+        CurrentPropManager.Instance.setPropBeingMoved(false);
+
+        return newProp;
+    }
+
+    public void removeProp(GameObject prop)
+    {
+        props.Remove(prop);
+        Destroy(prop);
     }
 
     // called when adjusting the width of a lane

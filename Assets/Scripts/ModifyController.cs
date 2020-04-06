@@ -9,6 +9,7 @@ public class ModifyController : MonoBehaviour
     protected GameObject road;
     protected Road roadScript;
 
+
     // Nathan inserted start so we could use road functions more easily
     void Start()
     {
@@ -31,15 +32,20 @@ public class ModifyController : MonoBehaviour
                 addingProps = false;
                 Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
             }*/
+            CurrentPropManager.Instance.clearCurrentPropObj();
             setAddingProps(true);
-            GameObject propEditUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
+            // currently in a singleton class so passing gameObject does nothing but didn't want to pass null and potentially break something
+            GameObject propSpawnUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
         }
     }
 
     public void setAddingProps(bool newVal)
     {
-        addingProps = newVal;
-        toggleLaneIneraction();
+        if (addingProps != newVal)
+        {
+            addingProps = newVal;
+            toggleLaneIneraction();
+        }
     }
 
     private void toggleLaneIneraction()
@@ -70,6 +76,23 @@ public class ModifyController : MonoBehaviour
             {
                 Debug.Log("This lane does not allow props to be placed on it");
             }
+        }
+    }
+
+    // Singleton management code
+    private static ModifyController _instance;
+    public static ModifyController Instance { get { return _instance; } }
+    private void Awake()
+    {
+        // if we have an instance already
+        // AND the instance is one other than this
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
         }
     }
 }

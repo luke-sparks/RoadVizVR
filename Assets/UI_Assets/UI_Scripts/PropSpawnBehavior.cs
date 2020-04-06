@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 {
-    protected ModifyController modifyControllerRef;
-
     public void setWorkingReference(GameObject objRef)
     {
-        modifyControllerRef = objRef.GetComponent<ModifyController>();
+        
     }
 
 
@@ -32,7 +30,7 @@ public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 
     public void handleClose()
     {
-        modifyControllerRef.setAddingProps(false);
+        ModifyController.Instance.setAddingProps(false);
         UIManager.Instance.closeCurrentUI();
     }
 
