@@ -82,7 +82,7 @@ public class VehicleLane : BasicLane
     }
 
     //Sets the lane's various vehicle sendings based upon the input to the function.
-    private void setLaneProperties(bool bike, bool train, bool car, bool truck, bool bus)
+    public void setLaneProperties(bool bike, bool train, bool car, bool truck, bool bus)
     {
         canSendBike  = bike;
         canSendTrain = train;
