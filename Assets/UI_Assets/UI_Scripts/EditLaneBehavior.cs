@@ -26,6 +26,7 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         {
             Debug.Log("Tried to set working reference, but failed.");
         }
+
         updateWidthField();
 
         resolveButtonActivationStates();
@@ -35,6 +36,12 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     {
         Road rd = GameObject.Find("Road").GetComponent<Road>();
         gameObject.transform.Find("Delete").GetComponent<Button>().interactable = !rd.isAtMinSize();
+
+        List<string> laneTypeNames = GameObject.Find("Road").GetComponent<Road>().getLaneTypeNames();
+        Dropdown dd = gameObject.transform.Find("LaneTypeControls/LaneType").GetComponent<Dropdown>();
+        // add lane types to dropdown, then set current active
+        dd.AddOptions(laneTypeNames);
+        dd.value = laneTypeNames.IndexOf(basicLaneScriptReference.getLaneType());
     }
 
     // Provides a check that we have a lane to reference before proceding
@@ -71,9 +78,16 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         Debug.Log("Lane type change selected. *There is something weird with the height of shoulders!");
         // we will need to change the line below to something more substantial
         // once we get more lane types involved - maybe create a helper function to handle this
-
-        workingLaneReference = GameObject.Find("Road").GetComponent<Road>().setLaneType(workingLaneReference, "BusLane");
         
+        List<string> laneTypeNames = GameObject.Find("Road").GetComponent<Road>().getLaneTypeNames();
+        int laneTypeSelectionIndex = gameObject.transform.Find("LaneTypeControls/LaneType").GetComponent<Dropdown>().value;
+        string newSelection = laneTypeNames[laneTypeSelectionIndex];
+
+        // we only want to change, if the selection changes
+        if (basicLaneScriptReference.getLaneType() != newSelection)
+        {
+            workingLaneReference = GameObject.Find("Road").GetComponent<Road>().setLaneType(workingLaneReference, laneTypeNames[laneTypeSelectionIndex]);
+        }
     }
 
     // Kasey wrote this
