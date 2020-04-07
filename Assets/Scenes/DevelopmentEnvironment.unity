@@ -1067,7 +1067,6 @@ GameObject:
   - component: {fileID: 864105733}
   - component: {fileID: 864105736}
   - component: {fileID: 864105737}
-  - component: {fileID: 864105738}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -1360,18 +1359,6 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
---- !u!114 &864105738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864105726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a95eeffb2fef0d428dc4476078ecabd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &893088598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2186,6 +2173,7 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
+  - {fileID: 502124333}
   - {fileID: 1445166360}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
