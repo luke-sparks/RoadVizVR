@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4888732933893274428}
   - component: {fileID: 6908574805089072266}
   m_Layer: 5
-  m_Name: WidthField
+  m_Name: BrightnessField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

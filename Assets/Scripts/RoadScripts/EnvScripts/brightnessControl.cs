@@ -14,13 +14,13 @@ public class brightnessControl : MonoBehaviour
     }
 
     //Sets the intensity of the light
-    void setBrightness(float inputBrightness)
+    public void setBrightness(float inputBrightness)
     {
         sun.intensity = inputBrightness;
     }
 
     //Retrieves the current brightness setting
-    float getBrightness()
+    public float getBrightness()
     {
         return sun.intensity;
     }
