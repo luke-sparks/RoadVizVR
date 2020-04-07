@@ -435,6 +435,16 @@ public class Road : MonoBehaviour
         return laneTypesList;
     }
 
+    public List<string> getLaneTypeNames()
+    {
+        List<string> laneTypeNames = new List<string>();
+        foreach (GameObject g in laneTypes)
+        {
+            laneTypeNames.Add(g.name);
+        }
+        return laneTypeNames;
+    }
+
     // checks to make sure that the lane object parameter
     // is actually a lane object
     // laneType: the object that the user is trying to insert 
