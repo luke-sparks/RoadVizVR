@@ -31,10 +31,7 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     private void resolveButtonActivationStates()
     {
         Road rd = GameObject.Find("Road").GetComponent<Road>();
-        if (rd.isEmpty())
-        {
-            gameObject.transform.Find("Delete").GetComponent<Button>().interactable = false;
-        }
+        gameObject.transform.Find("Delete").GetComponent<Button>().interactable = !rd.isAtMinSize();
     }
 
     // Provides a check that we have a lane to reference before proceding
