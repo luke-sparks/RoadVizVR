@@ -17,8 +17,8 @@ public class LaneData //: MonoBehaviour
     private bool vehicleLane;
     private bool nonVehicleAsphalt;
     private bool nonAsphalt;
-    private StripeData leftStripeData;
-    private StripeData rightStripeData;
+    private StripeData leftStripeData = null;
+    private StripeData rightStripeData = null;
 
     // Nathan wrote this
     // class constructor
@@ -52,6 +52,82 @@ public class LaneData //: MonoBehaviour
         {
             Stripe rightStripeScriptRef = (Stripe)rightStripe.GetComponent("Stripe");
             rightStripeData = new StripeData(rightStripeScriptRef);
+        }
+    }
+
+    // Nathan wrote this
+    // loads the saved lane position
+    public Vector3 loadLanePosition()
+    {
+        Vector3 loadedLanePosition = new Vector3(lanePosition[0], lanePosition[1], lanePosition[2]);
+        return loadedLanePosition;
+    }
+
+    // Nathan wrote this
+    // loads the saved lane width
+    public float loadLaneWidth()
+    {
+        return laneWidth;
+    }
+
+    // Nathan wrote this
+    // loads the saved lane's max width
+    public float loadMaxWidth()
+    {
+        return maxWidth;
+    }
+
+    // Nathan wrote this
+    // loads the saved lane's min width
+    public float loadMinWidth()
+    {
+        return minWidth;
+    }
+
+    // Nathan wrote this
+    // loads the saved lane's type
+    public string loadLaneType()
+    {
+        return laneType;
+    }
+
+    // Nathan wrote this
+    // loads the saved lane's vehicle lane flag
+    public bool loadIsVehicleLane()
+    {
+        return vehicleLane;
+    }
+
+    // Nathan wrote this
+    // loads the saved lane's non vehicle asphalt lane flag
+    public bool loadIsNonVehicleAsphaltLane()
+    {
+        return nonVehicleAsphalt;
+    }
+
+    // Nathan wrote this
+    // loads the saved lane's non-asphalt flag
+    public bool loadIsNonAsphaltLane()
+    {
+        return nonAsphalt;
+    }
+
+    // Nathan wrote this
+    // loads the saved lane's left stripe
+    // stripe is the stripe that we want to load
+    public StripeData loadStripeData(string stripe)
+    {
+        if(stripe == "left")
+        {
+            return leftStripeData;
+        }
+        else if(stripe == "right")
+        {
+            return rightStripeData;
+        }
+        else
+        {
+            throw new System.ArgumentException("Invalid stripe value given to stripe loading function");
         }
     }
 }

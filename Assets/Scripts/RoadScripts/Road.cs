@@ -35,9 +35,8 @@ public class Road : MonoBehaviour
         GameObject currLane = null;
         for (int i = 0; i < numStartingLanes; i++) 
         {
-            // insert all vehicle lanes
+            // insert all vehicle lanes using right insertion
             insertLane(currLane, laneTypes[1], "right");
-            // if this is the first insertion
             currLane = roadLanes.Last.Value;
         }
         setLaneType(roadLanes.First.Value, "Shoulder");
@@ -53,7 +52,8 @@ public class Road : MonoBehaviour
         // code below tests saving
         //RoadData data = new RoadData(this);
         //RoadVizSaveSystem.saveRoad(this);
-        saveRoad();
+        //saveRoad();
+        loadRoad();
     }
 
     // Nathan wrote this
@@ -137,6 +137,7 @@ public class Road : MonoBehaviour
             //          8. add stripes back in accordingly
 
             // 1. get target lane script
+            //Debug.Log(targetLane);
             BasicLane targetLaneScriptReference = (BasicLane)targetLane.GetComponent("BasicLane");
             // 2. get target lane's width
             float targetLaneWidth = targetLaneScriptReference.getLaneWidth();
@@ -436,12 +437,43 @@ public class Road : MonoBehaviour
     // loads the road from a binary file
     public void loadRoad()
     {
-        // first of all, we have to clear whatever else the user has loaded in since the last save
+        // steps: 
+        //      1. clear the contents of the road
+        //      2. obtain the saved road data
+        //      3. insert each saved lane into the road:
+        //          a. obtain the saved lane's type
+        //          b. find that lane type and insert it
+        //          c. obtain a reference to the lane's script
+        //          d. adjust the lane's stripes if it's not a vehicle lane
+        //          e. load the rest of the attributes
+        //      4. remove the last of the old lanes (the ones there before the user pressed 'load')
+        // 1. we have to clear whatever else the user has loaded in since the last save
         clearRoad();
-        // obtain the saved data
-        RoadData roadData = RoadVizSaveSystem.loadRoad();
-        LinkedList<GameObject> savedLanes = roadData.roadLanes;
-        // continue from here
+        // 2. obtain the saved data
+        RoadData roadData = RoadVizSaveSystem.loadRoadFromMemory();
+        List<LaneData> savedLanes = roadData.getLaneData();
+        // 3. load each of the saved lanes in
+        foreach(LaneData savedLane in savedLanes)
+        {
+            // 3a: obtain the lane's type
+            string loadedLaneType = savedLane.loadLaneType();
+            // 3b. find the type and insert it
+            GameObject loadedLane = findLaneType(loadedLaneType);
+            insertLane(roadLanes.Last.Value, loadedLaneType, "right");
+            // 3c. obtain a script reference
+            BasicLane loadedLaneScriptReference = (BasicLane)loadedLane.GetComponent("BasicLane");
+            // 3d. adjust stripes
+            if(!loadedLaneScriptReference.isVehicleLane())
+            {
+                LinkedListNode<GameObject> loadedLaneNode = roadLanes.Last;
+                handleNonVehicleLaneStripes(loadedLaneScriptReference, loadedLaneNode);
+            }
+            LinkedListNode<GameObject> loadedLaneNode = roadLanes.Last;
+            // 3e. load the rest of the lane's variables
+            loadedLaneScriptReference.loadLaneAtts(savedLane);
+        }
+        // 4. remove that leftover lane (could not remove it with clearRoad() because of isAtMinSize())
+        removeLane(roadLanes.First.Value);
     }
 
     // Nathan wrote this
@@ -598,7 +630,7 @@ public class Road : MonoBehaviour
         else if (leftScript != null && rightScript == null)
         {
             // if the lane to the left has asphalt, we must insert a new stripe
-            if (leftScript.isVehicleLane())
+            if (!leftScript.isNonAsphaltLane())
             {
                 // instantiate a new stripe on the left lane and set it's orientation
                 newStripePosition = leftScript.getLanePosition();
@@ -615,7 +647,7 @@ public class Road : MonoBehaviour
         else if (leftScript == null && rightScript != null)
         {
             // if the lane to the right has asphalt we must insert a new stripe
-            if (rightScript.isVehicleLane())
+            if (!rightScript.isNonAsphaltLane())
             {
                 // instantiate a new stripe on the right lane and set its orientation
                 newStripePosition = rightScript.getLanePosition();
@@ -666,7 +698,7 @@ public class Road : MonoBehaviour
             // obtain the lane's position
             Vector3 newLanePosition = newLaneScript.getLanePosition();
             // instantiate a new stripe
-            GameObject remainingStripe = Instantiate(stripeContainer, newLanePosition, transform.rotation);
+            GameObject remainingStripe = Instantiate(stripeContainer, newLanePosition, transform.rotation) as GameObject;
             // case 1: this is the only lane in the road
             if (newLaneNode.Previous == null && newLaneNode.Next == null) 
             {
@@ -740,7 +772,7 @@ public class Road : MonoBehaviour
                 {
                     // now we must have a stripe on either side; 
                     // rare but important case
-                    GameObject leftStripe = Instantiate(stripeContainer, newLanePosition, transform.rotation);
+                    GameObject leftStripe = Instantiate(stripeContainer, newLanePosition, transform.rotation) as GameObject;
                     newLaneScript.setStripeOrientation(leftStripe, "left");
                     newLaneScript.setStripeOrientation(remainingStripe, "right");
                     leftNeighborScriptReference.setStripeOrientation(leftStripe, "right");
@@ -832,16 +864,29 @@ public class Road : MonoBehaviour
                 return laneTypes[i];
             }
         }
-        throw new System.ArgumentException("Lane type not found");
+        throw new System.ArgumentException("Lane type not found.");
     }
 
     // Nathan wrote this
     // clears all lanes from the road
     private void clearRoad()
     {
+        // Note: the reason we cannot use a foreach is because it will throw an
+        // exception for removing lanes in a list while iterating through it
+        // steps:
+        //      1. create an array to hold the road's lanes
+        //      2. place each lane from the linked list in the array
+        //      3. remove each lane from the environment
+        GameObject[] roadLanesArray = new GameObject[roadLanes.Count];
+        int count = 0;
         foreach(GameObject g in roadLanes)
         {
-            removeLane(g);
+            roadLanesArray[count] = g;
+            count++;
+        }
+        for(int i = 0; i < count; i++)
+        {
+            removeLane(roadLanesArray[i]);
         }
     }
 }

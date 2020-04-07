@@ -677,7 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f2bbe714590a441ad35033fb65b517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentProp: {fileID: 0}
+  currentPropObj: {fileID: 0}
 --- !u!4 &695454915
 Transform:
   m_ObjectHideFlags: 0
@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec3dcd00c5cc4d659a0935f4a6a510d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numStartingLanes: 4
+  numStartingLanes: 6
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
   - {fileID: 5954707031306349717, guid: 97b310af4c15f1e4cb22898e63a55615, type: 3}
@@ -1620,8 +1620,6 @@ MonoBehaviour:
   - {fileID: 3844490017451381875, guid: d9831c962d3f059459cd77e2788cad50, type: 3}
   stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
     type: 3}
-  lanePosition: {x: 0, y: 0, z: 0}
-  currentWidth: 0
 --- !u!1 &1176723656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1587602180963074, guid: be540b97364be0a4890e39e62ac89ed1,
@@ -2510,7 +2508,8 @@ MonoBehaviour:
     type: 3}
   globalSettingsMenu: {fileID: 1975022374442647078, guid: 038cf159f5192b541b8dbd375f3c4c36,
     type: 3}
-  propMenu: {fileID: 0}
+  editPropMenu: {fileID: 0}
+  spawnPropMenu: {fileID: 0}
 --- !u!4 &1849227286
 Transform:
   m_ObjectHideFlags: 0

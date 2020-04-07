@@ -45,4 +45,11 @@ public class RoadData //: MonoBehaviour
             laneData.Add(indLaneData);
         }
     }
+
+    // Nathan wrote this
+    // loads the list of saved lanes
+    public List<LaneData> getLaneData()
+    {
+        return laneData;
+    }
 }

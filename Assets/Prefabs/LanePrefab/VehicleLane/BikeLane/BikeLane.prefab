@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2061480386706213604
+--- !u!1 &2709905036992237735
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,51 +8,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9007607332291425610}
-  - component: {fileID: 4034462940006203034}
-  - component: {fileID: 7557873863928531727}
-  - component: {fileID: 4170048635093482604}
-  - component: {fileID: 9192181949120340440}
-  - component: {fileID: 3781176704477599463}
-  - component: {fileID: 3402625430790972885}
-  - component: {fileID: 5963700948045073521}
-  - component: {fileID: 8852063602947931687}
+  - component: {fileID: 2709905036992237732}
+  - component: {fileID: 2709905036992237736}
+  - component: {fileID: 2709905036992237739}
+  - component: {fileID: 2709905036992237738}
+  - component: {fileID: 3672436871892482467}
+  - component: {fileID: 6256015483440623181}
+  - component: {fileID: 7742395591534788064}
+  - component: {fileID: 4956277800389534767}
+  - component: {fileID: 8105563273617286452}
   m_Layer: 0
   m_Name: PrimaryAsphalt
-  m_TagString: Untagged
+  m_TagString: CanTeleport
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9007607332291425610
+--- !u!4 &2709905036992237732
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 2709905036992237735}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 0.35, z: 2}
+  m_LocalScale: {x: 100, y: 0.1, z: 1.7}
   m_Children: []
-  m_Father: {fileID: 6404786496310324907}
+  m_Father: {fileID: 8903683231856215695}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4034462940006203034
+--- !u!33 &2709905036992237736
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
+  m_GameObject: {fileID: 2709905036992237735}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7557873863928531727
+--- !u!23 &2709905036992237739
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
+  m_GameObject: {fileID: 2709905036992237735}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 81bb28675f92a6e45b0266b95fb6e3c0, type: 2}
+  - {fileID: 2100000, guid: 8388342be9c1d744b809c1c672337a9a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,43 +84,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4170048635093482604
+--- !u!65 &2709905036992237738
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
+  m_GameObject: {fileID: 2709905036992237735}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9192181949120340440
+--- !u!114 &3672436871892482467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lane: {fileID: 7460763385531375339}
-  laneEditPrefab: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
-    type: 3}
-  road: {fileID: 0}
-  roadScript: {fileID: 0}
---- !u!114 &3781176704477599463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
+  m_GameObject: {fileID: 2709905036992237735}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
@@ -147,13 +130,13 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
---- !u!114 &3402625430790972885
+--- !u!114 &6256015483440623181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
+  m_GameObject: {fileID: 2709905036992237735}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
@@ -180,39 +163,56 @@ MonoBehaviour:
   intervalOnUse: 0.05
   cancelOnUnuse: 1
   objectToAffect: {fileID: 0}
---- !u!114 &5963700948045073521
+--- !u!114 &7742395591534788064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
+  m_GameObject: {fileID: 2709905036992237735}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abc4b5dd2be1cea4aaea2850b910d3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
-  touchHighlight: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 0}
-  grabHighlight: {r: 0, g: 1, b: 0, a: 0.09019608}
+  touchHighlight: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0}
+  grabHighlight: {r: 0, g: 0, b: 0, a: 0}
   useHighlight: {r: 0, g: 1, b: 0, a: 0.09019608}
   objectToMonitor: {fileID: 0}
   objectToHighlight: {fileID: 0}
   objectHighlighter: {fileID: 0}
   objectToAffect: {fileID: 0}
---- !u!114 &8852063602947931687
+--- !u!114 &4956277800389534767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
+  m_GameObject: {fileID: 2709905036992237735}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &7460763385531375339
+--- !u!114 &8105563273617286452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709905036992237735}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lane: {fileID: 7894024709681648819}
+  laneEditPrefab: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
+    type: 3}
+  road: {fileID: 0}
+  roadScript: {fileID: 0}
+--- !u!1 &7894024709681648819
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,98 +220,66 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6404786496310324907}
-  - component: {fileID: 7342464932158034892}
-  - component: {fileID: 1959383462272043452}
-  - component: {fileID: 105983275342174358}
-  - component: {fileID: 6694926116012533946}
+  - component: {fileID: 8903683231856215695}
+  - component: {fileID: 4776160783577120469}
+  - component: {fileID: -5906748317304949679}
   m_Layer: 0
-  m_Name: GrassDivision
+  m_Name: BikeLane
   m_TagString: IsLane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6404786496310324907
+--- !u!4 &8903683231856215695
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7460763385531375339}
+  m_GameObject: {fileID: 7894024709681648819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 9007607332291425610}
+  - {fileID: 2709905036992237732}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7342464932158034892
+--- !u!114 &4776160783577120469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7460763385531375339}
+  m_GameObject: {fileID: 7894024709681648819}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 898b167e19c1449bb81588a4eee949bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asphalt: {fileID: 2061480386706213604}
-  laneIndex: 0
-  laneType: 
-  currentLaneWidth: 2
-  maxWidth: 20
+  asphalt: {fileID: 2709905036992237735}
+  laneType: BikeLane
+  currentLaneWidth: 1.7
+  maxWidth: 10
   minWidth: 1
   leftStripe: {fileID: 0}
   rightStripe: {fileID: 0}
-  vehicleLane: 0
+  vehicleLane: 1
   nonVehicleAsphalt: 0
-  nonAsphalt: 1
---- !u!114 &1959383462272043452
+  nonAsphalt: 0
+--- !u!114 &-5906748317304949679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7460763385531375339}
+  m_GameObject: {fileID: 7894024709681648819}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedObject: {fileID: 3781176704477599463}
-  asphalt: {fileID: 2061480386706213604}
+  linkedObject: {fileID: 3672436871892482467}
+  asphalt: {fileID: 2709905036992237735}
   laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
     type: 3}
---- !u!114 &105983275342174358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7460763385531375339}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0e00ebe33221444a5d4c49a260bb0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentPropPrefab: {fileID: 0}
-  linkedObject: {fileID: 3781176704477599463}
-  asphalt: {fileID: 2061480386706213604}
---- !u!114 &6694926116012533946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7460763385531375339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9e316d309038b64a8e38280d7172a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  props: []
-  asphalt: {fileID: 2061480386706213604}

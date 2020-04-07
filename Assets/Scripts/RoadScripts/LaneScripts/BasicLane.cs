@@ -36,8 +36,8 @@ public class BasicLane : MonoBehaviour
         // this was causing a bug. not sure why
         //setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
 
-        road = GameObject.Find("Road");
-        roadScript = (Road)road.GetComponent("Road");
+        //road = GameObject.Find("Road");
+        //roadScript = (Road)road.GetComponent("Road");
     }
 
     // setLaneWidth() sets the width of a lane
@@ -64,21 +64,21 @@ public class BasicLane : MonoBehaviour
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
         // step 3
-        //GameObject road = GameObject.Find("Road");
+        GameObject road = GameObject.Find("Road");
         // reference script that controls the road's behavior
-        //Road roadScript = (Road)road.GetComponent("Road");
+        Road roadScript = (Road)road.GetComponent("Road");
         // adjust the lane positions around the lane we are modifying
         roadScript.adjustRoadAroundLane(gameObject, adjustment);
         // step 4
         laneSize.z = newWidth;
         //buttonPos.z += adjustment;
         // step 5
-        GetComponent<PropManager>().updateRelationalValues();
+        //GetComponent<PropManager>().updateRelationalValues();
         asphalt.transform.localScale = laneSize;
-        GetComponent<PropManager>().repositionProps();
+        //GetComponent<PropManager>().repositionProps();
         
-        Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
-        asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
+        //Renderer asphaltRenderer = (Renderer)asphalt.GetComponent("Renderer");
+        //asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
         //insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
 
@@ -263,6 +263,63 @@ public class BasicLane : MonoBehaviour
     public bool isNonAsphaltLane() 
     {
         return nonAsphalt;
+    }
+
+    // Nathan wrote this
+    // loads a saved lane's data
+    public void loadLaneAtts(LaneData savedLane)
+    {
+        // just need to reassign each of the lane's attributes (position, width, stripes, etc.)
+        gameObject.transform.localPosition = savedLane.loadLanePosition();
+        setLaneWidth(savedLane.loadLaneWidth());
+        maxWidth = savedLane.loadMaxWidth();
+        minWidth = savedLane.loadMinWidth();
+        setLaneType(savedLane.loadLaneType());
+        vehicleLane = savedLane.loadIsVehicleLane();
+        nonVehicleAsphalt = savedLane.loadIsNonVehicleAsphaltLane();
+        nonAsphalt = savedLane.loadIsNonAsphaltLane();
+        // stripes could be a little more complicated
+        // first, load in the data for both stripes
+        StripeData leftStripeData = savedLane.loadStripeData("left");
+        StripeData rightStripeData = savedLane.loadStripeData("right");
+        Debug.Log(leftStripeData);
+        Debug.Log(rightStripeData);
+        // if the stripes are not null, load in their data
+        // otherwise, just set their orientation to null
+        if(leftStripeData != null)
+        {
+            // subcase: not sure if we need it, but just in case
+            if(leftStripe != null)
+            {
+                Stripe leftStripeScriptReference = (Stripe)leftStripe.GetComponent("Stripe");
+                leftStripeScriptReference.loadStripeAtts(leftStripeData);
+            }
+            else
+            {
+                Debug.Log("This almost certainly should never happen. INSIDE WEIRD LOADING CASE.");
+            }
+        }
+        else
+        {
+            setStripeOrientation(null, "left");
+        }
+        if(rightStripeData != null)
+        {
+            // again, not sure we need this subcase
+            if(rightStripe != null)
+            {
+                Stripe rightStripeScriptReference = (Stripe)rightStripe.GetComponent("Stripe");
+                rightStripeScriptReference.loadStripeAtts(rightStripeData);
+            }
+            else
+            {
+                Debug.Log("This almost certainly should never happen. INSIDE WEIRD LOADING CASE.");
+            }
+        }
+        else
+        {
+            setStripeOrientation(null, "right");
+        }
     }
 
     // Nathan wrote this

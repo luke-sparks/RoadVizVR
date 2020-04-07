@@ -106,6 +106,14 @@ public class Stripe : MonoBehaviour
     }
 
     // Nathan wrote this
+    // loads a saved stripe's data
+    public void loadStripeAtts(StripeData savedStripe)
+    {
+        // for now, we just need to set the stripe's saved type
+        setStripeType(savedStripe.loadStripeType(), gameObject.transform.position);
+    }
+
+    // Nathan wrote this
     // helper for setStripeType
     // finds the correct stripe type and returns it
     // parameter stripeType is the stripe type we are looking for in the list of

@@ -33,7 +33,7 @@ public static class RoadVizSaveSystem //: MonoBehavior
 
     // Nathan wrote this
     // loads the road from a saved binary file
-    public static RoadData loadRoad()
+    public static RoadData loadRoadFromMemory()
     {
         string loadPath = getDataPath("/road.rvvr");
         if(File.Exists(loadPath))

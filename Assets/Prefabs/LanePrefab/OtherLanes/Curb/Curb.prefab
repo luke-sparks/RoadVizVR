@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &241737392477294327
+--- !u!1 &2270982129863823008
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,102 +8,101 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3237635870817740}
-  - component: {fileID: 4682476099694650420}
-  - component: {fileID: -1122323136737645078}
-  - component: {fileID: 447314448805711074}
-  - component: {fileID: -4257730796901679002}
+  - component: {fileID: 2185867667263995863}
+  - component: {fileID: 530495500670746279}
+  - component: {fileID: -4269761345918932963}
+  - component: {fileID: -2627446336923832265}
+  - component: {fileID: -6357044451902408411}
   m_Layer: 0
-  m_Name: ParkingLane
+  m_Name: Curb
   m_TagString: IsLane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3237635870817740
+--- !u!4 &2185867667263995863
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241737392477294327}
+  m_GameObject: {fileID: 2270982129863823008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 646671688452815486}
+  - {fileID: 3861934985070402172}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4682476099694650420
+--- !u!114 &530495500670746279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241737392477294327}
+  m_GameObject: {fileID: 2270982129863823008}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 898b167e19c1449bb81588a4eee949bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asphalt: {fileID: 646671688452815485}
-  laneIndex: 0
-  laneType: 
-  currentLaneWidth: 2.5
-  maxWidth: 10
-  minWidth: 1
+  asphalt: {fileID: 3861934985070402175}
+  laneType: CurbLane
+  currentLaneWidth: 0.2
+  maxWidth: 4
+  minWidth: 0.1
   leftStripe: {fileID: 0}
   rightStripe: {fileID: 0}
   vehicleLane: 0
-  nonVehicleAsphalt: 1
-  nonAsphalt: 0
---- !u!114 &-1122323136737645078
+  nonVehicleAsphalt: 0
+  nonAsphalt: 1
+--- !u!114 &-4269761345918932963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241737392477294327}
+  m_GameObject: {fileID: 2270982129863823008}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedObject: {fileID: 2275982334405399417}
-  asphalt: {fileID: 646671688452815485}
+  linkedObject: {fileID: 2518850086813971323}
+  asphalt: {fileID: 3861934985070402175}
   laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
     type: 3}
---- !u!114 &447314448805711074
+--- !u!114 &-2627446336923832265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241737392477294327}
+  m_GameObject: {fileID: 2270982129863823008}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d0e00ebe33221444a5d4c49a260bb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentPropPrefab: {fileID: 0}
-  linkedObject: {fileID: 2275982334405399417}
-  asphalt: {fileID: 646671688452815485}
---- !u!114 &-4257730796901679002
+  linkedObject: {fileID: 2518850086813971323}
+  asphalt: {fileID: 3861934985070402175}
+--- !u!114 &-6357044451902408411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241737392477294327}
+  m_GameObject: {fileID: 2270982129863823008}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9e316d309038b64a8e38280d7172a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   props: []
-  asphalt: {fileID: 646671688452815485}
---- !u!1 &646671688452815485
+  asphalt: {fileID: 3861934985070402175}
+--- !u!1 &3861934985070402175
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,15 +110,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 646671688452815486}
-  - component: {fileID: 646671688452815474}
-  - component: {fileID: 646671688452815473}
-  - component: {fileID: 646671688452815472}
-  - component: {fileID: 2275982334405399417}
-  - component: {fileID: 8913504168504493207}
-  - component: {fileID: 5048667104543627066}
-  - component: {fileID: 7614118404871524085}
-  - component: {fileID: 6709882843714539502}
+  - component: {fileID: 3861934985070402172}
+  - component: {fileID: 3861934985070402160}
+  - component: {fileID: 3861934985070402163}
+  - component: {fileID: 3861934985070402162}
+  - component: {fileID: 2518850086813971323}
+  - component: {fileID: 5103152056154383509}
+  - component: {fileID: 8894995101064607544}
+  - component: {fileID: 6110225019725410039}
+  - component: {fileID: 6953386251426312172}
   m_Layer: 0
   m_Name: PrimaryAsphalt
   m_TagString: CanTeleport
@@ -127,35 +126,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &646671688452815486
+--- !u!4 &3861934985070402172
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
+  m_GameObject: {fileID: 3861934985070402175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 0.1, z: 2.5}
+  m_LocalScale: {x: 100, y: 0.35, z: 0.2}
   m_Children: []
-  m_Father: {fileID: 3237635870817740}
+  m_Father: {fileID: 2185867667263995863}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &646671688452815474
+--- !u!33 &3861934985070402160
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
+  m_GameObject: {fileID: 3861934985070402175}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &646671688452815473
+--- !u!23 &3861934985070402163
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
+  m_GameObject: {fileID: 3861934985070402175}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -166,7 +165,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8388342be9c1d744b809c1c672337a9a, type: 2}
+  - {fileID: 2100000, guid: d9eb36ce766d5ce4fb2fe51574003ab8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -187,26 +186,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &646671688452815472
+--- !u!65 &3861934985070402162
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
+  m_GameObject: {fileID: 3861934985070402175}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2275982334405399417
+--- !u!114 &2518850086813971323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
+  m_GameObject: {fileID: 3861934985070402175}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
@@ -233,13 +232,13 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
---- !u!114 &8913504168504493207
+--- !u!114 &5103152056154383509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
+  m_GameObject: {fileID: 3861934985070402175}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
@@ -266,13 +265,13 @@ MonoBehaviour:
   intervalOnUse: 0.05
   cancelOnUnuse: 1
   objectToAffect: {fileID: 0}
---- !u!114 &5048667104543627066
+--- !u!114 &8894995101064607544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
+  m_GameObject: {fileID: 3861934985070402175}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abc4b5dd2be1cea4aaea2850b910d3f9, type: 3}
@@ -286,31 +285,31 @@ MonoBehaviour:
   objectToHighlight: {fileID: 0}
   objectHighlighter: {fileID: 0}
   objectToAffect: {fileID: 0}
---- !u!114 &7614118404871524085
+--- !u!114 &6110225019725410039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
+  m_GameObject: {fileID: 3861934985070402175}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6709882843714539502
+--- !u!114 &6953386251426312172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
+  m_GameObject: {fileID: 3861934985070402175}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lane: {fileID: 241737392477294327}
+  lane: {fileID: 2270982129863823008}
   laneEditPrefab: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
     type: 3}
   road: {fileID: 0}

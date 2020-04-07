@@ -24,4 +24,11 @@ public class StripeData //: MonoBehaviour
             stripeTypes.Add(stripeObj.name);
         }
     }
+
+    // Nathan wrote this
+    // loads the saved stripe's type
+    public string loadStripeType()
+    {
+        return stripeType;
+    }
 }
