@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
 {
-    public void setWorkingReference(GameObject objRef)
+    public void init(GameObject objRef)
     {
         
     }
