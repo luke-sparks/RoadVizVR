@@ -35,7 +35,7 @@ public class ModifyController : MonoBehaviour
 
         // Nathan wrote this
         // code below is for testing saving and loading only
-        /*if(Input.GetKeyDown("l"))
+        if(Input.GetKeyDown("l"))
         {
             bool triggered = false;
             GameObject road = GameObject.Find("Road");
@@ -46,7 +46,7 @@ public class ModifyController : MonoBehaviour
                 roadScriptReference.loadRoad();
             }
             
-        }*/
+        }
     }
 
     private void toggleLaneIneraction()

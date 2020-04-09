@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec3dcd00c5cc4d659a0935f4a6a510d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numStartingLanes: 6
+  numStartingLanes: 4
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
   - {fileID: 5954707031306349717, guid: 97b310af4c15f1e4cb22898e63a55615, type: 3}

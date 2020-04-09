@@ -55,11 +55,7 @@ public class BasicLane : MonoBehaviour
         //       4. adjust the temporary vectors accordingly
         //       5. update the transforms with the new Vector3 values
         // step 1
-       
-        
-        
         Vector3 laneSize = asphalt.transform.localScale;
-
         //Vector3 buttonPos = insertButton.transform.localPosition;
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
@@ -76,12 +72,10 @@ public class BasicLane : MonoBehaviour
         //GetComponent<PropManager>().updateRelationalValues();
         asphalt.transform.localScale = laneSize;
         //GetComponent<PropManager>().repositionProps();
-        
         //Renderer asphaltRenderer = (Renderer)asphalt.GetComponent("Renderer");
         //asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
         //insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
-
         // set new stripe locations
         adjustStripePositions();
     }
@@ -270,20 +264,16 @@ public class BasicLane : MonoBehaviour
     public void loadLaneAtts(LaneData savedLane)
     {
         // just need to reassign each of the lane's attributes (position, width, stripes, etc.)
-        gameObject.transform.localPosition = savedLane.loadLanePosition();
+        // not sure we need position (the lanes will be inserted either way, and should all be
+        // the correct type and in the correct order without resetting this)
+        // also not sure we need to set type, max/min width, or the booleans
+        // as these should all be set properly by inserting the saved lane type
+        // the only true variables are the width and the stripes
         setLaneWidth(savedLane.loadLaneWidth());
-        maxWidth = savedLane.loadMaxWidth();
-        minWidth = savedLane.loadMinWidth();
-        setLaneType(savedLane.loadLaneType());
-        vehicleLane = savedLane.loadIsVehicleLane();
-        nonVehicleAsphalt = savedLane.loadIsNonVehicleAsphaltLane();
-        nonAsphalt = savedLane.loadIsNonAsphaltLane();
         // stripes could be a little more complicated
         // first, load in the data for both stripes
         StripeData leftStripeData = savedLane.loadStripeData("left");
         StripeData rightStripeData = savedLane.loadStripeData("right");
-        Debug.Log(leftStripeData);
-        Debug.Log(rightStripeData);
         // if the stripes are not null, load in their data
         // otherwise, just set their orientation to null
         if(leftStripeData != null)

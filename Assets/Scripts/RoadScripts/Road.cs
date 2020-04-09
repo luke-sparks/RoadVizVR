@@ -40,20 +40,24 @@ public class Road : MonoBehaviour
             currLane = roadLanes.Last.Value;
         }
         setLaneType(roadLanes.First.Value, "Shoulder");
-        //setLaneType(roadLanes.First.Next.Value, "TurnLane");
-        /*setLaneType(roadLanes.First.Next.Next.Value, "Curb");
-        setLaneType(roadLanes.First.Next.Next.Next.Value, "Shoulder");
-        setLaneType(roadLanes.First.Next.Next.Next.Next.Next.Value, "Median");
-        setLaneType(roadLanes.Last.Previous.Previous.Previous.Value, "Shoulder");
+        /*setLaneType(roadLanes.First.Next.Value, "GrassDivision");
+        setLaneType(roadLanes.First.Next.Next.Value, "Curb");
+        setLaneType(roadLanes.First.Next.Next.Next.Value, "ParkingLane");
+        //setLaneType(roadLanes.First.Next.Next.Next.Next.Next.Value, "Median");
+        setLaneType(roadLanes.Last.Previous.Previous.Previous.Value, "ParkingLane");
         setLaneType(roadLanes.Last.Previous.Previous.Value, "Curb");
         setLaneType(roadLanes.Last.Previous.Value, "GrassDivision");*/
         setLaneType(roadLanes.Last.Value, "Shoulder");
+        /*BasicLane testLaneScriptRef = (BasicLane)roadLanes.Last.Previous.Value.GetComponent("BasicLane");
+        BasicLane testLaneScriptRef2 = (BasicLane)roadLanes.First.Next.Next.Next.Value.GetComponent("BasicLane");
+        testLaneScriptRef.setLaneWidth(12f);
+        testLaneScriptRef2.setLaneWidth(1.2f);*/
         //setLaneType(roadLanes.First.Value, "Sidewalk");
         // code below tests saving
         //RoadData data = new RoadData(this);
         //RoadVizSaveSystem.saveRoad(this);
         //saveRoad();
-        loadRoad();
+        //loadRoad();
     }
 
     // Nathan wrote this
@@ -446,34 +450,32 @@ public class Road : MonoBehaviour
         //          c. obtain a reference to the lane's script
         //          d. adjust the lane's stripes if it's not a vehicle lane
         //          e. load the rest of the attributes
-        //      4. remove the last of the old lanes (the ones there before the user pressed 'load')
         // 1. we have to clear whatever else the user has loaded in since the last save
         clearRoad();
         // 2. obtain the saved data
         RoadData roadData = RoadVizSaveSystem.loadRoadFromMemory();
         List<LaneData> savedLanes = roadData.getLaneData();
         // 3. load each of the saved lanes in
+        GameObject currLane = null;
         foreach(LaneData savedLane in savedLanes)
         {
             // 3a: obtain the lane's type
             string loadedLaneType = savedLane.loadLaneType();
             // 3b. find the type and insert it
             GameObject loadedLane = findLaneType(loadedLaneType);
-            insertLane(roadLanes.Last.Value, loadedLaneType, "right");
+            insertLane(currLane, loadedLane, "right");
+            currLane = roadLanes.Last.Value;
             // 3c. obtain a script reference
-            BasicLane loadedLaneScriptReference = (BasicLane)loadedLane.GetComponent("BasicLane");
+            BasicLane loadedLaneScriptReference = (BasicLane)currLane.GetComponent("BasicLane");
             // 3d. adjust stripes
             if(!loadedLaneScriptReference.isVehicleLane())
             {
                 LinkedListNode<GameObject> loadedLaneNode = roadLanes.Last;
                 handleNonVehicleLaneStripes(loadedLaneScriptReference, loadedLaneNode);
             }
-            LinkedListNode<GameObject> loadedLaneNode = roadLanes.Last;
             // 3e. load the rest of the lane's variables
             loadedLaneScriptReference.loadLaneAtts(savedLane);
         }
-        // 4. remove that leftover lane (could not remove it with clearRoad() because of isAtMinSize())
-        removeLane(roadLanes.First.Value);
     }
 
     // Nathan wrote this
@@ -874,19 +876,14 @@ public class Road : MonoBehaviour
         // Note: the reason we cannot use a foreach is because it will throw an
         // exception for removing lanes in a list while iterating through it
         // steps:
-        //      1. create an array to hold the road's lanes
-        //      2. place each lane from the linked list in the array
-        //      3. remove each lane from the environment
-        GameObject[] roadLanesArray = new GameObject[roadLanes.Count];
-        int count = 0;
-        foreach(GameObject g in roadLanes)
+        //      1. clear roadLanes
+        //      2. destroy all the child objects in the road
+        // 1. clear roadLanes
+        roadLanes.Clear();
+        // 2. destroy every object that is a child of the road
+        foreach(Transform child in transform)
         {
-            roadLanesArray[count] = g;
-            count++;
-        }
-        for(int i = 0; i < count; i++)
-        {
-            removeLane(roadLanesArray[i]);
+            Destroy(child.gameObject);
         }
     }
 }
