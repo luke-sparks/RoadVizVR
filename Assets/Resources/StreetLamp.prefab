@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4ea34c2e5018645b367feb26f38866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCenterShift: {x: 0, y: 0, z: 0}
+  spawnCenterShift: {x: 0.17, y: 0, z: -0.09}
   linkedObject: {fileID: 284214518301870286}
 --- !u!114 &284214518301870286
 MonoBehaviour:

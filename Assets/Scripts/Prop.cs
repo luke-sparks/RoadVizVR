@@ -90,6 +90,7 @@ public class Prop : MonoBehaviour
         {
             rotateCCW();
         }
+        Debug.Log("the center of the object is: " + centerPointObj.transform.localPosition);
     }
 
     /*public void deleteProp()

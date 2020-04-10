@@ -19,13 +19,13 @@ public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
     public void handleButtonTwoPress()
     {
         Debug.Log("Button Two Pressed");
-        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.Cylinder);
+        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.TrafficCone);
     }
 
     public void handleButtonThreePress()
     {
         Debug.Log("Button Three Pressed");
-        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.Sphere);
+        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.ConcreteBarrier);
     }
 
     public void handleClose()
