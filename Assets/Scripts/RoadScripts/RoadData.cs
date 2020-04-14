@@ -7,12 +7,9 @@ using UnityEngine;
 [System.Serializable]
 public class RoadData //: MonoBehaviour
 {
-    // class variables
-    /*private float MAX_WIDTH;
-    private int MAX_LANES;
-    private int MIN_LANES;*/
-    private string stripeContainerName;
-    private List<string> laneTypes = new List<string>();
+    // class fields
+    private int buildingsIndex;
+    private float fogDistance;
     private List<LaneData> laneData = new List<LaneData>();
 
     // Nathan wrote this
@@ -20,22 +17,14 @@ public class RoadData //: MonoBehaviour
     // road is the road object in the development environment
     public RoadData(Road road)
     {
-        // store the constants
-        /*MAX_WIDTH = road.getMaxWidth();
-        MAX_LANES = road.getMaxLanes();
-        MIN_LANES = road.getMinLanes();*/
-        // store the more complicated variables
-        // Note: we may not actually need stripe container or laneTypes
-        GameObject stripeContainer = road.getStripeContainer();
-        List<GameObject> laneTypeObjects = road.getLaneTypes();
+        // store the environment as an EnvironmentData variable
+        Buildings buildingScriptReference = road.getBuildingsReference();
+        buildingsIndex = buildingScriptReference.getBuildingIndex();
+        // store the fog variables
+        FogControl fogControlScriptReference = road.getFogControl();
+        fogDistance = fogControlScriptReference.getFogDistance();
+        // store the lanes as a list of LaneData
         LinkedList<GameObject> roadLanes = road.getLanes();
-        // store the stripe container as a string
-        stripeContainerName = stripeContainer.name;
-        // store the lane types as strings
-        foreach(GameObject obj in laneTypeObjects)
-        {
-            laneTypes.Add(obj.name);
-        }
         // store the lanes
         foreach (GameObject lane in roadLanes)
         {
@@ -51,5 +40,19 @@ public class RoadData //: MonoBehaviour
     public List<LaneData> getLaneData()
     {
         return laneData;
+    }
+
+    // Nathan wrote this
+    // loads the saved environment data
+    public int loadBuildingsIndex()
+    {
+        return buildingsIndex;
+    }
+
+    // Nathan wrote this
+    // loads the saved fog distance
+    public float loadFogDistance()
+    {
+        return fogDistance;
     }
 }

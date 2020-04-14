@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fogControl : MonoBehaviour
+public class FogControl : MonoBehaviour
 {
     //NOTE: the fog distance must be a float to work internally with unity's renderer
 
@@ -17,21 +17,21 @@ public class fogControl : MonoBehaviour
     [SerializeField] float fogShiftAmt;
 
     //Default setting for fogDistance is 85.
-    void Start()
+    /*void Start()
     {
-        setFogDistance(75);
-    }
+        //setFogDistance(75);
+    }*/
 
     //Changes the render settings of the fog and the variable according
     //to the fog input.
-    void setFogDistance(float inputFogDistance)
+    public void setFogDistance(float inputFogDistance)
     {
         fogDistance = inputFogDistance;
         RenderSettings.fogStartDistance = fogDistance;
         RenderSettings.fogEndDistance = fogDistance + fogShiftAmt;
     }
     //Gets the fog distance from the user.
-    float getFogDistance()
+    public float getFogDistance()
     {
         return fogDistance;
     }

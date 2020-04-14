@@ -25,6 +25,7 @@ public class Road : MonoBehaviour
     //[SerializeField] private float currentWidth;
     //Buildings reference is manually assigned
     [SerializeField] private GameObject buildingsReference;
+    [SerializeField] private GameObject fogController;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +34,8 @@ public class Road : MonoBehaviour
         StartCoroutine(LateStart());
         //Assign the building reference (manual assignment seems bugged for unknown reasons)
         buildingsReference = GameObject.Find("buildings");
+        //updateBuildings();
     }
-
     //Written by Max
     //A coroutine which simply calls the update of buildings on a delay until after runtime.
     //This is because of the fact that the bounds for buildings require the road to be loaded first,
@@ -73,14 +74,6 @@ public class Road : MonoBehaviour
         BasicLane testLaneScriptRef2 = (BasicLane)roadLanes.First.Next.Next.Next.Value.GetComponent("BasicLane");
         testLaneScriptRef.setLaneWidth(12f);
         testLaneScriptRef2.setLaneWidth(1.2f);*/
-        //setLaneType(roadLanes.First.Value, "Sidewalk");
-        // code below tests saving
-        //RoadData data = new RoadData(this);
-        //RoadVizSaveSystem.saveRoad(this);
-        //saveRoad();
-        //loadRoad();
-        //Debug.Log("Hi");
-
         //Updates buildings
         //updateBuildings();
     }
@@ -89,7 +82,15 @@ public class Road : MonoBehaviour
     //Simply acesses the buildings reference and then updates their position
     private void updateBuildings()
     {
-        buildingsReference.GetComponent<buildings>().updateBuildingPosition();
+        // Nathan added this if else
+        if(buildingsReference != null)
+        {
+            buildingsReference.GetComponent<Buildings>().updateBuildingPosition();
+        }
+        else
+        {
+            Debug.Log("No buildings exist yet");
+        }
     }
 
     //Written by Max
@@ -228,8 +229,6 @@ public class Road : MonoBehaviour
             Destroy(targetLane);
             // 8. reset the stripes of the remaining lanes
             resetStripes(leftNeighborScriptReference, rightNeighborScriptReference);
-            // Update position of buildings
-            //updateBuildings();
         }
         else
         {
@@ -420,10 +419,6 @@ public class Road : MonoBehaviour
         {
             handleNonVehicleLaneStripes(newLaneScript, newLaneNode);
         }
-        /*else 
-        {
-            handleVehicleLaneStripes(newLaneScript, newLaneNode);
-        }*/
     }
 
     // Nathan wrote this
@@ -470,6 +465,20 @@ public class Road : MonoBehaviour
     public GameObject getStripeContainer()
     {
         return stripeContainer;
+    }
+
+    // Nathan wrote this
+    // retrieves the fog control script
+    public FogControl getFogControl()
+    {
+        return (FogControl)fogController.GetComponent("FogControl");
+    }
+
+    // Nathan wrote this
+    // retrieves the buildings reference
+    public Buildings getBuildingsReference()
+    {
+        return (Buildings)buildingsReference.GetComponent("Buildings");
     }
 
     // checks to make sure that the lane object parameter
@@ -546,6 +555,13 @@ public class Road : MonoBehaviour
             // 3e. load the rest of the lane's variables
             loadedLaneScriptReference.loadLaneAtts(savedLane);
         }
+        // 4. load the saved environment
+        Buildings buildingsScriptReference = (Buildings)buildingsReference.GetComponent("Buildings");
+        buildingsScriptReference.setBuildingType(roadData.loadBuildingsIndex());
+        updateBuildings();
+        // 5. load the saved fog settings
+        FogControl fogControlScriptReference = (FogControl)fogController.GetComponent("FogControl");
+        fogControlScriptReference.setFogDistance(roadData.loadFogDistance());
     }
 
     // Nathan wrote this

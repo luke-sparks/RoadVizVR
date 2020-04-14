@@ -35,6 +35,12 @@ public class ModifyController : MonoBehaviour
 
         // Nathan wrote this
         // code below is for testing saving and loading only
+        if(Input.GetKeyDown("k"))
+        {
+            GameObject road = GameObject.Find("Road");
+            Road roadScriptReference = (Road)road.GetComponent("Road");
+            roadScriptReference.saveRoad();
+        }
         if(Input.GetKeyDown("l"))
         {
             bool triggered = false;
