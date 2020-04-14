@@ -23,6 +23,18 @@ public class BasicLane : MonoBehaviour
     [SerializeField] protected bool vehicleLane;
     [SerializeField] protected bool nonVehicleAsphalt;
     [SerializeField] protected bool nonAsphalt;
+    [SerializeField] protected bool isTurn;
+
+    //The direction of the turn
+    //0 is from negative z to positive z
+    //1 is from positive z to negative z
+    //Does nothing if isTurn is false!
+    [SerializeField] protected int turnDirection = 1;
+
+    //The direction of the lane
+    //0 means from positive to negative x,
+    //1 means from negative to positive x
+    [SerializeField] private int direction = 0; //Zero by default
 
     protected GameObject road;
     protected Road roadScript;
@@ -38,6 +50,57 @@ public class BasicLane : MonoBehaviour
 
         road = GameObject.Find("Road");
         roadScript = (Road)road.GetComponent("Road");
+    }
+
+    //Gets the turn status of the road, so lets you understand if it is a turning lane.
+    public bool getTurn()
+    {
+        return isTurn;
+    }
+
+    //Max wrote this
+    //gets the current turn of the lane
+    //a 0 is to the left, a 1 is to the right.
+    public int getTurnDirection()
+    {
+        return turnDirection;
+    }
+
+    // Max wrote this
+    // changes the direction of the lane's traffic 
+    // (meaning the way in which a spawned vehicle will move), as well as the direction
+    // (that signs point)
+    // will also set the direction of the signs
+    public void setDirection(int newDirection, int newTurnDirection)
+    {
+        //If it is a valid direction specified for both variables
+        if ((newDirection == 1 || newDirection == 0) && (newTurnDirection == 1 || newTurnDirection == 0))
+        {
+            //Update the directional variable
+            direction = newDirection;
+
+            //Update the sign, which is a child, first by finding it, then by running its update.
+            GameObject signReference = this.transform.Find("sign").gameObject;
+            signReference.GetComponent<signDirection>().updateRotation();
+        }
+
+        //If the direction is invalid
+        else
+        {
+            Debug.Log("Error. Bad direction given in setDirection, within basicLane!");
+        }
+    }
+
+    private void Update()
+    {
+        setDirection(direction, turnDirection);
+    }
+
+    // Nathan wrote this
+    // retrieves the direction of the lane
+    public int getDirection()
+    {
+        return direction;
     }
 
     // setLaneWidth() sets the width of a lane
