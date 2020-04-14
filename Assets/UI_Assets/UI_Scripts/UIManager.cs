@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
 
         if (ui != null)
         {
-            ui.setWorkingReference(objRefs);
+            ui.init(objRefs);
         } else
         {
             Debug.LogError("Expected UI object as ISceneUIMenu type, but did not get it.");

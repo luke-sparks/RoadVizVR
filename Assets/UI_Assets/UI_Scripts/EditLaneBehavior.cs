@@ -15,7 +15,7 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
 
     //private Lane workingLane;
 
-    public void setWorkingReference(GameObject[] laneRefs)
+    public void init(GameObject[] laneRefs)
     {
         Debug.Assert(laneRefs.Length == 1);
 
@@ -27,6 +27,14 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
             Debug.Log("Tried to set working reference, but failed.");
         }
         updateWidthField();
+
+        resolveButtonActivationStates();
+    }
+
+    private void resolveButtonActivationStates()
+    {
+        Road rd = GameObject.Find("Road").GetComponent<Road>();
+        gameObject.transform.Find("Delete").GetComponent<Button>().interactable = !rd.isAtMinSize();
     }
 
     // Provides a check that we have a lane to reference before proceding
