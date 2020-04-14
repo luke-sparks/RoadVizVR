@@ -1,4 +1,4 @@
-﻿// Road.cs
+// Road.cs
 // class that defines the behavior of the road
 using System.Collections;
 using System.Collections.Generic;
@@ -23,13 +23,34 @@ public class Road : MonoBehaviour
     //[SerializeField] private Vector3 lanePosition;
     //[SerializeField] private float defaultShift;
     //[SerializeField] private float currentWidth;
+    //Buildings reference is manually assigned
+    [SerializeField] private GameObject buildingsReference;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Start a coroutine to delay the updating of the buildings and lane insertions.
+        StartCoroutine(LateStart());
+        //Assign the building reference (manual assignment seems bugged for unknown reasons)
+        buildingsReference = GameObject.Find("buildings");
+    }
+
+    //Written by Max
+    //A coroutine which simply calls the update of buildings on a delay until after runtime.
+    //This is because of the fact that the bounds for buildings require the road to be loaded first,
+    //However since the Road is loaded first, you need to delay the initial update
+    //For the very first update call as well as lane insertions. If it is not delayed, the
+    //Road will be calling a building script which does not yet exist. However, the road must be present
+    //To begin with in order for the bounds of the environment to properly intiailize by grabbing
+    //a reference to the road.
+    IEnumerator LateStart()
+    {
+        //Waits until the end of the first frame
+        yield return new WaitForEndOfFrame();
 
         // initialize an empty linked list for lanes in road
         roadLanes = new LinkedList<GameObject>();
+        // Nathan moved the new Start() code from development into this function
         // insert all of the starting lanes in the road
         LinkedListNode<GameObject> currLaneNode = null;
         GameObject currLane = null;
@@ -58,6 +79,48 @@ public class Road : MonoBehaviour
         //RoadVizSaveSystem.saveRoad(this);
         //saveRoad();
         //loadRoad();
+        //Debug.Log("Hi");
+
+        //Updates buildings
+        //updateBuildings();
+    }
+
+    //Written by Max
+    //Simply acesses the buildings reference and then updates their position
+    private void updateBuildings()
+    {
+        buildingsReference.GetComponent<buildings>().updateBuildingPosition();
+    }
+
+    //Written by Max
+    //Returns the bounds of the entire road using the children.
+    //Steps: 1. Iterate over all the children
+    //       2. Encapsulate the children within the bounds
+    //       3. Return the final bounds object
+    //       4. If there is nothing, return an empty object.
+    public Bounds GetRendererBounds()
+    {
+        //Retrieves a list of all children of the object.
+        Renderer[] renderers = this.GetComponentsInChildren<Renderer>();
+
+        //Iterate if there are children
+        if (renderers.Length > 0)
+        {
+            //Initialize bounds object then loop over others.
+            Bounds bounds = renderers[0].bounds;
+            for (int i = 1, ni = renderers.Length; i < ni; i++)
+            {
+                //Encapsulate children within the bounds object
+                bounds.Encapsulate(renderers[i].bounds);
+            }
+            Debug.Log("INSIDE GET RENDER BOUNDS");
+            Debug.Log(bounds.size);
+            return bounds;
+        }
+        else
+        {
+            return new Bounds();
+        }
     }
 
     // Nathan wrote this
@@ -113,14 +176,14 @@ public class Road : MonoBehaviour
             Transform newAsphaltTransform = newLane.transform.Find("PrimaryAsphalt");
             float newLaneZScale = newAsphaltTransform.localScale.z;
 
-            Debug.Log("inserted new lane on " + side + " the lanes position is: " + newLane.transform.position);
+            //Debug.Log("inserted new lane on " + side + " the lanes position is: " + newLane.transform.position);
 
             adjustRoadAroundLane(newLane, newLaneZScale / 2);
             setStripes(newLane);
         }
         else
         {
-            Debug.Log("This is not a lane or road is too large");
+            //Debug.Log("This is not a lane or road is too large");
         }
     }
 
@@ -158,16 +221,19 @@ public class Road : MonoBehaviour
             Destroy(targetLaneScriptReference.getStripe("right"));
             // 5. shift the rest of the lanes inward
             shiftLanesIn(targetLane, targetLaneWidth);
+            //adjustRoadAroundLane(targetLane, -(targetLaneWidth / 2));
             // 6. remove lane from list
             roadLanes.Remove(targetLane);
             // 7. destroy the game object
             Destroy(targetLane);
             // 8. reset the stripes of the remaining lanes
             resetStripes(leftNeighborScriptReference, rightNeighborScriptReference);
+            // Update position of buildings
+            //updateBuildings();
         }
         else
         {
-            Debug.Log("Road is already at minimum size.");
+            //Debug.Log("Road is already at minimum size.");
         }
     }
 
@@ -175,7 +241,7 @@ public class Road : MonoBehaviour
     // used for inserting lanes (insertLaneAfter)
     // shifts lanes to the left if they are going to be to the left of the new lane
     // shifts lanes to the right if they are going to be to the right of the new lane
-    public void shiftLanesAfter(GameObject currLane, float newLaneSize)
+    /*public void shiftLanesAfter(GameObject currLane, float newLaneSize)
     {
         // variable to let us know we've found the lane
         bool foundLane = false;
@@ -204,13 +270,14 @@ public class Road : MonoBehaviour
                 foundLane = true;
             }
         }
-    }
+        updateBuildings();
+    }*/
 
     // Nathan wrote this (basically just Luke's shiftLanesAfter but reversed)
     // used for inserting lanes (insertLaneBefore)
     // shifts lanes to the left if they are going to be to the left of the new lane
     // shifts lanes to the right if they are going to be to the right of the new lane
-    public void shiftLanesBefore(GameObject currLane, float newLaneSize)
+    /*public void shiftLanesBefore(GameObject currLane, float newLaneSize)
     {
         // variable to let us know we've found the lane
         bool foundLane = false;
@@ -239,7 +306,8 @@ public class Road : MonoBehaviour
                 laneScript.setLanePosition(newLaneSize / 2);
             }
         }
-    }
+        updateBuildings();
+    }*/
 
     // Nathan wrote this
     // used to shift lanes back in after a deletion
@@ -313,6 +381,8 @@ public class Road : MonoBehaviour
                 //laneScript.setStripeOrientation(rightStripe, "right");
             }
         }
+        //Update position of buildings
+        updateBuildings();
     }
 
     // Nathan wrote this
@@ -626,7 +696,7 @@ public class Road : MonoBehaviour
         //      case 1: this case should not happen (you can't reset the stripes of the last lane in the road) 
         if (leftScript == null && rightScript == null)
         {
-            Debug.Log("Nothing should happen");
+            //Debug.Log("Nothing should happen");
         }
         //      case 2: there is a left neighbor but no right neighbor
         else if (leftScript != null && rightScript == null)
@@ -642,7 +712,7 @@ public class Road : MonoBehaviour
             // otherwise no action is necessary
             else
             {
-                Debug.Log("Deleting to the right of a non-asphalt lane");
+                //Debug.Log("Deleting to the right of a non-asphalt lane");
             }
         }
         //      case 3: there is a right neighbor but no left neighbor
@@ -659,7 +729,7 @@ public class Road : MonoBehaviour
             // otherwise no action is necessary
             else
             {
-                Debug.Log("Deleting to the left of a non-asphalt lane");
+                //Debug.Log("Deleting to the left of a non-asphalt lane");
             }
         }
         //      case 4: there are both left and right neighbors
@@ -678,7 +748,7 @@ public class Road : MonoBehaviour
             // otherwise no action is necessary
             else
             {
-                Debug.Log("Deleting between two lanes, one of which is a non-asphalt lane");
+                //Debug.Log("Deleting between two lanes, one of which is a non-asphalt lane");
             }
         }
     }
@@ -751,7 +821,7 @@ public class Road : MonoBehaviour
                 if(leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane()) 
                 {
                     // leave the stripes out if both neighbors are a non-asphalt lane
-                    Debug.Log("Rare but maybe important case: both neighbors of a non-vehicle asphalt lane are non-asphalt");
+                    //Debug.Log("Rare but maybe important case: both neighbors of a non-vehicle asphalt lane are non-asphalt");
                 }
                 // case b: only the left neighbor is an asphalt lane
                 else if(!leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane()) 
@@ -823,12 +893,12 @@ public class Road : MonoBehaviour
                     rightStripeScriptReference.setStripeType("ThickWhite", stripePos);
                 }
                 // 4. set the orientations
-                Debug.Log(newLaneScript.getStripe("left"));
+                //Debug.Log(newLaneScript.getStripe("left"));
             }
             else 
             {
-                Debug.Log("Invalid lane type");
-                //Debug.Log(newLaneScript.getLaneType());
+                //Debug.Log("Invalid lane type");
+                ////Debug.Log(newLaneScript.getLaneType());
             }
         }
     }*/

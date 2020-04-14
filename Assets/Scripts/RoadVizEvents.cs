@@ -67,7 +67,7 @@ public class RoadVizEvents : MonoBehaviour
             // reference script that controls the road's behavior
             Road roadScript = (Road)road.GetComponent("Road");
             // adjust the lane positions around the lane we are modifying
-            roadScript.shiftLanesAfter(lane, 3.3f);
+            //roadScript.shiftLanesAfter(lane, 3.3f);
 
             obj.transform.localScale = new Vector3(98, 2, 4);
             obj.transform.localPosition += new Vector3(0, 0, 1.65f);
@@ -83,7 +83,7 @@ public class RoadVizEvents : MonoBehaviour
             // reference script that controls the road's behavior
             Road roadScript = (Road)road.GetComponent("Road");
             // adjust the lane positions around the lane we are modifying
-            roadScript.shiftLanesAfter(lane, -3.3f);
+            //roadScript.shiftLanesAfter(lane, -3.3f);
 
             obj.transform.localScale = new Vector3(98, 0.1f, .75f);
             obj.transform.localPosition += new Vector3(0, 0, -1.65f);

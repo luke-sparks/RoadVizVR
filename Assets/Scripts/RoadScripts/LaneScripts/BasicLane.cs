@@ -23,9 +23,8 @@ public class BasicLane : MonoBehaviour
     [SerializeField] protected bool vehicleLane;
     [SerializeField] protected bool nonVehicleAsphalt;
     [SerializeField] protected bool nonAsphalt;
-
-    protected GameObject road;
-    protected Road roadScript;
+    [SerializeField] protected GameObject road;
+    [SerializeField] protected Road roadScript;
 
     // Nathan inserted start so we could use road functions more easily
     void Start()

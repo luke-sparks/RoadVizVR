@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ISceneUIMenu
 {
-    void setWorkingReference(GameObject objRef);
+    void init(GameObject objRef);
 }
