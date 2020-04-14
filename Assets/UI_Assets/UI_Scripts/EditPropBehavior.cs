@@ -25,6 +25,16 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
         Debug.Log("Delete Button Pressed");
     }
 
+    public void handleRotateCCW()
+    {
+        Debug.Log("CCW Button Pressed");
+    }
+
+    public void handleRotateCW()
+    {
+        Debug.Log("CW Button Pressed");
+    }
+
     public void handleClose()
     {
         UIManager.Instance.closeCurrentUI();
