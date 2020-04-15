@@ -1,7 +1,7 @@
 ﻿// RoadVizSaveSystem.cs
-//using System.Collections;
-//using System.Collections.Generic;
+// converts unity data to binary file
 using UnityEngine;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -19,7 +19,7 @@ public static class RoadVizSaveSystem //: MonoBehavior
         // create a binary formatter for file conversion
         BinaryFormatter roadFormatter = new BinaryFormatter();
         // create a path so we know where our saved file is being stored
-        string savePath = getDataPath("/road.rvvr");
+        string savePath = getDataPath("/" + getFileDate() + ".rvvr");
         Debug.Log(savePath);
         // create a file stream to save our file
         FileStream roadStream = new FileStream(savePath, FileMode.Create);
@@ -35,6 +35,7 @@ public static class RoadVizSaveSystem //: MonoBehavior
     // loads the road from a saved binary file
     public static RoadData loadRoadFromMemory()
     {
+        // Note for Kasey: you must change the line below to alter which file is loaded
         string loadPath = getDataPath("/road.rvvr");
         if(File.Exists(loadPath))
         {
@@ -61,5 +62,34 @@ public static class RoadVizSaveSystem //: MonoBehavior
     private static string getDataPath(string endOfPath)
     {
         return Application.persistentDataPath + endOfPath;
+    }
+
+    // Nathan wrote this
+    // returns the current date for the file name
+    private static string getFileDate()
+    {
+        // first, get the current date and time
+        DateTime fileDate = DateTime.Now;
+        // next, cast the date as a string
+        string dateString = fileDate.ToString();
+        // finally, remove problematic characters from the string (e.g. '/' because it will
+        // think you are trying to create a new directory)
+        string replacementDate = "";
+        for(int i = 0; i < dateString.Length; i++)
+        {
+            if(dateString[i] == '/')
+            {
+                replacementDate += '-';
+            }
+            else if(dateString[i] == ':')
+            {
+                replacementDate += '_';
+            }
+            else
+            {
+                replacementDate += dateString[i];
+            }
+        }
+        return replacementDate;
     }
 }
