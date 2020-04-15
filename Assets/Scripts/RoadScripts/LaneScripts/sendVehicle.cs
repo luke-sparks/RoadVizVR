@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,7 +37,7 @@ public class sendVehicle : MonoBehaviour
     //    -Use them to construct targets and instantiate the vehicle based on direction
     //    -Make the target invisible
     // Once the proper vehicles and targets are instantiated, the update() function takes over.
-    void sendVehicleDownLane(int userInputMPH, GameObject lane)
+    public void sendVehicleDownLane(int userInputMPH, GameObject lane)
     {
         //--- GATHERING REFERENCES ---
         //Get the BasicLane component
@@ -130,7 +130,7 @@ public class sendVehicle : MonoBehaviour
     //Updates the current vehicle from the user-defined settings in VehicleLane.cs.
     //This is required to translate the user's specification of the vehicle in string form
     //to the actual model that is being used. Designed to be called in sendVehicleDownLane.
-    void updateCurrentVehicle(string inputVehicle)
+    public void updateCurrentVehicle(string inputVehicle)
     {
         //Use the string to set the appropriate model
         if      (inputVehicle == "bike")  { currentVehicle = bikeReference; }
@@ -149,7 +149,7 @@ public class sendVehicle : MonoBehaviour
     //Returns the current vehicle as a string, such that the UI or other elements
     //can inform the user which vehicle they have selected.
     //Returns "error" if there is an error.
-    string getCurrentVehicle()
+    public string getCurrentVehicle()
     {
         //Judges what the current vehicle is, then returns the string accordingly.
         if      (currentVehicle == bikeReference)  { return "bike"; }
@@ -164,26 +164,17 @@ public class sendVehicle : MonoBehaviour
         }
     }
 
-
-    //FOR TESTING ONLY, SENDS A VEHICLE DOWN THE LANE
-    //This can be used as an example of its use.
-    /*private void Start()
+    //Max wrote this
+    //Will tell the user whether or not a vehicle is currently being sent down the lane.
+    public bool getSendingStatus()
     {
-        GameObject theLane = GameObject.Find("VehicleLane");
-
-        setDirection(1);
-        updateCurrentVehicle("bike");
-        Debug.Log(getCurrentVehicle());
-        Debug.Log(getDirection());
-        sendVehicleDownLane(30, theLane);
+        return sendingStatus;
     }
-    */
-    
 
     //Update runs once every frame
     //In order to optimize, only checks booleans every frame when not conducting motion.
     void Update()
-    {   
+    {
         //ONLY send the vehicle down the lane AFTER the vehicle has been initialized.
         if (sendingStatus && instance != null)
         {
