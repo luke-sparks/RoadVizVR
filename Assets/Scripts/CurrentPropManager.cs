@@ -9,8 +9,9 @@ public class CurrentPropManager : MonoBehaviour
 
     private Transform oldPropTransform;
     private PropManager oldPropManagerRef;
+    private int oldPropRotation;
 
-    private int rotation = 0;
+    private int currentPropRotation = 0;
 
     private List<string> propNames;
 
@@ -88,6 +89,30 @@ public class CurrentPropManager : MonoBehaviour
         return propBeingMoved;
     }
 
+
+
+    public void rotateCW()
+    {
+        currentPropRotation = (currentPropRotation + 1) % 8;
+    }
+
+    public void rotateCCW()
+    {
+        currentPropRotation = (currentPropRotation - 1) % 8;
+    }
+
+    public int getRotation()
+    {
+        return currentPropRotation;
+    }
+
+    public void setRotation(int rot)
+    {
+        currentPropRotation = rot;
+    }
+
+
+
     public void setCurrentPropObj(GameObject prop)
     {
         // clean this of an instantiated prop so we can delete/move etc and not lose the type of prop
@@ -115,6 +140,7 @@ public class CurrentPropManager : MonoBehaviour
     {
         oldPropTransform = prop.transform;
         oldPropManagerRef = propManagerScriptRef;
+        oldPropRotation = prop.GetComponent<Prop>().getRotation();
         setCurrentPropObj(prop);
         oldPropManagerRef.removeProp(prop);
 
@@ -124,8 +150,7 @@ public class CurrentPropManager : MonoBehaviour
     public GameObject revertMovedProp()
     {
         setPropBeingMoved(false);
-
-        return oldPropManagerRef.addProp(CurrentPropManager.Instance.getCurrentPropObj(), oldPropTransform);
+        return oldPropManagerRef.addProp(CurrentPropManager.Instance.getCurrentPropObj(), oldPropTransform.position);
     }
 
     public GameObject getCurrentPropObj()

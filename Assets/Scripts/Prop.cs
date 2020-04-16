@@ -7,18 +7,20 @@ public class Prop : MonoBehaviour
 {
     // value from (0,1), indicates where in the lane the prop resides unrelated to the absolute lane size
     private float relationalZPosition;
-    private Vector3 centerPoint;
 
     private GameObject centerPointObj;
 
+    private int propRotation = 0;
 
     [SerializeField] protected Vector3 spawnCenterShift = new Vector3(0,0,0);
 
     void Start()
     {
-        centerPoint = new Vector3(gameObject.transform.position.x + spawnCenterShift.x, gameObject.transform.position.y + spawnCenterShift.y, gameObject.transform.position.z + spawnCenterShift.z);
-        centerPointObj = (GameObject)Instantiate(Resources.Load("CenterPointObj"), centerPoint, Quaternion.identity);
+        centerPointObj = (GameObject)Instantiate(Resources.Load("CenterPointObj"), gameObject.transform.position + spawnCenterShift, Quaternion.identity);
         centerPointObj.transform.SetParent(gameObject.transform);
+
+        propRotation = CurrentPropManager.Instance.getRotation();
+        rotateToPoint();
     }
 
     public float getXShift()
@@ -34,6 +36,11 @@ public class Prop : MonoBehaviour
     public float getZShift()
     {
         return spawnCenterShift.z;
+    }
+
+    public Vector3 getCenterShift()
+    {
+        return spawnCenterShift;
     }
 
     // sets new z position based on relational value
@@ -72,12 +79,33 @@ public class Prop : MonoBehaviour
     public void rotateCW()
     {
         gameObject.transform.RotateAround(centerPointObj.transform.position, Vector3.up, 45);
+        propRotation = (propRotation + 1) % 8;
+        CurrentPropManager.Instance.setRotation(propRotation);
     }
 
     // rotates 45 degrees CCW
     public void rotateCCW()
     {
         gameObject.transform.RotateAround(centerPointObj.transform.position, Vector3.up, -45);
+        propRotation = (propRotation - 1) % 8;
+        CurrentPropManager.Instance.setRotation(propRotation);
+    }
+
+    public void rotateToPoint()
+    {
+        gameObject.transform.rotation = Quaternion.identity;
+        gameObject.transform.RotateAround(centerPointObj.transform.position, Vector3.up, 45 * propRotation);
+        CurrentPropManager.Instance.setRotation(propRotation);
+    }
+
+    public int getRotation()
+    {
+        return propRotation;
+    }
+
+    public void setRotation(int rot)
+    {
+        propRotation = rot;
     }
 
     void Update()
@@ -90,7 +118,7 @@ public class Prop : MonoBehaviour
         {
             rotateCCW();
         }
-        Debug.Log("the center of the object is: " + centerPointObj.transform.localPosition);
+        //Debug.Log("prop position rotated : " + gameObject.transform.position.ToString("F5"));
     }
 
     /*public void deleteProp()
