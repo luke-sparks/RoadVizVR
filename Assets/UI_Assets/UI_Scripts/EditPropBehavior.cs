@@ -6,7 +6,8 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
 {
     private GameObject propRef;
     private PropManager propManagerScript;
-    public void setWorkingReference(GameObject objRef)
+
+    public void init(GameObject objRef)
     {
         propRef = objRef;
         propManagerScript = propRef.GetComponent<Prop>().getPropManager();
@@ -78,6 +79,16 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
         CurrentPropManager.Instance.setPropBeingMoved(false);
 
         UIManager.Instance.closeCurrentUI();
+    }
+
+    public void handleRotateCCW()
+    {
+        Debug.Log("CCW Button Pressed");
+    }
+
+    public void handleRotateCW()
+    {
+        Debug.Log("CW Button Pressed");
     }
 
     public void handleClose()
