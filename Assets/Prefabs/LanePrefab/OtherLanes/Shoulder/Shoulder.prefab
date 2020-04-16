@@ -57,6 +57,8 @@ MonoBehaviour:
   vehicleLane: 0
   nonVehicleAsphalt: 1
   nonAsphalt: 0
+  road: {fileID: 0}
+  roadScript: {fileID: 0}
 --- !u!114 &-2961013818869566810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8388342be9c1d744b809c1c672337a9a, type: 2}
+  - {fileID: 2100000, guid: 61c980f6cc391ee44b4bbce203a84dd8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
