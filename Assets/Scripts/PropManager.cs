@@ -16,8 +16,6 @@ public class PropManager : MonoBehaviour
         newProp.transform.SetParent(gameObject.transform);
         props.Add(newProp);
 
-        CurrentPropManager.Instance.setPropBeingMoved(false);
-
         return newProp;
     }
 

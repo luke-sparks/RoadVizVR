@@ -25,7 +25,6 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
             init(propRef);
         }
 
-        CurrentPropManager.Instance.setCurrentPropObj(propRef);
         CurrentPropManager.Instance.startMovingProp(propRef, propManagerScript);
 
         //setWorkingReference(CurrentPropManager.Instance.getCurrentPropObj());

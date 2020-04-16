@@ -7,7 +7,7 @@ public class CurrentPropManager : MonoBehaviour
     private Object currentPropObj;
     private bool propBeingMoved = false;
 
-    private Transform oldPropTransform;
+    private Vector3 oldPropPosition;
     private PropManager oldPropManagerRef;
     private int oldPropRotation;
 
@@ -138,19 +138,19 @@ public class CurrentPropManager : MonoBehaviour
 
     public void startMovingProp(GameObject prop, PropManager propManagerScriptRef)
     {
-        oldPropTransform = prop.transform;
+        setPropBeingMoved(true);
+
+        oldPropPosition = prop.transform.position;
         oldPropManagerRef = propManagerScriptRef;
         oldPropRotation = prop.GetComponent<Prop>().getRotation();
         setCurrentPropObj(prop);
         oldPropManagerRef.removeProp(prop);
-
-        setPropBeingMoved(true);
     }
 
     public GameObject revertMovedProp()
     {
         setPropBeingMoved(false);
-        return oldPropManagerRef.addProp(CurrentPropManager.Instance.getCurrentPropObj(), oldPropTransform.position);
+        return oldPropManagerRef.addProp(CurrentPropManager.Instance.getCurrentPropObj(), oldPropPosition);
     }
 
     public GameObject getCurrentPropObj()
