@@ -13,31 +13,6 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
         propManagerScript = propRef.GetComponent<Prop>().getPropManager();
     }
 
-    public void handleCW()
-    {
-        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
-        {
-            CurrentPropManager.Instance.rotateCW();
-        }
-        else
-        {
-            propRef.GetComponent<Prop>().rotateCW();
-        }
-            
-    }
-
-    public void handleCCW()
-    {
-        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
-        {
-            CurrentPropManager.Instance.rotateCCW();
-        }
-        else
-        {
-            propRef.GetComponent<Prop>().rotateCCW();
-        }
-    }
-
     public void handleMove()
     {
         Debug.Log("Move Button Pressed");
@@ -47,7 +22,7 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
         if (CurrentPropManager.Instance.getPropBeingMoved() == true)
         {
             propRef = CurrentPropManager.Instance.revertMovedProp();
-            setWorkingReference(propRef);
+            init(propRef);
         }
 
         CurrentPropManager.Instance.setCurrentPropObj(propRef);
@@ -65,7 +40,7 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
         if (CurrentPropManager.Instance.getPropBeingMoved() == true)
         {
             propRef = CurrentPropManager.Instance.revertMovedProp();
-            setWorkingReference(propRef);
+            init(propRef);
         }
         CurrentPropManager.Instance.setCurrentPropObj(propRef);
     }
@@ -84,11 +59,27 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
     public void handleRotateCCW()
     {
         Debug.Log("CCW Button Pressed");
+        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
+        {
+            CurrentPropManager.Instance.rotateCCW();
+        }
+        else
+        {
+            propRef.GetComponent<Prop>().rotateCCW();
+        }
     }
 
     public void handleRotateCW()
     {
         Debug.Log("CW Button Pressed");
+        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
+        {
+            CurrentPropManager.Instance.rotateCW();
+        }
+        else
+        {
+            propRef.GetComponent<Prop>().rotateCW();
+        }
     }
 
     public void handleClose()
@@ -96,7 +87,7 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
         if (CurrentPropManager.Instance.getPropBeingMoved() == true)
         {
             propRef = CurrentPropManager.Instance.revertMovedProp();
-            setWorkingReference(propRef);
+            init(propRef);
             CurrentPropManager.Instance.clearCurrentPropObj();
         }
         ModifyController.Instance.setAddingProps(false);

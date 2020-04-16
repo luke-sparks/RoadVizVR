@@ -9,12 +9,12 @@ public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
         
     }
 
-    public void handleCWPress()
+    public void handleRotateCW()
     {
         CurrentPropManager.Instance.rotateCW();
     }
 
-    public void handleCCWPress()
+    public void handleRotateCCW()
     {
         CurrentPropManager.Instance.rotateCCW();
     }
