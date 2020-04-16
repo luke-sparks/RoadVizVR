@@ -62,20 +62,7 @@ public class Road : MonoBehaviour
             currLane = roadLanes.Last.Value;
         }
         setLaneType(roadLanes.First.Value, "Shoulder");
-        /*setLaneType(roadLanes.First.Next.Value, "GrassDivision");
-        setLaneType(roadLanes.First.Next.Next.Value, "Curb");
-        setLaneType(roadLanes.First.Next.Next.Next.Value, "ParkingLane");
-        //setLaneType(roadLanes.First.Next.Next.Next.Next.Next.Value, "Median");
-        setLaneType(roadLanes.Last.Previous.Previous.Previous.Value, "ParkingLane");
-        setLaneType(roadLanes.Last.Previous.Previous.Value, "Curb");
-        setLaneType(roadLanes.Last.Previous.Value, "GrassDivision");*/
         setLaneType(roadLanes.Last.Value, "Shoulder");
-        /*BasicLane testLaneScriptRef = (BasicLane)roadLanes.Last.Previous.Value.GetComponent("BasicLane");
-        BasicLane testLaneScriptRef2 = (BasicLane)roadLanes.First.Next.Next.Next.Value.GetComponent("BasicLane");
-        testLaneScriptRef.setLaneWidth(12f);
-        testLaneScriptRef2.setLaneWidth(1.2f);*/
-        //Updates buildings
-        //updateBuildings();
     }
 
     //Written by Max
