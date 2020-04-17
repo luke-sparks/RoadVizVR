@@ -526,7 +526,7 @@ public class Road : MonoBehaviour
         List<LaneData> savedLanes = roadData.getLaneData();
         // 3. load each of the saved lanes in
         GameObject currLane = null;
-        foreach (LaneData savedLane in savedLanes)
+        foreach(LaneData savedLane in savedLanes)
         {
             // 3a: obtain the lane's type
             string loadedLaneType = savedLane.loadLaneType();
@@ -537,7 +537,7 @@ public class Road : MonoBehaviour
             // 3c. obtain a script reference
             BasicLane loadedLaneScriptReference = (BasicLane)currLane.GetComponent("BasicLane");
             // 3d. adjust stripes
-            if (!loadedLaneScriptReference.isVehicleLane())
+            if(!loadedLaneScriptReference.isVehicleLane())
             {
                 LinkedListNode<GameObject> loadedLaneNode = roadLanes.Last;
                 handleNonVehicleLaneStripes(loadedLaneScriptReference, loadedLaneNode);

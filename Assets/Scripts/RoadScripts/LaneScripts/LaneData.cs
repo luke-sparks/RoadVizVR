@@ -21,7 +21,7 @@ public class LaneData //: MonoBehaviour
     private StripeData rightStripeData = null;
 
     private PropManagerData propManagerData = null;
-
+    
     // Nathan wrote this
     // class constructor
     // lane is the script of a lane object within the road

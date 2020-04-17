@@ -69,7 +69,7 @@ public class BasicLane : MonoBehaviour
         //buttonPos.z += adjustment;
         
         // step 5
-        GetComponent<PropManager>().updateRelationalValues();
+        //GetComponent<PropManager>().updateRelationalValues();
         asphalt.transform.localScale = laneSize;
         GetComponent<PropManager>().repositionProps();
 
@@ -275,7 +275,6 @@ public class BasicLane : MonoBehaviour
         // stripes could be a little more complicated
         // first, load in the data for both stripes
         
-    
         StripeData leftStripeData = savedLane.loadStripeData("left");
         StripeData rightStripeData = savedLane.loadStripeData("right");
         // if the stripes are not null, load in their data
