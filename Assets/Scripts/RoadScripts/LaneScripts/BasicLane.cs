@@ -67,12 +67,15 @@ public class BasicLane : MonoBehaviour
         // step 4
         laneSize.z = newWidth;
         //buttonPos.z += adjustment;
+        
         // step 5
         //GetComponent<PropManager>().updateRelationalValues();
         asphalt.transform.localScale = laneSize;
-        //GetComponent<PropManager>().repositionProps();
-        //Renderer asphaltRenderer = (Renderer)asphalt.GetComponent("Renderer");
-        //asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
+        GetComponent<PropManager>().repositionProps();
+
+        Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
+        asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
+
         //insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
         // set new stripe locations
@@ -271,6 +274,7 @@ public class BasicLane : MonoBehaviour
         setLaneWidth(savedLane.loadLaneWidth());
         // stripes could be a little more complicated
         // first, load in the data for both stripes
+        
         StripeData leftStripeData = savedLane.loadStripeData("left");
         StripeData rightStripeData = savedLane.loadStripeData("right");
         // if the stripes are not null, load in their data

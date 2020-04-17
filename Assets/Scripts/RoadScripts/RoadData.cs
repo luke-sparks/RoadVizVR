@@ -30,7 +30,20 @@ public class RoadData //: MonoBehaviour
         {
             BasicLane laneScriptRef = (BasicLane)lane.GetComponent("BasicLane");
             Debug.Log(laneScriptRef.getLaneType());
-            LaneData indLaneData = new LaneData(laneScriptRef);
+
+            LaneData indLaneData = null;
+
+            // if we have a non-vehicle lane, create the independent lane data with a prop manager
+            if (!laneScriptRef.isVehicleLane())
+            {
+                PropManager propManagerRef = lane.GetComponent<PropManager>();
+                indLaneData = new LaneData(laneScriptRef, propManagerRef);
+            }
+            else
+            {
+                indLaneData = new LaneData(laneScriptRef);
+            }
+
             laneData.Add(indLaneData);
         }
     }

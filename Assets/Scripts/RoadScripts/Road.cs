@@ -516,6 +516,9 @@ public class Road : MonoBehaviour
         //          c. obtain a reference to the lane's script
         //          d. adjust the lane's stripes if it's not a vehicle lane
         //          e. load the rest of the attributes
+        //          f. load the lanes props (if not a vehicle lane)
+        //      4. load the saved environment
+        //      5. load the saved fog settings
         // 1. we have to clear whatever else the user has loaded in since the last save
         clearRoad();
         // 2. obtain the saved data
@@ -541,14 +544,22 @@ public class Road : MonoBehaviour
             }
             // 3e. load the rest of the lane's variables
             loadedLaneScriptReference.loadLaneAtts(savedLane);
+
+            // 3f. load the lanes props (if not a vehicle lane)
+            if (!loadedLaneScriptReference.isVehicleLane())
+            {
+                PropManager loadedPropManagerRef = currLane.GetComponent<PropManager>();
+                loadedPropManagerRef.loadProps(savedLane.loadPropManagerData());
+            }
+
+            // 4. load the saved environment
+            Buildings buildingsScriptReference = (Buildings)buildingsReference.GetComponent("Buildings");
+            buildingsScriptReference.setBuildingType(roadData.loadBuildingsIndex());
+            updateBuildings();
+            // 5. load the saved fog settings
+            FogControl fogControlScriptReference = (FogControl)fogController.GetComponent("FogControl");
+            fogControlScriptReference.setFogDistance(roadData.loadFogDistance());
         }
-        // 4. load the saved environment
-        Buildings buildingsScriptReference = (Buildings)buildingsReference.GetComponent("Buildings");
-        buildingsScriptReference.setBuildingType(roadData.loadBuildingsIndex());
-        updateBuildings();
-        // 5. load the saved fog settings
-        FogControl fogControlScriptReference = (FogControl)fogController.GetComponent("FogControl");
-        fogControlScriptReference.setFogDistance(roadData.loadFogDistance());
     }
 
     // Nathan wrote this
