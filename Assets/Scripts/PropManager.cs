@@ -30,7 +30,7 @@ public class PropManager : MonoBehaviour
     {
         foreach(GameObject prop in props)
         {
-            prop.GetComponent<Prop>().setZPositionRelational(asphalt.transform);
+            prop.GetComponent<Prop>().setZPositionRelational(asphalt);
         }
     }
 
@@ -38,7 +38,29 @@ public class PropManager : MonoBehaviour
     {
         foreach (GameObject prop in props)
         {
-            prop.GetComponent<Prop>().updateRelationalZValue(asphalt.transform);
+            prop.GetComponent<Prop>().updateRelationalZValue(asphalt);
+        }
+    }
+
+    public List<GameObject> getProps()
+    {
+        return props;
+    }
+
+    public void loadProps(PropManagerData savedPropManager)
+    {
+        // walk through props and add them
+        List<PropData> savedPropData = savedPropManager.getPropData();
+
+        foreach (PropData propData in savedPropData)
+        {
+            // insert new prop based on propData
+            Vector3 newPropPosition = propData.loadVectorPosition();
+            Debug.Log(propData.loadPropType());
+            GameObject newProp = addProp(Resources.Load(propData.loadPropType()), newPropPosition);
+            newProp.GetComponent<Prop>().loadPropData(propData);
+            //newProp.GetComponent<Prop>().rotateToPoint();
+            newProp.GetComponent<Prop>().setZPositionRelational(gameObject);
         }
     }
 

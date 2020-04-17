@@ -20,11 +20,12 @@ public class Road : MonoBehaviour
     //[SerializeField] private GameObject[] stripeTypes = new GameObject[2];
     [SerializeField] private GameObject stripeContainer;
     // the road position variable
-    [SerializeField] private Vector3 lanePosition;
+    //[SerializeField] private Vector3 lanePosition;
     //[SerializeField] private float defaultShift;
-    [SerializeField] private float currentWidth;
+    //[SerializeField] private float currentWidth;
     //Buildings reference is manually assigned
     [SerializeField] private GameObject buildingsReference;
+    [SerializeField] private GameObject fogController;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +34,8 @@ public class Road : MonoBehaviour
         StartCoroutine(LateStart());
         //Assign the building reference (manual assignment seems bugged for unknown reasons)
         buildingsReference = GameObject.Find("buildings");
+        //updateBuildings();
     }
-
     //Written by Max
     //A coroutine which simply calls the update of buildings on a delay until after runtime.
     //This is because of the fact that the bounds for buildings require the road to be loaded first,
@@ -56,32 +57,27 @@ public class Road : MonoBehaviour
         GameObject currLane = null;
         for (int i = 0; i < numStartingLanes; i++) 
         {
-            // insert all vehicle lanes
+            // insert all vehicle lanes using right insertion
             insertLane(currLane, laneTypes[1], "right");
-            // if this is the first insertion
             currLane = roadLanes.Last.Value;
         }
         setLaneType(roadLanes.First.Value, "Shoulder");
-        //setLaneType(roadLanes.First.Next.Value, "Shoulder");
-        /*setLaneType(roadLanes.First.Next.Next.Value, "Curb");
-        setLaneType(roadLanes.First.Next.Next.Next.Value, "Shoulder");
-        setLaneType(roadLanes.First.Next.Next.Next.Next.Next.Value, "Median");
-        setLaneType(roadLanes.Last.Previous.Previous.Previous.Value, "Shoulder");
-        setLaneType(roadLanes.Last.Previous.Previous.Value, "Curb");
-        setLaneType(roadLanes.Last.Previous.Value, "GrassDivision");*/
         setLaneType(roadLanes.Last.Value, "Shoulder");
-        //setLaneType(roadLanes.First.Value, "Sidewalk");
-        //Debug.Log("Hi");
-
-        //Updates buildings
-        //updateBuildings();
     }
 
     //Written by Max
     //Simply acesses the buildings reference and then updates their position
     private void updateBuildings()
     {
-        buildingsReference.GetComponent<buildings>().updateBuildingPosition();
+        // Nathan added this if else
+        if(buildingsReference != null)
+        {
+            buildingsReference.GetComponent<Buildings>().updateBuildingPosition();
+        }
+        else
+        {
+            Debug.Log("No buildings exist yet");
+        }
     }
 
     //Written by Max
@@ -196,6 +192,7 @@ public class Road : MonoBehaviour
             //          8. add stripes back in accordingly
 
             // 1. get target lane script
+            //Debug.Log(targetLane);
             BasicLane targetLaneScriptReference = (BasicLane)targetLane.GetComponent("BasicLane");
             // 2. get target lane's width
             float targetLaneWidth = targetLaneScriptReference.getLaneWidth();
@@ -219,8 +216,6 @@ public class Road : MonoBehaviour
             Destroy(targetLane);
             // 8. reset the stripes of the remaining lanes
             resetStripes(leftNeighborScriptReference, rightNeighborScriptReference);
-            // Update position of buildings
-            //updateBuildings();
         }
         else
         {
@@ -411,10 +406,6 @@ public class Road : MonoBehaviour
         {
             handleNonVehicleLaneStripes(newLaneScript, newLaneNode);
         }
-        /*else 
-        {
-            handleVehicleLaneStripes(newLaneScript, newLaneNode);
-        }*/
     }
 
     // Nathan wrote this
@@ -433,6 +424,48 @@ public class Road : MonoBehaviour
             laneTypesList.Add(g);
         }
         return laneTypesList;
+    }
+
+    // Nathan wrote this
+    // returns the max width
+    public float getMaxWidth()
+    {   
+        return MAX_WIDTH;
+    }
+
+    // Nathan wrote this
+    // returns the max lanes constant
+    public int getMaxLanes()
+    {
+        return MAX_LANES;
+    }
+
+    // Nathan wrote this
+    // returns the min lanes constant
+    public int getMinLanes()
+    {
+        return MIN_LANES;
+    }
+
+    // Nathan wrote this
+    // retrieves the stripe container object
+    public GameObject getStripeContainer()
+    {
+        return stripeContainer;
+    }
+
+    // Nathan wrote this
+    // retrieves the fog control script
+    public FogControl getFogControl()
+    {
+        return (FogControl)fogController.GetComponent("FogControl");
+    }
+
+    // Nathan wrote this
+    // retrieves the buildings reference
+    public Buildings getBuildingsReference()
+    {
+        return (Buildings)buildingsReference.GetComponent("Buildings");
     }
 
     // checks to make sure that the lane object parameter
@@ -461,6 +494,72 @@ public class Road : MonoBehaviour
     public bool isAtMinSize()
     {
         return roadLanes.Count == MIN_LANES;
+    }
+
+    // Nathan wrote this
+    // saves the road to a binary file
+    public void saveRoad()
+    {
+        RoadVizSaveSystem.saveRoad(this);
+    }
+
+    // Nathan wrote this
+    // loads the road from a binary file
+    public void loadRoad()
+    {
+        // steps: 
+        //      1. clear the contents of the road
+        //      2. obtain the saved road data
+        //      3. insert each saved lane into the road:
+        //          a. obtain the saved lane's type
+        //          b. find that lane type and insert it
+        //          c. obtain a reference to the lane's script
+        //          d. adjust the lane's stripes if it's not a vehicle lane
+        //          e. load the rest of the attributes
+        //          f. load the lanes props (if not a vehicle lane)
+        //      4. load the saved environment
+        //      5. load the saved fog settings
+        // 1. we have to clear whatever else the user has loaded in since the last save
+        clearRoad();
+        // 2. obtain the saved data
+        RoadData roadData = RoadVizSaveSystem.loadRoadFromMemory();
+        List<LaneData> savedLanes = roadData.getLaneData();
+        // 3. load each of the saved lanes in
+        GameObject currLane = null;
+        foreach (LaneData savedLane in savedLanes)
+        {
+            // 3a: obtain the lane's type
+            string loadedLaneType = savedLane.loadLaneType();
+            // 3b. find the type and insert it
+            GameObject loadedLane = findLaneType(loadedLaneType);
+            insertLane(currLane, loadedLane, "right");
+            currLane = roadLanes.Last.Value;
+            // 3c. obtain a script reference
+            BasicLane loadedLaneScriptReference = (BasicLane)currLane.GetComponent("BasicLane");
+            // 3d. adjust stripes
+            if (!loadedLaneScriptReference.isVehicleLane())
+            {
+                LinkedListNode<GameObject> loadedLaneNode = roadLanes.Last;
+                handleNonVehicleLaneStripes(loadedLaneScriptReference, loadedLaneNode);
+            }
+            // 3e. load the rest of the lane's variables
+            loadedLaneScriptReference.loadLaneAtts(savedLane);
+
+            // 3f. load the lanes props (if not a vehicle lane)
+            if (!loadedLaneScriptReference.isVehicleLane())
+            {
+                PropManager loadedPropManagerRef = currLane.GetComponent<PropManager>();
+                loadedPropManagerRef.loadProps(savedLane.loadPropManagerData());
+            }
+
+            // 4. load the saved environment
+            Buildings buildingsScriptReference = (Buildings)buildingsReference.GetComponent("Buildings");
+            buildingsScriptReference.setBuildingType(roadData.loadBuildingsIndex());
+            updateBuildings();
+            // 5. load the saved fog settings
+            FogControl fogControlScriptReference = (FogControl)fogController.GetComponent("FogControl");
+            fogControlScriptReference.setFogDistance(roadData.loadFogDistance());
+        }
     }
 
     // Nathan wrote this
@@ -617,7 +716,7 @@ public class Road : MonoBehaviour
         else if (leftScript != null && rightScript == null)
         {
             // if the lane to the left has asphalt, we must insert a new stripe
-            if (leftScript.isVehicleLane())
+            if (!leftScript.isNonAsphaltLane())
             {
                 // instantiate a new stripe on the left lane and set it's orientation
                 newStripePosition = leftScript.getLanePosition();
@@ -634,7 +733,7 @@ public class Road : MonoBehaviour
         else if (leftScript == null && rightScript != null)
         {
             // if the lane to the right has asphalt we must insert a new stripe
-            if (rightScript.isVehicleLane())
+            if (!rightScript.isNonAsphaltLane())
             {
                 // instantiate a new stripe on the right lane and set its orientation
                 newStripePosition = rightScript.getLanePosition();
@@ -685,7 +784,7 @@ public class Road : MonoBehaviour
             // obtain the lane's position
             Vector3 newLanePosition = newLaneScript.getLanePosition();
             // instantiate a new stripe
-            GameObject remainingStripe = Instantiate(stripeContainer, newLanePosition, transform.rotation);
+            GameObject remainingStripe = Instantiate(stripeContainer, newLanePosition, transform.rotation) as GameObject;
             // case 1: this is the only lane in the road
             if (newLaneNode.Previous == null && newLaneNode.Next == null) 
             {
@@ -759,7 +858,7 @@ public class Road : MonoBehaviour
                 {
                     // now we must have a stripe on either side; 
                     // rare but important case
-                    GameObject leftStripe = Instantiate(stripeContainer, newLanePosition, transform.rotation);
+                    GameObject leftStripe = Instantiate(stripeContainer, newLanePosition, transform.rotation) as GameObject;
                     newLaneScript.setStripeOrientation(leftStripe, "left");
                     newLaneScript.setStripeOrientation(remainingStripe, "right");
                     leftNeighborScriptReference.setStripeOrientation(leftStripe, "right");
@@ -851,6 +950,24 @@ public class Road : MonoBehaviour
                 return laneTypes[i];
             }
         }
-        throw new System.ArgumentException("Lane type not found");
+        throw new System.ArgumentException("Lane type not found.");
+    }
+
+    // Nathan wrote this
+    // clears all lanes from the road
+    private void clearRoad()
+    {
+        // Note: the reason we cannot use a foreach is because it will throw an
+        // exception for removing lanes in a list while iterating through it
+        // steps:
+        //      1. clear roadLanes
+        //      2. destroy all the child objects in the road
+        // 1. clear roadLanes
+        roadLanes.Clear();
+        // 2. destroy every object that is a child of the road
+        foreach(Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

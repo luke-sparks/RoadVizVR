@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buildings : MonoBehaviour
+public class Buildings : MonoBehaviour
 {
     //TYPE 0: URBAN
     //TYPE 1: SUBURBAN

@@ -12,8 +12,8 @@ public class BasicLane : MonoBehaviour
     //[SerializeField] protected GameObject editLaneDialogue;
     //[SerializeField] protected GameObject insertButton;
     [SerializeField] protected GameObject asphalt;
-    //[SerializeField] protected Vector3 lanePosition;
-    [SerializeField] protected int laneIndex;
+    //[SerializeField] protected Vector3 lanePosition; 
+    //[SerializeField] protected int laneIndex;
     [SerializeField] protected string laneType;
     [SerializeField] protected float currentLaneWidth;
     [SerializeField] protected float maxWidth;
@@ -23,9 +23,8 @@ public class BasicLane : MonoBehaviour
     [SerializeField] protected bool vehicleLane;
     [SerializeField] protected bool nonVehicleAsphalt;
     [SerializeField] protected bool nonAsphalt;
-
-    protected GameObject road;
-    protected Road roadScript;
+    [SerializeField] protected GameObject road;
+    [SerializeField] protected Road roadScript;
 
     // Nathan inserted start so we could use road functions more easily
     void Start()
@@ -36,8 +35,8 @@ public class BasicLane : MonoBehaviour
         // this was causing a bug. not sure why
         //setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
 
-        road = GameObject.Find("Road");
-        roadScript = (Road)road.GetComponent("Road");
+        //road = GameObject.Find("Road");
+        //roadScript = (Road)road.GetComponent("Road");
     }
 
     // setLaneWidth() sets the width of a lane
@@ -55,41 +54,30 @@ public class BasicLane : MonoBehaviour
         //       4. adjust the temporary vectors accordingly
         //       5. update the transforms with the new Vector3 values
         // step 1
-       
-        
-        
         Vector3 laneSize = asphalt.transform.localScale;
-
         //Vector3 buttonPos = insertButton.transform.localPosition;
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
         // step 3
-        //GameObject road = GameObject.Find("Road");
+        GameObject road = GameObject.Find("Road");
         // reference script that controls the road's behavior
-        //Road roadScript = (Road)road.GetComponent("Road");
+        Road roadScript = (Road)road.GetComponent("Road");
         // adjust the lane positions around the lane we are modifying
         roadScript.adjustRoadAroundLane(gameObject, adjustment);
         // step 4
         laneSize.z = newWidth;
         //buttonPos.z += adjustment;
-        // step 5
-
-        if (vehicleLane != true)
-        {
-            GetComponent<PropManager>().updateRelationalValues();
-            asphalt.transform.localScale = laneSize;
-            GetComponent<PropManager>().repositionProps();
-        }
-        else
-        {
-            asphalt.transform.localScale = laneSize;
-        }
         
+        // step 5
+        GetComponent<PropManager>().updateRelationalValues();
+        asphalt.transform.localScale = laneSize;
+        GetComponent<PropManager>().repositionProps();
+
         Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
         asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
+
         //insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
-
         // set new stripe locations
         adjustStripePositions();
     }
@@ -145,7 +133,7 @@ public class BasicLane : MonoBehaviour
 
     // Nathan wrote this
     // changes the lane index
-    public void setLaneIndex(int newIndex)
+    /*public void setLaneIndex(int newIndex)
     {
         laneIndex = newIndex;
     }
@@ -155,7 +143,7 @@ public class BasicLane : MonoBehaviour
     public int getLaneIndex()
     {
         return laneIndex;
-    }
+    }*/
 
     // Nathan wrote this
     // sets the lane's current type
@@ -271,6 +259,61 @@ public class BasicLane : MonoBehaviour
     public bool isNonAsphaltLane() 
     {
         return nonAsphalt;
+    }
+
+    // Nathan wrote this
+    // loads a saved lane's data
+    public void loadLaneAtts(LaneData savedLane)
+    {
+        // just need to reassign each of the lane's attributes (position, width, stripes, etc.)
+        // not sure we need position (the lanes will be inserted either way, and should all be
+        // the correct type and in the correct order without resetting this)
+        // also not sure we need to set type, max/min width, or the booleans
+        // as these should all be set properly by inserting the saved lane type
+        // the only true variables are the width and the stripes
+        setLaneWidth(savedLane.loadLaneWidth());
+        // stripes could be a little more complicated
+        // first, load in the data for both stripes
+        
+    
+        StripeData leftStripeData = savedLane.loadStripeData("left");
+        StripeData rightStripeData = savedLane.loadStripeData("right");
+        // if the stripes are not null, load in their data
+        // otherwise, just set their orientation to null
+        if(leftStripeData != null)
+        {
+            // subcase: not sure if we need it, but just in case
+            if(leftStripe != null)
+            {
+                Stripe leftStripeScriptReference = (Stripe)leftStripe.GetComponent("Stripe");
+                leftStripeScriptReference.loadStripeAtts(leftStripeData);
+            }
+            else
+            {
+                Debug.Log("This almost certainly should never happen. INSIDE WEIRD LOADING CASE.");
+            }
+        }
+        else
+        {
+            setStripeOrientation(null, "left");
+        }
+        if(rightStripeData != null)
+        {
+            // again, not sure we need this subcase
+            if(rightStripe != null)
+            {
+                Stripe rightStripeScriptReference = (Stripe)rightStripe.GetComponent("Stripe");
+                rightStripeScriptReference.loadStripeAtts(rightStripeData);
+            }
+            else
+            {
+                Debug.Log("This almost certainly should never happen. INSIDE WEIRD LOADING CASE.");
+            }
+        }
+        else
+        {
+            setStripeOrientation(null, "right");
+        }
     }
 
     // Nathan wrote this

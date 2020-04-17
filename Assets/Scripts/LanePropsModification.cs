@@ -34,6 +34,7 @@ public class LanePropsModification : MonoBehaviour
             currentProp.GetComponent<Prop>().rotateToPoint();
         }
     }
+
     private void Update()
     {
         if (trackCursor == true)
