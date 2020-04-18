@@ -11,6 +11,7 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
     {
         propRef = objRef;
         propManagerScript = propRef.GetComponent<Prop>().getPropManager();
+        CurrentPropManager.Instance.setRotation(propRef.GetComponent<Prop>().getRotation());
     }
 
     public void handleMove()

@@ -7,28 +7,21 @@ using UnityEditor;
 
 public class Prop : MonoBehaviour
 {
-    // value from (0,1), indicates where in the lane the prop resides unrelated to the absolute lane size
-    private float relationalZPosition;
-
     [SerializeField] private GameObject centerPointObj;
 
     private int propRotation = 0;
 
     [SerializeField] protected Vector3 spawnCenterShift = new Vector3(0,0,0);
 
-    void Start()
+    void Awake()
     {
         propRotation = CurrentPropManager.Instance.getRotation();
-        
         rotateToPoint();
     }
 
     public void loadPropData(PropData savedPropData)
     {
-        relationalZPosition = savedPropData.loadRelationalZPosition();
         propRotation = savedPropData.loadRotation();
-
-
         rotateToPoint();
     }
 
@@ -67,6 +60,11 @@ public class Prop : MonoBehaviour
         return gameObject.transform.position.z;
     }
 
+    public float getZOffsetFromLane()
+    {
+        return centerPointObj.transform.position.z - GetComponentInParent<BasicLane>().getLanePosition().z;
+    }
+
     public string getPropType()
     {
         string propType = gameObject.name;
@@ -77,50 +75,19 @@ public class Prop : MonoBehaviour
         return propType;
     }
 
-    // sets new z position based on relational value
-    public void setZPositionRelational(GameObject lane)
+    public void updatePosition(GameObject lane, float changeInLaneWidth)
     {
-        float laneWidth = lane.transform.lossyScale.z;
-        float laneCenterZ = lane.transform.position.z;
-        Debug.Log("Asphalt world position: " + lane.transform.position.z + " Asphalt local position: " + lane.transform.localPosition.z);
-        float leftEdge = laneCenterZ - (laneWidth / 2);
+        float laneCenterZ = lane.GetComponent<BasicLane>().getLanePosition().z;
+        float newHalfLaneWidth = lane.GetComponent<BasicLane>().getLaneWidth() / 2;
+        float oldHalfLaneWidth = newHalfLaneWidth - changeInLaneWidth;
+        float objectCenter = centerPointObj.transform.position.z;
 
-        Instantiate(Resources.Load("CenterPointObj"), new Vector3(0, 0, leftEdge), Quaternion.identity);
+        float proportionalLocation = (objectCenter - laneCenterZ) / oldHalfLaneWidth;
+        float newZValue = laneCenterZ + (newHalfLaneWidth * proportionalLocation);
 
-
-        float newFalseZCenter = (laneWidth * relationalZPosition) + leftEdge;
-
-        Instantiate(Resources.Load("CenterPointObj"), new Vector3(0, 0, newFalseZCenter), Quaternion.identity);
-
-        transform.position = new Vector3(transform.position.x, transform.position.y, newFalseZCenter);
-    }
-
-    // returns relational z value
-    public float getRelationalZPosition()
-    {
-        return relationalZPosition;
+        transform.position = new Vector3(transform.position.x, transform.position.y, newZValue - spawnCenterShift.z);
     }
     
-    // updates the z value based on the lane transform
-    public void updateRelationalZValue(GameObject lane)
-    {
-        float laneWidth = lane.transform.lossyScale.z;
-        float laneCenterZ = lane.transform.position.z;
-        float leftEdge = laneCenterZ - (laneWidth / 2);
-
-        Debug.Log("lane width: " + laneWidth);
-        Debug.Log("lane center: " + laneCenterZ);
-        Debug.Log("left edge: " + leftEdge);
-
-        //float falseZCenter = GetComponent<Renderer>().bounds.center.z + spawnCenterShift.z;
-        float falseZCenter = gameObject.transform.position.z + spawnCenterShift.z;
-
-        // figure out how far center is from left edge (3 meters)
-        float distanceFromEdge = falseZCenter - leftEdge;
-
-        // divide that number by the width of the lane (5 meters) - 3/5
-        relationalZPosition = distanceFromEdge / laneWidth;
-    }
 
     // rotates 45 degrees CW
     public void rotateCW()
@@ -141,8 +108,6 @@ public class Prop : MonoBehaviour
     public void rotateToPoint()
     {
         gameObject.transform.rotation = Quaternion.identity;
-        Debug.Log(centerPointObj.transform.position);
-        Debug.Log(gameObject.transform);
         gameObject.transform.RotateAround(centerPointObj.transform.position, Vector3.up, 45 * propRotation);
         CurrentPropManager.Instance.setRotation(propRotation);
     }

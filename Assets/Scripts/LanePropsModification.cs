@@ -27,14 +27,6 @@ public class LanePropsModification : MonoBehaviour
         roadScript = (Road)road.GetComponent("Road");
     }
 
-    private void LateUpdate()
-    {
-        if (trackCursor == true)
-        {
-            currentProp.GetComponent<Prop>().rotateToPoint();
-        }
-    }
-
     private void Update()
     {
         if (trackCursor == true)

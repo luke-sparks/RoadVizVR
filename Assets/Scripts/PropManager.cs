@@ -25,20 +25,11 @@ public class PropManager : MonoBehaviour
         Destroy(prop);
     }
 
-    // called when adjusting the width of a lane
-    public void repositionProps()
-    {
-        foreach(GameObject prop in props)
-        {
-            prop.GetComponent<Prop>().setZPositionRelational(asphalt);
-        }
-    }
-
-    public void updateRelationalValues()
+    public void repositionProps(float changeInLaneWidth)
     {
         foreach (GameObject prop in props)
         {
-            prop.GetComponent<Prop>().updateRelationalZValue(asphalt);
+            prop.GetComponent<Prop>().updatePosition(gameObject, changeInLaneWidth);
         }
     }
 
@@ -55,13 +46,13 @@ public class PropManager : MonoBehaviour
         foreach (PropData propData in savedPropData)
         {
             // insert new prop based on propData
-            Vector3 newPropPosition = propData.loadVectorPosition();
-            Debug.Log(propData.loadPropType());
+            float correctZValue = GetComponent<BasicLane>().getLanePosition().z + propData.loadZValueOffsetFromLane();
+            Vector3 newPropPosition = new Vector3 (propData.loadXPosition(), propData.loadYPosition(), correctZValue);
+            CurrentPropManager.Instance.setRotation(propData.loadRotation());
             GameObject newProp = addProp(Resources.Load(propData.loadPropType()), newPropPosition);
             newProp.GetComponent<Prop>().loadPropData(propData);
-            //newProp.GetComponent<Prop>().rotateToPoint();
-            newProp.GetComponent<Prop>().setZPositionRelational(gameObject);
         }
+        CurrentPropManager.Instance.setRotation(0);
     }
 
 }

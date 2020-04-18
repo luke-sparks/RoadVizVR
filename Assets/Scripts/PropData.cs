@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PropData
 {
-    private float relationalZPosition;                  // z position related to center of lane
+    private float zValueOffsetFromLane;                       // z position related to center of lane
     private float[] position = new float[3];            // position along road
     private int rotation;                               // 0-7 value indicating how much to rotate (45' increments)
     private string propType;                            // string of prop name/type
@@ -14,7 +14,7 @@ public class PropData
 
     public PropData(Prop propRef)
     {
-        relationalZPosition = propRef.getRelationalZPosition();
+        zValueOffsetFromLane = propRef.getZOffsetFromLane();
         position[0] = propRef.getXPosition();
         position[1] = propRef.getYPosition();
         position[2] = propRef.getZPosition();
@@ -25,9 +25,9 @@ public class PropData
         spawnCenterShift[2] = propRef.getZShift();*/
     }
 
-    public float loadRelationalZPosition()
+    public float loadZValueOffsetFromLane()
     {
-        return relationalZPosition;
+        return zValueOffsetFromLane;
     }
 
     public float loadXPosition()

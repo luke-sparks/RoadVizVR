@@ -65,6 +65,8 @@ public class Road : MonoBehaviour
         setLaneType(roadLanes.Last.Value, "Shoulder");
     }
 
+
+
     //Written by Max
     //Simply acesses the buildings reference and then updates their position
     private void updateBuildings()
@@ -101,8 +103,8 @@ public class Road : MonoBehaviour
                 //Encapsulate children within the bounds object
                 bounds.Encapsulate(renderers[i].bounds);
             }
-            Debug.Log("INSIDE GET RENDER BOUNDS");
-            Debug.Log(bounds.size);
+            //Debug.Log("INSIDE GET RENDER BOUNDS");
+            //Debug.Log(bounds.size);
             return bounds;
         }
         else
@@ -507,6 +509,7 @@ public class Road : MonoBehaviour
     // loads the road from a binary file
     public void loadRoad()
     {
+        UIManager.Instance.closeCurrentUI();
         // steps: 
         //      1. clear the contents of the road
         //      2. obtain the saved road data
@@ -551,15 +554,17 @@ public class Road : MonoBehaviour
                 PropManager loadedPropManagerRef = currLane.GetComponent<PropManager>();
                 loadedPropManagerRef.loadProps(savedLane.loadPropManagerData());
             }
-
-            // 4. load the saved environment
-            Buildings buildingsScriptReference = (Buildings)buildingsReference.GetComponent("Buildings");
-            buildingsScriptReference.setBuildingType(roadData.loadBuildingsIndex());
-            updateBuildings();
-            // 5. load the saved fog settings
-            FogControl fogControlScriptReference = (FogControl)fogController.GetComponent("FogControl");
-            fogControlScriptReference.setFogDistance(roadData.loadFogDistance());
         }
+
+        /*
+        // 4. load the saved environment
+        Buildings buildingsScriptReference = (Buildings)buildingsReference.GetComponent("Buildings");
+        buildingsScriptReference.setBuildingType(roadData.loadBuildingsIndex());
+        updateBuildings();
+        // 5. load the saved fog settings
+        FogControl fogControlScriptReference = (FogControl)fogController.GetComponent("FogControl");
+        fogControlScriptReference.setFogDistance(roadData.loadFogDistance());
+        */
     }
 
     // Nathan wrote this

@@ -1606,8 +1606,7 @@ MonoBehaviour:
   - {fileID: 3844490017451381875, guid: d9831c962d3f059459cd77e2788cad50, type: 3}
   stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
     type: 3}
-  buildingsReference: {fileID: 7676923138607722142, guid: 670799f11f6023c4d8e2cc8c53a7be89,
-    type: 3}
+  buildingsReference: {fileID: 1406036035}
   fogController: {fileID: 2037014122}
 --- !u!1001 &1130369068
 PrefabInstance:

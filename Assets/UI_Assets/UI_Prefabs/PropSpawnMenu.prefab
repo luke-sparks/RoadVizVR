@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 1400201017481227282}
   - component: {fileID: 2015488610636002756}
   m_Layer: 5
-  m_Name: MoveButton
+  m_Name: Prop1Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1059,12 +1059,12 @@ GameObject:
   - component: {fileID: 5168858265864713905}
   - component: {fileID: 2335304683133679758}
   m_Layer: 5
-  m_Name: DeleteButton
+  m_Name: Prop3Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3132196053653748868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1470,12 +1470,12 @@ GameObject:
   - component: {fileID: 6791392806096462003}
   - component: {fileID: 4944501172154623777}
   m_Layer: 5
-  m_Name: CopyButton
+  m_Name: Prop2Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &849233418593457196
 RectTransform:
   m_ObjectHideFlags: 0

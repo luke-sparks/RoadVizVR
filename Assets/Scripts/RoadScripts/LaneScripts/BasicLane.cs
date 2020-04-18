@@ -69,15 +69,19 @@ public class BasicLane : MonoBehaviour
         //buttonPos.z += adjustment;
         
         // step 5
-        //GetComponent<PropManager>().updateRelationalValues();
         asphalt.transform.localScale = laneSize;
-        GetComponent<PropManager>().repositionProps();
 
         Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
         asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
 
         //insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
+
+        if (!isVehicleLane())
+        {
+            GetComponent<PropManager>().repositionProps(adjustment);
+        }
+
         // set new stripe locations
         adjustStripePositions();
     }
@@ -88,6 +92,8 @@ public class BasicLane : MonoBehaviour
     {
         return currentLaneWidth;
     }
+
+    
 
     // Nathan wrote this
     // returns the lane's maximum width
