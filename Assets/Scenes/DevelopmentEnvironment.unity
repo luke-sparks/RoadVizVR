@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useButton: 4
+  useButton: 3
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationButton: 1
   activationMode: 0
-  selectionButton: 4
+  selectionButton: 3
   clickMethod: 1
   attemptClickOnDeactivate: 0
   clickAfterHoverDuration: 0
@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useButton: 8
+  useButton: 3
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
@@ -1356,7 +1356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationButton: 1
   activationMode: 0
-  selectionButton: 4
+  selectionButton: 3
   clickMethod: 1
   attemptClickOnDeactivate: 0
   clickAfterHoverDuration: 0
@@ -2191,15 +2191,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5837af0260a118e4d808bfe0405429a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoManageScriptDefines: 0
+  autoManageScriptDefines: 1
   activeScriptingDefineSymbolsWithoutSDKClasses: []
   scriptAliasLeftController: {fileID: 713571155}
   scriptAliasRightController: {fileID: 864105726}
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 502124333}
   - {fileID: 1445166360}
+  - {fileID: 502124333}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
 --- !u!4 &1415241607
