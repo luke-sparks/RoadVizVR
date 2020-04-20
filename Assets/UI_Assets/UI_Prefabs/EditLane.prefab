@@ -2762,6 +2762,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EditLeftStripe
       objectReference: {fileID: 0}
+    - target: {fileID: 7394134125843435673, guid: e1de719a236164a4fbffc3c38e6c06f9,
+        type: 3}
+      propertyPath: m_Name
+      value: EditLeftStripe
+      objectReference: {fileID: 0}
     - target: {fileID: 6146677864516733234, guid: e1de719a236164a4fbffc3c38e6c06f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2917,6 +2922,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5536350055757165729}
     m_Modifications:
+    - target: {fileID: 7394134125843435673, guid: e1de719a236164a4fbffc3c38e6c06f9,
+        type: 3}
+      propertyPath: m_Name
+      value: EditRightStripe
+      objectReference: {fileID: 0}
     - target: {fileID: 7394134125843435673, guid: e1de719a236164a4fbffc3c38e6c06f9,
         type: 3}
       propertyPath: m_Name
