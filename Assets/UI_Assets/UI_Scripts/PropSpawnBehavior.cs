@@ -5,7 +5,7 @@ using UnityEngine;
 public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 {
 
-    public void init(GameObject[] objRefs)
+    public void init(params GameObject[] objRefs)
     {
         
     }

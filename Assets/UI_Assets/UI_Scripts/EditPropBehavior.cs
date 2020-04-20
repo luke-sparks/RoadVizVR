@@ -7,7 +7,7 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
     private GameObject propRef;
     private PropManager propManagerScript;
 
-    public void init(GameObject[] objRefs)
+    public void init(params GameObject[] objRefs)
     {
         propRef = objRefs[0];
         propManagerScript = propRef.GetComponent<Prop>().getPropManager();

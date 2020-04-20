@@ -11,7 +11,7 @@ public class GlobalSettingsBehavior : MonoBehaviour, ISceneUIMenu
     private brightnessControl lightController;
 
     
-    public void setWorkingReference(params GameObject[] objRefs)
+    public void init(params GameObject[] objRefs)
     {
         fogController = GameObject.Find("fogController").GetComponent<fogControl>();
         lightController = GameObject.Find("Lights/Solar Light").GetComponent<brightnessControl>();
