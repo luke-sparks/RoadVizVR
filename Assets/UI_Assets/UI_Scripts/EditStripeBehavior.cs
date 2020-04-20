@@ -6,24 +6,15 @@ using UnityEngine.UI;
 public class EditStripeBehavior : MonoBehaviour
 {
     /* EditStripeBehavior does not inherit from ISceneUIMenu 
-<<<<<<< HEAD
      *  because it is a submenu. But it does have init for the stripe refs
-=======
      *  because it is a submenu
->>>>>>> Added edit stripe sub menus
      */
     public string panelLabel;
     private GameObject stripeReference;
 
-<<<<<<< HEAD
     public void init(params GameObject[] stripeRefs)
     {
         stripeReference = stripeRefs[0];
-=======
-    public void setWorkingReference(GameObject stripeRef)
-    {
-        stripeReference = stripeRef;
->>>>>>> Added edit stripe sub menus
     }
 
     public void handlePatternChange()
@@ -36,8 +27,7 @@ public class EditStripeBehavior : MonoBehaviour
         Debug.Log("Color change selected.");
     }
 
-<<<<<<< HEAD
-=======
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +40,6 @@ public class EditStripeBehavior : MonoBehaviour
         
     }
 
->>>>>>> Added edit stripe sub menus
     // Called when inspector variables change
     void OnValidate()
     {
