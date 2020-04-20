@@ -2766,7 +2766,7 @@ PrefabInstance:
     - target: {fileID: 7394134125843435673, guid: e1de719a236164a4fbffc3c38e6c06f9,
         type: 3}
       propertyPath: m_Name
-      value: LeftEditStripe
+      value: EditLeftStripe
       objectReference: {fileID: 0}
     - target: {fileID: 6146677864516733234, guid: e1de719a236164a4fbffc3c38e6c06f9,
         type: 3}
@@ -2893,15 +2893,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -1.4000015
       objectReference: {fileID: 0}
-    - target: {fileID: 2723209891229458809, guid: e1de719a236164a4fbffc3c38e6c06f9,
-        type: 3}
-      propertyPath: m_Text
-      value: Left Stripe
-      objectReference: {fileID: 0}
     - target: {fileID: 4696549252652779270, guid: e1de719a236164a4fbffc3c38e6c06f9,
         type: 3}
       propertyPath: panelLabel
       value: Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723209891229458809, guid: e1de719a236164a4fbffc3c38e6c06f9,
+        type: 3}
+      propertyPath: m_Text
+      value: Left Stripe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1de719a236164a4fbffc3c38e6c06f9, type: 3}
@@ -2921,7 +2921,7 @@ PrefabInstance:
     - target: {fileID: 7394134125843435673, guid: e1de719a236164a4fbffc3c38e6c06f9,
         type: 3}
       propertyPath: m_Name
-      value: RightEditStripe
+      value: EditRightStripe
       objectReference: {fileID: 0}
     - target: {fileID: 6146677864516733234, guid: e1de719a236164a4fbffc3c38e6c06f9,
         type: 3}
@@ -3048,15 +3048,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -1.4000015
       objectReference: {fileID: 0}
-    - target: {fileID: 2723209891229458809, guid: e1de719a236164a4fbffc3c38e6c06f9,
-        type: 3}
-      propertyPath: m_Text
-      value: Right Stripe
-      objectReference: {fileID: 0}
     - target: {fileID: 4696549252652779270, guid: e1de719a236164a4fbffc3c38e6c06f9,
         type: 3}
       propertyPath: panelLabel
       value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723209891229458809, guid: e1de719a236164a4fbffc3c38e6c06f9,
+        type: 3}
+      propertyPath: m_Text
+      value: Right Stripe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1de719a236164a4fbffc3c38e6c06f9, type: 3}
