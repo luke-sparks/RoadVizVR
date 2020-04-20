@@ -34,7 +34,7 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
         if (CurrentPropManager.Instance.getPropBeingMoved() == true)
         {
             propRef = CurrentPropManager.Instance.revertMovedProp();
-            setWorkingReference(propRef);
+            init(propRef);
         }
         CurrentPropManager.Instance.setCurrentPropObj(propRef);
     }
@@ -65,7 +65,7 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
         if (CurrentPropManager.Instance.getPropBeingMoved() == true)
         {
             propRef = CurrentPropManager.Instance.revertMovedProp();
-            setWorkingReference(propRef);
+            init(propRef);
             CurrentPropManager.Instance.clearCurrentPropObj();
         }
         ModifyController.Instance.setAddingProps(false);
