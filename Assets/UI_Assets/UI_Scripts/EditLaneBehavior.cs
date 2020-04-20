@@ -21,6 +21,7 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         rightStripeEditMenu = transform.Find("EditRightStripe").gameObject;
 
         leftStripeEditMenu.SetActive(false);
+        rightStripeEditMenu.SetActive(false);
     }
 
     public void init(GameObject laneRef)
