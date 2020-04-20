@@ -743,6 +743,7 @@ GameObject:
   - component: {fileID: 713571157}
   - component: {fileID: 713571165}
   - component: {fileID: 713571166}
+  - component: {fileID: 713571167}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -826,7 +827,7 @@ MonoBehaviour:
   axisFidelity: 1
   senseAxisForceZeroThreshold: 0.15
   senseAxisPressThreshold: 0.95
-  triggerClickThreshold: 1
+  triggerClickThreshold: 0.95
   triggerForceZeroThreshold: 0.01
   triggerAxisZeroOnUntouch: 0
   gripClickThreshold: 1
@@ -1001,7 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useButton: 3
+  useButton: 4
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
@@ -1019,7 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationButton: 1
   activationMode: 0
-  selectionButton: 3
+  selectionButton: 4
   clickMethod: 1
   attemptClickOnDeactivate: 0
   clickAfterHoverDuration: 0
@@ -1035,6 +1036,18 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
+--- !u!114 &713571167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713571155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c59058d0a8ad9e4eba92f32e8f24d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &814133138 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
@@ -1066,6 +1079,7 @@ GameObject:
   - component: {fileID: 864105733}
   - component: {fileID: 864105736}
   - component: {fileID: 864105737}
+  - component: {fileID: 864105738}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -1088,7 +1102,7 @@ MonoBehaviour:
   axisFidelity: 1
   senseAxisForceZeroThreshold: 0.15
   senseAxisPressThreshold: 0.95
-  triggerClickThreshold: 1
+  triggerClickThreshold: 0.95
   triggerForceZeroThreshold: 0.01
   triggerAxisZeroOnUntouch: 0
   gripClickThreshold: 1
@@ -1324,7 +1338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eb64f0f2fd6d64faddbcf5d7d3bdbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useButton: 3
+  useButton: 8
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
   interactGrab: {fileID: 0}
@@ -1342,7 +1356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationButton: 1
   activationMode: 0
-  selectionButton: 3
+  selectionButton: 4
   clickMethod: 1
   attemptClickOnDeactivate: 0
   clickAfterHoverDuration: 0
@@ -1358,6 +1372,18 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
+--- !u!114 &864105738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864105726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c59058d0a8ad9e4eba92f32e8f24d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &893088598
 PrefabInstance:
   m_ObjectHideFlags: 0
