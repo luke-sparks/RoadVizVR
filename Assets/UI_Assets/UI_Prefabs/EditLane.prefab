@@ -2892,6 +2892,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Left Stripe
       objectReference: {fileID: 0}
+    - target: {fileID: 4696549252652779270, guid: e1de719a236164a4fbffc3c38e6c06f9,
+        type: 3}
+      propertyPath: panelLabel
+      value: Left
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1de719a236164a4fbffc3c38e6c06f9, type: 3}
 --- !u!224 &4923882366995202234 stripped
@@ -3041,6 +3046,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Right Stripe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4696549252652779270, guid: e1de719a236164a4fbffc3c38e6c06f9,
+        type: 3}
+      propertyPath: panelLabel
+      value: Right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1de719a236164a4fbffc3c38e6c06f9, type: 3}
