@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     private void DoButtonOnePress(object sender, ControllerInteractionEventArgs e)
     {
         //Debug.Log("Button one pressed");
+        UIManager.Instance.openUIScreen(UIManager.UIScreens.ActionMenu, null);
     }
 
     public void evaluateControllerType()

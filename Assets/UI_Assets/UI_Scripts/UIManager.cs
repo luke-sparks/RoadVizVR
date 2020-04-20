@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
         GlobalSettings,
         EditProp,
         PropSpawn,
+        ActionMenu
     };
 
     // A list of all references to the UI prefab classes
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
     public GameObject globalSettingsMenu;
     public GameObject editPropMenu;
     public GameObject spawnPropMenu;
+    public GameObject actionMenu;
 
     // Must be assigned in Start
     Dictionary<UIScreens, GameObject> uiObjects;
@@ -32,7 +34,8 @@ public class UIManager : MonoBehaviour
             {UIScreens.EditLane, editLaneMenu},
             {UIScreens.GlobalSettings, globalSettingsMenu},
             {UIScreens.EditProp, editPropMenu},
-            {UIScreens.PropSpawn, spawnPropMenu}
+            {UIScreens.PropSpawn, spawnPropMenu},
+            {UIScreens.ActionMenu, actionMenu}
         };
     }
 
