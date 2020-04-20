@@ -50,11 +50,12 @@ public class Road : MonoBehaviour
 
         // initialize an empty linked list for lanes in road
         roadLanes = new LinkedList<GameObject>();
+
         // Nathan moved the new Start() code from development into this function
         // insert all of the starting lanes in the road
         LinkedListNode<GameObject> currLaneNode = null;
         GameObject currLane = null;
-        for (int i = 0; i < numStartingLanes; i++) 
+        for (int i = 0; i < numStartingLanes; i++)
         {
             // insert all vehicle lanes
             insertLane(currLane, laneTypes[1], "right");
@@ -70,11 +71,19 @@ public class Road : MonoBehaviour
         setLaneType(roadLanes.Last.Previous.Previous.Value, "Curb");
         setLaneType(roadLanes.Last.Previous.Value, "GrassDivision");*/
         setLaneType(roadLanes.Last.Value, "Shoulder");
-        //setLaneType(roadLanes.First.Value, "Sidewalk");
-        //Debug.Log("Hi");
+
+        StartCoroutine(FrameDelayBuildingUpdate());
+    }
+
+    //Updates the buildings by delaying a frame
+    //Very cheap workaround but gets the job done in only a few lines
+    IEnumerator FrameDelayBuildingUpdate()
+    {
+        //Waits until the end of the frame
+        yield return new WaitForEndOfFrame();
 
         //Updates buildings
-        //updateBuildings();
+        updateBuildings();
     }
 
     //Written by Max
@@ -105,8 +114,8 @@ public class Road : MonoBehaviour
                 //Encapsulate children within the bounds object
                 bounds.Encapsulate(renderers[i].bounds);
             }
-            Debug.Log("INSIDE GET RENDER BOUNDS");
-            Debug.Log(bounds.size);
+            //Debug.Log("INSIDE GET RENDER BOUNDS");
+            //Debug.Log(bounds.size);
             return bounds;
         }
         else
@@ -415,6 +424,7 @@ public class Road : MonoBehaviour
         {
             handleVehicleLaneStripes(newLaneScript, newLaneNode);
         }*/
+        updateBuildings();
     }
 
     // Nathan wrote this
