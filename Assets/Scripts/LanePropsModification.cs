@@ -46,6 +46,7 @@ public class LanePropsModification : MonoBehaviour
             else
             {
                 currentProp = (GameObject)Instantiate(currentPropPrefab, new Vector3(cursorTransform.position.x + currentPropPrefab.GetComponent<Prop>().getXShift(), cursorTransform.position.y + currentPropPrefab.GetComponent<Prop>().getYShift(), cursorTransform.position.z + currentPropPrefab.GetComponent<Prop>().getZShift()), Quaternion.identity);
+                currentProp.GetComponent<Collider>().enabled = false;
             }
         }
         else
@@ -91,8 +92,16 @@ public class LanePropsModification : MonoBehaviour
         //Vector3 cursorPosition = getCursor(sender, e).transform.position;
 
         // add new instance of prop
-        propManagerScriptRef.addProp(currentPropPrefab.name, currentProp.transform.position);
-
+        if (!CurrentPropManager.Instance.getCurrentPropObj().name.Equals("Empty"))
+        {
+            GameObject recentProp = propManagerScriptRef.addProp(currentPropPrefab, currentProp.transform);
+            if (CurrentPropManager.Instance.getPropBeingMoved() == true)
+            {
+                UIManager.Instance.editPropMenu.GetComponent<EditPropBehavior>().init(recentProp);
+                CurrentPropManager.Instance.clearCurrentPropObj();
+                CurrentPropManager.Instance.setPropBeingMoved(false);
+            }
+        }
     }
 
     protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
@@ -108,7 +117,7 @@ public class LanePropsModification : MonoBehaviour
 
         trackCursor = true;
         cursorTransform = getCursor(sender, e).transform;
-        currentPropPrefab = (GameObject)GameObject.Find("CurrentPropTracker").GetComponent<CurrentPropManager>().getCurrentPropObj();
+        currentPropPrefab = CurrentPropManager.Instance.getCurrentPropObj();
 
 
         /*cursorTransform = getCursor(sender, e).transform;
@@ -192,5 +201,11 @@ public class LanePropsModification : MonoBehaviour
             Debug.Log("cursor not found");
             return null;
         }
+    }
+
+    public void setCurrentProp(GameObject newProp)
+    {
+        currentProp = newProp;
+        Debug.Log("Set currentProp to be " + newProp.ToString());
     }
 }

@@ -9,6 +9,7 @@ public class ModifyController : MonoBehaviour
     protected GameObject road;
     protected Road roadScript;
 
+
     // Nathan inserted start so we could use road functions more easily
     void Start()
     {
@@ -21,15 +22,28 @@ public class ModifyController : MonoBehaviour
     {
         if (Input.GetKeyDown("b"))
         {
-            if (addingProps == false)
+            /*if (addingProps == false)
             {
                 addingProps = true;
-                Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
+                GameObject propEditUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
+                //Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
             } else
             {
                 addingProps = false;
                 Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
-            }
+            }*/
+            CurrentPropManager.Instance.clearCurrentPropObj();
+            setAddingProps(true);
+            // currently in a singleton class so passing gameObject does nothing but didn't want to pass null and potentially break something
+            GameObject propSpawnUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
+        }
+    }
+
+    public void setAddingProps(bool newVal)
+    {
+        if (addingProps != newVal)
+        {
+            addingProps = newVal;
             toggleLaneIneraction();
         }
     }
@@ -44,20 +58,41 @@ public class ModifyController : MonoBehaviour
         LaneInsertionSelection laneInsertionSelectionScript = null;
         LanePropsModification lanePropsModificationScript = null;
 
-        foreach(GameObject lane in lanes)
+        foreach (GameObject lane in lanes)
         {
             Debug.Log(lane.ToString());
             laneInsertionSelectionScript = lane.GetComponent<LaneInsertionSelection>();
             lanePropsModificationScript = lane.GetComponent<LanePropsModification>();
 
-            if (laneInsertionSelectionScript != null && lanePropsModificationScript != null)
+            if (laneInsertionSelectionScript != null)
             {
                 lane.GetComponent<LaneInsertionSelection>().enabled = !addingProps;
+            }
+            if (lanePropsModificationScript != null)
+            {
                 lane.GetComponent<LanePropsModification>().enabled = addingProps;
-            } else
+            }
+            else
             {
                 Debug.Log("This lane does not allow props to be placed on it");
             }
+        }
+    }
+
+    // Singleton management code
+    private static ModifyController _instance;
+    public static ModifyController Instance { get { return _instance; } }
+    private void Awake()
+    {
+        // if we have an instance already
+        // AND the instance is one other than this
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
         }
     }
 }
