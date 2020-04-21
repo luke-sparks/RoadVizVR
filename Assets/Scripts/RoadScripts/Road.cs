@@ -343,6 +343,7 @@ public class Road : MonoBehaviour
                 laneScript.setLanePosition(-currLaneSize / 2);
             }
         }
+        updateBuildings();
     }
 
     // Luke wrote this
@@ -392,7 +393,7 @@ public class Road : MonoBehaviour
     // parameter targetLane is the lane we are trying to change
     // parameter newType is the name of the lane type we want to insert
     // parameter defaultWidth is the default width of the type to be inserted
-    public void setLaneType(GameObject targetLane, string newType) 
+    public GameObject setLaneType(GameObject targetLane, string newType) 
     {
         // REASONING BEHIND THIS PROCESS:
         //      We actually cannot overwrite gameObject from within BasicLane
@@ -427,6 +428,8 @@ public class Road : MonoBehaviour
             handleVehicleLaneStripes(newLaneScript, newLaneNode);
         }*/
         updateBuildings();
+
+        return newLane;
     }
 
     // Nathan wrote this
