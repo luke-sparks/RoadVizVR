@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buildings : MonoBehaviour
+public class Buildings : MonoBehaviour
 {
     //TYPE 0: URBAN
     //TYPE 1: SUBURBAN
@@ -33,8 +33,8 @@ public class buildings : MonoBehaviour
         //Begin by simply instantiating the urban prefab as default, we do this
         //by setting the currentEnv to be urban and then instantiate it.
         currentEnv = urbanPrefab;
-        instance = Instantiate(urbanPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        environmentIndex = 0;
+        instance = Instantiate(currentEnv, new Vector3(0, 0, 0), Quaternion.identity);
+        setEnvironmentIndex();
     }
 
     //Updates the position of the buildings by accessing the
@@ -85,4 +85,22 @@ public class buildings : MonoBehaviour
         return environmentIndex;
     }
 
+    // Nathan wrote this
+    // helper function for this class
+    private void setEnvironmentIndex()
+    {
+        if(instance.name == "suburbanEnv(Clone)")
+        {
+            environmentIndex = 1;
+        }
+        else if(instance.name == "ruralEnv(Clone)")
+        {
+            environmentIndex = 2;
+        }
+        // urban by default
+        else
+        {
+            environmentIndex = 0;
+        }
+    }
 }

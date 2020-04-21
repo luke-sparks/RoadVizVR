@@ -11,6 +11,7 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
     {
         propRef = objRef;
         propManagerScript = propRef.GetComponent<Prop>().getPropManager();
+        CurrentPropManager.Instance.setRotation(propRef.GetComponent<Prop>().getRotation());
     }
 
     public void handleMove()
@@ -19,7 +20,12 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
 
         ModifyController.Instance.setAddingProps(true);
 
-        CurrentPropManager.Instance.setCurrentPropObj(propRef);
+        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
+        {
+            propRef = CurrentPropManager.Instance.revertMovedProp();
+            init(propRef);
+        }
+
         CurrentPropManager.Instance.startMovingProp(propRef, propManagerScript);
 
         //setWorkingReference(CurrentPropManager.Instance.getCurrentPropObj());
@@ -53,11 +59,27 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
     public void handleRotateCCW()
     {
         Debug.Log("CCW Button Pressed");
+        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
+        {
+            CurrentPropManager.Instance.rotateCCW();
+        }
+        else
+        {
+            propRef.GetComponent<Prop>().rotateCCW();
+        }
     }
 
     public void handleRotateCW()
     {
         Debug.Log("CW Button Pressed");
+        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
+        {
+            CurrentPropManager.Instance.rotateCW();
+        }
+        else
+        {
+            propRef.GetComponent<Prop>().rotateCW();
+        }
     }
 
     public void handleClose()

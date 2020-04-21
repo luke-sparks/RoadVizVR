@@ -505,6 +505,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 101772947}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &397938583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7005819110390782979, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+    type: 3}
+  m_PrefabInstance: {fileID: 1130369068}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &502124331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,6 +1623,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numStartingLanes: 4
+  stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
+    type: 3}
+  buildingsReference: {fileID: 7676923138607722142, guid: 670799f11f6023c4d8e2cc8c53a7be89,
+    type: 3}
+  fogController: {fileID: 2037014122}
+  lights: {fileID: 397938583}
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
   - {fileID: 5954707031306349717, guid: 97b310af4c15f1e4cb22898e63a55615, type: 3}
@@ -1632,10 +1644,8 @@ MonoBehaviour:
   - {fileID: 3844490017451381875, guid: d9831c962d3f059459cd77e2788cad50, type: 3}
   stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
     type: 3}
-  lanePosition: {x: 0, y: 0, z: 0}
-  currentWidth: 0
-  buildingsReference: {fileID: 7676923138607722142, guid: 670799f11f6023c4d8e2cc8c53a7be89,
-    type: 3}
+  buildingsReference: {fileID: 1406036035}
+  fogController: {fileID: 2037014122}
 --- !u!1001 &1130369068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2959,7 +2969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f0e2965941c134098bbd3c2daa4d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogDistance: 0
+  fogDistance: 50
   fogShiftAmt: 20
 --- !u!4 &2037014124
 Transform:
