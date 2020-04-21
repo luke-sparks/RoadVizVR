@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 71f14a2d79f732f4d9893ef1b911f4ff, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -743,6 +743,7 @@ GameObject:
   - component: {fileID: 713571157}
   - component: {fileID: 713571165}
   - component: {fileID: 713571166}
+  - component: {fileID: 713571167}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -826,7 +827,7 @@ MonoBehaviour:
   axisFidelity: 1
   senseAxisForceZeroThreshold: 0.15
   senseAxisPressThreshold: 0.95
-  triggerClickThreshold: 1
+  triggerClickThreshold: 0.95
   triggerForceZeroThreshold: 0.01
   triggerAxisZeroOnUntouch: 0
   gripClickThreshold: 1
@@ -1035,6 +1036,18 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
+--- !u!114 &713571167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713571155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c59058d0a8ad9e4eba92f32e8f24d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &814133138 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
@@ -1066,6 +1079,7 @@ GameObject:
   - component: {fileID: 864105733}
   - component: {fileID: 864105736}
   - component: {fileID: 864105737}
+  - component: {fileID: 864105738}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -1088,7 +1102,7 @@ MonoBehaviour:
   axisFidelity: 1
   senseAxisForceZeroThreshold: 0.15
   senseAxisPressThreshold: 0.95
-  triggerClickThreshold: 1
+  triggerClickThreshold: 0.95
   triggerForceZeroThreshold: 0.01
   triggerAxisZeroOnUntouch: 0
   gripClickThreshold: 1
@@ -1358,6 +1372,18 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
+--- !u!114 &864105738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864105726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c59058d0a8ad9e4eba92f32e8f24d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &893088598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1673,6 +1699,26 @@ PrefabInstance:
     - target: {fileID: 7005819110390782978, guid: a9e18343c1b6ea64b97c10f652d1ce19,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005819109413252257, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005819110897556387, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005819110990972726, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005819111070015570, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2163,7 +2209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5837af0260a118e4d808bfe0405429a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoManageScriptDefines: 0
+  autoManageScriptDefines: 1
   activeScriptingDefineSymbolsWithoutSDKClasses: []
   scriptAliasLeftController: {fileID: 713571155}
   scriptAliasRightController: {fileID: 864105726}
@@ -2171,6 +2217,7 @@ MonoBehaviour:
   autoLoadSetup: 1
   setups:
   - {fileID: 1445166360}
+  - {fileID: 502124333}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
 --- !u!4 &1415241607

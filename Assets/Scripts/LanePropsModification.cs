@@ -90,7 +90,7 @@ public class LanePropsModification : MonoBehaviour
 
             if (CurrentPropManager.Instance.getPropBeingMoved() == true)
             {
-                GameObject editPropUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditProp, recentProp);
+                UIManager.Instance.editPropMenu.GetComponent<EditPropBehavior>().init(recentProp);
                 CurrentPropManager.Instance.clearCurrentPropObj();
                 CurrentPropManager.Instance.setPropBeingMoved(false);
             }
