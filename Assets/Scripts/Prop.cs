@@ -1,13 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
+
+using UnityEditor;
 
 public class Prop : MonoBehaviour
 {
-    // value from (0,1), indicates where in the lane the prop resides unrelated to the absolute lane size
-    private float relationalZPosition;
+    [SerializeField] private GameObject centerPointObj;
+
+    private int propRotation = 0;
 
     [SerializeField] protected Vector3 spawnCenterShift = new Vector3(0,0,0);
+
+    void Awake()
+    {
+        propRotation = CurrentPropManager.Instance.getRotation();
+        rotateToPoint();
+    }
+
+    public void loadPropData(PropData savedPropData)
+    {
+        propRotation = savedPropData.loadRotation();
+        rotateToPoint();
+    }
 
     public float getXShift()
     {
@@ -24,36 +40,188 @@ public class Prop : MonoBehaviour
         return spawnCenterShift.z;
     }
 
-    // sets new z position based on relational value
-    public void setZPositionRelational(Transform laneTransform)
+    public Vector3 getCenterShift()
     {
-        float laneWidth = laneTransform.GetComponent<Renderer>().bounds.size.z;
-        float laneCenterZ = laneTransform.GetComponent<Renderer>().bounds.center.z;
-        float leftEdge = laneCenterZ - (laneWidth / 2);
+        return spawnCenterShift;
+    }
 
-        float newFalseZCenter = (laneWidth * relationalZPosition) + leftEdge;
+    public float getXPosition()
+    {
+        return gameObject.transform.position.x;
+    }
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, newFalseZCenter);
+    public float getYPosition()
+    {
+        return gameObject.transform.position.y;
+    }
+
+    public float getZPosition()
+    {
+        return gameObject.transform.position.z;
+    }
+
+    public float getZOffsetFromLane()
+    {
+        return centerPointObj.transform.position.z - GetComponentInParent<BasicLane>().getLanePosition().z;
+    }
+
+    public string getPropType()
+    {
+        string propType = gameObject.name;
+        while (propType.EndsWith("(Clone)"))
+        {
+            propType = propType.Substring(0, gameObject.name.Length - 7);
+        }
+        return propType;
+    }
+
+    public void updatePosition(GameObject lane, float changeInLaneWidth)
+    {
+        float laneCenterZ = lane.GetComponent<BasicLane>().getLanePosition().z;
+        float newHalfLaneWidth = lane.GetComponent<BasicLane>().getLaneWidth() / 2;
+        float oldHalfLaneWidth = newHalfLaneWidth - changeInLaneWidth;
+        float objectCenter = centerPointObj.transform.position.z;
+
+        float proportionalLocation = (objectCenter - laneCenterZ) / oldHalfLaneWidth;
+        float newZValue = laneCenterZ + (newHalfLaneWidth * proportionalLocation);
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, newZValue - spawnCenterShift.z);
     }
     
-    // updates the z value based on the lane transform
-    public void updateRelationalZValue(Transform laneTransform)
+
+    // rotates 45 degrees CW
+    public void rotateCW()
     {
-        float laneWidth = laneTransform.GetComponent<Renderer>().bounds.size.z;
-        float laneCenterZ = laneTransform.GetComponent<Renderer>().bounds.center.z;
-        float leftEdge = laneCenterZ - (laneWidth / 2);
+        gameObject.transform.RotateAround(centerPointObj.transform.position, Vector3.up, 45);
+        propRotation = (propRotation + 1) % 8;
+        CurrentPropManager.Instance.setRotation(propRotation);
+    }
 
-        Debug.Log("lane width: " + laneWidth);
-        Debug.Log("lane center: " + laneCenterZ);
-        Debug.Log("left edge: " + leftEdge);
+    // rotates 45 degrees CCW
+    public void rotateCCW()
+    {
+        gameObject.transform.RotateAround(centerPointObj.transform.position, Vector3.up, -45);
+        propRotation = (propRotation - 1) % 8;
+        CurrentPropManager.Instance.setRotation(propRotation);
+    }
 
-        float falseZCenter = GetComponent<Renderer>().bounds.center.z + spawnCenterShift.z;
+    public void rotateToPoint()
+    {
+        gameObject.transform.rotation = Quaternion.identity;
+        gameObject.transform.RotateAround(centerPointObj.transform.position, Vector3.up, 45 * propRotation);
+        CurrentPropManager.Instance.setRotation(propRotation);
+    }
 
-        // figure out how far center is from left edge (3 meters)
-        float distanceFromEdge = falseZCenter - leftEdge;
+    public int getRotation()
+    {
+        return propRotation;
+    }
 
-        // divide that number by the width of the lane (5 meters) - 3/5
-        relationalZPosition = distanceFromEdge / laneWidth;
+    public void setRotation(int rot)
+    {
+        propRotation = rot;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown("r"))
+        {
+            rotateCW();
+        }
+        if (Input.GetKeyDown("t"))
+        {
+            rotateCCW();
+        }
+        //Debug.Log("prop position rotated : " + gameObject.transform.position.ToString("F5"));
+    }
+
+    /*public void deleteProp()
+    {
+        PropManager propManagerRef = gameObject.GetComponentInParent<PropManager>();
+        propManagerRef.removeProp(gameObject);
+    }
+
+    public void startMovingProp()
+    {
+        PropManager propManagerRef = gameObject.GetComponentInParent<PropManager>();
+        propManagerRef.startMovingProp(gameObject);
+    }
+
+    public void placeMovedProp()
+    {
+        PropManager propManagerRef = gameObject.GetComponentInParent<PropManager>();
+        propManagerRef.placeMovedProp(gameObject, gameObject.transform.position);
+    }
+
+    public void revertMovedProp()
+    {
+        PropManager propManagerRef = gameObject.GetComponentInParent<PropManager>();
+        propManagerRef.revertMovedProp(gameObject);
+    }*/
+
+    public PropManager getPropManager()
+    {
+        return gameObject.GetComponentInParent<PropManager>();
+    }
+
+    // begin interaction code
+
+    public VRTK_InteractableObject linkedObject;    // this? may need to link
+
+    protected virtual void OnEnable()
+    {
+        linkedObject = (linkedObject == null ? GetComponent<VRTK_InteractableObject>() : linkedObject);
+
+        if (linkedObject != null)
+        {
+            linkedObject.InteractableObjectUsed += InteractableObjectUsed;
+            linkedObject.InteractableObjectUnused += InteractableObjectUnused;
+            linkedObject.InteractableObjectTouched += InteractableObjectTouched;
+            linkedObject.InteractableObjectUntouched += InteractableObjectUntouched;
+        }
+
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (linkedObject != null)
+        {
+            linkedObject.InteractableObjectUsed -= InteractableObjectUsed;
+            linkedObject.InteractableObjectUnused -= InteractableObjectUnused;
+            linkedObject.InteractableObjectTouched -= InteractableObjectTouched;
+            linkedObject.InteractableObjectUntouched -= InteractableObjectUntouched;
+        }
+    }
+
+    protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectUsed");
+        // write use script here
+
+        GameObject propEditUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditProp, gameObject);
+        CurrentPropManager.Instance.clearCurrentPropObj();
+
+        //ModifyController.Instance.setAddingProps(true);
+        //CurrentPropManager.
+
+    }
+
+    protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectUnused");
+        // write un-use script here
+    }
+
+    protected virtual void InteractableObjectTouched(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectTouched");
+        // write touch script here
+    }
+
+    protected virtual void InteractableObjectUntouched(object sender, InteractableObjectEventArgs e)
+    {
+        //Debug.Log("InteractableObjectUntouched");
+        // write un-touch script here
     }
 
 }

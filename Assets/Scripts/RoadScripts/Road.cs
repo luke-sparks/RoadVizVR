@@ -49,7 +49,7 @@ public class Road : MonoBehaviour
         roadLanes = new LinkedList<GameObject>();
         // insert all of the starting lanes in the road
         GameObject currLane = null;
-        for (int i = 0; i < numStartingLanes; i++) 
+        for (int i = 0; i < numStartingLanes; i++)
         {
             // insert all vehicle lanes using right insertion
             insertLane(currLane, laneTypes[1], "right");
@@ -57,7 +57,22 @@ public class Road : MonoBehaviour
         }
         setLaneType(roadLanes.First.Value, "Shoulder");
         setLaneType(roadLanes.Last.Value, "Shoulder");
+
+        StartCoroutine(FrameDelayBuildingUpdate());
     }
+
+    //Updates the buildings by delaying a frame
+    //Very cheap workaround but gets the job done in only a few lines
+    IEnumerator FrameDelayBuildingUpdate()
+    {
+        //Waits until the end of the frame
+        yield return new WaitForEndOfFrame();
+
+        //Updates buildings
+        updateBuildings();
+    }
+
+
 
     //Written by Max
     //Returns the bounds of the entire road using the children.
@@ -80,8 +95,8 @@ public class Road : MonoBehaviour
                 //Encapsulate children within the bounds object
                 bounds.Encapsulate(renderers[i].bounds);
             }
-            Debug.Log("INSIDE GET RENDER BOUNDS");
-            Debug.Log(bounds.size);
+            //Debug.Log("INSIDE GET RENDER BOUNDS");
+            //Debug.Log(bounds.size);
             return bounds;
         }
         else
@@ -297,6 +312,11 @@ public class Road : MonoBehaviour
         {
             handleNonVehicleLaneStripes(newLaneScript, newLaneNode);
         }
+        /*else 
+        {
+            handleVehicleLaneStripes(newLaneScript, newLaneNode);
+        }*/
+        updateBuildings();
     }
 
     // Nathan wrote this
@@ -398,6 +418,7 @@ public class Road : MonoBehaviour
     // loads the road from a binary file
     public void loadRoad()
     {
+        UIManager.Instance.closeCurrentUI();
         // steps: 
         //      1. clear the contents of the road
         //      2. obtain the saved road data
@@ -407,9 +428,11 @@ public class Road : MonoBehaviour
         //          c. obtain a reference to the lane's script
         //          d. adjust the lane's stripes if it's not a vehicle lane
         //          e. load the rest of the attributes
-        //      4. load the saved buildings
+        //          f. load the lanes props (if not a vehicle lane)
+        //      4. load the saved environment
         //      5. load the saved fog settings
         //      6. load the saved lighting settings
+
         // 1. we have to clear whatever else the user has loaded in since the last save
         clearRoad();
         // 2. obtain the saved data
@@ -435,6 +458,13 @@ public class Road : MonoBehaviour
             }
             // 3e. load the rest of the lane's variables
             loadedLaneScriptReference.loadLaneAtts(savedLane);
+
+            // 3f. load the lanes props (if not a vehicle lane)
+            if (!loadedLaneScriptReference.isVehicleLane())
+            {
+                PropManager loadedPropManagerRef = currLane.GetComponent<PropManager>();
+                loadedPropManagerRef.loadProps(savedLane.loadPropManagerData());
+            }
         }
         // 4. load the saved buildings
         Buildings buildingsScriptReference = (Buildings)buildingsReference.GetComponent("Buildings");

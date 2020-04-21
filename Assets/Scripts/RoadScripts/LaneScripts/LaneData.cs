@@ -20,6 +20,8 @@ public class LaneData //: MonoBehaviour
     private StripeData leftStripeData = null;
     private StripeData rightStripeData = null;
 
+    private PropManagerData propManagerData = null;
+    
     // Nathan wrote this
     // class constructor
     // lane is the script of a lane object within the road
@@ -53,6 +55,47 @@ public class LaneData //: MonoBehaviour
             Stripe rightStripeScriptRef = (Stripe)rightStripe.GetComponent("Stripe");
             rightStripeData = new StripeData(rightStripeScriptRef);
         }
+    }
+
+    // overload the constructor to properly deal with lanes that can have props
+    public LaneData(BasicLane lane, PropManager propManager)
+    {
+        // store the lane position
+        Vector3 lanePositionVector = lane.getLanePosition();
+        lanePosition[0] = lanePositionVector.x;
+        lanePosition[1] = lanePositionVector.y;
+        lanePosition[2] = lanePositionVector.z;
+        // store the lane width and the max/min values
+        laneWidth = lane.getLaneWidth();
+        maxWidth = lane.getMaxWidth();
+        minWidth = lane.getMinWidth();
+        // store the lane type
+        laneType = lane.getLaneType();
+        // store the booleans
+        vehicleLane = lane.isVehicleLane();
+        nonVehicleAsphalt = lane.isNonVehicleAsphaltLane();
+        nonAsphalt = lane.isNonAsphaltLane();
+        // store the stripes' data
+        GameObject leftStripe = lane.getStripe("left");
+        GameObject rightStripe = lane.getStripe("right");
+        if (leftStripe != null)
+        {
+            Stripe leftStripeScriptRef = (Stripe)leftStripe.GetComponent("Stripe");
+            leftStripeData = new StripeData(leftStripeScriptRef);
+        }
+        if (rightStripe != null)
+        {
+            Stripe rightStripeScriptRef = (Stripe)rightStripe.GetComponent("Stripe");
+            rightStripeData = new StripeData(rightStripeScriptRef);
+        }
+
+        propManagerData = new PropManagerData(propManager);
+    }
+
+    // loads the saved propManagerData
+    public PropManagerData loadPropManagerData()
+    {
+        return propManagerData;
     }
 
     // Nathan wrote this
