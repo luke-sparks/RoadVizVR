@@ -5,7 +5,7 @@ using VRTK;
 
 public class LanePropsModification : MonoBehaviour
 {
-    [SerializeField] protected GameObject currentPropPrefab;
+    protected GameObject currentPropPrefab;
     protected GameObject currentProp = null;
 
     public VRTK_InteractableObject linkedObject;
@@ -33,19 +33,12 @@ public class LanePropsModification : MonoBehaviour
         {
             if (currentProp != null)
             {
-                currentProp.transform.position = new Vector3(cursorTransform.position.x + currentPropPrefab.GetComponent<Prop>().getXShift(), cursorTransform.position.y + currentPropPrefab.GetComponent<Prop>().getYShift(), cursorTransform.position.z + currentPropPrefab.GetComponent<Prop>().getZShift());
-                //currentProp.transform.position = new Vector3(cursorTransform.position.x + currentPropPrefab.GetComponent<PropScript>().getXShift(), cursorTransform.position.y + currentPropPrefab.GetComponent<PropScript>().getYShift(), cursorTransform.position.z + currentPropPrefab.GetComponent<PropScript>().getZShift());
-
-                /*Debug.Log("Current prop lossy scale: " + currentPropPrefab.transform.lossyScale.y);
-                Debug.Log("Current prop local scale: " + currentPropPrefab.transform.localScale.y);
-                Debug.Log("renderer bounds size: " + currentPropPrefab.GetComponent<Renderer>().bounds.size.y);
-                Debug.Log("renderer bounds extents: " + currentPropPrefab.GetComponent<Renderer>().bounds.extents.y);
-                Debug.Log("mesh filter bounds size: " + currentPropPrefab.GetComponent<MeshFilter>().sharedMesh.bounds.size.y);
-                Debug.Log("mesh filter bounds extents: " + currentPropPrefab.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y);*/
+                currentProp.transform.position = cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift();
+                currentPropPrefab.transform.position = cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift();
             }
             else
             {
-                currentProp = (GameObject)Instantiate(currentPropPrefab, new Vector3(cursorTransform.position.x + currentPropPrefab.GetComponent<Prop>().getXShift(), cursorTransform.position.y + currentPropPrefab.GetComponent<Prop>().getYShift(), cursorTransform.position.z + currentPropPrefab.GetComponent<Prop>().getZShift()), Quaternion.identity);
+                currentProp = Instantiate(currentPropPrefab, cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift(), Quaternion.identity);
                 currentProp.GetComponent<Collider>().enabled = false;
             }
         }
@@ -86,7 +79,6 @@ public class LanePropsModification : MonoBehaviour
     protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
     {
         //Debug.Log("InteractableObjectUsed");
-        // write use script here
 
         PropManager propManagerScriptRef = this.GetComponent<PropManager>();
         //Vector3 cursorPosition = getCursor(sender, e).transform.position;
@@ -94,7 +86,8 @@ public class LanePropsModification : MonoBehaviour
         // add new instance of prop
         if (!CurrentPropManager.Instance.getCurrentPropObj().name.Equals("Empty"))
         {
-            GameObject recentProp = propManagerScriptRef.addProp(currentPropPrefab, currentProp.transform);
+            GameObject recentProp = propManagerScriptRef.addProp(currentPropPrefab, cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift());
+
             if (CurrentPropManager.Instance.getPropBeingMoved() == true)
             {
                 UIManager.Instance.editPropMenu.GetComponent<EditPropBehavior>().init(recentProp);

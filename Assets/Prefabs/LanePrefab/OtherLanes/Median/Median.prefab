@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d9eb36ce766d5ce4fb2fe51574003ab8, type: 2}
+  - {fileID: 2100000, guid: cbe13620fc57ea541a69f42a11696656, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,8 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asphalt: {fileID: 4041716850130271123}
-  laneIndex: 0
-  laneType: 
+  laneType: Median
   currentLaneWidth: 1.5
   maxWidth: 6
   minWidth: 0.5
@@ -270,6 +269,8 @@ MonoBehaviour:
   vehicleLane: 0
   nonVehicleAsphalt: 0
   nonAsphalt: 1
+  road: {fileID: 0}
+  roadScript: {fileID: 0}
 --- !u!114 &-4187242507098683236
 MonoBehaviour:
   m_ObjectHideFlags: 0

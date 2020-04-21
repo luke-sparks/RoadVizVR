@@ -136,8 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47ce5b8a5af64ef484b65ffc2bce8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stripeColor: 
-  currentStripeType: 
+  currentStripeType: SolidWhite
   stripe: {fileID: 3205714752542740998}
   leftLane: {fileID: 0}
   rightLane: {fileID: 0}
@@ -146,5 +145,6 @@ MonoBehaviour:
   - {fileID: 6750228061007768718, guid: 0e0cca517d4c744e29dce60a094e2b53, type: 3}
   - {fileID: 7459166911701872852, guid: c3e0bf9e713e146688a5b7c98f5bc901, type: 3}
   - {fileID: 4428836317428890370, guid: b2660c1beba244053b851a0f2ecf9931, type: 3}
+  - {fileID: 167612556985350799, guid: 642d3bc7a253543428ecaebe6f04ff4e, type: 3}
   - {fileID: 8361251178493490650, guid: 2c99f102a53644588bca35fce581ea43, type: 3}
-  - {fileID: 5275373860122186616, guid: 1285924c57bdb4531a0cdfbc9751e05a, type: 3}
+  - {fileID: 3431880081314442298, guid: 08fbc1168e02c4581afc9a6957f344cb, type: 3}
