@@ -212,7 +212,7 @@ public class Road : MonoBehaviour
 
     // Nathan wrote this
     // used to shift lanes back in after a deletion
-    /*public void shiftLanesIn(GameObject currLane, float currLaneSize)
+    public void shiftLanesIn(GameObject currLane, float currLaneSize)
     {
         // variable to let us know we've found the lane
         bool foundLane = false;
@@ -242,7 +242,8 @@ public class Road : MonoBehaviour
                 laneScript.setLanePosition(-currLaneSize / 2);
             }
         }
-    }*/
+        updateBuildings();
+    }
 
     // Luke wrote this
     // used for modifying widths of lanes
@@ -282,7 +283,7 @@ public class Road : MonoBehaviour
     // parameter targetLane is the lane we are trying to change
     // parameter newType is the name of the lane type we want to insert
     // parameter defaultWidth is the default width of the type to be inserted
-    public void setLaneType(GameObject targetLane, string newType) 
+    public GameObject setLaneType(GameObject targetLane, string newType) 
     {
         // REASONING BEHIND THIS PROCESS:
         //      We actually cannot overwrite gameObject from within BasicLane
@@ -317,6 +318,8 @@ public class Road : MonoBehaviour
             handleVehicleLaneStripes(newLaneScript, newLaneNode);
         }*/
         updateBuildings();
+
+        return newLane;
     }
 
     // Nathan wrote this
