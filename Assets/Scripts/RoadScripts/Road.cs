@@ -7,25 +7,22 @@ using UnityEngine;
 public class Road : MonoBehaviour
 {
     // class fields
-    [SerializeField] private const float MAX_WIDTH = 200f;
     [SerializeField] private const int MAX_LANES = 15;
     [SerializeField] private const int MIN_LANES = 1;
     // the number of starting lanes in the road
     [SerializeField] private int numStartingLanes;
-    // road_Lanes is a linked list of the lanes currently in the road object
-    [SerializeField] private LinkedList<GameObject> roadLanes;
-    // the list of acceptable types of objects that can be
-    // inserted into the road
-    [SerializeField] private GameObject[] laneTypes = new GameObject[12];
-    //[SerializeField] private GameObject[] stripeTypes = new GameObject[2];
+    // stripeContainer is the stripe object that allows stripes to be displayed on the road
     [SerializeField] private GameObject stripeContainer;
-    // the road position variable
-    //[SerializeField] private Vector3 lanePosition;
-    //[SerializeField] private float defaultShift;
-    //[SerializeField] private float currentWidth;
-    //Buildings reference is manually assigned
+    // buildingsReference is a reference to the environment containing all buildings
     [SerializeField] private GameObject buildingsReference;
+    // fogController controls the fog level
     [SerializeField] private GameObject fogController;
+    // lights controls the lighting in the development environment
+    [SerializeField] private GameObject lights;
+    // roadLanes is a linked list of the lanes currently in the road object
+    [SerializeField] private LinkedList<GameObject> roadLanes;
+    // the list of acceptable types of objects that can be inserted into the road
+    [SerializeField] private GameObject[] laneTypes = new GameObject[12];
 
     // Start is called before the first frame update
     void Start()
@@ -48,12 +45,9 @@ public class Road : MonoBehaviour
     {
         //Waits until the end of the first frame
         yield return new WaitForEndOfFrame();
-
         // initialize an empty linked list for lanes in road
         roadLanes = new LinkedList<GameObject>();
-        // Nathan moved the new Start() code from development into this function
         // insert all of the starting lanes in the road
-        LinkedListNode<GameObject> currLaneNode = null;
         GameObject currLane = null;
         for (int i = 0; i < numStartingLanes; i++) 
         {
@@ -63,21 +57,6 @@ public class Road : MonoBehaviour
         }
         setLaneType(roadLanes.First.Value, "Shoulder");
         setLaneType(roadLanes.Last.Value, "Shoulder");
-    }
-
-    //Written by Max
-    //Simply acesses the buildings reference and then updates their position
-    private void updateBuildings()
-    {
-        // Nathan added this if else
-        if(buildingsReference != null)
-        {
-            buildingsReference.GetComponent<Buildings>().updateBuildingPosition();
-        }
-        else
-        {
-            Debug.Log("No buildings exist yet");
-        }
     }
 
     //Written by Max
@@ -143,7 +122,7 @@ public class Road : MonoBehaviour
                 BasicLane newLaneScript = (BasicLane)laneType.GetComponent("BasicLane");
                 Vector3 currLanePosition = currLane.transform.position;
                 float currLaneZScale = currLaneScript.getLaneWidth();
-
+                // side is left
                 if (side.Equals("left"))
                 {
                     newPosition = new Vector3(currLanePosition.x, currLanePosition.y, currLanePosition.z - (currLaneZScale / 2));
@@ -157,15 +136,9 @@ public class Road : MonoBehaviour
             // back to default cases
             GameObject newLane = Instantiate(laneType, newPosition, transform.rotation);
             newLane.transform.parent = transform;
-
             addLaneToList(newLane, currLaneNode, side);
-            //setStripes(newLane);
-
             Transform newAsphaltTransform = newLane.transform.Find("PrimaryAsphalt");
             float newLaneZScale = newAsphaltTransform.localScale.z;
-
-            //Debug.Log("inserted new lane on " + side + " the lanes position is: " + newLane.transform.position);
-
             adjustRoadAroundLane(newLane, newLaneZScale / 2);
             setStripes(newLane);
         }
@@ -192,7 +165,6 @@ public class Road : MonoBehaviour
             //          8. add stripes back in accordingly
 
             // 1. get target lane script
-            //Debug.Log(targetLane);
             BasicLane targetLaneScriptReference = (BasicLane)targetLane.GetComponent("BasicLane");
             // 2. get target lane's width
             float targetLaneWidth = targetLaneScriptReference.getLaneWidth();
@@ -208,8 +180,8 @@ public class Road : MonoBehaviour
             Destroy(targetLaneScriptReference.getStripe("left"));
             Destroy(targetLaneScriptReference.getStripe("right"));
             // 5. shift the rest of the lanes inward
-            shiftLanesIn(targetLane, targetLaneWidth);
-            //adjustRoadAroundLane(targetLane, -(targetLaneWidth / 2));
+            //shiftLanesIn(targetLane, targetLaneWidth);
+            adjustRoadAroundLane(targetLane, -(targetLaneWidth / 2));
             // 6. remove lane from list
             roadLanes.Remove(targetLane);
             // 7. destroy the game object
@@ -223,81 +195,9 @@ public class Road : MonoBehaviour
         }
     }
 
-    // Luke wrote this
-    // used for inserting lanes (insertLaneAfter)
-    // shifts lanes to the left if they are going to be to the left of the new lane
-    // shifts lanes to the right if they are going to be to the right of the new lane
-    /*public void shiftLanesAfter(GameObject currLane, float newLaneSize)
-    {
-        // variable to let us know we've found the lane
-        bool foundLane = false;
-
-        foreach (GameObject g in roadLanes)
-        {
-            // get the position of the current lane we are looking at
-            BasicLane laneScript = g.GetComponent<BasicLane>();
-
-            // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
-            // this won't need to be changed for when we're adjusting the width of a new lane we
-            // are inserting because we will use adjustRoadAroundLane
-            if (!foundLane)
-            {
-                laneScript.setLanePosition(-newLaneSize / 2);
-            }
-            // looks like we've found our lane, so shift everything to the right now
-            else
-            {
-                laneScript.setLanePosition(newLaneSize / 2);
-            }
-
-            // check if we've found our lane, if so, everything else will shift right from here on out
-            if (currLane == g)
-            {
-                foundLane = true;
-            }
-        }
-        updateBuildings();
-    }*/
-
-    // Nathan wrote this (basically just Luke's shiftLanesAfter but reversed)
-    // used for inserting lanes (insertLaneBefore)
-    // shifts lanes to the left if they are going to be to the left of the new lane
-    // shifts lanes to the right if they are going to be to the right of the new lane
-    /*public void shiftLanesBefore(GameObject currLane, float newLaneSize)
-    {
-        // variable to let us know we've found the lane
-        bool foundLane = false;
-
-        foreach (GameObject g in roadLanes)
-        {
-            // check if we've found our lane, if so, everything else will shift right from here on out
-            // we must check this before, unlike what we do in shiftLanesAfter
-            if (currLane == g)
-            {
-                foundLane = true;
-            }
-            // get the position of the current lane we are looking at
-            BasicLane laneScript = g.GetComponent<BasicLane>();
-
-            // if we haven't gotten to our lane yet, shift the lane to the left by newlaneSize / 2
-            // this won't need to be changed for when we're adjusting the width of a new lane we
-            // are inserting because we will use adjustRoadAroundLane
-            if (!foundLane)
-            {
-                laneScript.setLanePosition(-newLaneSize / 2);
-            }
-            // looks like we've found our lane, so shift everything to the right now
-            else
-            {
-                laneScript.setLanePosition(newLaneSize / 2);
-            }
-        }
-        updateBuildings();
-    }*/
-
     // Nathan wrote this
     // used to shift lanes back in after a deletion
-    public void shiftLanesIn(GameObject currLane, float currLaneSize)
+    /*public void shiftLanesIn(GameObject currLane, float currLaneSize)
     {
         // variable to let us know we've found the lane
         bool foundLane = false;
@@ -327,7 +227,7 @@ public class Road : MonoBehaviour
                 laneScript.setLanePosition(-currLaneSize / 2);
             }
         }
-    }
+    }*/
 
     // Luke wrote this
     // used for modifying widths of lanes
@@ -341,30 +241,21 @@ public class Road : MonoBehaviour
         {
             // get the lane that we are looking at's current position
             BasicLane laneScript = g.GetComponent<BasicLane>();
-            // obtain the lane's left and right stripes
-            GameObject leftStripe = laneScript.getStripe("left");
-            GameObject rightStripe = laneScript.getStripe("right");
             // if we have found our current lane (that is being made wider or thinner), indicate that we found it
             if (currLane == g)
             {
                 // essentially do nothing because it will be widened after
                 foundLane = true;
-                //Stripe leftStripeScript = (Stripe)leftStripe.GetComponent("Stripe");
-                //leftStripeScript.setStripePosition(leftStripe.transform.position, -sizeDifference);
             }
             // if we haven't found our lane yet, shift things to the left by the sizeDifference
             else if (foundLane == false)
             {
                 laneScript.setLanePosition(-sizeDifference);
-                //laneScript.setStripeOrientation(leftStripe, "left");
-                //laneScript.setStripeOrientation(rightStripe, "right");
             }
             // if we HAVE found our lane, shift things right
             else // foundLane is 1
             {
                 laneScript.setLanePosition(sizeDifference);
-                //laneScript.setStripeOrientation(leftStripe, "left");
-                //laneScript.setStripeOrientation(rightStripe, "right");
             }
         }
         //Update position of buildings
@@ -427,13 +318,6 @@ public class Road : MonoBehaviour
     }
 
     // Nathan wrote this
-    // returns the max width
-    public float getMaxWidth()
-    {   
-        return MAX_WIDTH;
-    }
-
-    // Nathan wrote this
     // returns the max lanes constant
     public int getMaxLanes()
     {
@@ -452,6 +336,13 @@ public class Road : MonoBehaviour
     public GameObject getStripeContainer()
     {
         return stripeContainer;
+    }
+
+    // Nathan wrote this
+    // retrieves the lights object
+    public GameObject getLights()
+    {
+        return lights;
     }
 
     // Nathan wrote this
@@ -516,6 +407,9 @@ public class Road : MonoBehaviour
         //          c. obtain a reference to the lane's script
         //          d. adjust the lane's stripes if it's not a vehicle lane
         //          e. load the rest of the attributes
+        //      4. load the saved buildings
+        //      5. load the saved fog settings
+        //      6. load the saved lighting settings
         // 1. we have to clear whatever else the user has loaded in since the last save
         clearRoad();
         // 2. obtain the saved data
@@ -542,13 +436,31 @@ public class Road : MonoBehaviour
             // 3e. load the rest of the lane's variables
             loadedLaneScriptReference.loadLaneAtts(savedLane);
         }
-        // 4. load the saved environment
+        // 4. load the saved buildings
         Buildings buildingsScriptReference = (Buildings)buildingsReference.GetComponent("Buildings");
         buildingsScriptReference.setBuildingType(roadData.loadBuildingsIndex());
         updateBuildings();
         // 5. load the saved fog settings
         FogControl fogControlScriptReference = (FogControl)fogController.GetComponent("FogControl");
         fogControlScriptReference.setFogDistance(roadData.loadFogDistance());
+        // 6. load the saved lighting settings
+        lights.transform.localPosition = roadData.loadLightPosition();
+        lights.transform.localScale = roadData.loadLightScale();
+    }
+
+    // Written by Max
+    // Simply acesses the buildings reference and then updates their position
+    private void updateBuildings()
+    {
+        // Nathan added this if else
+        if(buildingsReference != null)
+        {
+            buildingsReference.GetComponent<Buildings>().updateBuildingPosition();
+        }
+        else
+        {
+            Debug.Log("No buildings exist yet");
+        }
     }
 
     // Nathan wrote this
