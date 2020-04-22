@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour
         else if (headset == SDK_BaseHeadset.HeadsetType.HTCVive)
             setViveWandControls();
         else
-            Debug.LogError("Unrecognized controller type, using default input");
+            Debug.LogWarning("Unrecognized controller type, using default input");
     }
 
     private void setViveWandControls()
