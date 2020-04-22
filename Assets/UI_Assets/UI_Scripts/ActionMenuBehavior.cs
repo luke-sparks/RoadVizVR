@@ -20,6 +20,11 @@ public class ActionMenuBehavior : MonoBehaviour, ISceneUIMenu
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void onPlacePropPress()
+    {
+        UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, null);
+    }
+
     public void onEnvSettingsPress()
     {
         UIManager.Instance.openUIScreen(UIManager.UIScreens.GlobalSettings, null);

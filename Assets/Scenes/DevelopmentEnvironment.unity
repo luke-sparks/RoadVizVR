@@ -2680,6 +2680,8 @@ MonoBehaviour:
     type: 3}
   spawnPropMenu: {fileID: 8472911303652399705, guid: 1bae279add321064280ec9592619213e,
     type: 3}
+  actionMenu: {fileID: 1134409418911284697, guid: 27fad3485544469469c8467fee65cc1f,
+    type: 3}
 --- !u!4 &1849227286
 Transform:
   m_ObjectHideFlags: 0
