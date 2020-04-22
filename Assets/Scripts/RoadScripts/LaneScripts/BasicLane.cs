@@ -8,36 +8,18 @@ public class BasicLane : MonoBehaviour
 {
     // class fields
     [SerializeField] private const float DEFAULT_LANE_WIDTH_FT = 12.0f;
-    //[SerializeField] protected GameObject laneEditPrefab;
-    //[SerializeField] protected GameObject editLaneDialogue;
-    //[SerializeField] protected GameObject insertButton;
-    [SerializeField] protected GameObject asphalt;
-    //[SerializeField] protected Vector3 lanePosition; 
-    //[SerializeField] protected int laneIndex;
-    [SerializeField] protected string laneType;
-    [SerializeField] protected float currentLaneWidth;
-    [SerializeField] protected float maxWidth;
-    [SerializeField] protected float minWidth;
-    [SerializeField] protected GameObject leftStripe;
-    [SerializeField] protected GameObject rightStripe;
-    [SerializeField] protected bool vehicleLane;
-    [SerializeField] protected bool nonVehicleAsphalt;
-    [SerializeField] protected bool nonAsphalt;
-    [SerializeField] protected GameObject road;
-    [SerializeField] protected Road roadScript;
-
-    // Nathan inserted start so we could use road functions more easily
-    void Start()
-    {
-        //road = GameObject.Find("Road");
-        //roadScript = (Road)road.GetComponent("Road");
-
-        // this was causing a bug. not sure why
-        //setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
-
-        //road = GameObject.Find("Road");
-        //roadScript = (Road)road.GetComponent("Road");
-    }
+    [SerializeField] private GameObject asphalt;
+    [SerializeField] private string laneType;
+    [SerializeField] private float currentLaneWidth;
+    [SerializeField] private float maxWidth;
+    [SerializeField] private float minWidth;
+    [SerializeField] private GameObject leftStripe;
+    [SerializeField] private GameObject rightStripe;
+    [SerializeField] private bool vehicleLane;
+    [SerializeField] private bool nonVehicleAsphalt;
+    [SerializeField] private bool nonAsphalt;
+    [SerializeField] private GameObject road;
+    [SerializeField] private Road roadScript;
 
     // setLaneWidth() sets the width of a lane
     // new_width is a floating point number used to create

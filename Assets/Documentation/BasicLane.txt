@@ -1,0 +1,93 @@
+BasicLane.txt
+
+Documentation for BasicLane.cs. 
+
+BasicLane Class Description: BasicLane is used for controlling the behavior of individual lanes.
+                             This includes adjusting their position, setting their width, their type name,
+                             and their stripes' properties. 
+
+A. Libraries:
+    1. System.Collections.
+    2. System.Collections.Generic.
+    3. UnityEngine.
+
+B. Class Fields:
+    1. DEFAULT_LANE_WIDTH_FT:
+        a. Type: private const float.
+        b. Serialized: yes.
+        c. Description: the default width in feet.
+        d. Usage: used for the meter-foot conversion.
+
+    2. asphalt:
+        a. Type: private GameObject.
+        b. Serialized: yes.
+        c. Description: a reference to the asphalt portion of the lane object.
+        d. Usage: used to manipulate the physical part of the lane.
+
+    3. laneType:
+        a. Type: private string. 
+        b. Serialized: yes.
+        c. Description: the name of the lane type.
+        d. Usage: used to store the name of the lane type. 
+
+    4. currentLaneWidth:
+        a. Type: protectef float.
+        b. Serialized: yes.
+        c. Description: variable containing the lane's current width.
+        d. Usage: used to view the current width of the lane.
+
+    5. maxWidth:
+        a. Type: private float.
+        b. Serialized: yes.
+        c. Description: variable storing the maximum width a lane can be set to.
+        d. Usage: used to prevent the lane from getting too wide.
+
+    6. minWidth:
+        a. Type: private float.
+        b. Serialized: yes.
+        c. Description: variable storing the minimum width a lane can be set to.
+        d. Usage: used to prevent the lane from getting too narrow.
+
+    7. leftStripe:
+        a. Type: private GameObject.
+        b. Serialized: yes.
+        c. Description: a reference to the left stripe of the lane.
+        d. Usage: used to gain access to the left stripe's properties. 
+
+    8. rightStripe:
+        a. Type: private GameObject.
+        b. Serialized: yes.
+        c. Description: a reference to the right stripe of the lane.
+        d. Usage: used to gain access to the right stripe's properties. 
+
+    9. vehicleLane:
+        a. Type: private bool.
+        b. Serialized: yes.
+        c. Description: a flag indicating that this is a vehicle lane. 
+        d. Usage: used to check whether this is a vehicle lane or not. 
+
+    10. nonVehicleAsphalt:
+        a. Type: private bool.
+        b. Serialized: yes.
+        c. Description: a flag indicating that this is a non vehicle lane with asphalt. 
+        d. Usage: used to check whether or not this is a non vehicle asphalt lane. 
+
+    11. nonAsphalt:
+        a. Type: private bool. 
+        b. Serialized: yes.
+        c. Description: a flag indicating that this is a lane without asphalt.
+        d. Usage: used to check whether or not this is a non asphalt lane. 
+
+    12. road:
+        a. Type: private GameObject.
+        b. Serialized: yes.
+        c. Description: a variable referencing the road GameObject.
+        d. Usage: used to access the Road.cs script attached to it. 
+
+    13. roadScript:
+        a. Type: private Road.
+        b. Serialized: yes.
+        c. Description: a Road variable referencing the script controlling the behavior of road.
+        d. Usage: used to adjust the road when specific changes are made to the lane.
+
+C. Public Methods: 

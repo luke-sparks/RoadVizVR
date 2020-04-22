@@ -37,27 +37,6 @@ public class ModifyController : MonoBehaviour
             // currently in a singleton class so passing gameObject does nothing but didn't want to pass null and potentially break something
             GameObject propSpawnUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
         }
-
-        // Nathan wrote this
-        // code below is for testing saving and loading only
-        if (Input.GetKeyDown("k"))
-        {
-            GameObject road = GameObject.Find("Road");
-            Road roadScriptReference = (Road)road.GetComponent("Road");
-            roadScriptReference.saveRoad();
-        }
-        if (Input.GetKeyDown("l"))
-        {
-            bool triggered = false;
-            GameObject road = GameObject.Find("Road");
-            Road roadScriptReference = (Road)road.GetComponent("Road");
-            if (!triggered)
-            {
-                triggered = true;
-                roadScriptReference.loadRoad();
-            }
-
-        }
     }
 
     public void setAddingProps(bool newVal)

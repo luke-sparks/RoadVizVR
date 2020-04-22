@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 //This script is to be placed on the light as a method of controlling the brightness.
-public class brightnessControl : MonoBehaviour
+public class BrightnessControl : MonoBehaviour
 {
     [SerializeField] private Light sun;
 
@@ -14,13 +14,13 @@ public class brightnessControl : MonoBehaviour
     }
 
     //Sets the intensity of the light
-    void setBrightness(float inputBrightness)
+    public void setBrightness(float inputBrightness)
     {
         sun.intensity = inputBrightness;
     }
 
     //Retrieves the current brightness setting
-    float getBrightness()
+    public float getBrightness()
     {
         return sun.intensity;
     }
