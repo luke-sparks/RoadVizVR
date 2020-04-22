@@ -6,10 +6,21 @@ public class PropManager : MonoBehaviour
 {
     // list of props
     [SerializeField] private List<GameObject> props;
-    [SerializeField] private GameObject asphalt;
+    private GameObject asphalt;
 
-    // called when adding a prop
-    public GameObject addProp(Object prop, Vector3 propPosition)
+    private void Awake()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(0).gameObject.name.Equals("PrimaryAsphalt"))
+            {
+                asphalt = transform.GetChild(i).gameObject;
+            }
+        }
+    }
+
+        // called when adding a prop
+        public GameObject addProp(Object prop, Vector3 propPosition)
     {
         GameObject newProp = (GameObject)Instantiate(prop);
         newProp.transform.position = propPosition;

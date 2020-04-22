@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
-public class LanePropsModification : MonoBehaviour
+public class VehicleLanePropIndicator : MonoBehaviour
 {
     protected GameObject currentPropPrefab;
     protected GameObject currentProp = null;
@@ -21,7 +21,6 @@ public class LanePropsModification : MonoBehaviour
 
     private void Update()
     {
-
         if (trackCursor == true)
         {
             if (currentProp != null)
@@ -33,6 +32,10 @@ public class LanePropsModification : MonoBehaviour
             {
                 currentProp = Instantiate(currentPropPrefab, cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift(), Quaternion.identity);
                 currentProp.GetComponent<Collider>().enabled = false;
+                if (!currentProp.name.Equals("Empty(Clone)"))
+                {
+                    currentProp.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                }
             }
         }
         else
@@ -50,8 +53,6 @@ public class LanePropsModification : MonoBehaviour
 
         if (linkedObject != null)
         {
-            linkedObject.InteractableObjectUsed += InteractableObjectUsed;
-            linkedObject.InteractableObjectUnused += InteractableObjectUnused;
             linkedObject.InteractableObjectTouched += InteractableObjectTouched;
             linkedObject.InteractableObjectUntouched += InteractableObjectUntouched;
         }
@@ -62,38 +63,9 @@ public class LanePropsModification : MonoBehaviour
     {
         if (linkedObject != null)
         {
-            linkedObject.InteractableObjectUsed -= InteractableObjectUsed;
-            linkedObject.InteractableObjectUnused -= InteractableObjectUnused;
             linkedObject.InteractableObjectTouched -= InteractableObjectTouched;
             linkedObject.InteractableObjectUntouched -= InteractableObjectUntouched;
         }
-    }
-
-    protected virtual void InteractableObjectUsed(object sender, InteractableObjectEventArgs e)
-    {
-        //Debug.Log("InteractableObjectUsed");
-
-        PropManager propManagerScriptRef = this.GetComponent<PropManager>();
-        //Vector3 cursorPosition = getCursor(sender, e).transform.position;
-
-        // add new instance of prop
-        if (!CurrentPropManager.Instance.getCurrentPropObj().name.Equals("Empty"))
-        {
-            GameObject recentProp = propManagerScriptRef.addProp(currentPropPrefab, cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift());
-
-            if (CurrentPropManager.Instance.getPropBeingMoved() == true)
-            {
-                UIManager.Instance.openUIScreen(UIManager.UIScreens.EditProp, recentProp);
-                CurrentPropManager.Instance.clearCurrentPropObj();
-                CurrentPropManager.Instance.setPropBeingMoved(false);
-            }
-        }
-    }
-
-    protected virtual void InteractableObjectUnused(object sender, InteractableObjectEventArgs e)
-    {
-        //Debug.Log("InteractableObjectUnused");
-        // write un-use script here
     }
 
     protected virtual void InteractableObjectTouched(object sender, InteractableObjectEventArgs e)
@@ -104,24 +76,6 @@ public class LanePropsModification : MonoBehaviour
         trackCursor = true;
         cursorTransform = getCursor(sender, e).transform;
         currentPropPrefab = CurrentPropManager.Instance.getCurrentPropObj();
-
-
-        /*cursorTransform = getCursor(sender, e).transform;
-
-        trackCursor = true;
-
-        Vector3 cursorLocation = cursorTransform.position;
-        Vector3 propLocation = cursorLocation;
-
-        //Debug.Log("cursorLocation: " + cursorLocation + "spriteLocation: " + spriteLocation);
-
-        spriteLocation.y += (float)0.5;
-        spriteLocation.x = cursorLocation.x;
-
-        if (laneInsertSpriteRef == null)
-        {
-            laneInsertSpriteRef = Instantiate(laneInsertSprite, spriteLocation, Quaternion.identity);
-        }*/
 
     }
 
@@ -134,17 +88,7 @@ public class LanePropsModification : MonoBehaviour
         cursorTransform = null;// getCursor(sender, e).transform;
         currentPropPrefab = null;
 
-        /*cursorTransform = null;
-        trackCursor = false;
-
-        if (laneInsertSpriteRef != null)
-        {
-            Destroy(laneInsertSpriteRef);
-            laneInsertSpriteRef = null;
-        }*/
     }
-
-
 
     // this method returns the cursor that is touching the current object
     private GameObject getCursor(object sender, InteractableObjectEventArgs e)
@@ -187,11 +131,5 @@ public class LanePropsModification : MonoBehaviour
             Debug.Log("cursor not found");
             return null;
         }
-    }
-
-    public void setCurrentProp(GameObject newProp)
-    {
-        currentProp = newProp;
-        Debug.Log("Set currentProp to be " + newProp.ToString());
     }
 }
