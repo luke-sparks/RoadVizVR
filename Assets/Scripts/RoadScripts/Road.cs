@@ -90,8 +90,6 @@ public class Road : MonoBehaviour
                 //Encapsulate children within the bounds object
                 bounds.Encapsulate(renderers[i].bounds);
             }
-            //Debug.Log("INSIDE GET RENDER BOUNDS");
-            //Debug.Log(bounds.size);
             return bounds;
         }
         else
@@ -443,7 +441,6 @@ public class Road : MonoBehaviour
         Buildings buildingsScriptReference = (Buildings)buildingsReference.GetComponent("Buildings");
         buildingsScriptReference.setBuildingType(roadData.loadBuildingsIndex());
         StartCoroutine(FrameDelayBuildingUpdate());
-        //updateBuildings();
         // 5. load the saved fog settings
         FogControl fogControlScriptReference = (FogControl)fogController.GetComponent("FogControl");
         fogControlScriptReference.setFogDistance(roadData.loadFogDistance());
@@ -724,8 +721,7 @@ public class Road : MonoBehaviour
                 // case a: both the neighbors are a non-asphalt lane
                 if(leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane()) 
                 {
-                    // leave the stripes out if both neighbors are a non-asphalt lane
-                    //Debug.Log("Rare but maybe important case: both neighbors of a non-vehicle asphalt lane are non-asphalt");
+                    // leave the stripes out if both neighbors are a non-asphalt lane (don't do anything)
                 }
                 // case b: only the left neighbor is an asphalt lane
                 else if(!leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane()) 
