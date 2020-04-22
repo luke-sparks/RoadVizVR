@@ -6,9 +6,9 @@ using VRTK;
 public class LaneInsertionSelection : MonoBehaviour
 {
 
-    public VRTK_InteractableObject linkedObject;
+    protected VRTK_InteractableObject linkedObject;
 
-    [SerializeField] protected GameObject asphalt;
+    protected GameObject asphalt;
 
     [SerializeField] protected GameObject laneInsertSprite;
     protected GameObject laneInsertSpriteRef = null;
@@ -20,6 +20,20 @@ public class LaneInsertionSelection : MonoBehaviour
 
     private bool trackCursor = false;
     private float edge = 0;
+
+    private void Awake()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(0).gameObject.name.Equals("PrimaryAsphalt"))
+            {
+                asphalt = transform.GetChild(i).gameObject;
+            }
+        }
+
+        linkedObject = GetComponentInChildren<VRTK_InteractableObject>();
+    }
+
     void Start()
     {
         road = GameObject.Find("Road");

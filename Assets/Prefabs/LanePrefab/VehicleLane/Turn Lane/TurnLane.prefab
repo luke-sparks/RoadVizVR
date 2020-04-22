@@ -222,6 +222,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8603283168879927190}
   - component: {fileID: 7713038580986257140}
+  - component: {fileID: 6212834991741623608}
+  - component: {fileID: 3596672030867649035}
   m_Layer: 0
   m_Name: TurnLane
   m_TagString: IsLane
@@ -269,6 +271,35 @@ MonoBehaviour:
   nonAsphalt: 0
   road: {fileID: 0}
   roadScript: {fileID: 0}
+--- !u!114 &6212834991741623608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3844490017451381875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedObject: {fileID: 4152913056714412071}
+  asphalt: {fileID: 3372780276283291939}
+  laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
+    type: 3}
+--- !u!114 &3596672030867649035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3844490017451381875}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95370009a693b044b8f740c67f6c7b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedObject: {fileID: 4152913056714412071}
 --- !u!1 &4984270620434609865
 GameObject:
   m_ObjectHideFlags: 0
