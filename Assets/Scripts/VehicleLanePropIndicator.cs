@@ -25,12 +25,11 @@ public class VehicleLanePropIndicator : MonoBehaviour
         {
             if (currentProp != null)
             {
-                currentProp.transform.position = cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift();
-                currentPropPrefab.transform.position = cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift();
+                currentProp.transform.position = cursorTransform.position - currentProp.GetComponent<Prop>().getCenterObjectOffset();
             }
             else
             {
-                currentProp = Instantiate(currentPropPrefab, cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift(), Quaternion.identity);
+                currentProp = Instantiate(currentPropPrefab, cursorTransform.position, Quaternion.identity);
                 currentProp.GetComponent<Collider>().enabled = false;
                 if (!currentProp.name.Equals("Empty(Clone)"))
                 {

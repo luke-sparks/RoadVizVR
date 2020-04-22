@@ -13,7 +13,7 @@ public class Prop : MonoBehaviour
 
     [SerializeField] protected Vector3 spawnCenterShift = new Vector3(0,0,0);
 
-    protected VRTK_InteractableObject linkedObject;     
+    protected VRTK_InteractableObject linkedObject;
     
     private void Awake()
     {
@@ -31,30 +31,16 @@ public class Prop : MonoBehaviour
         rotateToPoint();
     }
 
+    public Vector3 getCenterObjectOffset()
+    {
+        Debug.Log(centerPointObj.transform.position);
+        return centerPointObj.transform.position - gameObject.transform.position;
+    }
+
     public void loadPropData(PropData savedPropData)
     {
         propRotation = savedPropData.loadRotation();
         rotateToPoint();
-    }
-
-    public float getXShift()
-    {
-        return spawnCenterShift.x;
-    }
-
-    public float getYShift()
-    {
-        return spawnCenterShift.y;
-    }
-
-    public float getZShift()
-    {
-        return spawnCenterShift.z;
-    }
-
-    public Vector3 getCenterShift()
-    {
-        return spawnCenterShift;
     }
 
     public float getXPosition()
