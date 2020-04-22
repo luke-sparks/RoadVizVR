@@ -2970,8 +2970,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f0e2965941c134098bbd3c2daa4d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogDistance: 0
-  fogShiftAmt: 0
+  fogDistance: 50
+  fogShiftAmt: 20
 --- !u!4 &2037014124
 Transform:
   m_ObjectHideFlags: 0
