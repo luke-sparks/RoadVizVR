@@ -47,9 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4ea34c2e5018645b367feb26f38866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerPointObj: {fileID: 4476104184747652680}
   spawnCenterShift: {x: 0, y: 0, z: 0}
-  linkedObject: {fileID: 2595329657051270609}
 --- !u!114 &2595329657051270609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 5786295869284239622, guid: bf2a8359721ea884697cfdab1ee8d2bd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5786295869284239622, guid: bf2a8359721ea884697cfdab1ee8d2bd,
         type: 3}
@@ -185,12 +183,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf2a8359721ea884697cfdab1ee8d2bd, type: 3}
---- !u!1 &4476104184747652680 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5786295869284239619, guid: bf2a8359721ea884697cfdab1ee8d2bd,
-    type: 3}
-  m_PrefabInstance: {fileID: 7949799360269303627}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4476104184747652685 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5786295869284239622, guid: bf2a8359721ea884697cfdab1ee8d2bd,
