@@ -30,7 +30,7 @@ public class Road : MonoBehaviour
         //Start a coroutine to delay the updating of the buildings and lane insertions.
         StartCoroutine(LateStart());
         //Assign the building reference (manual assignment seems bugged for unknown reasons)
-        buildingsReference = GameObject.Find("buildings");
+        buildingsReference = GameObject.Find("Buildings");
     }
     //Written by Max
     //A coroutine which simply calls the update of buildings on a delay until after runtime.
