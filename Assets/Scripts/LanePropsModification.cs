@@ -26,12 +26,11 @@ public class LanePropsModification : MonoBehaviour
         {
             if (currentProp != null)
             {
-                currentProp.transform.position = cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift();
-                currentPropPrefab.transform.position = cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift();
+                currentProp.transform.position = cursorTransform.position - currentProp.GetComponent<Prop>().getCenterObjectOffset();
             }
             else
             {
-                currentProp = Instantiate(currentPropPrefab, cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift(), Quaternion.identity);
+                currentProp = Instantiate(currentPropPrefab, cursorTransform.position, Quaternion.identity);
                 currentProp.GetComponent<Collider>().enabled = false;
             }
         }
@@ -79,7 +78,7 @@ public class LanePropsModification : MonoBehaviour
         // add new instance of prop
         if (!CurrentPropManager.Instance.getCurrentPropObj().name.Equals("Empty"))
         {
-            GameObject recentProp = propManagerScriptRef.addProp(currentPropPrefab, cursorTransform.position - currentPropPrefab.GetComponent<Prop>().getCenterShift());
+            GameObject recentProp = propManagerScriptRef.addProp(currentPropPrefab, cursorTransform.position - currentProp.GetComponent<Prop>().getCenterObjectOffset());
 
             if (CurrentPropManager.Instance.getPropBeingMoved() == true)
             {
