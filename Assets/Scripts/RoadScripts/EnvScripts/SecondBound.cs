@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class secondBound : MonoBehaviour
+public class SecondBound : MonoBehaviour
 {
     [SerializeField] private Road mainRoad;
 

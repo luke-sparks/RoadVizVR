@@ -42,7 +42,7 @@ public class Buildings : MonoBehaviour
     //present within every single prefab.
     public void updateBuildingPosition()
     {
-        instance.GetComponent<envMain>().updatePosition();
+        instance.GetComponent<EnvMain>().updatePosition();
     }
 
     //TYPE 0: URBAN
