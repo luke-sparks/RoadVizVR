@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class envMain : MonoBehaviour
+public class EnvMain : MonoBehaviour
 {
     [SerializeField] Road mainRoad;
 
@@ -22,17 +22,17 @@ public class envMain : MonoBehaviour
         this.transform.position = mainRoad.GetRendererBounds().center;
 
         //Get the first bound of the children and update position
-        Component[] firstBoundArray = this.GetComponentsInChildren<firstBound>();
+        Component[] firstBoundArray = this.GetComponentsInChildren<FirstBound>();
         //Debug.Log("About to enter first for loop!!!");
-        foreach (firstBound bound in firstBoundArray)
+        foreach (FirstBound bound in firstBoundArray)
         {
             bound.updatePos();
             //Debug.Log(bound);
         }
 
         //Get the second bound of the children and update position
-        Component[] secondBoundArray = this.GetComponentsInChildren<secondBound>();
-        foreach (secondBound bound in secondBoundArray)
+        Component[] secondBoundArray = this.GetComponentsInChildren<SecondBound>();
+        foreach (SecondBound bound in secondBoundArray)
         {
             bound.updatePos();
             //Debug.Log(bound);
