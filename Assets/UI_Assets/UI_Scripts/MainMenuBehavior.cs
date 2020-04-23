@@ -28,4 +28,14 @@ public class MainMenuBehavior : MonoBehaviour
         Debug.Log("Switching to Dev Env scene");
         SceneManager.LoadScene("DevelopmentEnvironment");
     }
+
+    public void handleSelectedRoadChange()
+    {
+
+    }
+
+    public void handleLoadDesign()
+    {
+
+    }
 }
