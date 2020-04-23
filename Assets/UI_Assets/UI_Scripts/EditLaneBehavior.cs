@@ -87,6 +87,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         if (basicLaneScriptReference.getLaneType() != newSelection)
         {
             workingLaneReference = GameObject.Find("Road").GetComponent<Road>().setLaneType(workingLaneReference, laneTypeNames[laneTypeSelectionIndex]);
+            basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
+            updateWidthField();
         }
     }
 
