@@ -52,6 +52,7 @@ public class EditStripeBehavior : MonoBehaviour
     {
         List<string> stripeTypeNames = stripeReference.GetComponent<Stripe>().getStripeTypeNames();
         Dropdown dd = gameObject.transform.Find("PatternDropdown").GetComponent<Dropdown>();
+        dd.ClearOptions();
         // add lane types to dropdown, then set current active
         dd.AddOptions(stripeTypeNames);
         dd.value = stripeTypeNames.IndexOf(stripeReference.GetComponent<Stripe>().getStripeType());
