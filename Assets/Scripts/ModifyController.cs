@@ -37,6 +37,27 @@ public class ModifyController : MonoBehaviour
             // currently in a singleton class so passing gameObject does nothing but didn't want to pass null and potentially break something
             GameObject propSpawnUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
         }
+
+        // Nathan wrote this
+        // code below is for testing saving and loading only
+        if (Input.GetKeyDown("k"))
+        {
+            GameObject road = GameObject.Find("Road");
+            Road roadScriptReference = (Road)road.GetComponent("Road");
+            roadScriptReference.saveRoad();
+        }
+        if (Input.GetKeyDown("l"))
+        {
+            bool triggered = false;
+            GameObject road = GameObject.Find("Road");
+            Road roadScriptReference = (Road)road.GetComponent("Road");
+            if (!triggered)
+            {
+                triggered = true;
+                roadScriptReference.loadRoad("road");
+            }
+
+        }
     }
 
     public void setAddingProps(bool newVal)
@@ -45,29 +66,7 @@ public class ModifyController : MonoBehaviour
         {
             addingProps = newVal;
             toggleLaneIneraction();
-        }
-
-        // Nathan wrote this
-        // code below is for testing saving and loading only
-        if(Input.GetKeyDown("k"))
-        {
-            GameObject road = GameObject.Find("Road");
-            Road roadScriptReference = (Road)road.GetComponent("Road");
-            roadScriptReference.saveRoad();
-        }
-        if(Input.GetKeyDown("l"))
-        {
-            bool triggered = false;
-            GameObject road = GameObject.Find("Road");
-            Road roadScriptReference = (Road)road.GetComponent("Road");
-            if(!triggered)
-            {
-                triggered = true;
-                roadScriptReference.loadRoad();
-            }
-            
-        }
-    }
+        }    }
 
     private void toggleLaneIneraction()
     {
@@ -79,11 +78,14 @@ public class ModifyController : MonoBehaviour
         LaneInsertionSelection laneInsertionSelectionScript = null;
         LanePropsModification lanePropsModificationScript = null;
 
+        VehicleLanePropIndicator vehicleLanePropIndicator = null;
+
         foreach (GameObject lane in lanes)
         {
             Debug.Log(lane.ToString());
             laneInsertionSelectionScript = lane.GetComponent<LaneInsertionSelection>();
             lanePropsModificationScript = lane.GetComponent<LanePropsModification>();
+            vehicleLanePropIndicator = lane.GetComponent<VehicleLanePropIndicator>();
 
             if (laneInsertionSelectionScript != null)
             {
@@ -93,10 +95,14 @@ public class ModifyController : MonoBehaviour
             {
                 lane.GetComponent<LanePropsModification>().enabled = addingProps;
             }
-            else
+            if (vehicleLanePropIndicator != null)
+            {
+                lane.GetComponent<VehicleLanePropIndicator>().enabled = addingProps;
+            }
+            /*else
             {
                 Debug.Log("This lane does not allow props to be placed on it");
-            }
+            }*/
         }
     }
 

@@ -125,7 +125,7 @@ public class CurrentPropManager : MonoBehaviour
     public void setCurrentPropObj(string propName)
     {
         Props parsedPropName;
-        if (propName.EndsWith("(clone)"))
+        if (propName.EndsWith("(Clone)"))
         {
             parsedPropName = (Props)System.Enum.Parse(typeof(Props), propName.Substring(0, propName.Length - 7));
         } else

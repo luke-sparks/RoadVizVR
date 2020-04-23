@@ -33,10 +33,10 @@ public static class RoadVizSaveSystem //: MonoBehavior
 
     // Nathan wrote this
     // loads the road from a saved binary file
-    public static RoadData loadRoadFromMemory()
+    public static RoadData loadRoadFromMemory(string filename)
     {
         // Note for Kasey: you must change the line below to alter which file is loaded
-        string loadPath = getDataPath("/4-21-2020 9_51_40 PM.rvvr");
+        string loadPath = getDataPath("/" + filename + ".rvvr");
         if(File.Exists(loadPath))
         {
             // create a binary formatter for file conversion
@@ -91,5 +91,34 @@ public static class RoadVizSaveSystem //: MonoBehavior
             }
         }
         return replacementDate;
+    }
+
+    public static string[] getFilenames()
+    {
+        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath);
+        FileInfo[] fileInfo = info.GetFiles();
+        string[] allFiles = new string[fileInfo.Length];
+        int index = 0;
+        int numNulls = 0;
+
+        foreach (FileInfo file in fileInfo) {
+            if (file.Name.EndsWith(".rvvr"))
+            {
+                allFiles[index] = file.Name.Substring(0, file.Name.Length - 5);
+                index++;
+            }
+            else
+            {
+                numNulls++;
+            }
+        }
+
+        string[] filenames = new string[allFiles.Length - numNulls];
+        for (int i = 0; i < filenames.Length; i++)
+        {
+            filenames[i] = allFiles[i];
+        }
+
+        return filenames;
     }
 }

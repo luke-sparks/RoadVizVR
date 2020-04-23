@@ -7,42 +7,40 @@ using UnityEditor;
 
 public class Prop : MonoBehaviour
 {
-    [SerializeField] private GameObject centerPointObj;
+    private GameObject centerPointObj;
 
     private int propRotation = 0;
 
     [SerializeField] protected Vector3 spawnCenterShift = new Vector3(0,0,0);
 
-    void Awake()
+    protected VRTK_InteractableObject linkedObject;
+    
+    private void Awake()
     {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(0).gameObject.name.Equals("CenterPointObj"))
+            {
+                centerPointObj = transform.GetChild(i).gameObject;
+            }
+        }
+
+        linkedObject = GetComponentInChildren<VRTK_InteractableObject>();
+
         propRotation = CurrentPropManager.Instance.getRotation();
         rotateToPoint();
+    }
+
+    public Vector3 getCenterObjectOffset()
+    {
+        Debug.Log(centerPointObj.transform.position);
+        return centerPointObj.transform.position - gameObject.transform.position;
     }
 
     public void loadPropData(PropData savedPropData)
     {
         propRotation = savedPropData.loadRotation();
         rotateToPoint();
-    }
-
-    public float getXShift()
-    {
-        return spawnCenterShift.x;
-    }
-
-    public float getYShift()
-    {
-        return spawnCenterShift.y;
-    }
-
-    public float getZShift()
-    {
-        return spawnCenterShift.z;
-    }
-
-    public Vector3 getCenterShift()
-    {
-        return spawnCenterShift;
     }
 
     public float getXPosition()
@@ -122,51 +120,12 @@ public class Prop : MonoBehaviour
         propRotation = rot;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown("r"))
-        {
-            rotateCW();
-        }
-        if (Input.GetKeyDown("t"))
-        {
-            rotateCCW();
-        }
-        //Debug.Log("prop position rotated : " + gameObject.transform.position.ToString("F5"));
-    }
-
-    /*public void deleteProp()
-    {
-        PropManager propManagerRef = gameObject.GetComponentInParent<PropManager>();
-        propManagerRef.removeProp(gameObject);
-    }
-
-    public void startMovingProp()
-    {
-        PropManager propManagerRef = gameObject.GetComponentInParent<PropManager>();
-        propManagerRef.startMovingProp(gameObject);
-    }
-
-    public void placeMovedProp()
-    {
-        PropManager propManagerRef = gameObject.GetComponentInParent<PropManager>();
-        propManagerRef.placeMovedProp(gameObject, gameObject.transform.position);
-    }
-
-    public void revertMovedProp()
-    {
-        PropManager propManagerRef = gameObject.GetComponentInParent<PropManager>();
-        propManagerRef.revertMovedProp(gameObject);
-    }*/
-
     public PropManager getPropManager()
     {
         return gameObject.GetComponentInParent<PropManager>();
     }
 
     // begin interaction code
-
-    public VRTK_InteractableObject linkedObject;    // this? may need to link
 
     protected virtual void OnEnable()
     {

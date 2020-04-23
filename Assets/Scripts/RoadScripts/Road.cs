@@ -400,7 +400,7 @@ public class Road : MonoBehaviour
 
     // Nathan wrote this
     // loads the road from a binary file
-    public void loadRoad()
+    public void loadRoad(string filename)
     {
         UIManager.Instance.closeCurrentUI();
         // steps: 
@@ -420,7 +420,7 @@ public class Road : MonoBehaviour
         // 1. we have to clear whatever else the user has loaded in since the last save
         clearRoad();
         // 2. obtain the saved data
-        RoadData roadData = RoadVizSaveSystem.loadRoadFromMemory();
+        RoadData roadData = RoadVizSaveSystem.loadRoadFromMemory(filename);
         List<LaneData> savedLanes = roadData.getLaneData();
         // 3. load each of the saved lanes in
         GameObject currLane = null;
