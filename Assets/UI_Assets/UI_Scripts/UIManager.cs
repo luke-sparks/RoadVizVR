@@ -58,6 +58,8 @@ public class UIManager : MonoBehaviour
         // instantiate the prefab, then set it to the current UI in use
         currentUI = Instantiate(curUIObject, placeAt, rotation);
         ISceneUIMenu ui = currentUI.GetComponent<ISceneUIMenu>();
+        currentUI.gameObject.transform.LookAt(Camera.main.transform.position);
+        currentUI.transform.eulerAngles += 180f * Vector3.up;
 
         if (ui != null)
         {
