@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ActionMenuBehavior : MonoBehaviour, ISceneUIMenu
 {
-    public void init(GameObject objRef)
+    public void init(params GameObject[] objRef)
     {
         // do nothing
     }
