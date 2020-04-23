@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     private void DoButtonOnePress(object sender, ControllerInteractionEventArgs e)
     {
         //Debug.Log("Button one pressed");
+        UIManager.Instance.openUIScreen(UIManager.UIScreens.ActionMenu, null);
     }
 
     public void evaluateControllerType()
@@ -31,7 +32,7 @@ public class InputManager : MonoBehaviour
         else if (headset == SDK_BaseHeadset.HeadsetType.HTCVive)
             setViveWandControls();
         else
-            Debug.LogError("Unrecognized controller type, using default input");
+            Debug.LogWarning("Unrecognized controller type, using default input");
     }
 
     private void setViveWandControls()
