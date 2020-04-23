@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 1269720131893387993}
   - component: {fileID: 6899967985844443027}
   - component: {fileID: 3726295183248909628}
-  - component: {fileID: 4493052270320779971}
+  - component: {fileID: 2548576262154678853}
   m_Layer: 0
   m_Name: sign
   m_TagString: Untagged
@@ -306,7 +306,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &4493052270320779971
+--- !u!114 &2548576262154678853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4057666167317137254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626e2f79ecc1ac64fb299a3e1051519f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a657b361e592d841ae8e0b538da06a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4571020480495247217
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 2082117181883605425}
   - component: {fileID: 8548293970790175074}
   - component: {fileID: 7605199927302916323}
-  - component: {fileID: 5462078938390720256}
+  - component: {fileID: 161773671038409969}
   m_Layer: 0
   m_Name: sign 2
   m_TagString: Untagged
@@ -412,7 +412,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &5462078938390720256
+--- !u!114 &161773671038409969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4571020480495247217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626e2f79ecc1ac64fb299a3e1051519f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a657b361e592d841ae8e0b538da06a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5151151050440531859
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 5342327437760336751}
   - component: {fileID: 7149839134865471737}
   - component: {fileID: 2212300847766228788}
-  - component: {fileID: 9101904844993005944}
+  - component: {fileID: 2714118506844231756}
   m_Layer: 0
   m_Name: sign 3
   m_TagString: Untagged
@@ -518,7 +518,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &9101904844993005944
+--- !u!114 &2714118506844231756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5151151050440531859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626e2f79ecc1ac64fb299a3e1051519f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a657b361e592d841ae8e0b538da06a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7894024709681648819

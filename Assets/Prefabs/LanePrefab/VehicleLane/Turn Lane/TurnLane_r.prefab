@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5998948804209656513}
   - component: {fileID: 6262250044865628980}
   - component: {fileID: 9013193772667908946}
-  - component: {fileID: 2230716135630424576}
+  - component: {fileID: 106318690976414453}
   m_Layer: 0
   m_Name: sign 2
   m_TagString: Untagged
@@ -94,7 +94,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2230716135630424576
+--- !u!114 &106318690976414453
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1544494367881398454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626e2f79ecc1ac64fb299a3e1051519f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a657b361e592d841ae8e0b538da06a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3235300722994066164
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 677601404792006313}
   - component: {fileID: 5989722296498929295}
   - component: {fileID: 2976201399174883145}
-  - component: {fileID: 3761439598072260482}
+  - component: {fileID: 8957569645559076394}
   m_Layer: 0
   m_Name: sign
   m_TagString: Untagged
@@ -200,7 +200,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3761439598072260482
+--- !u!114 &8957569645559076394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3235300722994066164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626e2f79ecc1ac64fb299a3e1051519f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a657b361e592d841ae8e0b538da06a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3372780276283291939
@@ -434,8 +434,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8603283168879927190}
   - component: {fileID: 7713038580986257140}
+  - component: {fileID: 4676119781940744411}
   m_Layer: 0
-  m_Name: TurnLane
+  m_Name: TurnLane_r
   m_TagString: IsLane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,6 +484,22 @@ MonoBehaviour:
   nonVehicleAsphalt: 0
   nonAsphalt: 0
   direction: 0
+--- !u!114 &4676119781940744411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3844490017451381875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedObject: {fileID: 4152913056714412071}
+  asphalt: {fileID: 3372780276283291939}
+  laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
+    type: 3}
 --- !u!1 &6873670412096014434
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +512,7 @@ GameObject:
   - component: {fileID: 4955362454470865031}
   - component: {fileID: 1074517093359021099}
   - component: {fileID: 1569270044863606781}
-  - component: {fileID: 6481078283485453309}
+  - component: {fileID: 4692102637018072050}
   m_Layer: 0
   m_Name: sign 3
   m_TagString: Untagged
@@ -577,7 +594,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &6481078283485453309
+--- !u!114 &4692102637018072050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -586,6 +603,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6873670412096014434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626e2f79ecc1ac64fb299a3e1051519f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a657b361e592d841ae8e0b538da06a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
