@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 71f14a2d79f732f4d9893ef1b911f4ff, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -505,6 +505,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 101772947}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &397938583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7005819110390782979, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+    type: 3}
+  m_PrefabInstance: {fileID: 1130369068}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &502124331
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,6 +749,7 @@ GameObject:
   - component: {fileID: 713571157}
   - component: {fileID: 713571165}
   - component: {fileID: 713571166}
+  - component: {fileID: 713571167}
   m_Layer: 0
   m_Name: LeftController
   m_TagString: Untagged
@@ -826,7 +833,7 @@ MonoBehaviour:
   axisFidelity: 1
   senseAxisForceZeroThreshold: 0.15
   senseAxisPressThreshold: 0.95
-  triggerClickThreshold: 1
+  triggerClickThreshold: 0.95
   triggerForceZeroThreshold: 0.01
   triggerAxisZeroOnUntouch: 0
   gripClickThreshold: 1
@@ -1035,6 +1042,18 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
+--- !u!114 &713571167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713571155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c59058d0a8ad9e4eba92f32e8f24d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &814133138 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1384746914293964, guid: be540b97364be0a4890e39e62ac89ed1,
@@ -1066,6 +1085,7 @@ GameObject:
   - component: {fileID: 864105733}
   - component: {fileID: 864105736}
   - component: {fileID: 864105737}
+  - component: {fileID: 864105738}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -1088,7 +1108,7 @@ MonoBehaviour:
   axisFidelity: 1
   senseAxisForceZeroThreshold: 0.15
   senseAxisPressThreshold: 0.95
-  triggerClickThreshold: 1
+  triggerClickThreshold: 0.95
   triggerForceZeroThreshold: 0.01
   triggerAxisZeroOnUntouch: 0
   gripClickThreshold: 1
@@ -1358,6 +1378,18 @@ MonoBehaviour:
   canClickOnHover: 0
   autoActivatingCanvas: {fileID: 0}
   collisionClick: 0
+--- !u!114 &864105738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864105726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c59058d0a8ad9e4eba92f32e8f24d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &893088598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1591,6 +1623,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numStartingLanes: 4
+  stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
+    type: 3}
+  buildingsReference: {fileID: 7676923138607722142, guid: 670799f11f6023c4d8e2cc8c53a7be89,
+    type: 3}
+  fogController: {fileID: 2037014122}
+  lights: {fileID: 397938583}
   laneTypes:
   - {fileID: 4577958151057443786, guid: 55929bec53257d84d8ac59d2543bbaf4, type: 3}
   - {fileID: 5954707031306349717, guid: 97b310af4c15f1e4cb22898e63a55615, type: 3}
@@ -1600,16 +1638,9 @@ MonoBehaviour:
   - {fileID: 7460763385531375339, guid: c00addfce4875264494b2bcca9453c6e, type: 3}
   - {fileID: 8665468015871541541, guid: 4853e78c97d12e4458287497660a016d, type: 3}
   - {fileID: 241737392477294327, guid: b4c4bd207c758f54ab332ad6992477d0, type: 3}
-  - {fileID: 998946786193764437, guid: 06a5b24218b405249a8242f1437eccd3, type: 3}
   - {fileID: 7894024709681648819, guid: 4476f91feac22744c9c9616cd7b58a63, type: 3}
   - {fileID: 2330009060323306810, guid: 871906cad1fc2704ba4834ad1d6916aa, type: 3}
   - {fileID: 3844490017451381875, guid: d9831c962d3f059459cd77e2788cad50, type: 3}
-  stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
-    type: 3}
-  lanePosition: {x: 0, y: 0, z: 0}
-  currentWidth: 0
-  buildingsReference: {fileID: 7676923138607722142, guid: 670799f11f6023c4d8e2cc8c53a7be89,
-    type: 3}
 --- !u!1001 &1130369068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1677,7 +1708,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7005819109413252257, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005819110897556387, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005819110990972726, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005819111070015570, guid: a9e18343c1b6ea64b97c10f652d1ce19,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7005819110990972727, guid: a9e18343c1b6ea64b97c10f652d1ce19, type: 3}
+    - {fileID: 7005819110897556412, guid: a9e18343c1b6ea64b97c10f652d1ce19, type: 3}
+    - {fileID: 7005819109413252258, guid: a9e18343c1b6ea64b97c10f652d1ce19, type: 3}
+    - {fileID: 7005819111070015571, guid: a9e18343c1b6ea64b97c10f652d1ce19, type: 3}
+    - {fileID: 7005819109179835521, guid: a9e18343c1b6ea64b97c10f652d1ce19, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a9e18343c1b6ea64b97c10f652d1ce19, type: 3}
 --- !u!1 &1176723656 stripped
 GameObject:
@@ -2095,7 +2151,7 @@ GameObject:
   - component: {fileID: 1406036037}
   - component: {fileID: 1406036036}
   m_Layer: 0
-  m_Name: buildings
+  m_Name: Buildings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2165,15 +2221,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5837af0260a118e4d808bfe0405429a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoManageScriptDefines: 0
+  autoManageScriptDefines: 1
   activeScriptingDefineSymbolsWithoutSDKClasses: []
   scriptAliasLeftController: {fileID: 713571155}
   scriptAliasRightController: {fileID: 864105726}
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 502124333}
   - {fileID: 1445166360}
+  - {fileID: 502124333}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
 --- !u!4 &1415241607
@@ -2895,7 +2951,7 @@ GameObject:
   - component: {fileID: 2037014124}
   - component: {fileID: 2037014123}
   m_Layer: 0
-  m_Name: fogController
+  m_Name: FogController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2913,7 +2969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f0e2965941c134098bbd3c2daa4d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogDistance: 0
+  fogDistance: 50
   fogShiftAmt: 20
 --- !u!4 &2037014124
 Transform:

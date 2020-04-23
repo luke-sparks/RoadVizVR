@@ -7,9 +7,18 @@ public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 
     public void init(params GameObject[] objRefs)
     {
-        
+        CurrentPropManager.Instance.setRotation(0);
     }
 
+    public void handleRotateCW()
+    {
+        CurrentPropManager.Instance.rotateCW();
+    }
+
+    public void handleRotateCCW()
+    {
+        CurrentPropManager.Instance.rotateCCW();
+    }
 
     public void handleButtonOnePress()
     {

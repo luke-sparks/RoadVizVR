@@ -102,7 +102,7 @@ public class LaneInsertionSelection : MonoBehaviour
             // convert list of lane types to array to access elements
             GameObject[] laneTypesArray = laneTypes.ToArray();
             // insert the desired lane type as a new lane into the road
-            roadScript.insertLane(gameObject, laneTypesArray[0], "right");
+            roadScript.insertLane(gameObject, laneTypesArray[1], "right");
         }
         else
         {
@@ -114,7 +114,7 @@ public class LaneInsertionSelection : MonoBehaviour
             // convert list of lane types to array to access elements
             GameObject[] laneTypesArray = laneTypes.ToArray();
             // insert the desired lane type as a new lane into the road
-            roadScript.insertLane(gameObject, laneTypesArray[0], "left");
+            roadScript.insertLane(gameObject, laneTypesArray[1], "left");
         }
 
     }

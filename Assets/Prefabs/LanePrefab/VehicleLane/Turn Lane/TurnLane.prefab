@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8388342be9c1d744b809c1c672337a9a, type: 2}
+  - {fileID: 2100000, guid: 61c980f6cc391ee44b4bbce203a84dd8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -258,8 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asphalt: {fileID: 3372780276283291939}
-  laneIndex: 0
-  laneType: 
+  laneType: TurnLane
   currentLaneWidth: 3.3
   maxWidth: 10
   minWidth: 1
@@ -268,6 +267,8 @@ MonoBehaviour:
   vehicleLane: 1
   nonVehicleAsphalt: 0
   nonAsphalt: 0
+  road: {fileID: 0}
+  roadScript: {fileID: 0}
 --- !u!1 &4984270620434609865
 GameObject:
   m_ObjectHideFlags: 0

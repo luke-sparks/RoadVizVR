@@ -1,0 +1,410 @@
+Road.txt
+
+Documentation for Road.cs
+
+Road Class Description: Road is used for controlling the behavior of the road game object. Most of the 
+                        game objects in the development environment are governed by this class, since most
+                        of them are connected to the road in some way. This makes Road one of the program's
+                        largest and most complex classes.
+
+A. Libraries:
+    1. System.Collections.
+    2. System.Collections.Generic.
+    3. UnityEngine.
+
+B. Class Fields:
+    1. MAX_LANES:
+        a. Type: private const int.
+        b. Serialized: yes.
+        c. Description: a variable storing the maximum amount of lanes that
+           the road is allowed to contain at any one time.
+        d. Usage: primarily used for preventing the road from containing too many lanes.
+
+    2. MIN_LANES:
+        a. Type: private const int.
+        b. Serialized: yes.
+        c. Description: a variable storing the minimum amount of lanes that 
+           the road is allowed to contain at any one time.
+        d. Usage: primarily used for preventing the road from ever having too few lanes
+           (usually it's fine as long as the road has at least 1 lane, so we use MIN_LANES == 1).
+    
+    3. numStartingLanes:
+        a. Type: private int.
+        b. Serialized: yes.
+        c. Description: a variable storing the number of lanes that the road starts with.
+        d. Usage: only used to help build the starting road.
+
+    4. stripeContainer:
+        a. Type: private GameObject.
+        b. Serialized: yes.
+        c. Description: a reference to the game object that allows stripes to be displayed on lanes.
+        d. Usage: primarily used to provide an easy way of accessing the stripeContainer,
+                  which contains all stripe types that can be inserted, and by extension, a way
+                  of easily switching between stripe types.
+
+    5. buildingsReference:
+        a. Type: private GameObject.
+        b. Serialized: yes.
+        c. Description: a reference to the object containing Buildings.cs, which
+                        governs the behavior of buildings.
+        d. Usage: used to access Buildings.cs, which can be used to change the properties of the buildings
+                  in the development environment.
+
+    6. fogController:
+        a. Type: private GameObject.
+        b. Serialized: yes.
+        c. Description: a reference to the object containing FogControl.cs, which governs
+                        the behavior of fog.
+        d. Usage: used to access FogControl.cs, which can be used to alter the properties of fog.
+
+    7. lights:
+        a. Type: private GameObject.
+        b. Serialized: yes.
+        c. Description: a reference to the lights object.
+        d. Usage: primarily used for accessing the position and scale of the lights.
+    
+    8. roadLanes:
+        a. Type: private LinkedList<GameObject> (a linked list of gameobjects).
+        b. Serialized: attempted, but Unity cannot serialize it.
+        c. Description: a variable storing references to all of the lane game objects that the road
+           currently contains.
+        d. Usage: primarily used for storing lanes so they can be easily accessed from road.cs;
+                  since all of the lanes are stored in a linked list it is easier to edit 
+                  all of the values within individual lanes from road.cs.
+
+    9. laneTypes:
+        a. Type: private array of GameObjects.
+        b. Serialized: yes.
+        c. Description: an array containing all of the lane prefabs available to the user
+        d. Usage: used as an alternate method for Resources.Load(), since we could never
+           quite get that command to work; gives road.cs a quick and easy way to instantiate
+           lane prefabs into the development environment.
+
+C. Public Methods:
+
+    1. Start():
+        a. Type: Unity specific void function. 
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: starts the LateStart() coroutine and assigns buildings reference.
+        e. Usage: in our case, start is used to build the starting road and environment.
+    
+    2. LateStart():
+        a. Type: IEnumerator (Coroutine).
+        b. Parameters: none.
+        c. Variables: 
+            i. currLane, a GameObject used for storing the current rightmost lane in the road
+        c. Description: calls WaitForEndOfFrame() to cause delay; initializes roadLanes;
+                        initializes currLane as a null; uses a for loop to insert the desired number
+                        of starting lanes into the road, uses insertLane() to do so and continuously assigns 
+                        currLane as the rightmost lane in the road, always inserts on the right and always
+                        inserts a vehicle lane; finally, switches the outer lanes to shoulders by calling setLaneType()
+                        twice.
+        d. Usage: used to delay the assignment of the buildingsReference so that a 
+                  null reference exception is not thrown.
+    
+    3. GetRendererBounds():
+        a. Type: public Bounds.
+        b. Parameters: none.
+        c. Variables:
+            i. renderers, an array of Renderers containing the renderers of road's children.
+            ii. bounds, a Bounds storing the road's bounds.
+        d. Description: retrieves the bounds of the road game object (includes children); 
+                        if there are no children in the road it simply returns a new Bounds;
+                        if there are children it encapsulates each of the children's renderers in 
+                        a Bounds and returns it.
+        e. Usage: used for keeping track of the location of the edge of the road; 
+                  necessary so that buildings' positions update properly.
+
+    4. insertLane():
+        a. Type: public void.
+        b. Parameters: 
+            i. currLane, a GameObject storing the lane that we are inserting next to.
+            ii. laneType, a GameObject storing the type of lane that we are inserting.
+            iii. side, a string storing the side of currLane that we are inserting on.
+        c. Variables:
+            i. newPosition, a Vector3 used for creating a position for the new lane.
+            ii. currLaneNode, a LinkedListNode<GameObject> used for storing the roadLanes 
+                node that contains currLane.
+            iii. currLaneScript, the BasicLane script that controls the behavior of currLane.
+            iv. newLaneScript, the BasicLane script that controls the behavior the lane we are 
+                inserting.
+            v. currLanePosition, a Vector3 storing the position of currLane.
+            vi. currLaneZScale, a float containing the width of currLane.
+            vii. newLane, the GameObject instantiated into the development environment that is
+                 of type laneType (the type we want to insert).
+            viii. newAsphaltTransform, a Transform containing the transform of newLane's asphalt
+            ix. newLaneZScale, a float containing the width of the new lane
+        d. Description: if laneType is a valid lane type and the road has less lanes
+                        than MAX_LANES, insert a lane; set the new lane's position as either the road's
+                        position or (if the road isn't empty), set the new lane's position to be half a lane
+                        width away from the previous lane; instantiate the new lane; call adjustRoadAroundLane() 
+                        to correctly shift the rest of the lanes in the road around the new lane; call setStripes()
+                        to place the correct stripes onto the lane.
+        e. Usage: used for inserting lanes into the road. 
+
+    5. removeLane():
+        a. Type: public void.
+        b. Parameters:
+            i. targetLane, the lane GameObject that is to be removed. 
+        c. Variables:
+            i. targetLaneScriptReference, the BasicLane script that controls the behavior of
+               the target lane
+            ii. targetLaneWidth, a float containing the width of the target lane
+            iii. targetLaneNode, a LinkedListNode<GameObject> containing the roadLanes node of targetLane
+            iv. leftNeighborScriptReference, the BasicLane script that controls the behavior of 
+                targetLane's left neighbor
+            v. rightNeighborScriptReference, the BasicLane script that controls the behavior of
+               targetLane's right neighbor
+        d. Description: stores the width of the target lane; stores the nodes of the left and right
+                        neighbors of the target lane; if the neighbors' nodes are not null, creates references
+                        to their scripts; destroy both left and right stripe game objects; call adjustRoadAroundLane()
+                        to shift the rest of the lanes in the road properly; remove the target lane from roadLanes;
+                        destroy the target lane; finally, call resetStripes() to properly adjust the neighbors' 
+                        stripes after the removal.
+        e. Usage: used to remove lanes from the road. 
+    
+    6. adjustRoadAroundLane():
+        a. Type: public void. 
+        b. Parameters: 
+            i. currLane, a GameObject storing the lane that the road is being shifted around.
+            ii. sizeDifference, a float storing the amount that each lane's position must be adjusted by.
+        c. Variables:
+            i. foundLane, a boolean that indicates whether all of the lanes to the left of currLane
+               have already been adjusted or not.
+            ii. laneScript, the BasicLane script that controls the behavior of the lane that is currently 
+                being adjusted.
+        d. Description: sets foundLane to false; loop through roadLanes to adjust each lane;
+                        for each lane, obtains the lane's script, then if the current lane is 
+                        currLane, sets foundLane to true; while foundLane is false shift the lanes to the 
+                        left by sizeDifference using BasicLane.setLanePosition(), afterwards shift them
+                        to the right by sizeDifference using BasicLane.setLanePosition(); finally, call updateBuildings()
+                        to shift the buildings around the road. 
+        e. Usage: used to shift lanes after an insertion, deletion, width change, or anything else
+                  that requires lanes to be moved. 
+    
+    7. setLaneType():
+        a. Type: public void.
+        b. Parameters: 
+            i. targetLane, a GameObject referencing the lane that is being changed.
+            ii. newType, the string containing the name of the lane type that targetLane is being changed to.
+        c. Variables:
+            i. newTypeObject, the lane GameObject from laneTypes whose name matches newType.
+            ii. laneNode, the LinkedListNode<GameObject> in roadLanes containing targetLane.
+            iii. newLaneNode, the LinkedListNode<GameObject> in roadLanes containing the newly inserted lane
+                 of type newType.
+            iv. newLane, the GameObject referncing the newly inserted lane of type newType.
+            v. newLaneScript, the BasicLane script controlling the behavior of the newly inserted lane
+               of type newType.
+        d. Description: calls findLaneType() to obtain the GameObject whose name matches that of string newLane
+                        then calls insertLane() to insert that lane into the road; obtains the node in roadLanes
+                        containing the newly inserted lane of type newType as well as its script; sets the name of 
+                        the new lane to new type; removes the old targetLane using removeLane(); finally, 
+                        adjusts the stripes accordingly if the new lane type if it is not a vehicle lane; 
+                        in a nutshell, it inserts the new lane type next to the target then removes the target, 
+                        and therefore replaces the target.
+        e. Usage: used to change a lane's type.
+
+    8. getLanes():
+        a. Type: public LinkedList<GameObject>.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns roadLanes.
+        e. Usage: used by other scripts to gain access to the road's individual lanes.
+
+    9. getLaneType():
+        a. Type: public List<GameObject>.
+        b. Parameters: none.
+        c. Variables: 
+            i. laneTypesList, a List of GameObjects containing the objects from laneTypes.
+        d. Description: returns laneTypes casted as a List.
+        e. Usage: used by other scripts to access the list of valid lane types.
+
+    10. getMaxLanes():
+        a. Type: public int.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns MAX_LANES.
+        e. Usage: used by other scripts to determine when the road is at max size.
+
+    11. getMinLanes():
+        a. Type: public int. 
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns MIN_LANES.
+        e. Usage: used by other scripts to determine when the road is at min size.
+
+    12. getLights():
+        a. Type: public BrightnessControl[].
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns an array containing the BrightnessControl scripts attached to each light.
+        e. Usage: used by other scripts to access lighting settings.
+
+    13. getFogControl():
+        a. Type: public FogControl.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns the FogControl script controlling the behavior of the fog controller.
+        e. Usage: used by other scripts to access fog settings.
+
+    14. getBuildingsReference():
+        a. public Buildings.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns the script controlling the behavior of the buildingsReference.
+        e. Usage: used by other scripts to access environment (building) settings.
+
+    15. isValidLaneType():
+        a. Type: public bool.
+        b. Parameters: 
+            i. laneType, the GameObject that is being evaluated as a lane object.
+        c. Variables: none.
+        d. Description: if laneType has isLane tag and is not null then return true, otherwise false.
+        e. Usage: used primarily by insertLane() to validate lane insertions (i.e. preventing
+           insertion of objects that are not lanes).
+
+    16. isFull():
+        a. Type: public bool.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns true if roadLanes.Count is equal to MAX_LANES.
+        e. Usage: used to prevent insertion of too many lanes into the road.
+
+    17. isAtMinSize():
+        a. Type: public bool.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns true if roadLanes.Count is equal to MIN_LANES.
+        e. Usage: used to prevent road from getting too small.
+
+    18. saveRoad():
+        a. Type: public void.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: calls the save system's saveRoad().
+        e. Usage: used to save a road design.
+
+    19. loadRoad():
+        a. Type: public void.
+        b. Parameters: none.
+        c. Variables: 
+            i. roadData, the RoadData object containing all of the loaded road file's essential data.
+            ii. savedLanes, the List of LaneData containing the essential data of each lane in the 
+                loaded road file.
+            iii. currLane, the GameObject referencing the rightmost lane in roadLanes.
+            iv. loadedLane, the GameObject corresponding to a loaded lane's type.
+            v. loadedLaneScriptReference, the BasicLane script controlling the behavior of loadedLane.
+            vi. loadedLaneNode, the LinkedListNode<GameObject> containing loadedLane.
+            vii. loadedPropManagerRef, the PropManager loaded from the loaded road file.
+            viii. buildingsScriptReference, the Buildings script controlling the behavior of the
+                  development environment's buildings. 
+            ix. fogControlScriptReference, the FogControl script governing the behavior of the fog controller. 
+            x. lightIntensities, the float array of light intensities from the loaded road file.
+            xi. lightScripts, the array of BrightnessControl scripts controlling the behavior of the
+                light objects.
+        d. Description: wipes the current road by closing the current UI and calling clearRoad();
+                        calls the save system's loadRoadFromMemory() function and stores the return value
+                        (the loaded road data) in roadData; loops through roadData's list of saved lanes,
+                        called savedLanes, and inserts them each into roadLanes as if a new road is being built, 
+                        adjusts stripes as appropriate for different lane types and adds in any attached props;
+                        replaces the current buildings with the saved buildings type; replaces the current fog settings
+                        with the saved fog settings; finally, replaces the current light settings with the saved 
+                        light settings.
+        e. Usage: used to load a saved road design. 
+
+D. Private Methods:
+
+    1. updateBuildings():
+        a. Type: private void.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: if buildingsReference exists, call Buildings.updateBuildingPosition().
+        e. Usage: used to adjust the position of buildings when the road's width is changed.
+    
+    2. setStripes():
+        Type: private void.
+        b. Parameters: 
+            i. lane, the GameObject referencing the lane whose stripes are being placed.
+        c. Variables:
+            i. laneScriptReference, the BasicLane script controlling the behavior of lane.
+            ii. laneNode, the LinkedListNode<GameObject> in roadLanes containing lane.
+            iii. lanePosition, the Vector3 containing transform.position of lane. 
+            iv. leftStripe, the GameObject representing lane's left stripe. 
+            v. rightStripe, the GameObject representing lane's right stripe.
+            vi. leftNeighbor, the GameObject referencing the lane that comes prior to lane in roadLanes.
+            vii. rightNeighbor, the GameObject referencing the lane that comes after lane in roadLanes.
+            viii. leftNeighborScriptReference, the BasicLane script controlling leftNeighbor's behavior.
+            ix. rightNeighborScriptReference, the BasicLane script controlling rightNeighbor's behavior.
+        d. Description: obtains access to lane's script and its node; creates two empty GameObjects 
+                        that will become stripes; if both neighbors do not exist just instantiate a 
+                        left and right stripe; if there is a left neighbor but no right neighbor,
+                        make leftNeighbor's right stripe the new left stripe unless it's non vehicle asphalt 
+                        and just make right stripe a new stipe; if there is no left neighbor but there is a 
+                        right neighbor make rightNeighbor's left stripe the right stripe unless it's non
+                        vehicle asphalt and make the left stripe a new stripe; if lane has both a left and
+                        right neighbor, then adjust up stripe orientations as necessary; finally, set the 
+                        new stripe's orientations for lane. 
+        e. Usage: a helper function for insertLane() that properly places stripes on new lanes. 
+
+    3. resetStripes():
+        a. Type: private void.
+        b. Parameters: 
+            i. leftScript, the BasicLane script controlling the behavior of the left lane.
+            ii. rightScript, the BasicLane script controlling the behavior of the right lane. 
+        c. Variables:
+            i. newStripe, the GameObject referencing the new stripe that will be inserted.
+            ii. newStripePosition, the Vector3 containing the position that newStripe will be instantiated at.
+        d. Description: if there is no left lane and no right lane, something went wrong, so throw an
+                        exception; if there is only a left lane and it's an asphalt lane, instantiate
+                        newStripe and make it the right stripe of the left lane; if there is only a right lane
+                        and it's an asphalt lane, instantiate newStripe and make it the left stripe of the 
+                        right lane; finally, if there is both a left and right lane and both have asphalt then 
+                        instantiate newStripe then make it the left stripe of right lane and the right stripe of
+                        left lane. 
+        e. Usage: a helper function for removeLane() that properly adjusts stripes after the removal of a lane.
+
+    4. handleNonVehicleStripes():
+        a. Type: private void.
+        b. Parameters:
+            i. newLaneScript, the BasicLane script controlling the behavior of the newly inserted lane.
+            ii. newLaneNode, the LinkedListNode<GameObject> in roadLanes containing the new lane.
+        c. Variables: 
+            i. newLanePosition, the Vector3 containing the position of the new lane. 
+            ii. remainingStripe, the GameObject representing the stripe that this non vehicle lane will 
+                keep.
+            iii. leftNeighborScriptReference, the BasicLane script controlling the behavior of the left neighbor.
+            iv. rightNeighborScriptReference, the BasicLane script controlling the behavior of the right neighbor.
+            v. leftStripe, the GameObject referencing this lane's left stripe. 
+        d. Description: in the case of a lane type change that is not a vehicle lane, this function
+                        makes sure that first and foremost, non asphalt lanes never have stripes; secondly,
+                        it makes sure that non vehicle lanes with asphalt always have one stripe (unless this 
+                        stripe is between two non asphalt lanes or between a non asphalt lane and the buildings).
+        e. Usage: helper function for adjusting stripes of non-vehicle lane types; needed because
+                  their stripe functionality is complex. 
+
+    5. addLaneToList():
+        a. Type: private void.
+        b. Parameters:
+            i. GameObject newLane.
+            ii. LinkedListNode<GameObject> currLaneNode.
+            iii. string side.
+        c. Variables: none.
+        d. Description: adds newLane to roadLanes either before or after currLane.
+        e. Usage: helper for insertLane() that is used to update roadLanes after an insertion.
+
+    6. findLaneType():
+        a. Type: private GameObject.
+        b. Parameters: 
+            i. string newType.
+        c. Variables: none.
+        d. Description: finds given lane type in laneTypes and returns it.
+        e. Usage: used primarily to retrieve the GameObject corresponding to a given lane name.
+
+    7. clearRoad():
+        a. Type: private void.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: destroys every object in roadLanes (every lane in the road).
+        e. Usage: helper function for loadRoad() that clears the current road so that the 
+                  saved road can be smoothly reloaded.  

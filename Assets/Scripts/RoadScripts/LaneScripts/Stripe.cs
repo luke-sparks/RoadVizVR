@@ -7,7 +7,7 @@ using UnityEngine;
 public class Stripe : MonoBehaviour
 {
     // class fields
-    [SerializeField] private string stripeColor;
+    //[SerializeField] private string stripeColor;
     [SerializeField] private string currentStripeType;
     [SerializeField] private GameObject stripe;
     [SerializeField] private GameObject leftLane;
@@ -26,7 +26,7 @@ public class Stripe : MonoBehaviour
 
     // Nathan wrote this
     // changes the stripe's color
-    public void setStripeColor(string newColor)
+    /*public void setStripeColor(string newColor)
     {
         stripeColor = newColor;
     }
@@ -36,7 +36,7 @@ public class Stripe : MonoBehaviour
     public string getStripeColor()
     {
         return stripeColor;
-    }
+    }*/
 
     // Nathan wrote this
     // changes the stripe's type
@@ -91,6 +91,26 @@ public class Stripe : MonoBehaviour
             Debug.Log("NOT A VALID LANE ORIENTATION");
             Debug.Assert(false);
         }
+    }
+
+    // Nathan wrote this
+    // retrieves the list of stripe types
+    public List<GameObject> getStripeTypes()
+    {
+        List<GameObject> stripeTypesList = new List<GameObject>();
+        foreach(GameObject g in  stripeTypes)
+        {
+            stripeTypesList.Add(g);
+        }
+        return stripeTypesList;
+    }
+
+    // Nathan wrote this
+    // loads a saved stripe's data
+    public void loadStripeAtts(StripeData savedStripe)
+    {
+        // for now, we just need to set the stripe's saved type
+        setStripeType(savedStripe.loadStripeType(), gameObject.transform.position);
     }
 
     // Nathan wrote this

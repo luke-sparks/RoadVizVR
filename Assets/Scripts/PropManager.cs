@@ -9,13 +9,12 @@ public class PropManager : MonoBehaviour
     [SerializeField] private GameObject asphalt;
 
     // called when adding a prop
-    public GameObject addProp(Object prop, Transform propTransform)
+    public GameObject addProp(Object prop, Vector3 propPosition)
     {
-        GameObject newProp = (GameObject)Instantiate(prop, propTransform);
+        GameObject newProp = (GameObject)Instantiate(prop);
+        newProp.transform.position = propPosition;
         newProp.transform.SetParent(gameObject.transform);
         props.Add(newProp);
-
-        CurrentPropManager.Instance.setPropBeingMoved(false);
 
         return newProp;
     }
@@ -26,21 +25,34 @@ public class PropManager : MonoBehaviour
         Destroy(prop);
     }
 
-    // called when adjusting the width of a lane
-    public void repositionProps()
-    {
-        foreach(GameObject prop in props)
-        {
-            prop.GetComponent<Prop>().setZPositionRelational(asphalt.transform);
-        }
-    }
-
-    public void updateRelationalValues()
+    public void repositionProps(float changeInLaneWidth)
     {
         foreach (GameObject prop in props)
         {
-            prop.GetComponent<Prop>().updateRelationalZValue(asphalt.transform);
+            prop.GetComponent<Prop>().updatePosition(gameObject, changeInLaneWidth);
         }
+    }
+
+    public List<GameObject> getProps()
+    {
+        return props;
+    }
+
+    public void loadProps(PropManagerData savedPropManager)
+    {
+        // walk through props and add them
+        List<PropData> savedPropData = savedPropManager.getPropData();
+
+        foreach (PropData propData in savedPropData)
+        {
+            // insert new prop based on propData
+            float correctZValue = GetComponent<BasicLane>().getLanePosition().z + propData.loadZValueOffsetFromLane();
+            Vector3 newPropPosition = new Vector3 (propData.loadXPosition(), propData.loadYPosition(), correctZValue);
+            CurrentPropManager.Instance.setRotation(propData.loadRotation());
+            GameObject newProp = addProp(Resources.Load(propData.loadPropType()), newPropPosition);
+            newProp.GetComponent<Prop>().loadPropData(propData);
+        }
+        CurrentPropManager.Instance.setRotation(0);
     }
 
 }

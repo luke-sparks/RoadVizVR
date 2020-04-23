@@ -3,10 +3,7 @@ guid: 2ec3dcd00c5cc4d659a0935f4a6a510d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - stripeContainer: {fileID: 3964961391636753501, guid: 82c0c5576c5b23847bb148267cf9089a,
-      type: 3}
-  - buildingsReference: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
