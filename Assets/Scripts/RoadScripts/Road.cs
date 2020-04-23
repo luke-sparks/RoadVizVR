@@ -176,7 +176,7 @@ public class Road : MonoBehaviour
             LinkedListNode<GameObject> targetLaneNode = roadLanes.Find(targetLane);
             BasicLane leftNeighborScriptReference = null;
             BasicLane rightNeighborScriptReference = null;
-            if(targetLaneNode.Previous != null)
+            if (targetLaneNode.Previous != null)
                 leftNeighborScriptReference = (BasicLane)targetLaneNode.Previous.Value.GetComponent("BasicLane");
             if (targetLaneNode.Next != null)
                 rightNeighborScriptReference = (BasicLane)targetLaneNode.Next.Value.GetComponent("BasicLane");
@@ -265,7 +265,7 @@ public class Road : MonoBehaviour
     // parameter targetLane is the lane we are trying to change
     // parameter newType is the name of the lane type we want to insert
     // parameter defaultWidth is the default width of the type to be inserted
-    public GameObject setLaneType(GameObject targetLane, string newType) 
+    public GameObject setLaneType(GameObject targetLane, string newType)
     {
         // REASONING BEHIND THIS PROCESS:
         //      We actually cannot overwrite gameObject from within BasicLane
@@ -289,7 +289,7 @@ public class Road : MonoBehaviour
         // 4. delete the old lane 
         removeLane(targetLane);
         // 5. adjust the stripes of the new lane
-        if (!newLaneScript.isVehicleLane()) 
+        if (!newLaneScript.isVehicleLane())
         {
             handleNonVehicleLaneStripes(newLaneScript, newLaneNode);
         }
@@ -348,6 +348,16 @@ public class Road : MonoBehaviour
     public Buildings getBuildingsReference()
     {
         return (Buildings)buildingsReference.GetComponent("Buildings");
+    }
+
+    public List<string> getLaneTypeNames()
+    {
+        List<string> laneTypeNames = new List<string>();
+        foreach (GameObject g in laneTypes)
+        {
+            laneTypeNames.Add(g.name);
+        }
+        return laneTypeNames;
     }
 
     // checks to make sure that the lane object parameter
