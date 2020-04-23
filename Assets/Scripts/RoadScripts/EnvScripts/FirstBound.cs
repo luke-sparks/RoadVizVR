@@ -20,7 +20,7 @@ public class FirstBound : MonoBehaviour
     {
         //Retrieve the bounds of the road object
         Bounds roadBounds = mainRoad.GetRendererBounds();
-        Debug.Log(roadBounds.size);
+        //Debug.Log(roadBounds.size);
 
         //Retrieve the size of the bounds in the Z direction
         float boundsZ = (this.transform.localScale.z / 2);
