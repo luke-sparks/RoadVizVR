@@ -54,7 +54,7 @@ public class ModifyController : MonoBehaviour
             if (!triggered)
             {
                 triggered = true;
-                roadScriptReference.loadRoad();
+                roadScriptReference.loadRoad("road");
             }
 
         }
