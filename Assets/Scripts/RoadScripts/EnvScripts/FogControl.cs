@@ -16,12 +16,6 @@ public class FogControl : MonoBehaviour
     //more.
     [SerializeField] float fogShiftAmt;
 
-    //Default setting for fogDistance is 85.
-    /*void Start()
-    {
-        //setFogDistance(75);
-    }*/
-
     //Changes the render settings of the fog and the variable according
     //to the fog input.
     public void setFogDistance(float inputFogDistance)
@@ -34,5 +28,10 @@ public class FogControl : MonoBehaviour
     public float getFogDistance()
     {
         return fogDistance;
+    }
+
+    private void OnValidate()
+    {
+        setFogDistance(fogDistance);
     }
 }

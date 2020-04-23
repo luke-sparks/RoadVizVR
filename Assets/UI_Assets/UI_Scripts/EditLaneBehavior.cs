@@ -15,10 +15,13 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
 
     //private Lane workingLane;
 
-    public void init(GameObject laneRef)
+    public void init(GameObject[] laneRefs)
     {
-        this.workingLaneReference = laneRef;
-        this.basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
+        Debug.Assert(laneRefs.Length == 1);
+
+        workingLaneReference = laneRefs[0];
+        basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
+
         if(workingLaneReference == null || basicLaneScriptReference == null)
         {
             Debug.Log("Tried to set working reference, but failed.");

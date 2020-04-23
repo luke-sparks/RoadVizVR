@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 {
-    public void init(GameObject objRef)
+
+    public void init(params GameObject[] objRefs)
     {
         CurrentPropManager.Instance.setRotation(0);
     }

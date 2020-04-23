@@ -7,9 +7,9 @@ public class EditPropBehavior : MonoBehaviour, ISceneUIMenu
     private GameObject propRef;
     private PropManager propManagerScript;
 
-    public void init(GameObject objRef)
+    public void init(params GameObject[] objRefs)
     {
-        propRef = objRef;
+        propRef = objRefs[0];
         propManagerScript = propRef.GetComponent<Prop>().getPropManager();
         CurrentPropManager.Instance.setRotation(propRef.GetComponent<Prop>().getRotation());
     }
