@@ -87,8 +87,11 @@ public class Road : MonoBehaviour
             Bounds bounds = renderers[0].bounds;
             for (int i = 1, ni = renderers.Length; i < ni; i++)
             {
-                //Encapsulate children within the bounds object
-                bounds.Encapsulate(renderers[i].bounds);
+                //Encapsulate children within the bounds object if it's asphalt
+                if (renderers[i].name == "PrimaryAsphalt")
+                {
+                    bounds.Encapsulate(renderers[i].bounds);
+                }
             }
             return bounds;
         }
@@ -224,7 +227,7 @@ public class Road : MonoBehaviour
                 laneScript.setLanePosition(-currLaneSize / 2);
             }
         }
-        updateBuildings();
+        StartCoroutine(FrameDelayBuildingUpdate());
     }
 
     // Luke wrote this
@@ -257,7 +260,7 @@ public class Road : MonoBehaviour
             }
         }
         //Update position of buildings
-        updateBuildings();
+        StartCoroutine(FrameDelayBuildingUpdate());
     }
 
     // Nathan wrote this
@@ -293,7 +296,7 @@ public class Road : MonoBehaviour
         {
             handleNonVehicleLaneStripes(newLaneScript, newLaneNode);
         }
-        updateBuildings();
+        StartCoroutine(FrameDelayBuildingUpdate());
         return newLane;
     }
 
