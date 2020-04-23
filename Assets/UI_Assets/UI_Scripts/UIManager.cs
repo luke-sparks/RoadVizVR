@@ -51,12 +51,11 @@ public class UIManager : MonoBehaviour
         }
 
         Vector3 placeAt = getLocationForUIPanel();
-        Quaternion rotation = getRotationForUIPanel(); ;
 
         GameObject curUIObject = uiObjects[uiName];
 
         // instantiate the prefab, then set it to the current UI in use
-        currentUI = Instantiate(curUIObject, placeAt, rotation);
+        currentUI = Instantiate(curUIObject, placeAt, Quaternion.identity);
         ISceneUIMenu ui = currentUI.GetComponent<ISceneUIMenu>();
         currentUI.gameObject.transform.LookAt(Camera.main.transform.position);
         currentUI.transform.eulerAngles += 180f * Vector3.up;
@@ -83,12 +82,6 @@ public class UIManager : MonoBehaviour
         Vector3 lookDir = Camera.main.transform.forward;
         Vector3 lookDirFlattened = new Vector3(lookDir.x, 0, lookDir.z);
         return cameraLoc + 1 * lookDirFlattened;
-    }
-
-    private Quaternion getRotationForUIPanel()
-    {
-        Transform cameraLoc = Camera.main.transform;
-        return new Quaternion(0, cameraLoc.rotation.y, 0, 1);
     }
 
     public void closeCurrentUI()
