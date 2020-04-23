@@ -1641,6 +1641,60 @@ MonoBehaviour:
   - {fileID: 7894024709681648819, guid: 4476f91feac22744c9c9616cd7b58a63, type: 3}
   - {fileID: 2330009060323306810, guid: 871906cad1fc2704ba4834ad1d6916aa, type: 3}
   - {fileID: 3844490017451381875, guid: d9831c962d3f059459cd77e2788cad50, type: 3}
+  - {fileID: 7810132173699929564, guid: f0f6949490e84934c86a5dd300d3bad9, type: 3}
+--- !u!1 &1127189083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127189085}
+  - component: {fileID: 1127189084}
+  m_Layer: 0
+  m_Name: VehicleSender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1127189084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127189083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c0a2f8799ead147bb8957ce781d51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  bikeReference: {fileID: 5714886455384544808, guid: 5aa74af8706273443a0b1bedc09e092c,
+    type: 3}
+  carReference: {fileID: 2265229102464833724, guid: fa865b86acdef6e4d8f13620aae18201,
+    type: 3}
+  truckReference: {fileID: 5403499318029698025, guid: 640cf07f77c3b4b4faf78366b5751bb0,
+    type: 3}
+  busReference: {fileID: 2610078161823025506, guid: 3d069d4de80193b40ad642aa89aabbf7,
+    type: 3}
+  currentVehicle: {fileID: 0}
+--- !u!4 &1127189085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127189083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.23261738, y: 0.35281086, z: -0.0002541542}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1130369068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2227,7 +2281,6 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 1445166360}
   - {fileID: 502124333}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
