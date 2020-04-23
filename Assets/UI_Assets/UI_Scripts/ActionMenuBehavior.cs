@@ -7,7 +7,8 @@ public class ActionMenuBehavior : MonoBehaviour, ISceneUIMenu
 {
     public void init(params GameObject[] objRef)
     {
-        // do nothing
+        // catches the instance when we start adding props and then open the action menu without explicitly closing the prop spawn menu
+        ModifyController.Instance.setAddingProps(false);
     }
 
     public void onSavePress()
