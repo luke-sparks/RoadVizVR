@@ -48,6 +48,22 @@ public class ModifyController : MonoBehaviour
             addingProps = newVal;
             toggleLaneIneraction();
         }
+
+        if (addingProps == false)
+        {
+            // sometimes if the user places a prop and then immediately hits the delete button (because the ui gets recreated),
+            // the prop will not be attached to a lane properly. So when delete is pressed, check the world for errant props and remove them
+
+            GameObject[] allProps = GameObject.FindGameObjectsWithTag("Prop");
+            foreach (GameObject maybeProp in allProps)
+            {
+                // check if the transform's parent is null, if so, its at the root and isn't managed by any lane
+                if (maybeProp.transform.parent == null)
+                {
+                    Destroy(maybeProp);
+                }
+            }
+        }
     }
 
     // this function is used to toggle the scripts on the lanes from laneEdit stuff to propSpawning/editing
