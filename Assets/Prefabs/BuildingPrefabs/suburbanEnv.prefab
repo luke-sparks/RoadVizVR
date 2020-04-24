@@ -190,7 +190,6 @@ GameObject:
   - component: {fileID: 426769937160932173}
   - component: {fileID: 1815359237979254036}
   - component: {fileID: 3708033475359928460}
-  - component: {fileID: 5776692248192121698}
   m_Layer: 0
   m_Name: driveway
   m_TagString: Untagged
@@ -258,19 +257,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5776692248192121698
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437905886143467633}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1525154356025151804
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +627,6 @@ GameObject:
   - component: {fileID: 1396134587338227881}
   - component: {fileID: 6737382944571860825}
   - component: {fileID: 1513454139639066436}
-  - component: {fileID: 6605137111172779254}
   m_Layer: 0
   m_Name: floor
   m_TagString: Untagged
@@ -709,19 +694,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6605137111172779254
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2782214233892388348}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2851733702884807750
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +816,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3152952443928427299}
   - component: {fileID: 3152952442318647381}
-  - component: {fileID: 3152952442318647380}
   - component: {fileID: 3152952442318647371}
   m_Layer: 0
   m_Name: secondBoundary_u
@@ -912,19 +883,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3152952442318647380
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152952442318647370}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3152952442318647371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,7 +906,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3152952443502382872}
   - component: {fileID: 3152952443286571524}
-  - component: {fileID: 3152952443286571579}
   - component: {fileID: 3152952443286571578}
   m_Layer: 0
   m_Name: firstBoundary_u
@@ -1016,19 +973,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3152952443286571579
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152952443286571577}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3152952443286571578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,7 +1043,6 @@ GameObject:
   - component: {fileID: 7954779582755313509}
   - component: {fileID: 5645563945962253839}
   - component: {fileID: 1556331815065820259}
-  - component: {fileID: 4318735723427585894}
   m_Layer: 0
   m_Name: driveway
   m_TagString: Untagged
@@ -1167,19 +1110,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4318735723427585894
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3341697142530071583}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3384864426912523970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,7 +1704,6 @@ GameObject:
   - component: {fileID: 2903497012604562689}
   - component: {fileID: 3750554031970646123}
   - component: {fileID: 2370190170418487710}
-  - component: {fileID: 2638852833875453427}
   m_Layer: 0
   m_Name: driveway
   m_TagString: Untagged
@@ -1842,19 +1771,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2638852833875453427
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5064034801301087578}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5067942212716857880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,7 +1886,6 @@ GameObject:
   - component: {fileID: 4322564481787443709}
   - component: {fileID: 4988574969438819972}
   - component: {fileID: 5891875197760084050}
-  - component: {fileID: 941419226480286364}
   m_Layer: 0
   m_Name: driveway
   m_TagString: Untagged
@@ -2038,19 +1953,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &941419226480286364
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5512927163142160827}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5571341341923040349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,36 +2026,6 @@ Transform:
   - {fileID: 3405396374550021086}
   m_Father: {fileID: 3152952443502382872}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6167234436695901814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3001275496326125203}
-  m_Layer: 0
-  m_Name: fenceGroup (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3001275496326125203
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6167234436695901814}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.113, y: -2.5196667, z: 3.13025}
-  m_LocalScale: {x: 0.01, y: 0.033333335, z: 0.01}
-  m_Children: []
-  m_Father: {fileID: 1370969899591471073}
-  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6533001354055911217
 GameObject:
@@ -2270,7 +2142,6 @@ GameObject:
   - component: {fileID: 5301127072070563060}
   - component: {fileID: 2596984386317581180}
   - component: {fileID: 8932318340247645418}
-  - component: {fileID: 966675239569601224}
   m_Layer: 0
   m_Name: driveway
   m_TagString: Untagged
@@ -2338,19 +2209,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &966675239569601224
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6917637033511999209}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7132170703850112899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2560,7 +2418,6 @@ Transform:
   - {fileID: 1666608920256468984}
   - {fileID: 8917905720562843927}
   - {fileID: 2903497012604562689}
-  - {fileID: 3001275496326125203}
   m_Father: {fileID: 3152952443928427299}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2645,7 +2502,6 @@ GameObject:
   - component: {fileID: 5324702286335742127}
   - component: {fileID: 4567078431011675689}
   - component: {fileID: 6155660997986876154}
-  - component: {fileID: 8449926192138083917}
   m_Layer: 0
   m_Name: driveway
   m_TagString: Untagged
@@ -2713,19 +2569,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8449926192138083917
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8807447110862097356}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8808390968367829013
 GameObject:
   m_ObjectHideFlags: 0

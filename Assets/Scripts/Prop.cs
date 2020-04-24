@@ -17,6 +17,7 @@ public class Prop : MonoBehaviour
     
     private void Awake()
     {
+        // find the CenterPointObj in the prop's children, should be the only thing
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(0).gameObject.name.Equals("CenterPointObj"))
@@ -25,15 +26,17 @@ public class Prop : MonoBehaviour
             }
         }
 
+        // get the VRTK_InteractableObject component
         linkedObject = GetComponentInChildren<VRTK_InteractableObject>();
 
+        // get the propRotation from the currentPropManager and rotate the prop to that point
         propRotation = CurrentPropManager.Instance.getRotation();
         rotateToPoint();
     }
 
     public Vector3 getCenterObjectOffset()
     {
-        Debug.Log(centerPointObj.transform.position);
+        //Debug.Log(centerPointObj.transform.position);
         return centerPointObj.transform.position - gameObject.transform.position;
     }
 
@@ -63,6 +66,7 @@ public class Prop : MonoBehaviour
         return centerPointObj.transform.position.z - GetComponentInParent<BasicLane>().getLanePosition().z;
     }
 
+    // returns a string of the propType minus the (Clone) attached to instantiated prefabs
     public string getPropType()
     {
         string propType = gameObject.name;
@@ -73,6 +77,18 @@ public class Prop : MonoBehaviour
         return propType;
     }
 
+    // updates the position when we adjust the width in the lane
+    // change in position is based on a ratio so if we increase the lane by 1 foot, things won't necessarily move by that
+    // example:
+    // a lane is centered at 2, with width 4, so its edges are at 0 and 4
+    // if a prop is at 3, then the prop is at 1/2 of half the lane. If the lane gets increased to 6 wide (edges at -1 and 5), the prop will end up at 1.5 + middle, which is 3.5
+    //       -2 -1  0  1  2  3  4  5  6  7
+    // lane:        |     -     |           - middle,   | edge
+    // prop:                 *
+
+    // lane2:    |        -        |
+    // prop2:                  *
+    // props are adjusted proportionally
     public void updatePosition(GameObject lane, float changeInLaneWidth)
     {
         float laneCenterZ = lane.GetComponent<BasicLane>().getLanePosition().z;
