@@ -16,10 +16,7 @@ public class MainMenuBehavior : MonoBehaviour
         roadDropdown.ClearOptions();
 
         List<string> roadFileNames = new List<string>(RoadVizSaveSystem.getFilenames());
-        if(roadFileNames.Count == 0)
-        {
-            gameObject.transform.Find("LoadRoadControls/LoadButton").GetComponent<Button>().interactable = false; ;
-        }
+        gameObject.transform.Find("LoadRoadControls/LoadButton").GetComponent<Button>().interactable = roadFileNames.Count > 0;
 
         roadDropdown.AddOptions(new List<string>(RoadVizSaveSystem.getFilenames()));  
     }
@@ -50,6 +47,7 @@ public class MainMenuBehavior : MonoBehaviour
     public void handleLoadDesign()
     {
         SceneManager.LoadScene("DevelopmentEnvironment");
+       
         RoadVizSaveSystem.loadRoadFromMemory(RoadVizSaveSystem.getFilenames()[roadDropdown.value]);
     }
 }
