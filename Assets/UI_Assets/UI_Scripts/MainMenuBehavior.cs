@@ -46,9 +46,28 @@ public class MainMenuBehavior : MonoBehaviour
 
     public void handleLoadDesign()
     {
-        String roadNameToLoad = RoadVizSaveSystem.getFilenames()[roadDropdown.value];
-        SceneManager.LoadScene("DevelopmentEnvironment");
-        Road rd = GameObject.Find("Road").GetComponent<Road>();
-        rd.loadRoad(roadNameToLoad);
+        Debug.Log("Load design selected");
+
+        string roadNameToLoad = RoadVizSaveSystem.getFilenames()[roadDropdown.value];
+
+        IEnumerator LoadLevel()
+        {
+            AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("DevelopmentEnvironment", LoadSceneMode.Single);
+            while (!asyncLoadLevel.isDone)
+            {
+                Debug.Log("Async loading scene ongoing...");
+                yield return null;
+            }
+            Debug.Log("Async loading scene complete!");
+            Road rd = GameObject.Find("Road").GetComponent<Road>();
+            rd.loadRoad(roadNameToLoad);
+        }
+
+        StartCoroutine(LoadLevel());
+
+        
+
+        //SceneManager.LoadScene("DevelopmentEnvironment");
+       
     }
 }
