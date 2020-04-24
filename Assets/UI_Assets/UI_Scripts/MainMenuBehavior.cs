@@ -46,8 +46,9 @@ public class MainMenuBehavior : MonoBehaviour
 
     public void handleLoadDesign()
     {
+        String roadNameToLoad = RoadVizSaveSystem.getFilenames()[roadDropdown.value];
         SceneManager.LoadScene("DevelopmentEnvironment");
-       
-        RoadVizSaveSystem.loadRoadFromMemory(RoadVizSaveSystem.getFilenames()[roadDropdown.value]);
+        Road rd = GameObject.Find("Road").GetComponent<Road>();
+        rd.loadRoad(roadNameToLoad);
     }
 }
