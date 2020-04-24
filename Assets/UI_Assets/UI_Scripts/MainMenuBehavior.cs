@@ -52,15 +52,23 @@ public class MainMenuBehavior : MonoBehaviour
 
         IEnumerator LoadLevel()
         {
+            DontDestroyOnLoad(this.transform.gameObject);
+            Debug.Log(this);
+
             AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync("DevelopmentEnvironment", LoadSceneMode.Single);
-            while (!asyncLoadLevel.isDone)
-            {
-                Debug.Log("Async loading scene ongoing...");
-                yield return null;
-            }
+            //while (!asyncLoadLevel.isDone)
+            //{
+              //  Debug.Log("Async loading scene ongoing...");
+                //yield return null;
+            //}
+
+            yield return new WaitWhile(() => !asyncLoadLevel.isDone);
+            yield return new WaitForEndOfFrame();
             Debug.Log("Async loading scene complete!");
             Road rd = GameObject.Find("Road").GetComponent<Road>();
             rd.loadRoad(roadNameToLoad);
+
+            Destroy(this.transform.gameObject);
         }
 
         StartCoroutine(LoadLevel());
