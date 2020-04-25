@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 4329723256393501949}
   - component: {fileID: 1719125806343412911}
   - component: {fileID: -7922146036310918495}
+  - component: {fileID: -3204622808627764146}
   m_Layer: 0
   m_Name: BusLane
   m_TagString: IsLane
@@ -285,3 +286,16 @@ MonoBehaviour:
   asphalt: {fileID: 2070393590465643615}
   laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
     type: 3}
+--- !u!114 &-3204622808627764146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330009060323306810}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95370009a693b044b8f740c67f6c7b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedObject: {fileID: 853183256990264667}

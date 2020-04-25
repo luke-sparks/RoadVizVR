@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PropManager : MonoBehaviour
 {
-    // list of props
     [SerializeField] private List<GameObject> props;
-    [SerializeField] private GameObject asphalt;
 
     // called when adding a prop
     public GameObject addProp(Object prop, Vector3 propPosition)

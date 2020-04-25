@@ -8,6 +8,8 @@ TagManager:
   - TeleportIgnore
   - CanTeleport
   - IsLane
+  - Undefined
+  - Prop
   layers:
   - Default
   - TransparentFX

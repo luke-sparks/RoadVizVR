@@ -23,7 +23,6 @@ public class GlobalSettingsBehavior : MonoBehaviour, ISceneUIMenu
         transform.Find("BrightnessLevelControls/BrightnessBackground/BrightnessField").GetComponent<Text>().text = lightController.getBrightness().ToString("0.0");
         transform.Find("FogLevelControls/Background/FogField").GetComponent<Text>().text = fogController.getFogDistance().ToString();
         transform.Find("ArchitectureTypeControls/ArchType").GetComponent<Dropdown>().value = GameObject.Find("Buildings").GetComponent<Buildings>().getBuildingIndex();
-
     }
 
     public void handleBrightnessDecrement()

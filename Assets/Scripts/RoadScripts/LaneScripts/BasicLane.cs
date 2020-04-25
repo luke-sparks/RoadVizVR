@@ -75,8 +75,6 @@ public class BasicLane : MonoBehaviour
         return currentLaneWidth;
     }
 
-    
-
     // Nathan wrote this
     // returns the lane's maximum width
     public float getMaxWidth()
@@ -88,7 +86,6 @@ public class BasicLane : MonoBehaviour
     // returns the lane's minimum width
     public float getMinWidth()
     {
-        Debug.Log("Min Width is " + minWidth.ToString() + ".");
         return minWidth;
     }
 
@@ -103,8 +100,6 @@ public class BasicLane : MonoBehaviour
         Vector3 tempVec = gameObject.transform.localPosition;
         tempVec.z += adjustment;
         this.gameObject.transform.localPosition = tempVec;
-        //lanePosition = gameObject.transform.localPosition;
-
         // set new stripe locations
         adjustStripePositions();  
     }
@@ -113,25 +108,8 @@ public class BasicLane : MonoBehaviour
     // retrieves the lane's current position
     public Vector3 getLanePosition()
     {
-        //Debug.Log(gameObject.transform.localPosition);
-        //Debug.Log(lanePosition);
-        //Debug.Assert(lanePosition == gameObject.transform.localPosition);
         return gameObject.transform.localPosition;
     }
-
-    // Nathan wrote this
-    // changes the lane index
-    /*public void setLaneIndex(int newIndex)
-    {
-        laneIndex = newIndex;
-    }
-
-    // Nathan wrote this
-    // retrieves the lane index
-    public int getLaneIndex()
-    {
-        return laneIndex;
-    }*/
 
     // Nathan wrote this
     // sets the lane's current type
@@ -182,8 +160,7 @@ public class BasicLane : MonoBehaviour
             // error case
             else
             {
-                Debug.Log("NOT A VALID STRIPE ORIENTATION");
-                Debug.Assert(false);
+                throw new System.ArgumentException("Invalid stripe orientation.");
             }
         }
         // if the stripe is null, then do one of the following:
