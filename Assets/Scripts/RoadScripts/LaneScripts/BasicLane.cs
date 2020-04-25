@@ -8,18 +8,84 @@ public class BasicLane : MonoBehaviour
 {
     // class fields
     [SerializeField] private const float DEFAULT_LANE_WIDTH_FT = 12.0f;
-    [SerializeField] private GameObject asphalt;
-    [SerializeField] private string laneType;
-    [SerializeField] private float currentLaneWidth;
-    [SerializeField] private float maxWidth;
-    [SerializeField] private float minWidth;
-    [SerializeField] private GameObject leftStripe;
-    [SerializeField] private GameObject rightStripe;
-    [SerializeField] private bool vehicleLane;
-    [SerializeField] private bool nonVehicleAsphalt;
-    [SerializeField] private bool nonAsphalt;
-    [SerializeField] private GameObject road;
-    [SerializeField] private Road roadScript;
+    //[SerializeField] protected GameObject laneEditPrefab;
+    //[SerializeField] protected GameObject editLaneDialogue;
+    //[SerializeField] protected GameObject insertButton;
+    [SerializeField] protected GameObject asphalt;
+    //[SerializeField] protected Vector3 lanePosition;
+    [SerializeField] protected int laneIndex;
+    [SerializeField] protected string laneType;
+    [SerializeField] protected float currentLaneWidth;
+    [SerializeField] protected float maxWidth;
+    [SerializeField] protected float minWidth;
+    [SerializeField] protected GameObject leftStripe;
+    [SerializeField] protected GameObject rightStripe;
+    [SerializeField] protected bool vehicleLane;
+    [SerializeField] protected bool nonVehicleAsphalt;
+    [SerializeField] protected bool nonAsphalt;
+
+    //The direction of the lane
+    //0 means from positive to negative x,
+    //1 means from negative to positive x
+    [SerializeField] private int direction = 0; //Zero by default
+
+    protected GameObject road;
+    protected Road roadScript;
+
+    // Nathan inserted start so we could use road functions more easily
+    void Start()
+    {
+        //road = GameObject.Find("Road");
+        //roadScript = (Road)road.GetComponent("Road");
+
+        // this was causing a bug. not sure why
+        //setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
+
+        road = GameObject.Find("Road");
+        roadScript = (Road)road.GetComponent("Road");
+    }
+
+    // Max wrote this
+    // changes the direction of the lane's traffic 
+    // (meaning the way in which a spawned vehicle will move), as well as the direction
+    // (that signs point)
+    // will also set the direction of the signs
+    public void setDirection(int newDirection)
+    {
+        //If it is a valid direction specified for both variables
+        if (newDirection == 1 || newDirection == 0)
+        {
+            //Update the directional variable
+            direction = newDirection;
+
+            //Update the sign, which are children, first by finding them, then by running its update.
+            //They are named "sign", "sign 2", and "sign 3"
+            //This code is a little ugly but I only need to use it for 3 objects, so is good enough.
+            GameObject signReference = this.transform.Find("sign").gameObject;
+            signReference.GetComponent<signDirection>().updateRotation();
+
+            //Update sign 2
+            signReference = this.transform.Find("sign 2").gameObject;
+            signReference.GetComponent<signDirection>().updateRotation();
+
+            //Update sign 3
+            signReference = this.transform.Find("sign 3").gameObject;
+            signReference.GetComponent<signDirection>().updateRotation();
+        }
+
+        //If the direction is invalid
+        else
+        {
+            Debug.Log("Error. Bad direction given in setDirection, within basicLane!");
+        }
+    }
+
+    // Nathan wrote this
+    // retrieves the direction of the lane
+    public int getDirection()
+    {
+        return direction;
+    }
 
     // setLaneWidth() sets the width of a lane
     // new_width is a floating point number used to create
