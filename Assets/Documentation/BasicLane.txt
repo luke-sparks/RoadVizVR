@@ -91,3 +91,132 @@ B. Class Fields:
         d. Usage: used to adjust the road when specific changes are made to the lane.
 
 C. Public Methods: 
+
+    1. setLaneWidth():
+        a. Type: public void.
+        b. Parameters:
+            i. float newWidth.
+        c. Variables:
+            i. Vector3 laneSize.
+            ii. float adjustment.
+            iii. GameObject road.
+        d. Description: this function changes the width of the lane object to the value of newLane.
+        e. Usage: used by other scripts to change width of lanes. 
+
+    2. getLaneWidth():
+        a. Type: public float.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns the current lane width.
+        e. Usage: used by other scripts to access the lane's width.
+
+    3. getMaxWidth():
+        a. Type: public float.
+        b. Parameters: none.
+        c. Variables: none. 
+        d. Description: returns MAX_WIDTH.
+        e. Usage: used by other scripts to access the max width of the lane. 
+
+    4. getMinWidth():
+        a. Type: public float.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns MIN_WIDTH.
+        e. Usage: used by other scripts to access the min width of the lane. 
+
+    5. setLanePosition():
+        a. Type: public void.
+        b. Parameters: 
+            i. float adjustment.
+        c. Variables:
+            i. Vector3 tempVec, used for temporarily storing the lane position. 
+        d. Description: updates the lane's position (on the z axis) by amount adjustment. 
+        e. Usage: used primarily to move lanes when other lanes in the road are inserted, removed, or 
+                  otherwise adjusted. 
+    
+    6. getLanePosition():
+        a. Type: public Vector3.
+        b. Parameters: none.
+        c. Variables: none. 
+        d. Description: returns transform.position of the lane.
+        e. Usage: used by other scripts to access the lane's position.
+
+    7. setLaneType():
+        a. Type: public void.
+        b. Parameters: strine newTypeName.
+        c. Variables: none.
+        d. Description: updates the lane type (just the name, road.cs handles the rest).
+        e. Usage: used to update the name of the lane type after the lane is changed
+                  to a new type. 
+
+    8. getLaneType():
+        a. Type: public string.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns laneType.
+        e. Usage: used by other scripts to access the lane's type.
+
+    9. setStripeOrientation():
+        a. Type: public void. 
+        b. Parameters: 
+            i. GameObject stripe.
+            ii. string stripeOrientation, the side of the lane that the stripe will go on. 
+        c. Variables:
+            i. Stripe stripeScriptReference, script controlling parameter stripe. 
+        d. Description: sets the parameter stripe to be either the left or right stripe of this lane
+                        based off of the value of parameter stripeOrientation.
+        e. Usage: used (primarily in road.cs) to set a stripe as either the left or right stripe
+                  or reset the stripe completely (remove it from the lane).
+
+    10. getStripe():
+        a. Type: public GameObject.
+        b. Parameters: 
+            i. string stripe, which of the lane's stripes you want to obtain. 
+        c. Variables: none.
+        d. Description: returns either the left or right stripe of the lane depending on the 
+                        value of stripe. 
+        e. Usage: used by other scripts to access the left and right stripes. 
+
+    11. isVehicleLane():
+        a. Type: public bool.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns vehicleLane. 
+        e. Usage: used by other scripts to check if this is a vehicle lane.
+
+    12. isNonVehicleAsphaltLane():
+        a. Type: public bool. 
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns nonVehicleAsphalt.
+        e. Usage: used by other scripts to check if this is a non vehicle asphalt lane. 
+
+    13. isNonAsphaltLane():
+        a. Type: public bool. 
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns nonAsphalt.
+        e. Usage: used by other scripts to check if this is a non asphalt lane.
+
+    14. loadLaneAtts():
+        a. Type: public void. 
+        b. Parameters: LaneData savedLane, the data for this lane from a loaded road file. 
+        c. Variables: 
+            i. StripeData leftStripeData, loaded data for the saved left stripe.
+            ii. StripeData rightStripeData, loaded data for the saved right stripe. 
+            iii. Stripe leftStripeScriptReference, script controlling left stripe. 
+            iv. Stripe rightStripeScriptReference, script controlling right stripe. 
+        d. Description: loads data of a lane from a loaded road file into this lane. 
+        e. Usage: used by road to load an individual lane's saved attributes during loading. 
+
+D. Private Methods:
+    
+    1. adjustStripePositions():
+        a. Type: private void. 
+        b. Parameters: none.
+        c. Variables: none. 
+        d. Description: updates the positions of the stripes. 
+        e. Usage: helper function for setLanePosition() that is used to move stripes whenever the 
+                  lane is moved. 
+
+    
