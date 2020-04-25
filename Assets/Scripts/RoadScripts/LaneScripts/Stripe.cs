@@ -45,6 +45,11 @@ public class Stripe : MonoBehaviour
         stripe = newStripe;
     }
 
+    public void setStripeTypeSameLocation(string newType)
+    {
+        setStripeType(newType, gameObject.transform.position);
+    }
+
     // Nathan wrote this
     // retrieves the stripe's current type
     public string getStripeType()
@@ -85,6 +90,16 @@ public class Stripe : MonoBehaviour
         foreach(GameObject g in  stripeTypes)
         {
             stripeTypesList.Add(g);
+        }
+        return stripeTypesList;
+    }
+
+    public List<string> getStripeTypeNames()
+    {
+        List<string> stripeTypesList = new List<string>();
+        foreach (GameObject g in stripeTypes)
+        {
+            stripeTypesList.Add(g.name);
         }
         return stripeTypesList;
     }

@@ -12,8 +12,17 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
 
     public GameObject workingLaneReference; // consider removing this variable?
     private BasicLane basicLaneScriptReference;
+    private GameObject leftStripeEditMenu;
+    private GameObject rightStripeEditMenu;
 
-    //private Lane workingLane;
+    public void Awake()
+    {
+        leftStripeEditMenu = transform.Find("EditLeftStripe").gameObject;
+        rightStripeEditMenu = transform.Find("EditRightStripe").gameObject;
+        
+        leftStripeEditMenu.SetActive(false);
+        rightStripeEditMenu.SetActive(false);
+    }
 
     public void init(GameObject[] laneRefs)
     {
@@ -28,7 +37,6 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         }
 
         updateWidthField();
-
         resolveButtonActivationStates();
     }
 
@@ -42,6 +50,40 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         // add lane types to dropdown, then set current active
         dd.AddOptions(laneTypeNames);
         dd.value = laneTypeNames.IndexOf(basicLaneScriptReference.getLaneType());
+
+        resolveStripeUIState();
+    }
+
+    // sets the stripe UI state to be active/inactive based on lane choice. Separated from resolveButtonActivationStates() to be able
+    // to just resolve stripeUI state in handleLaneTypeChange()
+    private void resolveStripeUIState()
+    {
+        GameObject leftStripe = basicLaneScriptReference.getStripe("left");
+        GameObject rightStripe = basicLaneScriptReference.getStripe("right");
+
+        if (leftStripe != null)
+        {
+            leftStripeEditMenu.SetActive(true);
+            EditStripeBehavior leftStripeBehavior = leftStripeEditMenu.GetComponent<EditStripeBehavior>();
+            leftStripeBehavior.init(leftStripe);
+            leftStripeBehavior.setBasicLaneParent(basicLaneScriptReference);
+        }
+        else
+        {
+            leftStripeEditMenu.SetActive(false);
+        }
+
+        if (rightStripe != null)
+        {
+            rightStripeEditMenu.SetActive(true);
+            EditStripeBehavior rightStripeBehavior = rightStripeEditMenu.GetComponent<EditStripeBehavior>();
+            rightStripeBehavior.init(rightStripe);
+            rightStripeBehavior.setBasicLaneParent(basicLaneScriptReference);
+        }
+        else
+        {
+            rightStripeEditMenu.SetActive(false);
+        }
     }
 
     // Provides a check that we have a lane to reference before proceding
@@ -90,6 +132,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
             basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
             updateWidthField();
         }
+
+        resolveStripeUIState();
     }
 
     // Kasey wrote this

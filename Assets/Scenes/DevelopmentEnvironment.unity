@@ -949,7 +949,7 @@ MonoBehaviour:
   enableTeleport: 0
   targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 713571164}
-  activationButton: 1
+  activationButton: 2
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
@@ -1024,10 +1024,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b26f999cbdac8478b6c2a046256169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activationButton: 1
+  activationButton: 2
   activationMode: 0
   selectionButton: 3
-  clickMethod: 1
+  clickMethod: 0
   attemptClickOnDeactivate: 0
   clickAfterHoverDuration: 0
   maximumLength: Infinity
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   enableTeleport: 0
   targetListPolicy: {fileID: 0}
   pointerRenderer: {fileID: 864105728}
-  activationButton: 1
+  activationButton: 2
   holdButtonToActivate: 1
   activateOnEnable: 0
   activationDelay: 0
@@ -1360,10 +1360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b26f999cbdac8478b6c2a046256169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activationButton: 1
+  activationButton: 2
   activationMode: 0
   selectionButton: 3
-  clickMethod: 1
+  clickMethod: 0
   attemptClickOnDeactivate: 0
   clickAfterHoverDuration: 0
   maximumLength: Infinity

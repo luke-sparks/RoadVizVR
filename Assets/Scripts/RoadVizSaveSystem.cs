@@ -37,6 +37,7 @@ public static class RoadVizSaveSystem //: MonoBehavior
     {
         // Note for Kasey: you must change the line below to alter which file is loaded
         string loadPath = getDataPath("/" + filename + ".rvvr");
+        Debug.Log("Loading " + loadPath);
         if(File.Exists(loadPath))
         {
             // create a binary formatter for file conversion
