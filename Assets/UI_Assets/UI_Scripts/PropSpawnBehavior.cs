@@ -7,6 +7,9 @@ public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 
     public void init(params GameObject[] objRefs)
     {
+        CurrentPropManager.Instance.clearCurrentPropObj();
+        ModifyController.Instance.setAddingProps(true);
+
         CurrentPropManager.Instance.setRotation(0);
     }
 

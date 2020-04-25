@@ -22,8 +22,7 @@ public class GlobalSettingsBehavior : MonoBehaviour, ISceneUIMenu
     {
         transform.Find("BrightnessLevelControls/BrightnessBackground/BrightnessField").GetComponent<Text>().text = lightController.getBrightness().ToString("0.0");
         transform.Find("FogLevelControls/Background/FogField").GetComponent<Text>().text = fogController.getFogDistance().ToString();
-        transform.Find("ArchitectureTypeControls/ArchType").GetComponent<Dropdown>().value = GameObject.Find("buildings").GetComponent<Buildings>().getBuildingIndex();
-
+        transform.Find("ArchitectureTypeControls/ArchType").GetComponent<Dropdown>().value = GameObject.Find("Buildings").GetComponent<Buildings>().getBuildingIndex();
     }
 
     public void handleBrightnessDecrement()
@@ -53,7 +52,7 @@ public class GlobalSettingsBehavior : MonoBehaviour, ISceneUIMenu
     public void handleArchitectureTypeChange()
     {
         Dropdown dropdown = transform.Find("ArchitectureTypeControls/ArchType").GetComponent<Dropdown>();
-        GameObject.Find("buildings").GetComponent<Buildings>().setBuildingType(dropdown.value);
+        GameObject.Find("Buildings").GetComponent<Buildings>().setBuildingType(dropdown.value);
     }
 
 

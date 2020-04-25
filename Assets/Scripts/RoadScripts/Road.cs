@@ -87,8 +87,11 @@ public class Road : MonoBehaviour
             Bounds bounds = renderers[0].bounds;
             for (int i = 1, ni = renderers.Length; i < ni; i++)
             {
-                //Encapsulate children within the bounds object
-                bounds.Encapsulate(renderers[i].bounds);
+                //Encapsulate children within the bounds object if it's asphalt
+                if (renderers[i].name == "PrimaryAsphalt")
+                {
+                    bounds.Encapsulate(renderers[i].bounds);
+                }
             }
             return bounds;
         }
@@ -176,7 +179,7 @@ public class Road : MonoBehaviour
             LinkedListNode<GameObject> targetLaneNode = roadLanes.Find(targetLane);
             BasicLane leftNeighborScriptReference = null;
             BasicLane rightNeighborScriptReference = null;
-            if(targetLaneNode.Previous != null)
+            if (targetLaneNode.Previous != null)
                 leftNeighborScriptReference = (BasicLane)targetLaneNode.Previous.Value.GetComponent("BasicLane");
             if (targetLaneNode.Next != null)
                 rightNeighborScriptReference = (BasicLane)targetLaneNode.Next.Value.GetComponent("BasicLane");
@@ -224,7 +227,7 @@ public class Road : MonoBehaviour
                 laneScript.setLanePosition(-currLaneSize / 2);
             }
         }
-        updateBuildings();
+        StartCoroutine(FrameDelayBuildingUpdate());
     }
 
     // Luke wrote this
@@ -257,7 +260,7 @@ public class Road : MonoBehaviour
             }
         }
         //Update position of buildings
-        updateBuildings();
+        StartCoroutine(FrameDelayBuildingUpdate());
     }
 
     // Nathan wrote this
@@ -265,7 +268,7 @@ public class Road : MonoBehaviour
     // parameter targetLane is the lane we are trying to change
     // parameter newType is the name of the lane type we want to insert
     // parameter defaultWidth is the default width of the type to be inserted
-    public GameObject setLaneType(GameObject targetLane, string newType) 
+    public GameObject setLaneType(GameObject targetLane, string newType)
     {
         // REASONING BEHIND THIS PROCESS:
         //      We actually cannot overwrite gameObject from within BasicLane
@@ -289,11 +292,11 @@ public class Road : MonoBehaviour
         // 4. delete the old lane 
         removeLane(targetLane);
         // 5. adjust the stripes of the new lane
-        if (!newLaneScript.isVehicleLane()) 
+        if (!newLaneScript.isVehicleLane())
         {
             handleNonVehicleLaneStripes(newLaneScript, newLaneNode);
         }
-        updateBuildings();
+        StartCoroutine(FrameDelayBuildingUpdate());
         return newLane;
     }
 
@@ -350,6 +353,16 @@ public class Road : MonoBehaviour
         return (Buildings)buildingsReference.GetComponent("Buildings");
     }
 
+    public List<string> getLaneTypeNames()
+    {
+        List<string> laneTypeNames = new List<string>();
+        foreach (GameObject g in laneTypes)
+        {
+            laneTypeNames.Add(g.name);
+        }
+        return laneTypeNames;
+    }
+
     // checks to make sure that the lane object parameter
     // is actually a lane object
     // laneType: the object that the user is trying to insert 
@@ -387,7 +400,7 @@ public class Road : MonoBehaviour
 
     // Nathan wrote this
     // loads the road from a binary file
-    public void loadRoad()
+    public void loadRoad(string filename)
     {
         UIManager.Instance.closeCurrentUI();
         // steps: 
@@ -407,7 +420,7 @@ public class Road : MonoBehaviour
         // 1. we have to clear whatever else the user has loaded in since the last save
         clearRoad();
         // 2. obtain the saved data
-        RoadData roadData = RoadVizSaveSystem.loadRoadFromMemory();
+        RoadData roadData = RoadVizSaveSystem.loadRoadFromMemory(filename);
         List<LaneData> savedLanes = roadData.getLaneData();
         // 3. load each of the saved lanes in
         GameObject currLane = null;

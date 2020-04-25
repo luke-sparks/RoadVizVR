@@ -6,9 +6,9 @@ using VRTK;
 public class LaneInsertionSelection : MonoBehaviour
 {
 
-    public VRTK_InteractableObject linkedObject;
+    protected VRTK_InteractableObject linkedObject;
 
-    [SerializeField] protected GameObject asphalt;
+    protected GameObject asphalt;
 
     [SerializeField] protected GameObject laneInsertSprite;
     protected GameObject laneInsertSpriteRef = null;
@@ -20,6 +20,22 @@ public class LaneInsertionSelection : MonoBehaviour
 
     private bool trackCursor = false;
     private float edge = 0;
+
+    private void Awake()
+    {
+        // get the children of the lane and find the "PrimaryAsphalt"
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(0).gameObject.name.Equals("PrimaryAsphalt"))
+            {
+                asphalt = transform.GetChild(i).gameObject;
+            }
+        }
+
+        // find the InteractableObject component on the asphalt
+        linkedObject = GetComponentInChildren<VRTK_InteractableObject>();
+    }
+
     void Start()
     {
         road = GameObject.Find("Road");
@@ -28,30 +44,39 @@ public class LaneInsertionSelection : MonoBehaviour
 
     private void Update()
     {
+        // if we need to be tracking the cursor
         if (trackCursor == true)
         {
+            // find the edge
             edge = touchingEdge(cursorTransform.position);
+            // if we are not in the middle (so one side or the other)
             if (edge != gameObject.transform.position.z)
             {
+                // if we've already spawned a insert lane sprite
                 if (laneInsertSpriteRef != null)
                 {
+                    // move it
                     laneInsertSpriteRef.transform.position = new Vector3(cursorTransform.position.x, (cursorTransform.position.y + 0.5f), touchingEdge(cursorTransform.position));
                 }
                 else
                 {
+                    // or spawn the sprite
                     laneInsertSpriteRef = Instantiate(laneInsertSprite, new Vector3(cursorTransform.position.x, (cursorTransform.position.y + 0.5f), touchingEdge(cursorTransform.position)), Quaternion.identity);
                 }
             }
             else
             {
+                // here we are pointing at the middle of the lane
                 if (laneInsertSpriteRef != null)
                 {
+                    // destroy the sprite if it isn't already gone
                     Destroy(laneInsertSpriteRef);
                 }
             }
         }
     }
 
+    // VRTK stuff for enabling and disabling interactable stuff
     protected virtual void OnEnable()
     {
         linkedObject = (linkedObject == null ? GetComponent<VRTK_InteractableObject>() : linkedObject);
@@ -84,9 +109,11 @@ public class LaneInsertionSelection : MonoBehaviour
 
         Debug.Log("used the object");
 
+        // get the cursor's position when used, and figure out where it's selecting the lane
         Vector3 cursorPosition = getCursor(sender, e).transform.position;
         float side = touchingEdge(cursorPosition);
 
+        // if we selected the object in the middle, open the EditLane UI
         if (side == gameObject.transform.position.z)
         {
             GameObject laneUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane, gameObject);
@@ -132,20 +159,6 @@ public class LaneInsertionSelection : MonoBehaviour
         
         trackCursor = true;
         cursorTransform = getCursor(sender, e).transform;
-
-        /*Vector3 cursorLocation = cursorTransform.position;
-        Vector3 spriteLocation = cursorLocation;
-
-        //Debug.Log("cursorLocation: " + cursorLocation + "spriteLocation: " + spriteLocation);
-
-        spriteLocation.y += (float)0.5;
-        spriteLocation.x = cursorLocation.x;
-
-        if (laneInsertSpriteRef == null)
-        {
-            laneInsertSpriteRef = Instantiate(laneInsertSprite, spriteLocation, Quaternion.identity);
-        }*/
-
     }
 
     protected virtual void InteractableObjectUntouched(object sender, InteractableObjectEventArgs e)
@@ -156,7 +169,7 @@ public class LaneInsertionSelection : MonoBehaviour
         trackCursor = false;
         cursorTransform = null;
         
-
+        // destroy the insert lane sprite if it's not already null
         if (laneInsertSpriteRef != null)
         {
             Destroy(laneInsertSpriteRef);
@@ -172,35 +185,32 @@ public class LaneInsertionSelection : MonoBehaviour
     {
         //Debug.Log("getCursor");
 
-        //Debug.Log(sender.ToString());
+        // get the interacting object (the controller) and its components
         GameObject controller = e.interactingObject;
-        //Debug.Log("interacting object:::    " + controller.GetType());
         Component[] controllerComponents = controller.GetComponents<Component>();
-        //Debug.Log("controller components ::::    " + controllerComponents.ToString());
 
+        // find the straight pointer renderer, this probably could be condensed to just GetComponent<VRTK_StraightPointerRenderer>()
         VRTK_StraightPointerRenderer pointerRenderer = null;
 
         foreach (Component c in controllerComponents)
         {
-            //Debug.Log("components ::::    " + c.ToString());
             if (c.GetType() == typeof(VRTK_StraightPointerRenderer))
             {
                 pointerRenderer = (VRTK_StraightPointerRenderer)c;
             }
         }
 
+        // if the pointer renderer is null, output a log
         if (pointerRenderer == null)
         {
             Debug.Log("Pointer renderer not found");
         }
 
-        //GameObject cursor = pointerRenderer.getCursor();
         GameObject cursor = pointerRenderer.GetPointerObjects()[1];
-        //Debug.Log("cursor transform local position:::: " + cursor.transform.position);
 
+        // if the cursor isn't null, return it, else return null and debug
         if (cursor != null)
         {
-            //Debug.Log("cursor.transform.position: " + cursor.transform.position);
             return cursor;
         }
         else
@@ -212,11 +222,21 @@ public class LaneInsertionSelection : MonoBehaviour
 
     private float touchingEdge(Vector3 cursorLocation)
     {
-        float halfFoot = 0.33f;
-        float edgeRight = gameObject.transform.position.z + (asphalt.transform.localScale.z / 2) - halfFoot;
-        float edgeLeft = gameObject.transform.position.z - (asphalt.transform.localScale.z / 2) + halfFoot;
+        // default edgeZone size is about 1 foot
+        float edgeZone = 0.33f;
+        
+        // if we have a small lane such as a curb, we set the edgeZone to be a third of it's width
+        if (gameObject.GetComponent<BasicLane>().getLaneWidth() < 1)
+        {
+            edgeZone = gameObject.GetComponent<BasicLane>().getLaneWidth() / 3;
+        }
 
+        // find the right and left edge coordinates
+        float edgeRight = gameObject.transform.position.z + (asphalt.transform.localScale.z / 2) - edgeZone;
+        float edgeLeft = gameObject.transform.position.z - (asphalt.transform.localScale.z / 2) + edgeZone;
 
+        // if were at the right or left edge, return the correct position
+        // otherwise just return the middle of the object
         if (cursorLocation.z >= edgeRight)
         {
             return gameObject.transform.position.z + (asphalt.transform.localScale.z / 2);

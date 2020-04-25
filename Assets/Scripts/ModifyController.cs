@@ -9,8 +9,6 @@ public class ModifyController : MonoBehaviour
     protected GameObject road;
     protected Road roadScript;
 
-
-    // Nathan inserted start so we could use road functions more easily
     void Start()
     {
         road = GameObject.Find("Road");
@@ -20,25 +18,29 @@ public class ModifyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("b"))
+        // Nathan wrote this
+        // code below is for testing saving and loading only
+        if (Input.GetKeyDown("k"))
         {
-            /*if (addingProps == false)
+            GameObject road = GameObject.Find("Road");
+            Road roadScriptReference = (Road)road.GetComponent("Road");
+            roadScriptReference.saveRoad();
+        }
+        if (Input.GetKeyDown("l"))
+        {
+            bool triggered = false;
+            GameObject road = GameObject.Find("Road");
+            Road roadScriptReference = (Road)road.GetComponent("Road");
+            if (!triggered)
             {
-                addingProps = true;
-                GameObject propEditUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
-                //Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
-            } else
-            {
-                addingProps = false;
-                Debug.Log("Adding props is now: " + addingProps + " for lanes that can have props on them");
-            }*/
-            CurrentPropManager.Instance.clearCurrentPropObj();
-            setAddingProps(true);
-            // currently in a singleton class so passing gameObject does nothing but didn't want to pass null and potentially break something
-            GameObject propSpawnUI = UIManager.Instance.openUIScreen(UIManager.UIScreens.PropSpawn, gameObject);
+                triggered = true;
+                roadScriptReference.loadRoad("road");
+            }
+
         }
     }
 
+    // if the value we passed in is different, set addingProps to the new value and toggle the lane interaction scripts
     public void setAddingProps(bool newVal)
     {
         if (addingProps != newVal)
@@ -47,56 +49,65 @@ public class ModifyController : MonoBehaviour
             toggleLaneIneraction();
         }
 
-        // Nathan wrote this
-        // code below is for testing saving and loading only
-        if(Input.GetKeyDown("k"))
+        if (addingProps == false)
         {
-            GameObject road = GameObject.Find("Road");
-            Road roadScriptReference = (Road)road.GetComponent("Road");
-            roadScriptReference.saveRoad();
-        }
-        if(Input.GetKeyDown("l"))
-        {
-            bool triggered = false;
-            GameObject road = GameObject.Find("Road");
-            Road roadScriptReference = (Road)road.GetComponent("Road");
-            if(!triggered)
+            // sometimes if the user places a prop and then immediately hits the delete button (because the ui gets recreated),
+            // the prop will not be attached to a lane properly. So when delete is pressed, check the world for errant props and remove them
+
+            GameObject[] allProps = GameObject.FindGameObjectsWithTag("Prop");
+            foreach (GameObject maybeProp in allProps)
             {
-                triggered = true;
-                roadScriptReference.loadRoad();
+                // check if the transform's parent is null, if so, its at the root and isn't managed by any lane
+                if (maybeProp.transform.parent == null)
+                {
+                    Destroy(maybeProp);
+                }
             }
-            
         }
     }
 
+    // this function is used to toggle the scripts on the lanes from laneEdit stuff to propSpawning/editing
     private void toggleLaneIneraction()
     {
+        // get all the lanes
         LinkedList<GameObject> lanes = roadScript.getLanes();
 
         Debug.Log("Toggling lane interaction");
         Debug.Log(lanes.Count);
 
+        // create references for the 3 possible scripts on the lane objects
         LaneInsertionSelection laneInsertionSelectionScript = null;
         LanePropsModification lanePropsModificationScript = null;
 
+        VehicleLanePropIndicator vehicleLanePropIndicator = null;
+
         foreach (GameObject lane in lanes)
         {
+            // walking through each lane in the road, print it and get the 3 scripts (only 2/3 will actually exist)
             Debug.Log(lane.ToString());
             laneInsertionSelectionScript = lane.GetComponent<LaneInsertionSelection>();
             lanePropsModificationScript = lane.GetComponent<LanePropsModification>();
+            vehicleLanePropIndicator = lane.GetComponent<VehicleLanePropIndicator>();
 
+            // all lanes should have laneInsertionSelection on them but check anyway
             if (laneInsertionSelectionScript != null)
             {
                 lane.GetComponent<LaneInsertionSelection>().enabled = !addingProps;
             }
+            // non-vehicle lanes should have lanePropsModification
             if (lanePropsModificationScript != null)
             {
                 lane.GetComponent<LanePropsModification>().enabled = addingProps;
             }
-            else
+            // vehicle lanes should have vehicleLanePropIndicator (this is used to spawn the red prop but can't actually be placed)
+            if (vehicleLanePropIndicator != null)
+            {
+                lane.GetComponent<VehicleLanePropIndicator>().enabled = addingProps;
+            }
+            /*else
             {
                 Debug.Log("This lane does not allow props to be placed on it");
-            }
+            }*/
         }
     }
 
