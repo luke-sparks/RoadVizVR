@@ -15,31 +15,6 @@ public class ModifyController : MonoBehaviour
         roadScript = (Road)road.GetComponent("Road");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Nathan wrote this
-        // code below is for testing saving and loading only
-        if (Input.GetKeyDown("k"))
-        {
-            GameObject road = GameObject.Find("Road");
-            Road roadScriptReference = (Road)road.GetComponent("Road");
-            roadScriptReference.saveRoad();
-        }
-        if (Input.GetKeyDown("l"))
-        {
-            bool triggered = false;
-            GameObject road = GameObject.Find("Road");
-            Road roadScriptReference = (Road)road.GetComponent("Road");
-            if (!triggered)
-            {
-                triggered = true;
-                roadScriptReference.loadRoad("road");
-            }
-
-        }
-    }
-
     // if the value we passed in is different, set addingProps to the new value and toggle the lane interaction scripts
     public void setAddingProps(bool newVal)
     {
@@ -51,18 +26,7 @@ public class ModifyController : MonoBehaviour
 
         if (addingProps == false)
         {
-            // sometimes if the user places a prop and then immediately hits the delete button (because the ui gets recreated),
-            // the prop will not be attached to a lane properly. So when delete is pressed, check the world for errant props and remove them
-
-            GameObject[] allProps = GameObject.FindGameObjectsWithTag("Prop");
-            foreach (GameObject maybeProp in allProps)
-            {
-                // check if the transform's parent is null, if so, its at the root and isn't managed by any lane
-                if (maybeProp.transform.parent == null)
-                {
-                    Destroy(maybeProp);
-                }
-            }
+            StartCoroutine(CurrentPropManager.Instance.clearErrantPropObjects());
         }
     }
 

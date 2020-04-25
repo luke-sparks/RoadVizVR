@@ -8,7 +8,13 @@ public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 
     public void init(params GameObject[] objRefs)
     {
-        CurrentPropManager.Instance.clearCurrentPropObj();
+        // catches the instance when we move a prop and then open Prop Spawn menu. This should be caught by the ActionMenu code
+        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
+        {
+            CurrentPropManager.Instance.revertMovedProp();
+        }
+
+        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Instance.getPropNames().ToArray()[0]);
         ModifyController.Instance.setAddingProps(true);
 
         CurrentPropManager.Instance.setRotation(0);
@@ -17,6 +23,8 @@ public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
         Dropdown dd = gameObject.transform.Find("PropSelectControls/PropSelect").GetComponent<Dropdown>();
         // add lane types to dropdown, then set current active
         dd.AddOptions(propNames);
+
+        StartCoroutine(CurrentPropManager.Instance.clearErrantPropObjects());
     }
 
     public void handleRotateCW()
