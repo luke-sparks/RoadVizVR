@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CurrentPropManager : MonoBehaviour
@@ -15,51 +16,32 @@ public class CurrentPropManager : MonoBehaviour
 
     private List<string> propNames;
 
-    // A list of all possible Props
-    public enum Props
-    {
-        Empty,
-        //Capsule,
-        //Cylinder,
-        //Sphere,
-        StreetLamp,
-        TrafficCone,
-        ConcreteBarrier
-    };
-
     // Must be assigned in Start
-    Dictionary<Props, Object> propObjects;
+    Dictionary<string, Object> propObjects;
+
 
     public void Start()
     {
-        propObjects = new Dictionary<Props, Object>();
-        propNames = new List<string>();
+        // assign propNames and propObjects
+        propObjects = new Dictionary<string, Object>();
+        propNames = new List<string>() {"BusStop", "ConcreteBarrier", "FireHydrant", "StreetLamp", "TrafficCone" };
 
-        foreach (Props propName in System.Enum.GetValues(typeof(Props)))
+        // loads props from list of propNames
+        foreach (string name in propNames)
         {
-            propObjects.Add(propName, Resources.Load(propName.ToString()));
-            propNames.Add(propName.ToString());
+            propObjects.Add(name, Resources.Load(name));
         }
 
+        // remove the "empty" prop as it doesn't need to show up in the names
         if (propNames.Contains("Empty"))
         {
             propNames.Remove("Empty");
         }
 
-        /*{
-            {Props.Empty, Resources.Load("Empty")},
-            //{Props.Capsule, Resources.Load("Capsule")},
-            //{Props.Cylinder, Resources.Load("Cylinder")},
-            //{Props.Sphere, Resources.Load("Sphere")},
-            {Props.StreetLamp, Resources.Load("StreetLamp")},
-            {Props.TrafficCone, Resources.Load("TrafficCone")},
-            {Props.ConcreteBarrier, Resources.Load("ConcreteBarrier")}
-        };*/
-
-        /*foreach (string name in propNames)
+        foreach (string prop in propNames)
         {
-            Debug.Log(name);
-        }*/
+            Debug.Log(prop);
+        }
 
         clearCurrentPropObj();
     }
@@ -69,14 +51,9 @@ public class CurrentPropManager : MonoBehaviour
         return propNames;
     }
 
-    public void setCurrentPropObj(Props propName)
-    {
-        currentPropObj = propObjects[propName];
-    }
-
     public void clearCurrentPropObj()
     {
-        currentPropObj = propObjects[Props.Empty];
+        currentPropObj = propObjects["Empty"];
     }
 
     public void setPropBeingMoved(bool newVal)
@@ -111,31 +88,32 @@ public class CurrentPropManager : MonoBehaviour
         currentPropRotation = rot;
     }
 
-
-
+    // sets the current prop object based on a passed in object
     public void setCurrentPropObj(GameObject prop)
     {
-        // clean this of an instantiated prop so we can delete/move etc and not lose the type of prop
-        // https://answers.unity.com/questions/52162/converting-a-string-to-an-enum.html
-        Props parsedPropName = (Props)System.Enum.Parse(typeof(Props), prop.name.Substring(0,prop.name.Length-7));
+        string parsedPropName = stripClone(prop.name);
 
         currentPropObj = propObjects[parsedPropName];
     }
 
     public void setCurrentPropObj(string propName)
     {
-        Props parsedPropName;
-        if (propName.EndsWith("(Clone)"))
-        {
-            parsedPropName = (Props)System.Enum.Parse(typeof(Props), propName.Substring(0, propName.Length - 7));
-        } else
-        {
-            parsedPropName = (Props)System.Enum.Parse(typeof(Props), propName);
-        }
+        string parsedPropName = stripClone(propName);
 
         currentPropObj = propObjects[parsedPropName];
     }
 
+    // stripes the (Clone) from instantiated objects
+    private string stripClone(string propName)
+    {
+        while (propName.EndsWith("(Clone)"))
+        {
+            propName = propName.Substring(0, propName.Length - 7);
+        }
+        return propName;
+    }
+
+    // sets variables to correctly start moving a prop when Move is selected in the EditPropMenu
     public void startMovingProp(GameObject prop, PropManager propManagerScriptRef)
     {
         setPropBeingMoved(true);
@@ -147,6 +125,7 @@ public class CurrentPropManager : MonoBehaviour
         oldPropManagerRef.removeProp(prop);
     }
 
+    // reverts a moved prop back to its position
     public GameObject revertMovedProp()
     {
         setPropBeingMoved(false);
@@ -158,12 +137,11 @@ public class CurrentPropManager : MonoBehaviour
         return (GameObject)currentPropObj;
     }
 
+    // sometimes if the user places a prop and then immediately hits the delete button (because the ui gets recreated),
+    // the prop will not be attached to a lane properly. So when delete is pressed, check the world for errant props and remove them
     public IEnumerator clearErrantPropObjects()
     {
         yield return new WaitForEndOfFrame();
-
-        // sometimes if the user places a prop and then immediately hits the delete button (because the ui gets recreated),
-        // the prop will not be attached to a lane properly. So when delete is pressed, check the world for errant props and remove them
 
         GameObject[] allProps = GameObject.FindGameObjectsWithTag("Prop");
         foreach (GameObject maybeProp in allProps)
