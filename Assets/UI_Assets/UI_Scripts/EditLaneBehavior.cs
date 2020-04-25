@@ -125,6 +125,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
             basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
             updateWidthField();
         }
+
+        resolveButtonActivationStates();
     }
 
     // Kasey wrote this

@@ -7,6 +7,11 @@ public class ActionMenuBehavior : MonoBehaviour, ISceneUIMenu
 {
     public void init(params GameObject[] objRef)
     {
+        // catches the instance when we move a prop and then open the ActionMenu
+        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
+        {
+            CurrentPropManager.Instance.revertMovedProp();
+        }
         // catches the instance when we start adding props and then open the action menu without explicitly closing the prop spawn menu
         ModifyController.Instance.setAddingProps(false);
     }

@@ -1,16 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
 {
 
     public void init(params GameObject[] objRefs)
     {
-        CurrentPropManager.Instance.clearCurrentPropObj();
+        // catches the instance when we move a prop and then open Prop Spawn menu. This should be caught by the ActionMenu code
+        if (CurrentPropManager.Instance.getPropBeingMoved() == true)
+        {
+            CurrentPropManager.Instance.revertMovedProp();
+        }
+
+        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Instance.getPropNames().ToArray()[0]);
         ModifyController.Instance.setAddingProps(true);
 
         CurrentPropManager.Instance.setRotation(0);
+
+        List<string> propNames = GameObject.Find("CurrentPropTracker").GetComponent<CurrentPropManager>().getPropNames();
+        Dropdown dd = gameObject.transform.Find("PropSelectControls/PropSelect").GetComponent<Dropdown>();
+        // add lane types to dropdown, then set current active
+        dd.AddOptions(propNames);
+
+        StartCoroutine(CurrentPropManager.Instance.clearErrantPropObjects());
     }
 
     public void handleRotateCW()
@@ -23,22 +37,12 @@ public class PropSpawnBehavior : MonoBehaviour, ISceneUIMenu
         CurrentPropManager.Instance.rotateCCW();
     }
 
-    public void handleButtonOnePress()
+    public void handlePropSelectChange()
     {
-        Debug.Log("Button One Pressed");
-        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.StreetLamp);
-    }
+        List<string> propNames = GameObject.Find("CurrentPropTracker").GetComponent<CurrentPropManager>().getPropNames();
+        int currentPropIndex = gameObject.transform.Find("PropSelectControls/PropSelect").GetComponent<Dropdown>().value;
 
-    public void handleButtonTwoPress()
-    {
-        Debug.Log("Button Two Pressed");
-        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.TrafficCone);
-    }
-
-    public void handleButtonThreePress()
-    {
-        Debug.Log("Button Three Pressed");
-        CurrentPropManager.Instance.setCurrentPropObj(CurrentPropManager.Props.ConcreteBarrier);
+        CurrentPropManager.Instance.setCurrentPropObj(propNames.ToArray()[currentPropIndex]);
     }
 
     public void handleClose()
