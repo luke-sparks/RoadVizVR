@@ -421,7 +421,7 @@ public class Road : MonoBehaviour
         clearRoad();
         // 2. obtain the saved data
         RoadData roadData = RoadVizSaveSystem.loadRoadFromMemory(filename);
-        List<LaneData> savedLanes = roadData.getLaneData();
+        List<LaneData> savedLanes = roadData.loadLaneData();
         // 3. load each of the saved lanes in
         GameObject currLane = null;
         foreach(LaneData savedLane in savedLanes)

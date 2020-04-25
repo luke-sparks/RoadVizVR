@@ -7,7 +7,6 @@ using UnityEngine;
 public class Stripe : MonoBehaviour
 {
     // class fields
-    //[SerializeField] private string stripeColor;
     [SerializeField] private string currentStripeType;
     [SerializeField] private GameObject stripe;
     [SerializeField] private GameObject leftLane;
@@ -23,20 +22,6 @@ public class Stripe : MonoBehaviour
         tempVec.z += adjustment;
         transform.position = tempVec;
     }
-
-    // Nathan wrote this
-    // changes the stripe's color
-    /*public void setStripeColor(string newColor)
-    {
-        stripeColor = newColor;
-    }
-
-    // Nathan wrote this
-    // retrieves the stripe's current color
-    public string getStripeColor()
-    {
-        return stripeColor;
-    }*/
 
     // Nathan wrote this
     // changes the stripe's type
@@ -88,8 +73,7 @@ public class Stripe : MonoBehaviour
         }
         else
         {
-            Debug.Log("NOT A VALID LANE ORIENTATION");
-            Debug.Assert(false);
+            throw new System.ArgumentException("Unrecognized lane orientation.");
         }
     }
 

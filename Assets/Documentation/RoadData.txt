@@ -1,0 +1,83 @@
+RoadData.txt
+
+Documentation for RoadData.cs. 
+
+RoadData class description: stores essential variables of Road.cs as non unity types. 
+
+A. Libraries:
+    1. System.Collections.
+    2. System.Collections.Generic.
+    3. UnityEngine.
+
+B. Class Fields: 
+    1. buildingsIndex:  
+        a. Type: private int.
+        b. Serialized: no.
+        c. Description: stores the current environment number that the buildings are set to
+                        at the time that saveRoad() in RoadVizSaveSystem is invoked. 
+        d. Usage: used to save the environment/buildings index. 
+
+    2. fogDistance:
+        a. Type: private float.
+        b. Serialized: no.
+        c. Description: used to store the fogDistance at the time that saveRoad() is invoked.
+        d. Usage: used to save fogDistance.
+
+    3. lightIntensities:
+        a. Type: array of float.
+        b. Serialized: no.
+        c. Description: stores the intensity each light is set to at the time that saveRoad()
+                        is invoked.
+        d. Usage: used to save light intensities. 
+
+    4. laneData:
+        a. Type: private List<LaneData>.
+        b. Serialized: no.
+        c. Description: a list of saved lanes' data. 
+        d. Usage: used to save the data of each lane in the road. 
+
+C. Public Methods:
+    1. RoadData():
+        a. Type: constructor.
+        b. Parameters: 
+            i. Road road, the road we are saving.
+        c. Variables:
+            i. Buildings buildingScriptReference.
+            ii. FogControl fogControlScriptReference.
+            iii. BrightnessControl[] lightScripts.
+            iv. LinkedList<GameObject> roadLanes.
+            v. BasicLane laneScriptRef.
+            vi. LaneData indLaneData.
+            vii. PropManager propManagerRef.
+        d. Description: stores essential variables of road in RoadData object. 
+        e. Usage: used to save a road's data. 
+
+    2. loadLaneData():
+        a. Type: public List<LaneData>.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns list of lane data.
+        e. Usage: used to retrieve each lane's stored data. 
+
+    3. loadBuildingsIndex():
+        a. Type: public int.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns buildingsIndex.
+        e. Usage: used to load a saved buildings index.
+
+    4. loadFogDistance():
+        a. Type: public float. 
+        b. Parameters: none. 
+        c. Variables: none. 
+        d. Description: returns fogDistance.
+        e. Usage: used to load a saved fog setting. 
+
+    5. loadLightIntensities():
+        a. Type: array of float.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns lightIntensities.
+        e. Usage: used to load saved light settings. 
+
+D. Private Methods: none.

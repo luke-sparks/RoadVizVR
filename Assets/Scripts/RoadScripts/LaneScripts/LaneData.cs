@@ -8,7 +8,6 @@ using UnityEngine;
 public class LaneData //: MonoBehaviour
 {
     // class fields
-    //private float DEFAULT_LANE_WIDTH_FEET;
     private float[] lanePosition = new float[3];
     private float laneWidth;
     private float maxWidth;
@@ -19,7 +18,6 @@ public class LaneData //: MonoBehaviour
     private bool nonAsphalt;
     private StripeData leftStripeData = null;
     private StripeData rightStripeData = null;
-
     private PropManagerData propManagerData = null;
     
     // Nathan wrote this

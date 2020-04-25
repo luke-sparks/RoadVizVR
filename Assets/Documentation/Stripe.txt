@@ -1,0 +1,121 @@
+Stripe.txt
+
+Documentation for Stripe.cs
+
+Stripe Class Description: Stripe is used for controlling the behavior of individual stripes
+                          (stripeContainer).This includes setting their type, position, and orientation. 
+
+
+A. Libraries:
+    1. System.Collections.
+    2. System.Collections.Generic.
+    3. UnityEngine.
+
+B. Class Fields:
+    1. currentStripeType:
+        a. Type: private string.
+        b. Serialized: yes. 
+        c. Description: the name of the stripe type that the stripe container is set to.
+        d. Usage: used to create easy access to the name of the stripe's current type. 
+
+    2. stripe:
+        a. Type: private GameObject.
+        b. Serialized: yes. 
+        c. Description: a reference to the stripe that the stripeContainer is currently displaying in the 
+                        development environment. 
+        d. Usage: used to control which stripe type the stripeContainer is set to. 
+
+    3. leftLane:
+        a. Type: private GameObject.
+        b. Serialized: yes.
+        c. Description: a reference to the stripe's left lane (the lane that this is
+                        the right stripe of).
+        d. Usage: used as a reference for the left lane. 
+
+    4. rightLane: 
+        a. Type: private GameObject.
+        b. Serialized: yes. 
+        c. Description: a reference to the stripe's right lane (the lane that this is
+                        the left stripe of).
+        d. Usage: used a reference for the right lane. 
+
+    5. stripeTypes:
+        a. Type: array of GameObject.
+        b. Serialized: yes. 
+        c. Description: stores the stripe prefabs that can be instantiated by stripeContainer.
+        d. Usage: used to provide setStripeType() with a quick and efficient way of switching
+                  the stripe's type. 
+ 
+C. Public Methods:
+    1. setStripePosition():
+        a. Type: public void.
+        b. Parameters: 
+            i. Vector3 lanePosition.
+            ii. float adjustment, the amount that the stripe is to be moved by. 
+        c. Variables:
+            i. Vector3 tempVec.
+        d. Description: updates the stripe's position. 
+        e. Usage: used by Road and BasicLane to update a stripe's position after a lane is moved
+                  or altered. 
+
+    2. setStripeType():
+        a. Type: public void.
+        b. Parameters: 
+            i. string newType, the type that the stripe is going to be set to. 
+            ii. Vector3 newStripePosition, used only to instantiate a new stripe object. 
+        c. Variables:
+            i. GameObject newStripe, the reference to the new stripe object instantiated from the 
+               prefab in stripeTypes whose name matches newType.
+        d. Description: sets a stripe's type by destroying the old stripe in the stripeContainer, 
+                        then instantiating a new one and setting its position. 
+        e. Usage: used by other scripts to change a stripe's type. 
+
+    3. getStripeType():
+        a. Type: public string.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns currentStripeType.
+        e. Usage: used by other scripts to access name of the stripe's type.
+
+    4. getStripeObject():
+        a. Type: public GameObject.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns stripe.
+        e. Usage: used by other scripts to access the actual stripe object in the stripeContainer.
+
+    5. setLaneOrientation():
+        a. Type: public void.
+        b. Parameters: 
+            i. GameObject lane, the lane we are setting the orientation of. 
+            ii. string laneOrientation.
+        c. Variables: none. 
+        d. Description: sets lane to be either leftLane or RightLane depending on the value of
+                        laneOrientation.
+        e. Usage: used by setStripeOrientation() in BasicLane to set the lane as either the left
+                  or right lane of this stripe after this stripe's orientation has been set for lane.
+
+    6. getStripeTypes():
+        a. Type: public List<GameObject>.
+        b. Parameters: none.
+        c. Variables: List<GameObject> stripeTypesList, stripeTypes casted as a list. 
+        d. Description: casts stripeTypes as a list then returns it.
+        e. Usage: used by other scripts to access all possible stripe types. 
+
+    7. loadStripeAtts():
+        a. Type: public void.
+        b. Parameters: 
+            i. StripeData savedStripe, stripe data for this stripe from a loaded road file.
+        c. Variables: none.
+        d. Description: sets the stripe type of this stripe to be the type stored in savedStripe.
+        e. Usage: used to load the type of an individual stripe when loadRoad() in Road is invoked. 
+
+D. Private Methods: 
+    1. findStripeType():
+        a. Type: private GameObject.
+        b. Parameters: 
+            i. string stripeType.
+        c. Variables: none.
+        d. Description: returns the GameObject stored in stripeTypes whose name matches stripeType.
+        e. Usage: helper function for setStripeType() that retrieves the stripe object 
+                  that stripe is to be set to. 
