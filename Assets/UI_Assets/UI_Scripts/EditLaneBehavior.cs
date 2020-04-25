@@ -42,6 +42,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         // add lane types to dropdown, then set current active
         dd.AddOptions(laneTypeNames);
         dd.value = laneTypeNames.IndexOf(basicLaneScriptReference.getLaneType());
+
+        transform.Find("SendVehicleButton").GetComponent<Button>().interactable = basicLaneScriptReference.isVehicleLane();
     }
 
     // Provides a check that we have a lane to reference before proceding
@@ -57,10 +59,10 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         }
     }
 
-    // TODO
-    public void handleSwitchDirectionToggle()
+    public void handleSendVehicleSelect()
     {
         Debug.Log("Lane direction switched");
+        UIManager.Instance.openUIScreen(UIManager.UIScreens.SendVehicle, basicLaneScriptReference.gameObject);
     }
 
     // Nathan implemented this

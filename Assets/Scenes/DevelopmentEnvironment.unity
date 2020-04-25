@@ -1080,7 +1080,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 813750016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02d78e6ea6357542982c892a9afcffc, type: 3}
+  m_Script: {fileID: 11500000, guid: ec840d670563eb441b07e12203cf4c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
@@ -2734,6 +2734,8 @@ MonoBehaviour:
   spawnPropMenu: {fileID: 8472911303652399705, guid: 1bae279add321064280ec9592619213e,
     type: 3}
   actionMenu: {fileID: 1134409418911284697, guid: 27fad3485544469469c8467fee65cc1f,
+    type: 3}
+  sendVehicleMenu: {fileID: 8605743027551248886, guid: 17d78187a2be1b4468733b0faf68d316,
     type: 3}
 --- !u!4 &1849227286
 Transform:
