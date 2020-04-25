@@ -53,7 +53,6 @@ public static class RoadVizSaveSystem //: MonoBehavior
         }
         else
         {
-            Debug.LogError("Save file not found in: " + loadPath);
             return null;
         }
     }

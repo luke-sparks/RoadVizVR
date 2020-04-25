@@ -55,7 +55,7 @@ public class RoadData //: MonoBehaviour
 
     // Nathan wrote this
     // loads the list of saved lanes
-    public List<LaneData> getLaneData()
+    public List<LaneData> loadLaneData()
     {
         return laneData;
     }

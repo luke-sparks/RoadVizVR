@@ -1,0 +1,35 @@
+StripeData.txt
+
+Documentation for StripeData.cs.
+
+StripeData Class Description: stores Stripe variables as non unity types. 
+
+A. Libraries:
+    1. System.Collections.
+    2. System.Collections.Generic.
+    3. UnityEngine.
+
+B. Class Fields:
+    1. stripeType:
+        a. Type: private string. 
+        b. Serialized: no.
+        c. Description: stores the name of a stripe's type. 
+        d. Usage: used to save a stripe's type. 
+
+C. Public Methods:
+    1. StripeData():
+        a. Type: constructor. 
+        b. Parameters: 
+            i. Stripe stripe.
+        c. Variables: none. 
+        d. Description: stores data for Stripe. 
+        e. Usage: used to save Stripe data. 
+
+    2. loadStripeType():
+        a. Type: public string. 
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns stripeType.
+        e. Usage: used to load a stripe's type. 
+
+D. Private Methods: none. 

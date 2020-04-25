@@ -7,8 +7,8 @@ using UnityEngine;
 [System.Serializable]
 public class StripeData //: MonoBehaviour
 {
+    // class fields
     private string stripeType;
-    private List<string> stripeTypes = new List<string>();
 
     // Nathan wrote this
     // constructor for class StripeData
@@ -17,12 +17,6 @@ public class StripeData //: MonoBehaviour
     {
         // get the current stripe type
         stripeType = stripe.getStripeType();
-        // get the list of all stripe types
-        List<GameObject> stripeTypeObjects = stripe.getStripeTypes();
-        foreach(GameObject stripeObj in stripeTypeObjects)
-        {
-            stripeTypes.Add(stripeObj.name);
-        }
     }
 
     // Nathan wrote this

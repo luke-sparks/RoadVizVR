@@ -1,0 +1,179 @@
+LaneData.txt
+
+Documentation for LaneData.cs.
+
+LaneData Class Description: stores BasicLane variables as non unity types. 
+
+A. Libraries:
+    1. System.Collections.
+    2. System.Collections.Generic.
+    3. UnityEngine.
+
+B. Class Fields:
+    1. lanePosition:
+        a. Type: private array of float.
+        b. Serialized: no.
+        c. Description: stored lane position.
+        d. Usage: used to save a lane's position.
+
+    2. laneWidth:
+        a. Type: private float. 
+        b. Serialized: no. 
+        c. Description: stored lane width.
+        d. Usage: used to save a lane's width. 
+
+    3. maxWidth: 
+        a. Type: private float.
+        b. Serialized: no.
+        c. Description: stored max width.
+        d. Usage: used to save max width of a lane. 
+
+    4. minWidth:
+        a. Type: private float. 
+        b. Serialized: no. 
+        c. Description: stored min width. 
+        d. Usage: used to save min width of a lane. 
+
+    5. laneType:
+        a. Type: private string.
+        b. Serialized: no. 
+        c. Description: stored name of a lane type.
+        d. Usage: used to save a lane's type.
+
+    6. vehicleLane:
+        a. Type: private bool.
+        b. Serialized: no.
+        c. Description: stored vehicleLane flag.
+        d. Usage: saves a lane's vehicleLane flag.
+
+    7. nonVehicleAspahlt:
+        a. Type: private bool.
+        b. Serialized: no.
+        c. Description: stored nonVehicleAsphalt flag.
+        d. Usage: saves a lane's nonVehicleAspahlt flag.
+
+    8. nonAsphalt:
+        a. Type: private bool.
+        b. Serialized: no.
+        c. Description: stored nonAsphalt flag.
+        d. Usage: saves a lane's nonAsphalt flag.
+
+    9. leftStripeData:
+        a. Type: private StripeData.
+        b. Serialized: no.
+        c. Description: stored data for a lane's left stripe.
+        d. Usage: used to save the left stripe's data. 
+
+    10. rightStripeData:
+        a. Type: private StripeData.
+        b. Serialized: no.
+        c. Description: stored data for a lane's right stripe.
+        d. Usage: used to save the right stripe's data. 
+
+    11. propManagerData:
+        a. Type: PropManagerData.
+        b. Serialized: no.
+        c. Description: stored data for a prop manager. 
+        d. Usage: used to save prop manager data. 
+
+C. Public Methods:
+    1. LaneData():
+        a. Type: constructor.
+        b. Parameters: 
+            i. BasicLane lane.
+        c. Variables:
+            i. Vector3 lanePositionVector.
+            ii. GameObject leftStripe.
+            iii. GameObject rightStripe.
+            iv. Stripe leftStripeScriptRef.
+            v. Stripe rightStripeScriptRef.
+        d. Description: stores BasicLane data as LaneData.
+        e. Usage: used to save a lane's data.
+
+    2. LaneData():
+        a. Type: constructor (override).
+        b. Parameters: 
+            i. BasicLane lane.
+            ii. PropManager propManager.
+        c. Variables:
+            i. Vector3 lanePositionVector.
+            ii. GameObject leftStripe.
+            iii. GameObject rightStripe.
+            iv. Stripe leftStripeScriptRef.
+            v. Stripe rightStripeScriptRef.
+        d. Description: same as first LaneData but also stores propManager data. 
+        e. Usage: same as first LaneData but used for saving prop data. 
+
+    3. loadPropManagerData:
+        a. Type: public PropManager.
+        b. Parameters: none.
+        c. Variables: none. 
+        d. Description: returns propManagerData. 
+        e. Usage: used to load saved prop manager data. 
+
+    4. loadLanePosition():
+        a. Type: public Vector3. 
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns lanePosition casted as a Vector3.
+        e. Usage: used to load a saved lane's position. 
+
+    5. loadLaneWidth():
+        a. Type: public float. 
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns laneWidth.
+        e. Usage: used to load a saved lane's width.
+
+    6. loadMaxWidth():
+        a. Type: public float.
+        b. Parameters: none.
+        c. Variables: none. 
+        d. Description: returns maxWidth.
+        e. Usage: used to load a saved lane's max width.
+
+    7. loadMinWidth():
+        a. Type: public float. 
+        b. Parameters: none.
+        c. Variables: none.  
+        d. Description: returns minWidth.
+        e. Usage: used to load a saved lane's min width. 
+
+    8. loadLaneType():
+        a. Type: public string.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns laneType.
+        e. Usage: used to load a saved lane's type. 
+
+    9. loadIsVehicleLane():
+        a. Type: public bool. 
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns vehicleLane.
+        e. Usage: used to load a saved lane's vehicle lane flag. 
+    
+    10. loadIsNonVehicleAsphaltLane():
+        a. Type: public bool.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns nonVehicleAsphalt.
+        e. Usage: used to load a saved lane's non vehicle asphalt flag. 
+
+    11. loadIsNonAsphaltLane():
+        a. Type: public bool.
+        b. Parameters: none.
+        c. Variables: none.
+        d. Description: returns nonAsphalt.
+        e. Usage: used to load a saved lane's non asphalt flag. 
+
+    12. loadStripeData():
+        a. Type: public StripeData.
+        b. Parameters: 
+            i. string stripe.
+        c. Variables: none. 
+        d. Description: returns leftStripeData or rightStripeData based off of the
+                        value of stripe. 
+        e. Usage: used to load a saved lane's stripe data. 
+
+D. Private Methods: none. 

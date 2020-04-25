@@ -51,8 +51,13 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         dd.AddOptions(laneTypeNames);
         dd.value = laneTypeNames.IndexOf(basicLaneScriptReference.getLaneType());
 
+        resolveStripeUIState();
+    }
 
-
+    // sets the stripe UI state to be active/inactive based on lane choice. Separated from resolveButtonActivationStates() to be able
+    // to just resolve stripeUI state in handleLaneTypeChange()
+    private void resolveStripeUIState()
+    {
         GameObject leftStripe = basicLaneScriptReference.getStripe("left");
         GameObject rightStripe = basicLaneScriptReference.getStripe("right");
 
@@ -62,7 +67,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
             EditStripeBehavior leftStripeBehavior = leftStripeEditMenu.GetComponent<EditStripeBehavior>();
             leftStripeBehavior.init(leftStripe);
             leftStripeBehavior.setBasicLaneParent(basicLaneScriptReference);
-        } else
+        }
+        else
         {
             leftStripeEditMenu.SetActive(false);
         }
@@ -73,7 +79,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
             EditStripeBehavior rightStripeBehavior = rightStripeEditMenu.GetComponent<EditStripeBehavior>();
             rightStripeBehavior.init(rightStripe);
             rightStripeBehavior.setBasicLaneParent(basicLaneScriptReference);
-        } else
+        }
+        else
         {
             rightStripeEditMenu.SetActive(false);
         }
@@ -126,7 +133,7 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
             updateWidthField();
         }
 
-        resolveButtonActivationStates();
+        resolveStripeUIState();
     }
 
     // Kasey wrote this

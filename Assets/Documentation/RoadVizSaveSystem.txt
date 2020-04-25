@@ -1,0 +1,69 @@
+RoadVizSaveSystem.txt
+
+Documentation for RoadVizSaveSystem.cs. 
+
+RoadVizSaveSystem Class Description: the class that handles all saving and loading functionality. 
+
+A. Libraries:
+    1. UnityEngine.
+    2. System.
+    3. System.IO.
+    4. System.Runtime.Serialization.Formatters.Binary.
+
+B. Class Fields: none. 
+
+C. Public Methods: 
+    1. saveRoad():
+        a. Type: public static void.
+        b. Parameters: 
+            i. Road road, the road to be saved. 
+        c. Variables: 
+            i. BinaryFormatter roadFormatter, the object that converts RoadData to a binary file.
+            ii. string savePath, location at which the file will be saved. 
+            iii. FileStream roadStream, the file we are writing to. 
+            iv. RoadData roadData, the data we are saving. 
+        d. Description: saves a road's data to a binary file.
+        e. Usage: used to save roads as binary (.rvvr) files. 
+
+    2. loadRoadFromMemory():
+        a. Type: public static void. 
+        b. Parameters:
+            i. string filename.
+        c. Variables:
+            i. string loadPath, the location at which our target file is stored. 
+            ii. BinaryFormatter roadFormatter, object that converts a binary file to RoadData.
+            iii. FileStream roadStream, the file we are reading from. 
+            iv. RoadData roadData, the RoadData loaded from the target file. 
+        d. Description: returns the data loaded from a saved .rvvr file. 
+        e. Usage: used to load a saved road design. 
+
+    3. getFileNames():
+        a. Type: public static array of string.
+        b. Parameters: none.
+        c. Variables: 
+            i. DirectoryInfo info, the information about the target directory. 
+            ii. FileInfo fileInfo, the information about the files in the target directory. 
+            iii. string[] allFiles, the information about the files as a string. 
+            iv. int index, index of the desired filename. 
+            v. int numNulls, the number of null filenames in the directory.
+            vi. string filenames: the names of all actual files in the directory. 
+        d. Description: returns filenames of our target directory. 
+        e. Usage: used to create a list of the saved file names on a user's computer. 
+
+D. Private Methods: 
+    1. getDataPath():
+        a. Type: private static string. 
+        b. Parameters: string endOfPath.
+        c. Variables: none. 
+        d. Description: appends endOfPath to the persistent data path and returns them.
+        e. Usage: used to create a location for a file to be saved in/loaded from. 
+
+    2. getFileDate():
+        a. Type: private static string. 
+        b. Parameters: none. 
+        c. Variables: 
+            i. DateTime fileDate, the raw current data and time. 
+            ii. string dateString, the fileDate casted as a string. 
+            iii. string replaceMentDate, the dateString with all disallowed characters removed. 
+        d. Description: returns the current date and time as a string without any disallowed characters.
+        e. Usage: used to create filenames. 
