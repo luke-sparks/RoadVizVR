@@ -13,7 +13,7 @@ public class ActionMenuBehavior : MonoBehaviour, ISceneUIMenu
 
     public void onSavePress()
     {
-
+        RoadVizSaveSystem.saveRoad(GameObject.Find("Road").GetComponent<Road>());
     }
 
     public void onExitToMenuPress()
