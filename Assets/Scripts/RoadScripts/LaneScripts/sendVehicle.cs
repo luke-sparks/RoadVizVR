@@ -8,7 +8,8 @@ public class sendVehicle : MonoBehaviour
     //The instance is the reference to whatever the currently created vehicle is
     private GameObject instance = null;
     //Target is where the vehicle wishes to move.
-    private GameObject target = null;
+    //private GameObject target = null;
+    private Vector3 target = Vector3.zero;
 
     //Are we currently sending the vehicle down the road? If yes, then true. Else, false.
     private bool sendingStatus = false;
@@ -69,7 +70,7 @@ public class sendVehicle : MonoBehaviour
 
         //Temporary instance is instantiated then destroyed in order to attain the bounds for a vehicle.
         //Not meant to be seen.
-        GameObject TempInstance = Instantiate(currentVehicle, new Vector3(-9999, -9999, -9999), Quaternion.identity);
+        //GameObject TempInstance = Instantiate(currentVehicle, new Vector3(-9999, -9999, -9999), Quaternion.identity);
 
         //Instantiate the vehicle
         //Get the lane position in order to set it.
@@ -88,13 +89,22 @@ public class sendVehicle : MonoBehaviour
         if (direction == 0)
         {
             startLocation = new Vector3(laneCenter.x + laneLength / 2, //Spawn at positive X end,
-                                        laneCenter.y + TempInstance.transform.localScale.y/2, //Adjust height to be perfectly balanced
+                                        laneCenter.y,// + TempInstance.transform.localScale.y/2, //Adjust height to be perfectly balanced
                                         laneCenter.z); //With the same Z as the center.
             oppositeLocation = new Vector3(laneCenter.x - laneLength / 2, //Targets negative X end,
-                                        laneCenter.y + TempInstance.transform.localScale.y / 2, //Adjust height to be perfectly balanced
+                                        laneCenter.y,// + TempInstance.transform.localScale.y / 2, //Adjust height to be perfectly balanced
                                         laneCenter.z); //With the same Z as the center.
-            instance = Instantiate(currentVehicle, startLocation, Quaternion.identity);
-            target = Instantiate(currentVehicle, oppositeLocation, Quaternion.identity);
+            if (instance == null)
+            {
+                instance = Instantiate(currentVehicle, startLocation, Quaternion.identity);
+            }
+            else
+            {
+                Destroy(instance);
+                instance = Instantiate(currentVehicle, startLocation, Quaternion.identity);
+            }
+            //target = Instantiate(currentVehicle, oppositeLocation, Quaternion.identity);
+            target = oppositeLocation;
             Debug.Log(instance);
         }
 
@@ -102,29 +112,37 @@ public class sendVehicle : MonoBehaviour
         else if (direction == 1)
         {
             startLocation = new Vector3(laneCenter.x - laneLength / 2, //Spawn at negative X end,
-                                        laneCenter.y + TempInstance.transform.localScale.y / 2, //Adjust height to be perfectly balanced
+                                        laneCenter.y,// + TempInstance.transform.localScale.y / 2, //Adjust height to be perfectly balanced
                                         laneCenter.z); //With the same Z as the center.
             oppositeLocation = new Vector3(laneCenter.x + laneLength / 2, //Target at positive X end,
-                                        laneCenter.y + TempInstance.transform.localScale.y / 2, //Adjust height to be perfectly balanced
+                                        laneCenter.y,// + TempInstance.transform.localScale.y / 2, //Adjust height to be perfectly balanced
                                         laneCenter.z); //With the same Z as the center.
-            instance = Instantiate(currentVehicle, startLocation, Quaternion.identity);
-            target = Instantiate(currentVehicle, oppositeLocation, Quaternion.identity);
-
+            if (instance == null)
+            {
+                instance = Instantiate(currentVehicle, startLocation, Quaternion.identity);
+            }
+            else
+            {
+                Destroy(instance);
+                instance = Instantiate(currentVehicle, startLocation, Quaternion.identity);
+            }
+            //target = Instantiate(currentVehicle, oppositeLocation, Quaternion.identity);
+            target = oppositeLocation;
             //Finally, we have to rotate it 180 degrees around in the Y direction rotation.
             instance.transform.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
         }
         //The temporary instance is destroyed
-        Destroy(TempInstance);
+        //Destroy(TempInstance);
 
         //The target is invisible (including its children)
         //Gather a list of the children's renderings
-        Renderer[] renderers = target.GetComponentsInChildren<Renderer>();
+        /*Renderer[] renderers = target.GetComponentsInChildren<Renderer>();
         //Iterate through every child
         foreach (Renderer child in renderers)
         {
             //Turn off rendering for the children
             child.GetComponent<Renderer>().enabled = false;
-        }
+        }*/
     }
 
     //Updates the current vehicle from the user-defined settings in VehicleLane.cs.
@@ -188,24 +206,25 @@ public class sendVehicle : MonoBehaviour
 
     //Update runs once every frame
     //In order to optimize, only checks booleans every frame when not conducting motion.
-    void Update()
+    void FixedUpdate()
     {
         //ONLY send the vehicle down the lane AFTER the vehicle has been initialized.
-        if (sendingStatus && instance != null)
+        if (sendingStatus)// && instance != null)
         {
             //calculate distance to move
             float step = speed * Time.deltaTime;
 
             //Move the vehicle towards the target.
-            instance.transform.position = Vector3.MoveTowards(instance.transform.position, target.transform.position, step);
+            instance.transform.position = Vector3.MoveTowards(instance.transform.position, target, step);
 
             //If the positions of the target and the vehicle are equal, we reset back to the original state.
-            if (Vector3.Distance(instance.transform.position, target.transform.position) < 0.001f)
+            if (Vector3.Distance(instance.transform.position, target) < 0.001f)
             {
                 sendingStatus = false; //Reset sending status
                 speed = 0.0f; //Reset the speed
                 Destroy(instance); //Reset the instance
-                Destroy(target); //Destroy the target
+                target = Vector3.zero;
+                //Destroy(target); //Destroy the target
             }
         }
         
