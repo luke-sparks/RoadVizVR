@@ -7,7 +7,7 @@ using UnityEngine;
 public class Road : MonoBehaviour
 {
     // class fields
-    [SerializeField] private const int MAX_LANES = 15;
+    [SerializeField] private const int MAX_LANES = 30;
     [SerializeField] private const int MIN_LANES = 1;
     // the number of starting lanes in the road
     [SerializeField] private int numStartingLanes;
