@@ -22,7 +22,7 @@ public class Road : MonoBehaviour
     // roadLanes is a linked list of the lanes currently in the road object
     [SerializeField] private LinkedList<GameObject> roadLanes;
     // the list of acceptable types of objects that can be inserted into the road
-    [SerializeField] private GameObject[] laneTypes = new GameObject[12];
+    [SerializeField] private GameObject[] laneTypes = new GameObject[11];
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +51,7 @@ public class Road : MonoBehaviour
         for (int i = 0; i < numStartingLanes; i++)
         {
             // insert all vehicle lanes using right insertion
-            insertLane(currLane, laneTypes[1], "right");
+            insertLane(currLane, laneTypes[0], "right");
             currLane = roadLanes.Last.Value;
         }
         setLaneType(roadLanes.First.Value, "Shoulder");
