@@ -26,21 +26,12 @@ public class CurrentPropManager : MonoBehaviour
         propObjects = new Dictionary<string, Object>();
         propNames = new List<string>() {"BusStop", "ConcreteBarrier", "FireHydrant", "StreetLamp", "TrafficCone" };
 
+        propObjects.Add("Empty", Resources.Load("Empty"));
+
         // loads props from list of propNames
         foreach (string name in propNames)
         {
             propObjects.Add(name, Resources.Load(name));
-        }
-
-        // remove the "empty" prop as it doesn't need to show up in the names
-        if (propNames.Contains("Empty"))
-        {
-            propNames.Remove("Empty");
-        }
-
-        foreach (string prop in propNames)
-        {
-            Debug.Log(prop);
         }
 
         clearCurrentPropObj();
