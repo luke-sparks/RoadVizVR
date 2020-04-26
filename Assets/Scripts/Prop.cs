@@ -11,20 +11,11 @@ public class Prop : MonoBehaviour
 
     private int propRotation = 0;
 
-    [SerializeField] protected Vector3 spawnCenterShift = new Vector3(0,0,0);
-
     protected VRTK_InteractableObject linkedObject;
     
     private void Awake()
     {
-        // find the CenterPointObj in the prop's children, should be the only thing
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (transform.GetChild(0).gameObject.name.Equals("CenterPointObj"))
-            {
-                centerPointObj = transform.GetChild(i).gameObject;
-            }
-        }
+        centerPointObj = transform.Find("CenterPointObj").gameObject;
 
         // get the VRTK_InteractableObject component
         linkedObject = GetComponentInChildren<VRTK_InteractableObject>();
@@ -99,7 +90,7 @@ public class Prop : MonoBehaviour
         float proportionalLocation = (objectCenter - laneCenterZ) / oldHalfLaneWidth;
         float newZValue = laneCenterZ + (newHalfLaneWidth * proportionalLocation);
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, newZValue - spawnCenterShift.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y, newZValue - (centerPointObj.transform.position.z - gameObject.transform.position.z));
     }
     
 
