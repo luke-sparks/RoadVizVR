@@ -33,7 +33,7 @@ public class VehicleLanePropIndicator : MonoBehaviour
                 currentProp.GetComponent<Collider>().enabled = false;
                 if (!currentProp.name.Equals("Empty(Clone)"))
                 {
-                    currentProp.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                    currentProp.GetComponent<VRTK_InteractObjectHighlighter>().Highlight(Color.red);
                 }
             }
         }
