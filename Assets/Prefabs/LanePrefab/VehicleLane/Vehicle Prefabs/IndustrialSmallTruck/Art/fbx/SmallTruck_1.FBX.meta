@@ -1,41 +1,100 @@
 fileFormatVersion: 2
 guid: b8110de7b5b60420b9945d7856e33f5f
-timeCreated: 1505193513
-licenseType: Store
 ModelImporter:
-  serializedVersion: 21
-  fileIDToRecycleName:
-    100000: SmallTruck
-    100002: //RootNode
-    100004: SmallTruck_Tyre_B_L
-    100006: SmallTruck_Tyre_B_R
-    100008: SmallTruck_Tyre_F_L
-    100010: SmallTruck_Tyre_F_R
-    400000: SmallTruck
-    400002: //RootNode
-    400004: SmallTruck_Tyre_B_L
-    400006: SmallTruck_Tyre_B_R
-    400008: SmallTruck_Tyre_F_L
-    400010: SmallTruck_Tyre_F_R
-    2300000: SmallTruck
-    2300002: SmallTruck_Tyre_B_L
-    2300004: SmallTruck_Tyre_B_R
-    2300006: SmallTruck_Tyre_F_L
-    2300008: SmallTruck_Tyre_F_R
-    3300000: SmallTruck
-    3300002: SmallTruck_Tyre_B_L
-    3300004: SmallTruck_Tyre_B_R
-    3300006: SmallTruck_Tyre_F_L
-    3300008: SmallTruck_Tyre_F_R
-    4300000: SmallTruck
-    4300002: SmallTruck_Tyre_F_L
-    4300004: SmallTruck_Tyre_B_L
-    4300006: SmallTruck_Tyre_F_R
-    4300008: SmallTruck_Tyre_B_R
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: SmallTruck
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: SmallTruck_Tyre_B_L
+  - first:
+      1: 100006
+    second: SmallTruck_Tyre_B_R
+  - first:
+      1: 100008
+    second: SmallTruck_Tyre_F_L
+  - first:
+      1: 100010
+    second: SmallTruck_Tyre_F_R
+  - first:
+      4: 400000
+    second: SmallTruck
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: SmallTruck_Tyre_B_L
+  - first:
+      4: 400006
+    second: SmallTruck_Tyre_B_R
+  - first:
+      4: 400008
+    second: SmallTruck_Tyre_F_L
+  - first:
+      4: 400010
+    second: SmallTruck_Tyre_F_R
+  - first:
+      23: 2300000
+    second: SmallTruck
+  - first:
+      23: 2300002
+    second: SmallTruck_Tyre_B_L
+  - first:
+      23: 2300004
+    second: SmallTruck_Tyre_B_R
+  - first:
+      23: 2300006
+    second: SmallTruck_Tyre_F_L
+  - first:
+      23: 2300008
+    second: SmallTruck_Tyre_F_R
+  - first:
+      33: 3300000
+    second: SmallTruck
+  - first:
+      33: 3300002
+    second: SmallTruck_Tyre_B_L
+  - first:
+      33: 3300004
+    second: SmallTruck_Tyre_B_R
+  - first:
+      33: 3300006
+    second: SmallTruck_Tyre_F_L
+  - first:
+      33: 3300008
+    second: SmallTruck_Tyre_F_R
+  - first:
+      43: 4300000
+    second: SmallTruck
+  - first:
+      43: 4300002
+    second: SmallTruck_Tyre_F_L
+  - first:
+      43: 4300004
+    second: SmallTruck_Tyre_B_L
+  - first:
+      43: 4300006
+    second: SmallTruck_Tyre_F_R
+  - first:
+      43: 4300008
+    second: SmallTruck_Tyre_B_R
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: 834da6e8e197748c8bf8509833700968, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -48,6 +107,8 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -62,6 +123,8 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -69,9 +132,14 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -82,10 +150,14 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -95,8 +167,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
