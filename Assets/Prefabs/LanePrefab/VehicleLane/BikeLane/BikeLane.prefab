@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3672436871892482467}
   - component: {fileID: 6256015483440623181}
   - component: {fileID: 7742395591534788064}
+  - component: {fileID: 6719372179645327421}
   m_Layer: 0
   m_Name: PrimaryAsphalt
   m_TagString: CanTeleport
@@ -167,6 +168,19 @@ MonoBehaviour:
   objectToHighlight: {fileID: 0}
   objectHighlighter: {fileID: 0}
   objectToAffect: {fileID: 0}
+--- !u!65 &6719372179645327421
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709905036992237735}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.99999994}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4057666167317137254
 GameObject:
   m_ObjectHideFlags: 0
