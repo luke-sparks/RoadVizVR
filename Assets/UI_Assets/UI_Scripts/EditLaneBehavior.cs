@@ -51,6 +51,8 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         dd.AddOptions(laneTypeNames);
         dd.value = laneTypeNames.IndexOf(basicLaneScriptReference.getLaneType());
 
+        transform.Find("SendVehicleButton").GetComponent<Button>().interactable = basicLaneScriptReference.isVehicleLane();
+
         resolveStripeUIState();
     }
 
@@ -99,10 +101,10 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
         }
     }
 
-    // TODO
-    public void handleSwitchDirectionToggle()
+    public void handleSendVehicleSelect()
     {
         Debug.Log("Lane direction switched");
+        UIManager.Instance.openUIScreen(UIManager.UIScreens.SendVehicle, basicLaneScriptReference.gameObject);
     }
 
     // Nathan implemented this
