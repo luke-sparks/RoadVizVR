@@ -321,7 +321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Switch Direction
+  m_Text: Send a Vehicle
 --- !u!1 &5536350053830195505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,7 +1979,7 @@ GameObject:
   - component: {fileID: 5536350055743741048}
   - component: {fileID: 5536350055743741049}
   m_Layer: 5
-  m_Name: SwitchButton
+  m_Name: SendVehicleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2085,7 +2085,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7709262486583124502}
-        m_MethodName: handleSwitchDirectionToggle
+        m_MethodName: handleSendVehicleSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
