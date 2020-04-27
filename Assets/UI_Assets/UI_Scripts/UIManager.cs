@@ -62,6 +62,7 @@ public class UIManager : MonoBehaviour
         ISceneUIMenu ui = currentUI.GetComponent<ISceneUIMenu>();
         currentUI.gameObject.transform.LookAt(Camera.main.transform.position);
         currentUI.transform.eulerAngles += 180f * Vector3.up;
+        currentUI.transform.Rotate(-currentUI.transform.eulerAngles.x, 0, 0);
 
         if (ui != null)
         {
@@ -82,6 +83,7 @@ public class UIManager : MonoBehaviour
     private Vector3 getLocationForUIPanel()
     {
         Vector3 cameraLoc = Camera.main.transform.position;
+        cameraLoc.y = 1.0f;
         Vector3 lookDir = Camera.main.transform.forward;
         Vector3 lookDirFlattened = new Vector3(lookDir.x, 0, lookDir.z);
         return cameraLoc + 1 * lookDirFlattened;
