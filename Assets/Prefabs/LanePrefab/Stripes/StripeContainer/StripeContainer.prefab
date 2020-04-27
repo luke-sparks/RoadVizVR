@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7787694873827915377}
   - component: {fileID: 8952961415430912364}
   - component: {fileID: 4268493085338191303}
-  - component: {fileID: 4741650440666278479}
   m_Layer: 0
   m_Name: StripeModel
   m_TagString: Untagged
@@ -79,19 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4741650440666278479
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3205714752542740998}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3964961391636753501
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 94906319913809792}
   - component: {fileID: 94906319913809821}
   - component: {fileID: 94906319913809822}
-  - component: {fileID: 94906319913809823}
-  - component: {fileID: 2805634677784455571}
   m_Layer: 0
   m_Name: DashedStripe (36)
   m_TagString: CanTeleport
@@ -80,32 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &94906319913809823
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94906319913809793}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2805634677784455571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94906319913809793}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &265753452923591200
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,8 +89,6 @@ GameObject:
   - component: {fileID: 265753452923591201}
   - component: {fileID: 265753452923591228}
   - component: {fileID: 265753452923591231}
-  - component: {fileID: 265753452923591230}
-  - component: {fileID: 2598177102345978930}
   m_Layer: 0
   m_Name: DashedStripe (12)
   m_TagString: CanTeleport
@@ -186,32 +156,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &265753452923591230
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265753452923591200}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2598177102345978930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265753452923591200}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &547155828021725156
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,8 +167,6 @@ GameObject:
   - component: {fileID: 547155828021725157}
   - component: {fileID: 547155828021725176}
   - component: {fileID: 547155828021725179}
-  - component: {fileID: 547155828021725178}
-  - component: {fileID: 2317473952210868726}
   m_Layer: 0
   m_Name: DashedStripe (26)
   m_TagString: CanTeleport
@@ -292,32 +234,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &547155828021725178
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547155828021725156}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2317473952210868726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547155828021725156}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &892050878146473200
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,8 +324,6 @@ GameObject:
   - component: {fileID: 972300811706726648}
   - component: {fileID: 972300811706726629}
   - component: {fileID: 972300811706726630}
-  - component: {fileID: 972300811706726631}
-  - component: {fileID: 3080743052074067691}
   m_Layer: 0
   m_Name: DashedStripe (28)
   m_TagString: CanTeleport
@@ -477,32 +391,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &972300811706726631
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972300811706726649}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3080743052074067691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972300811706726649}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &1066724018793868991
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,8 +402,6 @@ GameObject:
   - component: {fileID: 1066724018793868990}
   - component: {fileID: 1066724018793868963}
   - component: {fileID: 1066724018793868960}
-  - component: {fileID: 1066724018793868961}
-  - component: {fileID: 2986857162039308461}
   m_Layer: 0
   m_Name: DashedStripe (32)
   m_TagString: CanTeleport
@@ -583,32 +469,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1066724018793868961
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066724018793868991}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2986857162039308461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066724018793868991}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &1742001374236364661
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,8 +480,6 @@ GameObject:
   - component: {fileID: 1742001374236364660}
   - component: {fileID: 1742001374236364649}
   - component: {fileID: 1742001374236364650}
-  - component: {fileID: 1742001374236364651}
-  - component: {fileID: 4580833796678685031}
   m_Layer: 0
   m_Name: DashedStripe (39)
   m_TagString: CanTeleport
@@ -689,32 +547,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1742001374236364651
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1742001374236364661}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4580833796678685031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1742001374236364661}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &2156292194054168246
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,8 +558,6 @@ GameObject:
   - component: {fileID: 2156292194054168247}
   - component: {fileID: 2156292194054168234}
   - component: {fileID: 2156292194054168233}
-  - component: {fileID: 2156292194054168232}
-  - component: {fileID: 4202422807234150564}
   m_Layer: 0
   m_Name: DashedStripe (46)
   m_TagString: CanTeleport
@@ -795,32 +625,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2156292194054168232
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2156292194054168246}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4202422807234150564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2156292194054168246}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &2804251184248815799
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,8 +636,6 @@ GameObject:
   - component: {fileID: 2804251184248815798}
   - component: {fileID: 2804251184248815787}
   - component: {fileID: 2804251184248815784}
-  - component: {fileID: 2804251184248815785}
-  - component: {fileID: 95704293971353253}
   m_Layer: 0
   m_Name: DashedStripe (37)
   m_TagString: CanTeleport
@@ -901,32 +703,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2804251184248815785
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804251184248815799}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &95704293971353253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804251184248815799}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &3431880081314442298
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,8 +746,6 @@ GameObject:
   - component: {fileID: 3478503476146504037}
   - component: {fileID: 3478503476146504056}
   - component: {fileID: 3478503476146504059}
-  - component: {fileID: 3478503476146504058}
-  - component: {fileID: 1727290363595874166}
   m_Layer: 0
   m_Name: DashedStripe (17)
   m_TagString: CanTeleport
@@ -1039,32 +813,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3478503476146504058
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3478503476146504036}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1727290363595874166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3478503476146504036}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &3555746248162616732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,8 +824,6 @@ GameObject:
   - component: {fileID: 3555746248162616733}
   - component: {fileID: 3555746248162616704}
   - component: {fileID: 3555746248162616707}
-  - component: {fileID: 3555746248162616706}
-  - component: {fileID: 1650073709275511694}
   m_Layer: 0
   m_Name: DashedStripe (41)
   m_TagString: CanTeleport
@@ -1145,32 +891,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3555746248162616706
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3555746248162616732}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1650073709275511694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3555746248162616732}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &3573242130763509447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,8 +902,6 @@ GameObject:
   - component: {fileID: 3573242130763509446}
   - component: {fileID: 3573242130763509467}
   - component: {fileID: 3573242130763509464}
-  - component: {fileID: 3573242130763509465}
-  - component: {fileID: 1596532516043665621}
   m_Layer: 0
   m_Name: DashedStripe (33)
   m_TagString: CanTeleport
@@ -1251,32 +969,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3573242130763509465
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3573242130763509447}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1596532516043665621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3573242130763509447}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &3599234110661097681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +980,6 @@ GameObject:
   - component: {fileID: 3599234110661097680}
   - component: {fileID: 3599234110661097677}
   - component: {fileID: 3599234110661097678}
-  - component: {fileID: 3599234110661097679}
   m_Layer: 0
   m_Name: SolidStripe
   m_TagString: CanTeleport
@@ -1356,19 +1047,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3599234110661097679
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3599234110661097681}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3926017089327074038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,8 +1058,6 @@ GameObject:
   - component: {fileID: 3926017089327074039}
   - component: {fileID: 3926017089327074026}
   - component: {fileID: 3926017089327074025}
-  - component: {fileID: 3926017089327074024}
-  - component: {fileID: 1279781685341115620}
   m_Layer: 0
   m_Name: DashedStripe (38)
   m_TagString: CanTeleport
@@ -1449,32 +1125,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3926017089327074024
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3926017089327074038}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1279781685341115620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3926017089327074038}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &4007423087851404951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,8 +1136,6 @@ GameObject:
   - component: {fileID: 4007423087851404950}
   - component: {fileID: 4007423087851404939}
   - component: {fileID: 4007423087851404936}
-  - component: {fileID: 4007423087851404937}
-  - component: {fileID: 1162925980766838917}
   m_Layer: 0
   m_Name: DashedStripe (23)
   m_TagString: CanTeleport
@@ -1555,32 +1203,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4007423087851404937
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4007423087851404951}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1162925980766838917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4007423087851404951}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &4338552776245094756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,8 +1214,6 @@ GameObject:
   - component: {fileID: 4338552776245094757}
   - component: {fileID: 4338552776245094776}
   - component: {fileID: 4338552776245094779}
-  - component: {fileID: 4338552776245094778}
-  - component: {fileID: 1984701875007879030}
   m_Layer: 0
   m_Name: DashedStripe (15)
   m_TagString: CanTeleport
@@ -1661,32 +1281,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4338552776245094778
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4338552776245094756}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1984701875007879030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4338552776245094756}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &4400239699666131963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,8 +1292,6 @@ GameObject:
   - component: {fileID: 4400239699666131962}
   - component: {fileID: 4400239699666131943}
   - component: {fileID: 4400239699666131940}
-  - component: {fileID: 4400239699666131941}
-  - component: {fileID: 1922610043536082409}
   m_Layer: 0
   m_Name: DashedStripe (11)
   m_TagString: CanTeleport
@@ -1767,32 +1359,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4400239699666131941
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4400239699666131963}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1922610043536082409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4400239699666131963}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &4472559027706174646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,8 +1370,6 @@ GameObject:
   - component: {fileID: 4472559027706174647}
   - component: {fileID: 4472559027706174634}
   - component: {fileID: 4472559027706174633}
-  - component: {fileID: 4472559027706174632}
-  - component: {fileID: 1850708594884756132}
   m_Layer: 0
   m_Name: DashedStripe (18)
   m_TagString: CanTeleport
@@ -1873,32 +1437,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4472559027706174632
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4472559027706174646}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1850708594884756132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4472559027706174646}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &4539032145424538191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,8 +1448,6 @@ GameObject:
   - component: {fileID: 4539032145424538190}
   - component: {fileID: 4539032145424538195}
   - component: {fileID: 4539032145424538192}
-  - component: {fileID: 4539032145424538193}
-  - component: {fileID: 1820387440953721949}
   m_Layer: 0
   m_Name: DashedStripe (19)
   m_TagString: CanTeleport
@@ -1979,32 +1515,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4539032145424538193
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4539032145424538191}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1820387440953721949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4539032145424538191}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &4837296833331923155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2016,8 +1526,6 @@ GameObject:
   - component: {fileID: 4837296833331923154}
   - component: {fileID: 4837296833331923151}
   - component: {fileID: 4837296833331923148}
-  - component: {fileID: 4837296833331923149}
-  - component: {fileID: 7250574137585161921}
   m_Layer: 0
   m_Name: DashedStripe (20)
   m_TagString: CanTeleport
@@ -2085,32 +1593,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4837296833331923149
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4837296833331923155}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7250574137585161921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4837296833331923155}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &4886399849996908931
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,8 +1604,6 @@ GameObject:
   - component: {fileID: 4886399849996908930}
   - component: {fileID: 4886399849996908959}
   - component: {fileID: 4886399849996908956}
-  - component: {fileID: 4886399849996908957}
-  - component: {fileID: 7237649442922080145}
   m_Layer: 0
   m_Name: DashedStripe (27)
   m_TagString: CanTeleport
@@ -2191,32 +1671,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4886399849996908957
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4886399849996908931}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7237649442922080145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4886399849996908931}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &4924055733623192049
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,8 +1682,6 @@ GameObject:
   - component: {fileID: 4924055733623192048}
   - component: {fileID: 4924055733623192045}
   - component: {fileID: 4924055733623192046}
-  - component: {fileID: 4924055733623192047}
-  - component: {fileID: 7199975481786968035}
   m_Layer: 0
   m_Name: DashedStripe (1)
   m_TagString: CanTeleport
@@ -2297,32 +1749,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4924055733623192047
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4924055733623192049}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7199975481786968035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4924055733623192049}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &5149882410900781114
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,8 +1760,6 @@ GameObject:
   - component: {fileID: 5149882410900781115}
   - component: {fileID: 5149882410900781094}
   - component: {fileID: 5149882410900781093}
-  - component: {fileID: 5149882410900781092}
-  - component: {fileID: 6973471973498103336}
   m_Layer: 0
   m_Name: DashedStripe (9)
   m_TagString: CanTeleport
@@ -2403,32 +1827,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5149882410900781092
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5149882410900781114}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6973471973498103336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5149882410900781114}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &5194491338699663482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,8 +1838,6 @@ GameObject:
   - component: {fileID: 5194491338699663483}
   - component: {fileID: 5194491338699663462}
   - component: {fileID: 5194491338699663461}
-  - component: {fileID: 5194491338699663460}
-  - component: {fileID: 8045745939277919848}
   m_Layer: 0
   m_Name: DashedStripe (5)
   m_TagString: CanTeleport
@@ -2509,32 +1905,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5194491338699663460
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5194491338699663482}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8045745939277919848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5194491338699663482}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &5223002178326102211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,8 +1916,6 @@ GameObject:
   - component: {fileID: 5223002178326102210}
   - component: {fileID: 5223002178326102239}
   - component: {fileID: 5223002178326102236}
-  - component: {fileID: 5223002178326102237}
-  - component: {fileID: 8053955498074103505}
   m_Layer: 0
   m_Name: DashedStripe (13)
   m_TagString: CanTeleport
@@ -2615,32 +1983,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5223002178326102237
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5223002178326102211}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8053955498074103505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5223002178326102211}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &5268477799759127998
 GameObject:
   m_ObjectHideFlags: 0
@@ -2652,8 +1994,6 @@ GameObject:
   - component: {fileID: 5268477799759127999}
   - component: {fileID: 5268477799759127970}
   - component: {fileID: 5268477799759127969}
-  - component: {fileID: 5268477799759127968}
-  - component: {fileID: 7972450723140369324}
   m_Layer: 0
   m_Name: DashedStripe (7)
   m_TagString: CanTeleport
@@ -2721,32 +2061,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5268477799759127968
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5268477799759127998}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7972450723140369324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5268477799759127998}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &5298757723008281205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,8 +2072,6 @@ GameObject:
   - component: {fileID: 5298757723008281204}
   - component: {fileID: 5298757723008281193}
   - component: {fileID: 5298757723008281194}
-  - component: {fileID: 5298757723008281195}
-  - component: {fileID: 7941615288829539431}
   m_Layer: 0
   m_Name: DashedStripe (10)
   m_TagString: CanTeleport
@@ -2827,32 +2139,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5298757723008281195
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5298757723008281205}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7941615288829539431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5298757723008281205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &5832169278202364227
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,8 +2150,6 @@ GameObject:
   - component: {fileID: 5832169278202364226}
   - component: {fileID: 5832169278202364255}
   - component: {fileID: 5832169278202364252}
-  - component: {fileID: 5832169278202364253}
-  - component: {fileID: 8597008964141981521}
   m_Layer: 0
   m_Name: DashedStripe (34)
   m_TagString: CanTeleport
@@ -2933,32 +2217,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5832169278202364253
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5832169278202364227}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8597008964141981521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5832169278202364227}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &6083002040915688213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2970,8 +2228,6 @@ GameObject:
   - component: {fileID: 6083002040915688212}
   - component: {fileID: 6083002040915688201}
   - component: {fileID: 6083002040915688202}
-  - component: {fileID: 6083002040915688203}
-  - component: {fileID: 8346748135925327111}
   m_Layer: 0
   m_Name: DashedStripe (47)
   m_TagString: CanTeleport
@@ -3039,32 +2295,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6083002040915688203
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6083002040915688213}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8346748135925327111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6083002040915688213}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &6183436905423774934
 GameObject:
   m_ObjectHideFlags: 0
@@ -3076,8 +2306,6 @@ GameObject:
   - component: {fileID: 6183436905423774935}
   - component: {fileID: 6183436905423774922}
   - component: {fileID: 6183436905423774921}
-  - component: {fileID: 6183436905423774920}
-  - component: {fileID: 8246453819927034564}
   m_Layer: 0
   m_Name: DashedStripe (45)
   m_TagString: CanTeleport
@@ -3145,32 +2373,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6183436905423774920
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6183436905423774934}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8246453819927034564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6183436905423774934}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &6354929796500072919
 GameObject:
   m_ObjectHideFlags: 0
@@ -3182,8 +2384,6 @@ GameObject:
   - component: {fileID: 6354929796500072918}
   - component: {fileID: 6354929796500072907}
   - component: {fileID: 6354929796500072904}
-  - component: {fileID: 6354929796500072905}
-  - component: {fileID: 9191723619189028805}
   m_Layer: 0
   m_Name: DashedStripe (25)
   m_TagString: CanTeleport
@@ -3251,32 +2451,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6354929796500072905
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6354929796500072919}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9191723619189028805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6354929796500072919}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &6672707447973686615
 GameObject:
   m_ObjectHideFlags: 0
@@ -3288,8 +2462,6 @@ GameObject:
   - component: {fileID: 6672707447973686614}
   - component: {fileID: 6672707447973686603}
   - component: {fileID: 6672707447973686600}
-  - component: {fileID: 6672707447973686601}
-  - component: {fileID: 8873367826453885765}
   m_Layer: 0
   m_Name: DashedStripe (2)
   m_TagString: CanTeleport
@@ -3357,32 +2529,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6672707447973686601
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6672707447973686615}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8873367826453885765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6672707447973686615}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &6800183222071973448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,8 +2540,6 @@ GameObject:
   - component: {fileID: 6800183222071973449}
   - component: {fileID: 6800183222071973460}
   - component: {fileID: 6800183222071973463}
-  - component: {fileID: 6800183222071973462}
-  - component: {fileID: 8782489352720681050}
   m_Layer: 0
   m_Name: DashedStripe (42)
   m_TagString: CanTeleport
@@ -3463,32 +2607,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6800183222071973462
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6800183222071973448}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8782489352720681050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6800183222071973448}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &6902894748628696302
 GameObject:
   m_ObjectHideFlags: 0
@@ -3500,8 +2618,6 @@ GameObject:
   - component: {fileID: 6902894748628696303}
   - component: {fileID: 6902894748628696306}
   - component: {fileID: 6902894748628696305}
-  - component: {fileID: 6902894748628696304}
-  - component: {fileID: 8679196412154929916}
   m_Layer: 0
   m_Name: DashedStripe (44)
   m_TagString: CanTeleport
@@ -3569,32 +2685,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6902894748628696304
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6902894748628696302}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8679196412154929916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6902894748628696302}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &6945244488140483076
 GameObject:
   m_ObjectHideFlags: 0
@@ -3606,8 +2696,6 @@ GameObject:
   - component: {fileID: 6945244488140483077}
   - component: {fileID: 6945244488140483096}
   - component: {fileID: 6945244488140483099}
-  - component: {fileID: 6945244488140483098}
-  - component: {fileID: 5178231396050711574}
   m_Layer: 0
   m_Name: DashedStripe (29)
   m_TagString: CanTeleport
@@ -3675,32 +2763,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6945244488140483098
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6945244488140483076}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5178231396050711574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6945244488140483076}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &6946134888456191382
 GameObject:
   m_ObjectHideFlags: 0
@@ -3712,8 +2774,6 @@ GameObject:
   - component: {fileID: 6946134888456191383}
   - component: {fileID: 6946134888456191370}
   - component: {fileID: 6946134888456191369}
-  - component: {fileID: 6946134888456191368}
-  - component: {fileID: 5177751938742756228}
   m_Layer: 0
   m_Name: DashedStripe (3)
   m_TagString: CanTeleport
@@ -3781,32 +2841,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6946134888456191368
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6946134888456191382}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5177751938742756228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6946134888456191382}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &7071672758926634427
 GameObject:
   m_ObjectHideFlags: 0
@@ -3818,8 +2852,6 @@ GameObject:
   - component: {fileID: 7071672758926634426}
   - component: {fileID: 7071672758926634407}
   - component: {fileID: 7071672758926634404}
-  - component: {fileID: 7071672758926634405}
-  - component: {fileID: 5016185335132599209}
   m_Layer: 0
   m_Name: DashedStripe (21)
   m_TagString: CanTeleport
@@ -3887,32 +2919,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7071672758926634405
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7071672758926634427}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5016185335132599209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7071672758926634427}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &7329509662381260854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3924,8 +2930,6 @@ GameObject:
   - component: {fileID: 7329509662381260855}
   - component: {fileID: 7329509662381260842}
   - component: {fileID: 7329509662381260841}
-  - component: {fileID: 7329509662381260840}
-  - component: {fileID: 4758359908368096804}
   m_Layer: 0
   m_Name: DashedStripe (31)
   m_TagString: CanTeleport
@@ -3993,32 +2997,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7329509662381260840
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7329509662381260854}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4758359908368096804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7329509662381260854}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &7542701245024903293
 GameObject:
   m_ObjectHideFlags: 0
@@ -4030,8 +3008,6 @@ GameObject:
   - component: {fileID: 7542701245024903292}
   - component: {fileID: 7542701245024903265}
   - component: {fileID: 7542701245024903266}
-  - component: {fileID: 7542701245024903267}
-  - component: {fileID: 5698108809254403695}
   m_Layer: 0
   m_Name: DashedStripe (22)
   m_TagString: CanTeleport
@@ -4099,32 +3075,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7542701245024903267
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542701245024903293}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5698108809254403695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542701245024903293}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &7643861898735811772
 GameObject:
   m_ObjectHideFlags: 0
@@ -4136,8 +3086,6 @@ GameObject:
   - component: {fileID: 7643861898735811773}
   - component: {fileID: 7643861898735811744}
   - component: {fileID: 7643861898735811747}
-  - component: {fileID: 7643861898735811746}
-  - component: {fileID: 5596499829685527214}
   m_Layer: 0
   m_Name: DashedStripe
   m_TagString: CanTeleport
@@ -4205,32 +3153,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7643861898735811746
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7643861898735811772}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5596499829685527214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7643861898735811772}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &8030909236944775998
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,8 +3164,6 @@ GameObject:
   - component: {fileID: 8030909236944775999}
   - component: {fileID: 8030909236944775970}
   - component: {fileID: 8030909236944775969}
-  - component: {fileID: 8030909236944775968}
-  - component: {fileID: 5245906808086066476}
   m_Layer: 0
   m_Name: DashedStripe (40)
   m_TagString: CanTeleport
@@ -4311,32 +3231,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8030909236944775968
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8030909236944775998}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5245906808086066476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8030909236944775998}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &8247647345584590445
 GameObject:
   m_ObjectHideFlags: 0
@@ -4348,8 +3242,6 @@ GameObject:
   - component: {fileID: 8247647345584590444}
   - component: {fileID: 8247647345584590449}
   - component: {fileID: 8247647345584590450}
-  - component: {fileID: 8247647345584590451}
-  - component: {fileID: 6182094856039010431}
   m_Layer: 0
   m_Name: DashedStripe (30)
   m_TagString: CanTeleport
@@ -4417,32 +3309,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8247647345584590451
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8247647345584590445}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6182094856039010431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8247647345584590445}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &8249959088308554139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4454,8 +3320,6 @@ GameObject:
   - component: {fileID: 8249959088308554138}
   - component: {fileID: 8249959088308554119}
   - component: {fileID: 8249959088308554116}
-  - component: {fileID: 8249959088308554117}
-  - component: {fileID: 6179799609739171721}
   m_Layer: 0
   m_Name: DashedStripe (14)
   m_TagString: CanTeleport
@@ -4523,32 +3387,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8249959088308554117
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8249959088308554139}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6179799609739171721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8249959088308554139}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &8554956313736293124
 GameObject:
   m_ObjectHideFlags: 0
@@ -4560,8 +3398,6 @@ GameObject:
   - component: {fileID: 8554956313736293125}
   - component: {fileID: 8554956313736293144}
   - component: {fileID: 8554956313736293147}
-  - component: {fileID: 8554956313736293146}
-  - component: {fileID: 5838915149951825174}
   m_Layer: 0
   m_Name: DashedStripe (43)
   m_TagString: CanTeleport
@@ -4629,32 +3465,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8554956313736293146
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8554956313736293124}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5838915149951825174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8554956313736293124}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &8651680910924151361
 GameObject:
   m_ObjectHideFlags: 0
@@ -4666,8 +3476,6 @@ GameObject:
   - component: {fileID: 8651680910924151360}
   - component: {fileID: 8651680910924151389}
   - component: {fileID: 8651680910924151390}
-  - component: {fileID: 8651680910924151391}
-  - component: {fileID: 6894519441541014611}
   m_Layer: 0
   m_Name: DashedStripe (16)
   m_TagString: CanTeleport
@@ -4735,32 +3543,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8651680910924151391
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8651680910924151361}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6894519441541014611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8651680910924151361}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &8780846811147685622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4772,8 +3554,6 @@ GameObject:
   - component: {fileID: 8780846811147685623}
   - component: {fileID: 8780846811147685610}
   - component: {fileID: 8780846811147685609}
-  - component: {fileID: 8780846811147685608}
-  - component: {fileID: 6801953530869354724}
   m_Layer: 0
   m_Name: DashedStripe (35)
   m_TagString: CanTeleport
@@ -4841,32 +3621,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8780846811147685608
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8780846811147685622}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6801953530869354724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8780846811147685622}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &8974243046114774835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4878,8 +3632,6 @@ GameObject:
   - component: {fileID: 8974243046114774834}
   - component: {fileID: 8974243046114774831}
   - component: {fileID: 8974243046114774828}
-  - component: {fileID: 8974243046114774829}
-  - component: {fileID: 6571978451011113249}
   m_Layer: 0
   m_Name: DashedStripe (48)
   m_TagString: CanTeleport
@@ -4947,32 +3699,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8974243046114774829
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8974243046114774835}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6571978451011113249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8974243046114774835}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &8976372472894922473
 GameObject:
   m_ObjectHideFlags: 0
@@ -4984,8 +3710,6 @@ GameObject:
   - component: {fileID: 8976372472894922472}
   - component: {fileID: 8976372472894922485}
   - component: {fileID: 8976372472894922486}
-  - component: {fileID: 8976372472894922487}
-  - component: {fileID: 6569848199069417723}
   m_Layer: 0
   m_Name: DashedStripe (24)
   m_TagString: CanTeleport
@@ -5053,32 +3777,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8976372472894922487
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8976372472894922473}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6569848199069417723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8976372472894922473}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &9073300066460278739
 GameObject:
   m_ObjectHideFlags: 0
@@ -5090,8 +3788,6 @@ GameObject:
   - component: {fileID: 9073300066460278738}
   - component: {fileID: 9073300066460278735}
   - component: {fileID: 9073300066460278732}
-  - component: {fileID: 9073300066460278733}
-  - component: {fileID: 6508940898487648705}
   m_Layer: 0
   m_Name: DashedStripe (4)
   m_TagString: CanTeleport
@@ -5159,32 +3855,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &9073300066460278733
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9073300066460278739}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6508940898487648705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9073300066460278739}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &9099660088389382652
 GameObject:
   m_ObjectHideFlags: 0
@@ -5196,8 +3866,6 @@ GameObject:
   - component: {fileID: 9099660088389382653}
   - component: {fileID: 9099660088389382624}
   - component: {fileID: 9099660088389382627}
-  - component: {fileID: 9099660088389382626}
-  - component: {fileID: 6482594899618525166}
   m_Layer: 0
   m_Name: DashedStripe (8)
   m_TagString: CanTeleport
@@ -5265,32 +3933,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &9099660088389382626
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9099660088389382652}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6482594899618525166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9099660088389382652}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
 --- !u!1 &9162445611746239351
 GameObject:
   m_ObjectHideFlags: 0
@@ -5302,8 +3944,6 @@ GameObject:
   - component: {fileID: 9162445611746239350}
   - component: {fileID: 9162445611746239339}
   - component: {fileID: 9162445611746239336}
-  - component: {fileID: 9162445611746239337}
-  - component: {fileID: 6384198445745470821}
   m_Layer: 0
   m_Name: DashedStripe (6)
   m_TagString: CanTeleport
@@ -5371,29 +4011,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &9162445611746239337
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9162445611746239351}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6384198445745470821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9162445611746239351}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9d47180de2245c8a402712d770aab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryAsphalt: {fileID: 0}
