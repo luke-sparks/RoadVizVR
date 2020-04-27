@@ -23,14 +23,7 @@ public class LaneInsertionSelection : MonoBehaviour
 
     private void Awake()
     {
-        // get the children of the lane and find the "PrimaryAsphalt"
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (transform.GetChild(0).gameObject.name.Equals("PrimaryAsphalt"))
-            {
-                asphalt = transform.GetChild(i).gameObject;
-            }
-        }
+        asphalt = transform.Find("PrimaryAsphalt").gameObject;
 
         // find the InteractableObject component on the asphalt
         linkedObject = GetComponentInChildren<VRTK_InteractableObject>();
@@ -129,7 +122,7 @@ public class LaneInsertionSelection : MonoBehaviour
             // convert list of lane types to array to access elements
             GameObject[] laneTypesArray = laneTypes.ToArray();
             // insert the desired lane type as a new lane into the road
-            roadScript.insertLane(gameObject, laneTypesArray[1], "right");
+            roadScript.insertLane(gameObject, laneTypesArray[0], "right");
         }
         else
         {
@@ -141,7 +134,7 @@ public class LaneInsertionSelection : MonoBehaviour
             // convert list of lane types to array to access elements
             GameObject[] laneTypesArray = laneTypes.ToArray();
             // insert the desired lane type as a new lane into the road
-            roadScript.insertLane(gameObject, laneTypesArray[1], "left");
+            roadScript.insertLane(gameObject, laneTypesArray[0], "left");
         }
 
     }
