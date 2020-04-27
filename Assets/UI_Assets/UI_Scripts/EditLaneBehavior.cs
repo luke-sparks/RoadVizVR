@@ -15,6 +15,10 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     private GameObject leftStripeEditMenu;
     private GameObject rightStripeEditMenu;
 
+    private Dropdown laneTypedd;
+    private Button sendVehicleButton;
+    private Button deleteLaneButton;
+
     public void Awake()
     {
         leftStripeEditMenu = transform.Find("EditLeftStripe").gameObject;
@@ -27,6 +31,10 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     public void init(GameObject[] laneRefs)
     {
         Debug.Assert(laneRefs.Length == 1);
+
+        laneTypedd = gameObject.transform.Find("LaneTypeControls/LaneType").GetComponent<Dropdown>();
+        sendVehicleButton = transform.Find("SendVehicleButton").GetComponent<Button>();
+        deleteLaneButton = gameObject.transform.Find("Delete").GetComponent<Button>();
 
         workingLaneReference = laneRefs[0];
         basicLaneScriptReference = workingLaneReference.GetComponent<BasicLane>();
@@ -43,15 +51,17 @@ public class EditLaneBehavior : MonoBehaviour, ISceneUIMenu
     private void resolveButtonActivationStates()
     {
         Road rd = GameObject.Find("Road").GetComponent<Road>();
-        gameObject.transform.Find("Delete").GetComponent<Button>().interactable = !rd.isAtMinSize();
+        deleteLaneButton.interactable = !rd.isAtMinSize();
 
         List<string> laneTypeNames = GameObject.Find("Road").GetComponent<Road>().getLaneTypeNames();
-        Dropdown dd = gameObject.transform.Find("LaneTypeControls/LaneType").GetComponent<Dropdown>();
-        // add lane types to dropdown, then set current active
-        dd.AddOptions(laneTypeNames);
-        dd.value = laneTypeNames.IndexOf(basicLaneScriptReference.getLaneType());
 
-        transform.Find("SendVehicleButton").GetComponent<Button>().interactable = basicLaneScriptReference.isVehicleLane();
+        // add lane types to dropdown, then set current active
+        laneTypedd.interactable = true;
+        laneTypedd.ClearOptions();
+        laneTypedd.AddOptions(laneTypeNames);
+        laneTypedd.value = laneTypeNames.IndexOf(basicLaneScriptReference.getLaneType());
+
+        sendVehicleButton.interactable = basicLaneScriptReference.isVehicleLane();
 
         resolveStripeUIState();
     }
