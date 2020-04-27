@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asphalt: {fileID: 646671688452815485}
+  laneIndex: 0
   laneType: ParkingLane
   currentLaneWidth: 2.5
   maxWidth: 10
@@ -57,8 +58,7 @@ MonoBehaviour:
   vehicleLane: 0
   nonVehicleAsphalt: 1
   nonAsphalt: 0
-  road: {fileID: 0}
-  roadScript: {fileID: 0}
+  direction: 0
 --- !u!114 &-1122323136737645078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,8 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedObject: {fileID: 2275982334405399417}
-  asphalt: {fileID: 646671688452815485}
   laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
     type: 3}
 --- !u!114 &447314448805711074
@@ -87,9 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0e00ebe33221444a5d4c49a260bb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPropPrefab: {fileID: 0}
-  linkedObject: {fileID: 2275982334405399417}
-  asphalt: {fileID: 646671688452815485}
 --- !u!114 &-4257730796901679002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   props: []
-  asphalt: {fileID: 646671688452815485}
 --- !u!1 &646671688452815485
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,8 +113,6 @@ GameObject:
   - component: {fileID: 2275982334405399417}
   - component: {fileID: 8913504168504493207}
   - component: {fileID: 5048667104543627066}
-  - component: {fileID: 7614118404871524085}
-  - component: {fileID: 6709882843714539502}
   m_Layer: 0
   m_Name: PrimaryAsphalt
   m_TagString: CanTeleport
@@ -226,7 +218,7 @@ MonoBehaviour:
   grabAttachMechanicScript: {fileID: 0}
   secondaryGrabActionScript: {fileID: 0}
   isUsable: 1
-  holdButtonToUse: 0
+  holdButtonToUse: 1
   useOnlyIfGrabbed: 0
   pointerActivatesUseAction: 0
   useOverrideButton: 0
@@ -287,32 +279,3 @@ MonoBehaviour:
   objectToHighlight: {fileID: 0}
   objectHighlighter: {fileID: 0}
   objectToAffect: {fileID: 0}
---- !u!114 &7614118404871524085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a31876d270d42c88b2f472a45acb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6709882843714539502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646671688452815485}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e08ca01e8cb3c48f6a5b54d418684e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lane: {fileID: 241737392477294327}
-  laneEditPrefab: {fileID: 5536350055757165757, guid: 05e74bcd532593441985a2ddbb21e306,
-    type: 3}
-  road: {fileID: 0}
-  roadScript: {fileID: 0}
