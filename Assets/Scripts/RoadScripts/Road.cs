@@ -525,7 +525,15 @@ public class Road : MonoBehaviour
             // case 2: the left neighbor is non vehicle lane asphalt
             else 
             {
-                leftStripe = Instantiate(stripeContainer, lanePosition, transform.rotation);
+                if(leftNeighborScriptReference.getStripe("right") != null)
+                {
+                    leftStripe = leftNeighborScriptReference.getStripe("right");
+                    Debug.Log("WE ARE INSERTING TO THE RIGHT" + leftStripe);
+                }
+                else
+                {
+                    leftStripe = Instantiate(stripeContainer, lanePosition, transform.rotation);
+                }
             }
             rightStripe = Instantiate(stripeContainer, lanePosition, transform.rotation);
         }
@@ -546,7 +554,15 @@ public class Road : MonoBehaviour
             // case 2: right neighbor is non vehicle asphalt
             else 
             {
-                rightStripe = Instantiate(stripeContainer, lanePosition, transform.rotation);
+                if(rightNeighborScriptReference.getStripe("left") != null)
+                {
+                    rightStripe = rightNeighborScriptReference.getStripe("left");
+                    Debug.Log("WE ARE INSERTING TO THE LEFT" + rightStripe);
+                }
+                else
+                {
+                    rightStripe = Instantiate(stripeContainer, lanePosition, transform.rotation);
+                }
             }
         }
         // case 4: lane has both left and right neighbors (most complicated case)
