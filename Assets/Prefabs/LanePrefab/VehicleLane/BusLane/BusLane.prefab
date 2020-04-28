@@ -196,7 +196,6 @@ GameObject:
   - component: {fileID: 2328362708223230344}
   - component: {fileID: 853183256990264667}
   - component: {fileID: 8066462234204175029}
-  - component: {fileID: 5931948256656271640}
   m_Layer: 0
   m_Name: PrimaryAsphalt
   m_TagString: CanTeleport
@@ -342,26 +341,6 @@ MonoBehaviour:
   durationOnUse: 0
   intervalOnUse: 0.05
   cancelOnUnuse: 1
-  objectToAffect: {fileID: 0}
---- !u!114 &5931948256656271640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070393590465643615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc4b5dd2be1cea4aaea2850b910d3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
-  touchHighlight: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0}
-  grabHighlight: {r: 0, g: 0, b: 0, a: 0}
-  useHighlight: {r: 0, g: 1, b: 0, a: 0.09019608}
-  objectToMonitor: {fileID: 0}
-  objectToHighlight: {fileID: 0}
-  objectHighlighter: {fileID: 0}
   objectToAffect: {fileID: 0}
 --- !u!1 &2330009060323306810
 GameObject:

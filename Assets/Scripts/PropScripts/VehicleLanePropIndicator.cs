@@ -8,6 +8,8 @@ public class VehicleLanePropIndicator : MonoBehaviour
     protected GameObject currentPropPrefab;
     protected GameObject currentProp = null;
 
+    protected GameObject asphalt;
+
     protected VRTK_InteractableObject linkedObject;
 
     protected Transform cursorTransform = null;
@@ -16,6 +18,8 @@ public class VehicleLanePropIndicator : MonoBehaviour
 
     private void Awake()
     {
+        asphalt = transform.Find("PrimaryAsphalt").gameObject;
+
         linkedObject = GetComponentInChildren<VRTK_InteractableObject>();
     }
 
@@ -72,6 +76,9 @@ public class VehicleLanePropIndicator : MonoBehaviour
         //Debug.Log("InteractableObjectTouched");
         // write touch script here
 
+        // sets emission color to gray
+        asphalt.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.38f, 0.38f, 0.38f, 0f));
+
         trackCursor = true;
         cursorTransform = getCursor(sender, e).transform;
         currentPropPrefab = CurrentPropManager.Instance.getCurrentPropObj();
@@ -82,6 +89,9 @@ public class VehicleLanePropIndicator : MonoBehaviour
     {
         //Debug.Log("InteractableObjectUntouched");
         // write un-touch script here
+
+        // sets emission color to gray
+        asphalt.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f, 0f, 0f, 0f));
 
         trackCursor = false;
         cursorTransform = null;// getCursor(sender, e).transform;

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4170048635093482604}
   - component: {fileID: 3781176704477599463}
   - component: {fileID: 3402625430790972885}
-  - component: {fileID: 5963700948045073521}
   m_Layer: 0
   m_Name: PrimaryAsphalt
   m_TagString: Untagged
@@ -160,26 +159,6 @@ MonoBehaviour:
   durationOnUse: 0
   intervalOnUse: 0.05
   cancelOnUnuse: 1
-  objectToAffect: {fileID: 0}
---- !u!114 &5963700948045073521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061480386706213604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc4b5dd2be1cea4aaea2850b910d3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
-  touchHighlight: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 0}
-  grabHighlight: {r: 0, g: 0, b: 0, a: 0}
-  useHighlight: {r: 0, g: 1, b: 0, a: 0.09019608}
-  objectToMonitor: {fileID: 0}
-  objectToHighlight: {fileID: 0}
-  objectHighlighter: {fileID: 0}
   objectToAffect: {fileID: 0}
 --- !u!1 &7460763385531375339
 GameObject:
