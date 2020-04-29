@@ -104,6 +104,7 @@ public class Stripe : MonoBehaviour
         {
             stripeTypesList.Add(g.name);
         }
+        stripeTypesList.Add("No Stripe");
         return stripeTypesList;
     }
 
