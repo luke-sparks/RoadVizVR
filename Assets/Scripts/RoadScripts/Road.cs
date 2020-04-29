@@ -528,7 +528,6 @@ public class Road : MonoBehaviour
                 if(leftNeighborScriptReference.getStripe("right") != null)
                 {
                     leftStripe = leftNeighborScriptReference.getStripe("right");
-                    Debug.Log("WE ARE INSERTING TO THE RIGHT" + leftStripe);
                 }
                 else
                 {
@@ -557,7 +556,6 @@ public class Road : MonoBehaviour
                 if(rightNeighborScriptReference.getStripe("left") != null)
                 {
                     rightStripe = rightNeighborScriptReference.getStripe("left");
-                    Debug.Log("WE ARE INSERTING TO THE LEFT" + rightStripe);
                 }
                 else
                 {

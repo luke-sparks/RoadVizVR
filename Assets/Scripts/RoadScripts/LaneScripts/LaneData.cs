@@ -48,10 +48,18 @@ public class LaneData //: MonoBehaviour
             Stripe leftStripeScriptRef = (Stripe)leftStripe.GetComponent("Stripe");
             leftStripeData = new StripeData(leftStripeScriptRef);
         }
+        else
+        {
+            leftStripeData = null;
+        }
         if(rightStripe != null)
         {
             Stripe rightStripeScriptRef = (Stripe)rightStripe.GetComponent("Stripe");
             rightStripeData = new StripeData(rightStripeScriptRef);
+        }
+        else
+        {
+            rightStripeData = null;
         }
     }
 

@@ -8,11 +8,7 @@ public class BasicLane : MonoBehaviour
 {
     // class fields
     [SerializeField] private const float DEFAULT_LANE_WIDTH_FT = 12.0f;
-    //[SerializeField] protected GameObject laneEditPrefab;
-    //[SerializeField] protected GameObject editLaneDialogue;
-    //[SerializeField] protected GameObject insertButton;
     [SerializeField] protected GameObject asphalt;
-    //[SerializeField] protected Vector3 lanePosition;
     [SerializeField] protected int laneIndex;
     [SerializeField] protected string laneType;
     [SerializeField] protected float currentLaneWidth;
@@ -31,19 +27,6 @@ public class BasicLane : MonoBehaviour
 
     protected GameObject road;
     protected Road roadScript;
-
-    // Nathan inserted start so we could use road functions more easily
-    void Start()
-    {
-        //road = GameObject.Find("Road");
-        //roadScript = (Road)road.GetComponent("Road");
-
-        // this was causing a bug. not sure why
-        //setLaneWidth(UnitConverter.convertFeetToMeters(DEFAULT_LANE_WIDTH_FT));
-
-        road = GameObject.Find("Road");
-        roadScript = (Road)road.GetComponent("Road");
-    }
 
     // Max wrote this
     // changes the direction of the lane's traffic 
@@ -76,7 +59,7 @@ public class BasicLane : MonoBehaviour
         //If the direction is invalid
         else
         {
-            Debug.Log("Error. Bad direction given in setDirection, within basicLane!");
+            throw new System.ArgumentException("Error, bad direction.");
         }
     }
 
@@ -103,7 +86,6 @@ public class BasicLane : MonoBehaviour
         //       5. update the transforms with the new Vector3 values
         // step 1
         Vector3 laneSize = asphalt.transform.localScale;
-        //Vector3 buttonPos = insertButton.transform.localPosition;
         // step 2
         float adjustment = (newWidth - laneSize.z) / 2;
         // step 3
@@ -114,22 +96,13 @@ public class BasicLane : MonoBehaviour
         roadScript.adjustRoadAroundLane(gameObject, adjustment);
         // step 4
         laneSize.z = newWidth;
-        //buttonPos.z += adjustment;
-        
         // step 5
         asphalt.transform.localScale = laneSize;
-
-        //Renderer asphaltRenderer = asphalt.GetComponent<Renderer>();
-        //asphaltRenderer.material.SetTextureScale("_MainTex", new Vector2(100, newWidth));
-
-        //insertButton.transform.localPosition = buttonPos;
         currentLaneWidth = asphalt.transform.localScale.z;
-
         if (!isVehicleLane())
         {
             GetComponent<PropManager>().repositionProps(adjustment);
         }
-
         // set new stripe locations
         adjustStripePositions();
     }
