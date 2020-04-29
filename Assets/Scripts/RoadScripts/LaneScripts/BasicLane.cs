@@ -208,16 +208,20 @@ public class BasicLane : MonoBehaviour
             // if left stripe is specified, make it null
             if (stripeOrientation == "left")
             {
+                Destroy(leftStripe);
                 leftStripe = null;
             }
             // if right stripe is specified, make it null
             else if (stripeOrientation == "right")
             {
+                Destroy(rightStripe);
                 rightStripe = null;
             }
             // otherwise, make them both null
             else
             {
+                Destroy(leftStripe);
+                Destroy(rightStripe);
                 leftStripe = null;
                 rightStripe = null;
             }
