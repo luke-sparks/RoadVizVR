@@ -37,12 +37,15 @@ public class Stripe : MonoBehaviour
         currentStripeType = newType;
         // 2. destroy the old stripe
         Destroy(stripe);
-        // 3. instantiate new stripe
-        GameObject newStripe = Instantiate(findStripeType(newType), newStripePosition, transform.rotation);
-        // 4. set the parent transform
-        newStripe.transform.parent = transform;
-        // 5. set the stripe reference
-        stripe = newStripe;
+        if(newType != null)
+        {
+            // 3. instantiate new stripe
+            GameObject newStripe = Instantiate(findStripeType(newType), newStripePosition, transform.rotation);
+            // 4. set the parent transform
+            newStripe.transform.parent = transform;
+            // 5. set the stripe reference
+            stripe = newStripe;
+        }
     }
 
     public void setStripeTypeSameLocation(string newType)
@@ -101,6 +104,7 @@ public class Stripe : MonoBehaviour
         {
             stripeTypesList.Add(g.name);
         }
+        stripeTypesList.Add("No Stripe");
         return stripeTypesList;
     }
 
@@ -126,6 +130,6 @@ public class Stripe : MonoBehaviour
                 return stripeTypes[i];
             }
         }
-        throw new System.ArgumentException("Invalid Stripe Type");
+        return null;
     }
 }

@@ -36,5 +36,22 @@ ROADVIZVR
     - Michael Herzog, the Design Advisory Board member for this project. Assisted developers with 
       the organization of their schedule and sprint release plans. 
 
+# Startup Instructions:
+    1. Download file from Github using distributed link (should already be complete if you have this).
+    2. Unzip RoadVizVR.zip (should already be complete).
+    3. Place unzipped contents in desired folder or directory. 
+    4. Install and run SteamVR to run this application in VR.
+    5. Double click on RoadVizVR.exe to run.
+    6. Get building!
+
+# Controls help:
+    * Make sure your VIVE headset and remotes are detected by the sensors. 
+    * Control Scheme:
+        - Trackpad: teleport (aim up and down to alter teleport location).
+                    Red teleporter pointer means you are trying to teleport to an invalid location.
+        - Trigger Press: activate laser pointer. Red laser pointer means you are pointing at an invalid location.
+                        Do this to select an object.
+        - Trigger Click: use object selected by laser pointer. 
+        - Menu Button: open action menu. 
 
 
