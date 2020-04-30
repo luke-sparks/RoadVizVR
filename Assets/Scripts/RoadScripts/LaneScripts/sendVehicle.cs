@@ -105,7 +105,7 @@ public class sendVehicle : MonoBehaviour
             }
             //target = Instantiate(currentVehicle, oppositeLocation, Quaternion.identity);
             target = oppositeLocation;
-            Debug.Log(instance);
+            //Debug.Log(instance);
         }
 
         //If the direction is one, it will spawn in the negative X and go positive.

@@ -100,7 +100,8 @@ public class LaneInsertionSelection : MonoBehaviour
         //Debug.Log("InteractableObjectUsed");
         // write use script here
 
-        Debug.Log("used the object");
+        //sets emission color to green
+        asphalt.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f, 0.49f, 0f, 0.04f));
 
         // get the cursor's position when used, and figure out where it's selecting the lane
         Vector3 cursorPosition = getCursor(sender, e).transform.position;
@@ -143,6 +144,9 @@ public class LaneInsertionSelection : MonoBehaviour
     {
         //Debug.Log("InteractableObjectUnused");
         // write un-use script here
+
+        // resets emission color, effectively turning it off
+        asphalt.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f, 0f, 0f, 0f));
     }
 
     protected virtual void InteractableObjectTouched(object sender, InteractableObjectEventArgs e)
@@ -152,6 +156,9 @@ public class LaneInsertionSelection : MonoBehaviour
         
         trackCursor = true;
         cursorTransform = getCursor(sender, e).transform;
+
+        // sets emission color to gray
+        asphalt.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.38f, 0.38f, 0.38f, 0f));
     }
 
     protected virtual void InteractableObjectUntouched(object sender, InteractableObjectEventArgs e)
@@ -169,6 +176,9 @@ public class LaneInsertionSelection : MonoBehaviour
             laneInsertSpriteRef = null;
             trackCursor = false;
         }
+
+        // resets emission color, effectively turning it off
+        asphalt.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f, 0f, 0f, 0f));
     }
 
 

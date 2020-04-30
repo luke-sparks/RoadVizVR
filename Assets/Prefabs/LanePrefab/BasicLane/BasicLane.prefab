@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4577958150579042317}
   - component: {fileID: 2946679104186503428}
   - component: {fileID: 5531119663598700266}
-  - component: {fileID: 8169858667790980423}
   m_Layer: 0
   m_Name: PrimaryAsphalt
   m_TagString: CanTeleport
@@ -161,26 +160,6 @@ MonoBehaviour:
   intervalOnUse: 0.05
   cancelOnUnuse: 1
   objectToAffect: {fileID: 0}
---- !u!114 &8169858667790980423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4577958150579042304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc4b5dd2be1cea4aaea2850b910d3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
-  touchHighlight: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 0}
-  grabHighlight: {r: 0, g: 0, b: 0, a: 0}
-  useHighlight: {r: 0, g: 1, b: 0, a: 0.09019608}
-  objectToMonitor: {fileID: 0}
-  objectToHighlight: {fileID: 0}
-  objectHighlighter: {fileID: 0}
-  objectToAffect: {fileID: 0}
 --- !u!1 &4577958151057443786
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +218,7 @@ MonoBehaviour:
   vehicleLane: 0
   nonVehicleAsphalt: 0
   nonAsphalt: 0
+  direction: 0
 --- !u!114 &9168347915880007354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,8 +231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b455c9aa52800f4593ca0b929a7114d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedObject: {fileID: 2946679104186503428}
-  asphalt: {fileID: 4577958150579042304}
   laneInsertSprite: {fileID: 2402942694553084096, guid: dd65dc8ecb9407349b7ac0f1e1d9d195,
     type: 3}
 --- !u!114 &460278338003034859
@@ -267,9 +245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0e00ebe33221444a5d4c49a260bb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPropPrefab: {fileID: 0}
-  linkedObject: {fileID: 2946679104186503428}
-  asphalt: {fileID: 4577958150579042304}
 --- !u!114 &-8468665650001076856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,4 +258,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   props: []
-  asphalt: {fileID: 4577958150579042304}
