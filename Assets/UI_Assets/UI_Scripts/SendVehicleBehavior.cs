@@ -59,7 +59,7 @@ public class SendVehicleBehavior : MonoBehaviour, ISceneUIMenu
 
     public void closeUI()
     {
-        Destroy(gameObject);
+        UIManager.Instance.openUIScreen(UIManager.UIScreens.EditLane, selectedLane.transform.gameObject);
     }
 
 

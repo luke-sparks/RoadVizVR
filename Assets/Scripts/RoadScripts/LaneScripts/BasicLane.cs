@@ -20,13 +20,25 @@ public class BasicLane : MonoBehaviour
     [SerializeField] protected bool nonVehicleAsphalt;
     [SerializeField] protected bool nonAsphalt;
 
+    Material asphaltMaterial;
+
     //The direction of the lane
     //0 means from positive to negative x,
     //1 means from negative to positive x
     [SerializeField] private int direction = 0; //Zero by default
 
+    private void Awake()
+    {
+        asphaltMaterial = asphalt.GetComponent<Renderer>().material;
+    }
+
     protected GameObject road;
     protected Road roadScript;
+
+    void Start()
+    {
+        asphaltMaterial.SetTextureScale("_MainTex", new Vector2(100, asphalt.transform.localScale.z));
+    }
 
     // Max wrote this
     // changes the direction of the lane's traffic 
@@ -98,6 +110,10 @@ public class BasicLane : MonoBehaviour
         laneSize.z = newWidth;
         // step 5
         asphalt.transform.localScale = laneSize;
+
+        // updates lane texture width
+        asphaltMaterial.SetTextureScale("_MainTex", new Vector2(100, newWidth));
+
         currentLaneWidth = asphalt.transform.localScale.z;
         if (!isVehicleLane())
         {

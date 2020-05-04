@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5235527977681653721}
   m_Layer: 0
-  m_Name: DashedWhiteObj
+  m_Name: DashedWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
