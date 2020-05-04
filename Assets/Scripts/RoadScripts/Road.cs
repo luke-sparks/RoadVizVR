@@ -749,6 +749,7 @@ public class Road : MonoBehaviour
                 if(leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane()) 
                 {
                     // leave the stripes out if both neighbors are a non-asphalt lane (don't do anything)
+                    Destroy(remainingStripe);
                 }
                 // case b: only the left neighbor is an asphalt lane
                 else if(!leftNeighborScriptReference.isNonAsphaltLane() && rightNeighborScriptReference.isNonAsphaltLane()) 
