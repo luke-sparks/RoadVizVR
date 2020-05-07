@@ -2094,8 +2094,8 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 306549864}
   - {fileID: 1495629403}
+  - {fileID: 306549864}
   excludeTargetGroups: 1b0000001a000000
   persistOnLoad: 0
 --- !u!4 &2077396815
