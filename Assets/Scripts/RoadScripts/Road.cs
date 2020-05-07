@@ -287,8 +287,6 @@ public class Road : MonoBehaviour
         LinkedListNode<GameObject> newLaneNode = laneNode.Next;
         GameObject newLane = newLaneNode.Value;
         BasicLane newLaneScript = (BasicLane)newLane.GetComponent("BasicLane");
-        // reset the name of the lane
-        newLaneScript.setLaneType(newType);
         // 4. delete the old lane 
         removeLane(targetLane);
         // 5. adjust the stripes of the new lane
