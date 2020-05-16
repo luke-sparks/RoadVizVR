@@ -10,7 +10,6 @@ public class BasicLane : MonoBehaviour
     [SerializeField] private const float DEFAULT_LANE_WIDTH_FT = 12.0f;
     [SerializeField] protected GameObject asphalt;
     [SerializeField] protected int laneIndex;
-    [SerializeField] protected string laneType;
     [SerializeField] protected float currentLaneWidth;
     [SerializeField] protected float maxWidth;
     [SerializeField] protected float minWidth;
@@ -167,16 +166,14 @@ public class BasicLane : MonoBehaviour
     }
 
     // Nathan wrote this
-    // sets the lane's current type
-    public void setLaneType(string newTypeName)
-    {
-        laneType = newTypeName;
-    }
-
-    // Nathan wrote this
     // retrieves lane's current type
     public string getLaneType()
     {
+        string laneType = gameObject.name;
+        while (laneType.EndsWith("(Clone)"))
+        {
+            laneType = laneType.Substring(0, laneType.Length - 7);
+        }
         return laneType;
     }
 

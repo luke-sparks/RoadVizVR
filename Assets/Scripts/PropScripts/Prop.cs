@@ -63,7 +63,7 @@ public class Prop : MonoBehaviour
         string propType = gameObject.name;
         while (propType.EndsWith("(Clone)"))
         {
-            propType = propType.Substring(0, gameObject.name.Length - 7);
+            propType = propType.Substring(0, propType.Length - 7);
         }
         return propType;
     }
